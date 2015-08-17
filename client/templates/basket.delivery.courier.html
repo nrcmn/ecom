@@ -1,0 +1,116 @@
+---
+name: basket.delivery.courier
+url: /courier
+animationIn: fadeIn
+---
+
+
+<form class="padding" ng-controller="CourierDeliveryCtrl">
+    <div class="grid-block">
+        <span class="small-6">
+            <label class="bee-font-bold">Оплата при получении</label>
+
+            <input type="radio" name="paymentType" value="cash" id="cash" ng-model="form.paymentType">
+            <label for="cash">Наличными</label>
+
+            <br/>
+            <br/>
+
+            <input type="radio" name="paymentType" value="card-in-shop" id="card-in-shop" ng-model="form.paymentType">
+            <label for="card-in-shop">Банковской картой в салоне магазина</label>
+        </span>
+        <span class="small-6">
+            <label class="bee-font-bold">Предварительная оплата</label>
+            <input type="radio" name="paymentType" value="card-web" id="card-web" ng-model="form.paymentType">
+            <label for="card-web">Безналичный расчет</label>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 10%;">
+        <span class="small-5 bee-font-bold">
+            Стоимость услуги
+        </span>
+        <span class="small-7 bee-font-norm">
+            200 руб.
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Данные получателя
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                ФИО
+                <input type="text" placeholder="ФИО" ng-model="form.name">
+            </label>
+            <label class="bee-font-norm">
+                Контактный телефон
+                <span class="inline-label">
+                    <span class="form-label">+7</span>
+                    <input type="tel" ng-model="form.tel">
+                </span>
+            </label>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Куда доставить
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                Город
+                <input type="text" placeholder="Город" ng-model="form.city">
+            </label>
+            <div class="grid-block">
+                <span class="small-6 grid-content">
+                    <label class="bee-font-norm">
+                        Улица
+                        <input type="text" placeholder="Улица" ng-model="form.street">
+                    </label>
+                </span>
+                <span class="small-2 grid-content">
+                    <label class="bee-font-norm">
+                        Дом
+                        <input type="text" placeholder="Дом" ng-model="form.house">
+                    </label>
+                </span>
+                <span class="small-2 grid-content">
+                    <label class="bee-font-norm">
+                        Корп.
+                        <input type="text" placeholder="Корп." ng-model="form.housing">
+                    </label>
+                </span>
+                <span class="small-2 grid-content">
+                    <label class="bee-font-norm">
+                        Кв.
+                        <input type="text" placeholder="Кв." ng-model="form.flat">
+                    </label>
+                </span>
+            </div>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Когда доставить
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                <input type="date" placeholder="Выберите дату" ng-model="form.date">
+            </label>
+
+            <select ng-options="item.time for item in deliveryTime track by item.id" ng-model="form.time"></select>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Электронная почта
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                <input type="email" placeholder="Электронная почта" ng-model="form.email">
+            </label>
+        </span>
+    </div>
+    
+    <a class="warning button float-left" onclick="history.back()"><img zf-iconic="" icon="Chevron" size="small" style="transform: rotate(180deg)"> Назад</a>
+    <a class="warning button float-right" ng-click="onward()">Далее <img zf-iconic="" icon="Chevron" size="small"></a>
+</form>

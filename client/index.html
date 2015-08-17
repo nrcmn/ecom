@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="application">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Foundation for Apps</title>
+
+        <!-- Foundation CSS -->
+        <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="./assets/lib/swiper/dist/css/swiper.min.css" charset="utf-8">
+
+        <script src="./assets/js/foundation.js"></script>
+        <script src="./assets/js/templates.js"></script>
+        <script src="./assets/js/routes.js"></script>
+        <script src="./assets/js/app.js"></script>
+        <script src="./assets/js/controllers.js"></script>
+
+        <!-- Swiper.js -->
+        <script src="./assets/lib/swiper/dist/js/swiper.min.js" charset="utf-8"></script>
+
+        <!-- Masonry.js -->
+        <!-- <script src="./assets/lib/masonry/angular-masonry.min.js" charset="utf-8"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.js"></script> -->
+    </head>
+    <body>
+        <div class="grid-frame vertical">
+            <div class="menu-group">
+                <div class="menu-group-left">
+                    <ul class="menu-bar">
+                        <li><a ui-sref="categories({category: 'phones'})">Телефоны</a></li>
+                        <li><a href="#">Планшеты</a></li>
+                        <li><a href="#">Ноутбуки</a></li>
+                        <li><a href="#">Фото и видео</a></li>
+                        <li><a href="#">Аудио</a></li>
+                        <li><a href="#">Гаджеты</a></li>
+                        <li><a href="#">Аксессуары</a></li>
+                    </ul>
+                </div>
+                <div class="menu-group-right">
+                    <ul class="icon-right menu-bar">
+                        <li><a ui-sref="basket.list"><img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">Корзина</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div ui-view class="grid-content"></div>
+        </div>
+    </body>
+</html>

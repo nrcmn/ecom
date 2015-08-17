@@ -1,0 +1,504 @@
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "description": "",
+            "small_desc": "",
+            "is_active": true,
+            "main_collection": {
+                "id": 10,
+                "name": "Смартфоны"
+            },
+            "article": "3700000640",
+            "is_big": false,
+            "kind": 10,
+            "modified": "2015-07-20T10:20:38.331703Z",
+            "name": "Смартфон Apple iPhone 6 16Gb Silver",
+            "is_template": false,
+            "url_slug": "smartfon-apple-iphone-6-16gb-silver",
+            "product_id": "103702",
+            "remains": {},
+            "price": 100,
+            "seo": {
+                "keywords": "купить Смартфон Apple iPhone 6 16Gb Silver, цена Смартфон Apple iPhone 6 16Gb Silver, Смартфон Apple iPhone 6 16Gb Silver с доставкой, Смартфон Apple iPhone 6 16Gb Silver фото, Смартфон Apple iPhone 6 16Gb Silver отзывы, Смартфон Apple iPhone 6 16Gb Silver характеристики",
+                "description": "Флагманский смартфон компании Apple - iPhone 16Gb Silver. Диагональ экрана - 4.7 дюймов, объем памяти - 16Gb. Камера iSight может записывать HD-видео в 1080р на скорости как 60 или 240 кадров в секунду. Консультация при выборе и быстрая доставка.",
+                "title": "Купить Apple iPhone 6 16Gb Silver. Характеристики смартфона, цена и отзывы - Интернет-магазин «Билайн»"
+            },
+            "product_fields": [
+                {
+                    "uuid": "b0b3b0a4-c45a-40a5-89ba-d8f640c2b0c8",
+                    "weight": 0,
+                    "name": "Производитель",
+                    "is_public": "True",
+                    "slug": "proizvoditel",
+                    "values": [
+                        "Apple"
+                    ]
+                },
+                {
+                    "uuid": "f7175f4c-e3ba-4e36-bd0d-20a8a19827fa",
+                    "weight": 0,
+                    "name": "Рингтон",
+                    "is_public": "True",
+                    "slug": "rington",
+                    "values": [
+                        "полноценное аудио"
+                    ]
+                },
+                {
+                    "uuid": "81652326-f349-4f3b-beb7-c1b73f8f7b87",
+                    "weight": 0,
+                    "name": "FM-радио",
+                    "is_public": "True",
+                    "slug": "fm-radio",
+                    "values": [
+                        "нет"
+                    ]
+                },
+                {
+                    "uuid": "bc1431c0-8828-4139-935b-abd499282d33",
+                    "weight": 0,
+                    "name": "Вес",
+                    "is_public": "True",
+                    "slug": "ves",
+                    "values": [
+                        "129 гр"
+                    ]
+                },
+                {
+                    "uuid": "ca6fc39c-71ed-4f25-a655-a4e6c66183ce",
+                    "weight": 0,
+                    "name": "Толщина",
+                    "is_public": "True",
+                    "slug": "tolshchina",
+                    "values": [
+                        "6.9 мм"
+                    ]
+                },
+                {
+                    "uuid": "be1fd77b-5361-451b-bb26-b25762a7aa07",
+                    "weight": 0,
+                    "name": "Ширина",
+                    "is_public": "True",
+                    "slug": "shirina",
+                    "values": [
+                        "67 мм"
+                    ]
+                },
+                {
+                    "uuid": "8f5b2a87-e432-4235-8135-cbd9b8be8aa9",
+                    "weight": 0,
+                    "name": "Высота",
+                    "is_public": "True",
+                    "slug": "vysota",
+                    "values": [
+                        "138.1 мм"
+                    ]
+                },
+                {
+                    "uuid": "fb3ffb8a-215a-486c-9632-c78fbe585a8f",
+                    "weight": 0,
+                    "name": "Цвет",
+                    "is_public": "True",
+                    "slug": "tsvet",
+                    "values": [
+                        "серебристый;#C0C0C0"
+                    ]
+                },
+                {
+                    "uuid": "d8a3d98c-8992-40ec-8ed7-c9e004b51acb",
+                    "weight": 0,
+                    "name": "Материал",
+                    "is_public": "True",
+                    "slug": "material",
+                    "values": [
+                        "алюминий"
+                    ]
+                },
+                {
+                    "uuid": "3928a30c-439b-45a9-a174-550ead0e7d8e",
+                    "weight": 0,
+                    "name": "Форм-фактор",
+                    "is_public": "True",
+                    "slug": "form-faktor",
+                    "values": [
+                        "моноблок"
+                    ]
+                },
+                {
+                    "uuid": "97cbb78d-0ac1-4d6e-a025-7775faa9255e",
+                    "weight": 0,
+                    "name": "Разъем для наушников",
+                    "is_public": "True",
+                    "slug": "razem-dlia-naushnikov-2",
+                    "values": [
+                        "3.5 мм"
+                    ]
+                },
+                {
+                    "uuid": "0a07aa21-1f3a-44a8-a4c7-c3f4b4d03470",
+                    "weight": 0,
+                    "name": "Защита от влаги",
+                    "is_public": "True",
+                    "slug": "zashchita-ot-vlagi",
+                    "values": [
+                        "нет"
+                    ]
+                },
+                {
+                    "uuid": "db74f72d-14bb-456d-862e-7eb050cb8c62",
+                    "weight": 0,
+                    "name": "ГЛОНАСС",
+                    "is_public": "True",
+                    "slug": "glonass",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "77abcde8-a493-4160-960c-35079a5d3226",
+                    "weight": 0,
+                    "name": "GPS",
+                    "is_public": "True",
+                    "slug": "gps",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "47f76d43-f81e-4a34-a33d-ba1d956d518f",
+                    "weight": 0,
+                    "name": "Bluetooth",
+                    "is_public": "True",
+                    "slug": "bluetooth",
+                    "values": [
+                        "4.0"
+                    ]
+                },
+                {
+                    "uuid": "ceca38e4-e3fe-4f4e-876e-9376a4e727cc",
+                    "weight": 0,
+                    "name": "Wi-Fi",
+                    "is_public": "True",
+                    "slug": "wi-fi",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "1ce19157-55a7-4537-9b83-8a71589b1b9f",
+                    "weight": 0,
+                    "name": "LTE",
+                    "is_public": "True",
+                    "slug": "lte",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "4a4e1a6a-96a7-4b5c-ac73-63ca182a5d6a",
+                    "weight": 0,
+                    "name": "3G",
+                    "is_public": "True",
+                    "slug": "3g",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "99bd46be-fe51-4265-abcc-65806fb650b9",
+                    "weight": 0,
+                    "name": "Мультитач",
+                    "is_public": "True",
+                    "slug": "multitach",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "73272fbe-af49-4159-9b1b-d82bbed4c407",
+                    "weight": 0,
+                    "name": "Тип сенсорного экрана",
+                    "is_public": "True",
+                    "slug": "tip-sensornogo-ekrana",
+                    "values": [
+                        "емкостный"
+                    ]
+                },
+                {
+                    "uuid": "e9368900-57c0-4008-a928-d3872ad60718",
+                    "weight": 0,
+                    "name": "Сенсорный экран",
+                    "is_public": "True",
+                    "slug": "sensornyi-ekran",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "e5b5e340-d9d0-41d2-87c1-84ec4e627c7c",
+                    "weight": 0,
+                    "name": "Разрешение экрана по вертикали",
+                    "is_public": "True",
+                    "slug": "razreshenie-ekrana-po-vertikali",
+                    "values": [
+                        "1334 px"
+                    ]
+                },
+                {
+                    "uuid": "36b95b75-4482-40ac-a8d9-8394f98d6ae3",
+                    "weight": 0,
+                    "name": "Тип экрана",
+                    "is_public": "True",
+                    "slug": "tip-ekrana",
+                    "values": [
+                        "Retina"
+                    ]
+                },
+                {
+                    "uuid": "b14a5d80-d2e2-4036-938c-991fd750c2b1",
+                    "weight": 0,
+                    "name": "Разрешение экрана по горизонтали",
+                    "is_public": "True",
+                    "slug": "razreshenie-ekrana-po-gorizontali",
+                    "values": [
+                        "750 px"
+                    ]
+                },
+                {
+                    "uuid": "a8c8a777-a211-4753-8607-e892dc6a1c1f",
+                    "weight": 0,
+                    "name": "Диагональ экрана",
+                    "is_public": "True",
+                    "slug": "diagonal-ekrana",
+                    "values": [
+                        "4.7 дюйм"
+                    ]
+                },
+                {
+                    "uuid": "aef63820-a69c-4434-926a-c0e73f6d2023",
+                    "weight": 0,
+                    "name": "Объем встроенной памяти",
+                    "is_public": "True",
+                    "slug": "obem-vstroennoi-pamiati",
+                    "values": [
+                        "16 Гб"
+                    ]
+                },
+                {
+                    "uuid": "a0d7e030-693e-468e-aedf-c5c9255fe676",
+                    "weight": 0,
+                    "name": "Частота процессора",
+                    "is_public": "True",
+                    "slug": "chastota-protsessora",
+                    "values": [
+                        "1400 МГц"
+                    ]
+                },
+                {
+                    "uuid": "3a7ae88d-9280-4cd7-9601-9df46ae6e6db",
+                    "weight": 0,
+                    "name": "Объем оперативной памяти",
+                    "is_public": "True",
+                    "slug": "obem-operativnoi-pamiati",
+                    "values": [
+                        "1024 Мб"
+                    ]
+                },
+                {
+                    "uuid": "e7d65693-d4e2-4beb-b12f-be42baf6c653",
+                    "weight": 0,
+                    "name": "Количество ядер",
+                    "is_public": "True",
+                    "slug": "kolichestvo-iader",
+                    "values": [
+                        "2"
+                    ]
+                },
+                {
+                    "uuid": "a56dcc8a-4a3b-4eac-8c7b-66af213eb891",
+                    "weight": 0,
+                    "name": "Процессор",
+                    "is_public": "True",
+                    "slug": "protsessor",
+                    "values": [
+                        "Apple A8"
+                    ]
+                },
+                {
+                    "uuid": "49d7cc9e-38d5-472d-a6fa-55915a6b4811",
+                    "weight": 0,
+                    "name": "Количество SIM-карт",
+                    "is_public": "True",
+                    "slug": "kolichestvo-sim-kart",
+                    "values": [
+                        "1"
+                    ]
+                },
+                {
+                    "uuid": "f007c02b-d68c-4e97-a311-42d068635c01",
+                    "weight": 0,
+                    "name": "GSM",
+                    "is_public": "True",
+                    "slug": "gsm",
+                    "values": [
+                        "900",
+                        "1800",
+                        "1900"
+                    ]
+                },
+                {
+                    "uuid": "c427e757-bc62-4e5d-aa0f-8248b67ef179",
+                    "weight": 0,
+                    "name": "Операционная система",
+                    "is_public": "True",
+                    "slug": "operatsionnaia-sistema",
+                    "values": [
+                        "iOS"
+                    ]
+                },
+                {
+                    "uuid": "dfcf2589-d77e-4061-9799-a5a35fcc6109",
+                    "weight": 0,
+                    "name": "Тип SIM-карты",
+                    "is_public": "True",
+                    "slug": "tip-sim-karty",
+                    "values": [
+                        "nano"
+                    ]
+                },
+                {
+                    "uuid": "c7838da5-88f7-46e5-bb7a-481d474bfa50",
+                    "weight": 0,
+                    "name": "Версия операционной системы",
+                    "is_public": "True",
+                    "slug": "versiia-operatsionnoi-sistemy",
+                    "values": [
+                        "iOS 8"
+                    ]
+                },
+                {
+                    "uuid": "b2aee68c-b139-424c-95b9-265cdabb7130",
+                    "weight": 0,
+                    "name": "Дополнительная информация",
+                    "is_public": "True",
+                    "slug": "dopolnitelnaia-informatsiia",
+                    "values": [
+                        "коннектор Lightning",
+                        "сканер отпечатков пальцев",
+                        "сопроцессор Apple M8",
+                        "режим замедленной съемки — 240 кадров в секунду",
+                        "система мобильных платежей Apple Pay"
+                    ]
+                },
+                {
+                    "uuid": "d4ea1a52-cb67-4768-a3aa-029f1f53cc81",
+                    "weight": 0,
+                    "name": "Кабель подключения к компьютеру",
+                    "is_public": "True",
+                    "slug": "kabel-podkliucheniia-k-kompiuteru",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "a706d9e8-deec-41c2-b32e-5b8af03a11ae",
+                    "weight": 0,
+                    "name": "Гарнитура",
+                    "is_public": "True",
+                    "slug": "garnitura",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "22ba4bfe-44e3-41e3-a1cc-192de612883d",
+                    "weight": 0,
+                    "name": "Время работы в режиме ожидания",
+                    "is_public": "True",
+                    "slug": "vremia-raboty-v-rezhime-ozhidaniia",
+                    "values": [
+                        "250 ч"
+                    ]
+                },
+                {
+                    "uuid": "7bf5397e-6e21-4fb8-8edf-e82d3109ff9c",
+                    "weight": 0,
+                    "name": "Время работы в режиме разговора",
+                    "is_public": "True",
+                    "slug": "vremia-raboty-v-rezhime-razgovora",
+                    "values": [
+                        "14 ч"
+                    ]
+                },
+                {
+                    "uuid": "4a217154-5949-46fa-a188-927db5c214b8",
+                    "weight": 0,
+                    "name": "Емкость аккумулятора",
+                    "is_public": "True",
+                    "slug": "emkost-akkumuliatora",
+                    "values": [
+                        "1810 мА*ч"
+                    ]
+                },
+                {
+                    "uuid": "d3245250-ae92-4156-bff3-6e8e31f11a86",
+                    "weight": 0,
+                    "name": "Фронтальная камера",
+                    "is_public": "True",
+                    "slug": "frontalnaia-kamera",
+                    "values": [
+                        "1.2 Мпикс"
+                    ]
+                },
+                {
+                    "uuid": "784fc880-22a4-4d37-a13f-3a3ea24a7cf0",
+                    "weight": 0,
+                    "name": "Автофокус",
+                    "is_public": "True",
+                    "slug": "avtofokus",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "204e92af-2676-42b7-96a0-82b20c41d291",
+                    "weight": 0,
+                    "name": "Вспышка",
+                    "is_public": "True",
+                    "slug": "vspyshka",
+                    "values": [
+                        "да"
+                    ]
+                },
+                {
+                    "uuid": "a49f1653-2c4f-4ca9-a628-7b32dc752cef",
+                    "weight": 0,
+                    "name": "Основная камера",
+                    "is_public": "True",
+                    "slug": "osnovnaia-kamera",
+                    "values": [
+                        "8 Мпикс"
+                    ]
+                }
+            ],
+            "weight": 0,
+            "images": [
+                {
+                    "image": "/media/goods/fullsize/39e000ad-2648-4173-a39a-e95add7e5ced.jpg"
+                },
+                {
+                    "image": "/media/goods/fullsize/1878c0d7-e161-4ca8-a472-a398b8972cb7.jpg"
+                },
+                {
+                    "image": "/media/goods/fullsize/763111d4-f073-4982-a338-076a794f4317.jpg"
+                },
+                {
+                    "image": "/media/goods/fullsize/210c61e3-f6d7-47b0-9f17-78f7a0f660fa.jpg"
+                }
+            ]
+        }
+    ]
+}

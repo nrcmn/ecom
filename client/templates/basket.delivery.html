@@ -1,0 +1,24 @@
+---
+name: basket.delivery
+url: /delivery
+abstract: true
+animationIn: fadeIn
+---
+
+
+<div class="grid-container" ng-controller="BasketDeliveryFormCtrl">
+    <div class="grid-content">
+        <div class="card padding">
+            <div class="card-divider">
+                <h3>Способы доставки и оплаты</h3>
+            </div>
+            <div class="padding">
+                <a class="hollow warning button" ui-sref="basket.delivery.courier">Курьером в удобное время</a>
+                <a class="hollow warning button" ui-sref="basket.delivery.pickup">Самовывоз с точки "Интернет Магазина Москва"</a>
+            </div>
+            <div class="card-section">
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>
