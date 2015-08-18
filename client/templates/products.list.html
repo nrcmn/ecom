@@ -6,8 +6,8 @@ animationIn: fadeIn
 
 <div class="grid-container" ng-controller="ProductsListCtrl">
     <h1>{{productListName}}</h1>
-    <div class="grid-block small-up-3 align-center">
-        <div class="grid-content align-center" ng-repeat="product in productList.results">
+    <div class="grid-block small-up-4 align-center" masonry='{ "transitionDuration" : "0" , "itemSelector" : ".tile"}'>
+        <div class="grid-content align-center tile" style="width: 33.333%" masonry-tile ng-repeat="product in productList.results">
             <div class="card padding">
                 <div style="text-align: center;">
                     <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + product.images[0].image}}">

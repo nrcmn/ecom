@@ -11,7 +11,8 @@
     'foundation.dynamicRouting.animations',
 
     // scripts
-    'controllers'
+    'controllers',
+    'masonry'
   ])
     .config(['$urlRouterProvider', '$locationProvider', function ($urlProvider, $locationProvider) {
         $urlProvider.otherwise('/categories');
@@ -56,6 +57,14 @@
                 })
             }
         })
+
+        document.addEventListener('focus', function (elm) {
+            if (document.getElementById('focus') != null) {
+                document.getElementById('focus').id = null;
+            }
+
+            elm.srcElement.id = 'focus'
+        }, true)
     })
 
     .directive('swiper', function ($rootScope, $timeout) {
