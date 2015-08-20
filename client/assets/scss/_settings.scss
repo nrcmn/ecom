@@ -532,6 +532,20 @@ $menubar-background: #eeeae5;
 // $menubar-icon-size: 25px;
 // $menubar-icon-spacing: $menubar-item-padding;
 
+.menu-bar {
+  padding: 20px;
+}
+.menu-bar {
+  a {
+    border: transparent 2px solid;
+  }
+  #focus {
+    border-color: #555;
+    border-radius: 6px;
+  }
+
+}
+
 // 17. Modal
 // - - - - - - - - - - - - - - -
 
