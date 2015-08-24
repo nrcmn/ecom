@@ -22,27 +22,31 @@
 
                         masonry.reloadItems();
                         masonry.layout();
-    
+
                         elem.children(options.itemSelector).css('visibility', 'visible');
                     }, 120);
                 };
-                
+
                 scope.removeBrick = function() {
                     $timeout(function() {
                         masonry.reloadItems();
                         masonry.layout();
-                   }, 500);
-                };                
-                
+                   }, 700);
+                };
+
+                scope.removeBrick();
+
                 scope.appendBricks = function(ele) {
                     masonry.appended(ele);
-                };                
-                
+                };
+
                 scope.$on('masonry.layout', function() {
-                    masonry.layout();                 
-                });
-                
+                    masonry.layout();
+                }, true);
+
                 scope.update();
+                masonry.reloadItems();
+                masonry.layout();
             }
         };
     }).directive('masonryTile', function() {
@@ -53,19 +57,19 @@
                 var master = elem.parent('*[masonry]:first').scope(),
                     update = master.update,
                     removeBrick = master.removeBrick,
-                    appendBricks = master.appendBricks;                    
+                    appendBricks = master.appendBricks;
                 if (update) {
                     imagesLoaded( elem.get(0), update);
                     elem.ready(update);
                 }
                 if (appendBricks) {
                     imagesLoaded( elem.get(0), appendBricks(elem));
-                }                
+                }
                 scope.$on('$destroy', function() {
                     if (removeBrick) {
                         removeBrick();
                     }
-                });                
+                });
             }
         };
     });

@@ -63,8 +63,8 @@
                 document.getElementById('focus').id = null;
             }
 
-            elm.srcElement.id = 'focus'
-        }, true)
+            elm.srcElement.id = 'focus';
+        }, true);
     })
 
     .directive('swiper', function ($rootScope, $timeout) {

@@ -27,7 +27,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductsListCtrl', function ($http, $scope, $rootScope) {
+    .controller('ProductsListCtrl', function ($http, $scope, $rootScope, $state) {
         $http.get('assets/http/smartphones_list_catalog_21_page_1.json').success(function (data) {
             $scope.productList = data;
         })
