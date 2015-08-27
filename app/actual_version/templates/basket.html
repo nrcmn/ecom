@@ -1,0 +1,17 @@
+
+<div ng-controller="BasketCtrl">
+    <div class="grid-container padding">
+        <h1>Корзина</h1>
+    </div>
+
+    <ui-view></ui-view>
+
+    <div class="grid-content align-center">
+        <ul id="keyboard">
+            <key ng-class="key.class" ng-repeat="key in keys" ng-click="keyClick(key)">
+                <span ng-if="!key.shiftChange">{{key.value}}</span>
+                <span ng-if="key.shiftChange">{{key.shift}}</span>
+            </key>
+        </ul>
+    </div>
+</div>

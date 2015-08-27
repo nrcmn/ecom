@@ -1,0 +1,20 @@
+
+<div class="grid-container" ng-controller="ProductsListCtrl">
+    <h1>{{productListName}}</h1>
+    <div class="grid-block small-up-4 align-center" masonry='{ "transitionDuration" : "0" , "itemSelector" : ".tile"}'>
+        <div class="grid-content align-center tile" style="width: 33.333%" ng-repeat="product in productList.results">
+            <div class="card padding">
+                <div style="text-align: center;">
+                    <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + product.images[0].image}}">
+                </div>
+                <div class="card-divider">
+                    <h3>{{product.name}}</h3>
+                </div>
+                <div class="card-section">
+                    <h4 class="h-price-font">{{product.price}} &#8381;</h4>
+                </div>
+                <a ui-sref="detail({article:product.article})" class="warning button" ng-click="detailOpen(product)">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</div>

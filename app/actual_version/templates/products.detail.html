@@ -1,0 +1,75 @@
+
+<zf-notification-set id="to-basket-notify" position="top-right"></zf-notification-set>
+<div class="grid-container" ng-controller="DetailPageCtrl">
+    <h1>{{product.name}}</h1>
+    <div class="grid-block">
+        <div class="grid-content small-6 text-center">
+            <div class="card padding">
+                <!-- <img class="products-images" ng-src="{{'http://static.beeline.ru/shop/' + product.images[0].image}}"> -->
+
+                <div class="swiper-container padding">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" ng-repeat="img in product.images" style="text-align: center;">
+                            <img class="detail-swiper-image" ng-src="{{'http://static.beeline.ru/shop' + img.image}}" draggable="false">
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination-white"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+
+                <!-- Initialize Swiper -->
+                <swiper></swiper>
+            </div>
+        </div>
+        <div class="grid-content small-6">
+            <div class="card padding">
+                <div class="card-divider">
+                    <h2>{{product.price}} &#8381;</h2>
+                </div>
+                <a class="warning expand button" ng-click="toBasket(product)">Купить</a>
+                <div class="card-section" ng-if="loadDetailData && productsHistory.length != 0">
+                    <h3>Так же пользователи выбирают:</h3>
+                    <hr>
+                    <div class="swiper-container padding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide text-center" ng-repeat="prod in productsHistory">
+                                <img class="detail-images" ng-src="{{'http://static.beeline.ru/shop' + prod.image}}" draggable="false">
+                                <h4 class="text-left">{{prod.name}}</h4>
+                                <h5 class="text-left">{{prod.price}} руб.</h5>
+                                <a ui-sref="detail({article:prod.article})" class="warning button text-left" ng-click="detailOpen(prod)">Подробнее</a>
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination swiper-pagination-white"></div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                    </div>
+
+                    <!-- Initialize Swiper -->
+                    <swiper></swiper>
+
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="grid-content">
+            <div class="card padding">
+                <div class="card-section" ng-if="loadDetailData">
+                    <h4>Характеристики:</h4>
+                    <section class="block-list padding product-inform">
+                        <ul>
+                            <li ng-repeat="item in product.product_fields" class="grid-block padding">
+                                <span class="small-8 bee-font-norm">{{item.name}}</span>
+                                <span class="small-4">{{item.values[0]}}</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

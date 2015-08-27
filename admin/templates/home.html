@@ -1,0 +1,22 @@
+
+
+<div class="grid-container" ng-controller="MainCtrl">
+    <div class="grid-content">
+        <section class="block-list">
+            <header>List of stores</header>
+            <ul>
+                <li class="padding" ng-repeat="list in shops">
+                    <div class="grid-block">
+                        <div class="small-2">
+                            <h3>{{list.id}}</h3>
+                            <span>app version: {{list.data.ver}}</span>
+                        </div>
+                        <div class="small-10 text-right success">
+                            <h5>{{list.data.status}}</h5>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>

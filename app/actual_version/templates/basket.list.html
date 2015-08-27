@@ -1,0 +1,52 @@
+
+
+<div class="grid-container" ng-controller="BasketProductListCtrl">
+    <div class="grid-content">
+        <div class="card padding">
+            <div class="card-divider" ng-if="basket.length != 0">
+                <h3>Список покупок</h3>
+            </div>
+            <div class="text-center padding" style="border: 2px dashed #999; border-radius: 10px; padding: 6%; margin-top: 4%;" ng-if="basket.length == 0">
+                <h3>
+                    Список покупок пуст.
+                </h3>
+                <br>
+                <a ui-sref="phones">перейти в каталог</a>
+            </div>
+            <div class="card-section">
+                <section class="block-list">
+                    <ul>
+                        <li class="padding" ng-repeat="item in basket">
+                            <div class="grid-block">
+                                <span class="small-2 text-center">
+                                    <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + item.image}}"/>
+                                </span>
+                                <span class="small-5">
+                                    <p class="bee-font-bold">
+                                        {{item.name}}
+                                    </p>
+                                </span>
+                                <span class="small-2 text-center">
+                                    <span class="inline-label">
+                                        <a class="form-label button" ng-click="minusCount($index)">-</a>
+                                        <input type="text" ng-value="item.count" style="width: 50px; text-align: center;">
+                                        <a class="form-label button" ng-click="plusCount($index)">+</a>
+                                    </span>
+                                </span>
+                                <span class="small-2 text-center">
+                                    <p class="bee-font-bold">
+                                        {{item.price}} руб.
+                                    </p>
+                                </span>
+                                <span class="small-2 text-center">
+                                    <a class="close-button" ng-click="deleteItem($index)">×</a>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <a ng-if="basket.length != 0" class="warning button float-right" ng-click="onward()">Далее <img zf-iconic="" icon="Chevron" size="small"></a>
+            </div>
+        </div>
+    </div>
+</div>

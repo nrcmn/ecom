@@ -1,0 +1,67 @@
+
+<zf-notification-set id="confirm-notify" position="top-right"></zf-notification-set>
+<div class="grid-container" ng-controller="BasketConfirmCtrl">
+    <div class="grid-content">
+        <div class="card padding">
+            <div class="card-divider">
+                <h3>Подтверждение заказа</h3>
+            </div>
+            <div class="card-section padding">
+                <div class="grid-content">
+                    <section class="block-list padding">
+                        <h5>Cписок покупок</h5>
+                        <ul>
+                            <li class="padding" ng-repeat="item in basket">
+                                <div class="grid-block">
+                                    <span class="small-2 text-center">
+                                        <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + item.image}}"/>
+                                    </span>
+                                    <span class="small-5">
+                                        <p class="bee-font-bold">
+                                            {{item.name}}
+                                        </p>
+                                    </span>
+                                    <span class="small-2 text-center">
+                                        <p class="bee-font-bold">
+                                            {{item.count}} шт.
+                                        </p>
+                                    </span>
+                                    <span class="small-2 text-center">
+                                        <p class="bee-font-bold">
+                                            {{item.price}} руб.
+                                        </p>
+                                    </span>
+                                    <span class="small-2 text-center">
+                                        <a class="close-button" ng-click="deleteItem($index)">×</a>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="grid-content">
+                    <h5>Контактная информация</h5>
+                    <p class="bee-font-norm">
+                        <i>{{form.name}}<br/>
+                        + 7 {{form.tel}}, {{form.email}}</i>
+                    </p>
+                </div>
+                <div class="grid-content">
+                    <h5>Оплата</h5>
+                    <p class="bee-font-norm">
+                        <i>{{form.paymentType}}</i>
+                    </p>
+                </div>
+                <div class="grid-content">
+                    <h5>Доставка</h5>
+                    <p class="bee-font-norm">
+                        <i>{{form.city}},&nbsp;{{form.street}},&nbsp;д.{{form.house}},&nbsp;корп.{{form.housing}},&nbsp;кв.{{form.flat}}<br/>
+                        {{form.date | date : 'dd.MM.yyyy'}},&nbsp;{{form.time.time}}</i>
+                    </p>
+                </div>
+            </div>
+            <a class="warning button float-left" onclick="history.back()"><img zf-iconic="" icon="Chevron" size="small" style="transform: rotate(180deg)"> Назад</a>
+            <a class="warning button float-right" ng-click="onward()">Далее <img zf-iconic="" icon="Chevron" size="small"></a>
+        </div>
+    </div>
+</div>

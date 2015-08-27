@@ -1,0 +1,87 @@
+
+
+<form class="padding" ng-controller="PickupDeliveryCtrl">
+    <div class="grid-block">
+        <span class="small-6">
+            <label class="bee-font-bold">Оплата при получении</label>
+
+            <input type="radio" name="paymentType" value="cash" id="cash" ng-model="form.paymentType">
+            <label for="cash">Наличными</label>
+
+            <br/>
+            <br/>
+
+            <input type="radio" name="paymentType" value="card-in-shop" id="card-in-shop" ng-model="form.paymentType">
+            <label for="card-in-shop">Банковской картой в салоне магазина</label>
+        </span>
+        <span class="small-6">
+            <label class="bee-font-bold">Предварительная оплата</label>
+            <input type="radio" name="paymentType" value="card-web" id="card-web" ng-model="form.paymentType">
+            <label for="card-web">Безналичный расчет</label>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 10%;">
+        <span class="small-5 bee-font-bold">
+            Где забрать
+        </span>
+        <span class="small-7 bee-font-norm">
+            <h5>Интернет-магазин Москва</h5>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Время работы
+        </span>
+        <span class="small-7">
+            <p>
+                Круглосуточно, технический перерыв 23:30 - 00:30
+            </p>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Адрес
+        </span>
+        <span class="small-7">
+            <p>
+                «Сухаревская»<br>
+                ул Даев переулок, 2<br>
+                тел.: +7 (495) 725-5-725
+            </p>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Дата самовывоза
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                <input type="date" placeholder="Выберите дату" ng-model="form.date">
+            </label>
+        </span>
+    </div>
+    <div class="grid-block" style="margin-top: 5%;">
+        <span class="small-5 bee-font-bold">
+            Данные получателя
+        </span>
+        <span class="small-7">
+            <label class="bee-font-norm">
+                ФИО
+                <input type="text" placeholder="ФИО" ng-model="form.name">
+            </label>
+            <label class="bee-font-norm">
+                Контактный телефон
+                <span class="inline-label">
+                    <span class="form-label">+7</span>
+                    <input type="tel" ng-model="form.tel">
+                </span>
+            </label>
+            <label class="bee-font-norm">
+                Электронная почта
+                <input type="email" placeholder="Электронная почта" ng-model="form.email">
+            </label>
+        </span>
+    </div>
+    <a class="warning button float-left" onclick="history.back()"><img zf-iconic="" icon="Chevron" size="small" style="transform: rotate(180deg)"> Назад</a>
+    <a class="warning button float-right" ng-click="onward()">Далее <img zf-iconic="" icon="Chevron" size="small"></a>
+</form>

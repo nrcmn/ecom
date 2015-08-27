@@ -1,0 +1,10 @@
+{
+    "version": "0.0.1",
+    "appStatus": "test",
+    "shops": [
+        {
+            "id":"C493",
+            "version": "0.0.2"
+        }
+    ]
+}
