@@ -16,7 +16,7 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
 
         window.version =  "0.0.1";
         window.id = "I001";
-        window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
+        window.api_key = '3269460fc771fe1d97f0a3bdc13be279f3d07d96',
                 market_region = 98082;
 
         // window.version = prompt('Version of app', '0.0.1');
