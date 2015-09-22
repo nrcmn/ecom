@@ -5,12 +5,25 @@ animationIn: fadeIn
 ---
 
 <div class="grid-container" ng-controller="ProductsListCtrl">
-    <h1>{{productListName}}</h1>
-    <div class="grid-block small-up-4 align-center" masonry='{ "transitionDuration" : "0" , "itemSelector" : ".tile"}'>
-        <div class="grid-content align-center tile" style="width: 33.333%" ng-repeat="product in productList.results">
+    <!-- <h1>{{productListName}}</h1> -->
+
+    <div class="grid-content" ng-if="products.length == 0" style="margin-top:4%;">
+        <div class="card padding">
+            <div class="text-center padding" style="border: 2px dashed #999; border-radius: 10px; padding: 6%;">
+                <h3>
+                    Список товаров недоступен
+                </h3>
+                <br>
+                <a onclick="history.back()">вернуться назад</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-block align-center" masonry='{ "transitionDuration" : "0.1s" , "itemSelector" : ".tile"}'>
+        <div class="grid-content align-center tile" style="width: 33.333%" ng-repeat="product in products" ui-sref="detail({article:product.article})" ng-click="detailOpen(product)">
             <div class="card padding">
                 <div style="text-align: center;">
-                    <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + product.images[0].image}}">
+                    <img class="products-images" ng-src="{{product.images[0]}}">
                 </div>
                 <div class="card-divider">
                     <h3>{{product.name}}</h3>
@@ -18,7 +31,6 @@ animationIn: fadeIn
                 <div class="card-section">
                     <h4 class="h-price-font">{{product.price}} &#8381;</h4>
                 </div>
-                <a ui-sref="detail({article:product.article})" class="warning button" ng-click="detailOpen(product)">Подробнее</a>
             </div>
         </div>
     </div>

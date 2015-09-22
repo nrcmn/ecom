@@ -11,8 +11,8 @@ animationIn: fadeIn
     </div>
 
     <ui-view></ui-view>
-
     <div class="grid-content align-center">
+        <keyboard></keyboard>
         <ul id="keyboard">
             <key ng-class="key.class" ng-repeat="key in keys" ng-click="keyClick(key)">
                 <span ng-if="!key.shiftChange">{{key.value}}</span>

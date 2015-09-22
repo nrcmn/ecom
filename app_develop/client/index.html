@@ -15,7 +15,6 @@
         <script src="./assets/js/templates.js"></script>
         <script src="./assets/js/routes.js"></script>
         <script src="./assets/js/app.js"></script>
-        <!-- <script src="./assets/js/controllers.js"></script> -->
 
         <!-- Swiper.js -->
         <script src="./assets/lib/swiper/dist/js/swiper.min.js" charset="utf-8"></script>
@@ -32,17 +31,18 @@
         <script src="./assets/lib/masonry/angular-masonry-directive.js" charset="utf-8"></script>
     </head>
     <body>
+
+        <div class="spinner" ng-show="spinnerShow">
+            <img src="./assets/img/spinner.svg"/>
+        </div>
+
         <div class="grid-frame vertical">
-            <div class="menu-group">
+            <div class="menu-group" ng-controller="MenuGroupCtrl">
                 <div class="menu-group-left">
                     <ul class="menu-bar">
-                        <li><a ui-sref="categories({category: 'phones'})">Телефоны</a></li>
-                        <li><a href="#">Планшеты</a></li>
-                        <li><a href="#">Ноутбуки</a></li>
-                        <li><a href="#">Фото и видео</a></li>
-                        <li><a href="#">Аудио</a></li>
-                        <li><a href="#">Гаджеты</a></li>
-                        <li><a href="#">Аксессуары</a></li>
+                        <li ng-repeat="category in menuData track by category.order" ng-click="openSection(category)">
+                            <a ui-sref="categories({id: category.id})">{{category.name}}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="menu-group-right">

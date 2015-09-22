@@ -6,7 +6,7 @@ animationIn: fadeIn
 
 
 <div class="grid-container" ng-controller="BasketProductListCtrl">
-    <div class="grid-content">
+    <div class="grid-content" style="margin-bottom: 280px;">
         <div class="card padding">
             <div class="card-divider" ng-if="basket.length != 0">
                 <h3>Список покупок</h3>
@@ -16,7 +16,7 @@ animationIn: fadeIn
                     Список покупок пуст.
                 </h3>
                 <br>
-                <a ui-sref="phones">перейти в каталог</a>
+                <a ui-sref="categories">перейти в каталог</a>
             </div>
             <div class="card-section">
                 <section class="block-list">
@@ -24,7 +24,7 @@ animationIn: fadeIn
                         <li class="padding" ng-repeat="item in basket">
                             <div class="grid-block">
                                 <span class="small-2 text-center">
-                                    <img class="products-images" ng-src="{{'http://static.beeline.ru/shop' + item.image}}"/>
+                                    <img class="products-images" ng-src="{{item.image}}"/>
                                 </span>
                                 <span class="small-5">
                                     <p class="bee-font-bold">

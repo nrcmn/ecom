@@ -49,14 +49,28 @@
 }
 
 // Keyboard CSS
-
 #keyboard {
     list-style: none;
+    // position: fixed;
+    position: fixed;
+    bottom: 0;
+    width: 1197px;
+    padding: 10px;
+    margin: 5% auto;
+    margin-bottom: 1%;
+    left: 0;
+    right: 0;
+    background-color: rgb(238, 234, 229);
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.45);
+    border-radius: 8px;
 }
-#keyboard key {
+
+key {
     float: left;
     margin: 0 5px 5px 0;
-    width: 6%;
+    width: 76px;
     height: 6%;
     line-height: 40px;
     text-align: center;
@@ -65,6 +79,7 @@
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
+
 .capslock, .tab, .left-shift {
     clear: left;
 }
@@ -75,13 +90,13 @@
     width: 12%;
 }
 #keyboard .return {
-    width: 10.5%;
+    width: 11.4%;
 }
 #keyboard .left-shift {
-    width: 13%;
+    width: 177px;
 }
 #keyboard .right-shift {
-    width: 16%;
+    width: 180px;
 }
 .lastitem {
     margin-right: 0;
@@ -91,7 +106,9 @@
 }
 #keyboard .space {
     clear: left;
-    width: 95%;
+    width: 99.7%;
+    height: 40px;
+    display: block;
 }
 .on {
     display: none;
@@ -102,6 +119,41 @@
     left: 1px;
     border-color: #e5e5e5;
     cursor: pointer;
+}
+
+.swiper-img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: initial !important;
+}
+
+.grid-container {
+    min-width:100% !important;
+}
+
+.spinner {
+    height:100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    z-index: 100;
+    text-align: center;
+    padding-top: 25%;
+}
+
+.category-img {
+    width: initial !important;
+}
+
+.intag-list {
+    font-size: 20px;
+    border-bottom: 1px solid rgb(153, 153, 153);
+    padding: 10px 0;
+    margin: 0 !important;
+    word-wrap: break-word;
 }
 
 // 1. CSS Exports
@@ -424,9 +476,6 @@ $card-divider-background: #fff;
 }
 .detail-images {
     width: 23% !important;
-}
-.detail-swiper-image {
-    width: initial !important;
 }
 
 // 12. Extras

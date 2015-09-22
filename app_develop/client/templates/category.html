@@ -1,27 +1,18 @@
 ---
 name: categories
-url: /categories.:category
+url: /categories.:id
 animationIn: fadeIn
 ---
 
 <div class="grid-container" ng-controller="CategoriesCtrl">
-    <h1>{{categoryName}}</h1>
-    <div class="grid-block small-up-3 align-center">
-        <div class="grid-content" ng-repeat="category in categoryData.generalCategories">
-            <div class="card padding" ng-click="openCategory(category)">
-                <img ng-src="{{category.image}}">
+
+    <h1>{{categoryInfo.name}}</h1>
+    <div class="grid-block small-up-3 align-center" masonry='{ "transitionDuration" : "0.01s" , "itemSelector" : ".tile", "isAnimated": false}'>
+        <div class="grid-content tile" style="width: 33.333%" ng-repeat="section in sectionData[categoryInfo.id] track by section.order">
+            <div class="card padding text-center" ng-click="openCategory(section)">
+                <img class="category-img" ng-src="{{section.image}}">
                 <div class="card-divider text-center">
-                    <h3>{{category.name}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-block small-up-4 align-center">
-        <div class="grid-content" ng-repeat="category in categoryData.otherCategories">
-            <div class="card padding" ng-click="openCategory(category)">
-                <img ng-src="{{category.image}}">
-                <div class="card-divider">
-                    {{category.name}}
+                    <h3>{{section.name}}</h3>
                 </div>
             </div>
         </div>

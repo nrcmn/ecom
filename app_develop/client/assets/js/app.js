@@ -1,7 +1,7 @@
 angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundation.dynamicRouting', 'foundation.dynamicRouting.animations', 'controllers', 'masonry', 'ngWebSocket', 'services'])
 
     .config(['$urlRouterProvider', '$locationProvider', function ($urlProvider, $locationProvider) {
-        $urlProvider.otherwise('/categories');
+        $urlProvider.otherwise('/categories.9');
 
         $locationProvider.html5Mode({
           enabled:false,
@@ -16,7 +16,8 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
 
         window.version =  "0.0.1";
         window.id = "I001";
-        window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b'
+        window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
+                market_region = 98082;
 
         // window.version = prompt('Version of app', '0.0.1');
         // window.id = prompt('Id of shop', 'I001');
@@ -135,6 +136,383 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
                         prevButton: '.swiper-button-prev'
                     });
                 }, 0.000001);
+            }
+        }
+    })
+
+    .directive('keyboard', function () {
+        return {
+            controller: function ($scope) {
+                var keyboard = {
+                    keys: [
+                        {
+                            class: 'symbol',
+                            value: "`",
+                            shift: "~",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "1",
+                            shift: "!",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "2",
+                            shift: "@",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "3",
+                            shift: "#",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "4",
+                            shift: "$",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "5",
+                            shift: "%",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "6",
+                            shift: "^",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "7",
+                            shift: "&",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "8",
+                            shift: "*",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "9",
+                            shift: "(",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "0",
+                            shift: ")",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "-",
+                            shift: "_",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "=",
+                            shift: "+",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'delete lastitem',
+                            value: "delete",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'tab',
+                            value: "tab",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "q",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "w",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "e",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "r",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "t",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "y",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "u",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "i",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "o",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "p",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "{",
+                            shift: "[",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "}",
+                            shift: "]",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'lastitem',
+                            value: "'\'",
+                            shift: "|",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'capslock',
+                            value: "caps lock",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "a",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "s",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "d",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "f",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "g",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "h",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "j",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "k",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "l",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: ";",
+                            shift: ";",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "'",
+                            shift: '&quot;',
+                            shiftChange: false
+                        },
+                        {
+                            class: 'return lastitem',
+                            value: "return",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'left-shift',
+                            value: "shift",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "z",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "x",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "c",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "v",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "b",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "n",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'letter',
+                            value: "m",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: ",",
+                            shift: "<",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: ".",
+                            shift: ">",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'symbol',
+                            value: "/",
+                            shift: "?",
+                            shiftChange: false
+                        },
+                        {
+                            class: 'right-shift lastitem',
+                            value: "shift",
+                            shift: null,
+                            shiftChange: false
+                        },
+                        {
+                            class: 'space lastitem',
+                            value: "",
+                            shift: null,
+                            shiftChange: false
+                        }
+                    ]
+                }
+
+                $scope.keys = keyboard.keys
+                $scope.keyClick = function (key) {
+
+                    // keyboard button rules
+                    if (key.class == 'symbol' && key.shiftChange == false) {
+                        document.getElementById('focus').value += key.value
+                    }
+                    else if (key.class == 'symbol' && key.shiftChange == true) {
+                        document.getElementById('focus').value += key.shift
+                    }
+                    else if (key.class == 'letter') {
+                        document.getElementById('focus').value += key.value
+                    }
+                    else if (key.class == 'letter uppercase') {
+                        document.getElementById('focus').value += key.value.toUpperCase();
+                    }
+                    else if (key.class == 'space lastitem') {
+                        document.getElementById('focus').value += ' ';
+                    }
+                    else if (key.class == 'delete lastitem') {
+                        var stringArr = document.getElementById('focus').value.split('');
+                        stringArr.pop();
+
+                        document.getElementById('focus').value = stringArr.join('')
+                    }
+                    else if (key.class == 'left-shift' || key.class == 'right-shift lastitem') {
+                        angular.forEach($scope.keys, function (item, i, arr) {
+                            item.shiftChange = item.shift != null && item.shiftChange == false ? true : false;
+                        })
+
+
+                    }
+                    else if (key.class == 'capslock') {
+                        angular.forEach($scope.keys, function (item, i, arr) {
+                            if (item.class == 'letter')
+                                item.class = 'letter uppercase';
+                            else if (item.class == 'letter uppercase')
+                                item.class = 'letter';
+                        })
+                    }
+                }
             }
         }
     })
