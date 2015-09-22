@@ -10,7 +10,7 @@
                     itemSelector: '.item'
                 }, angular.fromJson(attrs.masonry));
 
-                var masonry = scope.masonry = new Masonry(container, options);
+                window.masonry = scope.masonry = new Masonry(container, options);
 
                 var debounceTimeout = 0;
                 scope.update = function() {

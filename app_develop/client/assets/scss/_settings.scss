@@ -156,6 +156,26 @@ key {
     word-wrap: break-word;
 }
 
+.history-block {
+    background-color: rgba(255,255,255,0.5);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    max-width: 5%;
+}
+
+.history-block:active{
+    background-color: rgba(255,255,255,0.8);
+}
+
+.history-block .history-icon {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 // 1. CSS Exports
 // - - - - - - - - - - - - - - -
 
@@ -386,14 +406,15 @@ $header-font-family: 'officinaserifcbold';
 // $button-background: $primary-color;
 // $button-background-hover: scale-color($button-background, $lightness: -15%);
 // $button-color: auto;
-// $button-radius: 0;
+$button-radius: 20px;
 // $button-sizes: (
 //   tiny: 0.7,
 //   small: 0.8,
 //   medium: 1,
 //   large: 1.3,
 // );
-// $button-font-size: 0.9rem;
+// $button-font-size: 0.9rem; default
+$button-font-size: 1.5rem;
 // $button-opacity-disabled: 0.5;
 // $button-tag-selector: false;
 
@@ -472,7 +493,9 @@ $header-font-family: 'officinaserifcbold';
 // $card-divider-background: smartscale($card-background, 7%);
 $card-divider-background: #fff;
 .products-images {
-    width: 50% !important;
+    // width: 50% !important;
+    max-width: 50% !important;
+    max-height: 50% !important;
 }
 .detail-images {
     width: 23% !important;
@@ -549,8 +572,10 @@ $card-divider-background: #fff;
 
 // $iconic-primary-fill: $primary-color;
 // $iconic-primary-stroke: $primary-color;
+$iconic-primary-stroke: rgb(34, 34, 34);
 // $iconic-accent-fill: $iconic-primary-fill;
 // $iconic-accent-stroke: $iconic-accent-fill;
+$iconic-accent-stroke: rgb(34, 34, 34);
 
 // 15. Label
 // - - - - - - - - - - - - - - -

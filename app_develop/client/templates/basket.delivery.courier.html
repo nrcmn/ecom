@@ -10,18 +10,18 @@ animationIn: fadeIn
         <span class="small-6">
             <label class="bee-font-bold">Оплата при получении</label>
 
-            <input type="radio" name="paymentType" value="cash" id="cash" ng-model="form.paymentType">
+            <input type="radio" name="paymentType" value="Наличными" id="cash" ng-model="form.paymentType">
             <label for="cash">Наличными</label>
 
             <br/>
             <br/>
 
-            <input type="radio" name="paymentType" value="card-in-shop" id="card-in-shop" ng-model="form.paymentType">
+            <input type="radio" name="paymentType" value="Банковской картой в салоне магазина" id="card-in-shop" ng-model="form.paymentType">
             <label for="card-in-shop">Банковской картой в салоне магазина</label>
         </span>
         <span class="small-6">
             <label class="bee-font-bold">Предварительная оплата</label>
-            <input type="radio" name="paymentType" value="card-web" id="card-web" ng-model="form.paymentType">
+            <input type="radio" name="paymentType" value="Предварительная оплата" id="card-web" ng-model="form.paymentType">
             <label for="card-web">Безналичный расчет</label>
         </span>
     </div>
@@ -40,13 +40,13 @@ animationIn: fadeIn
         <span class="small-7">
             <label class="bee-font-norm">
                 ФИО
-                <input type="text" placeholder="ФИО" ng-model="form.name">
+                <input type="text" placeholder="ФИО" name="name" ng-model="form.name">
             </label>
             <label class="bee-font-norm">
                 Контактный телефон
                 <span class="inline-label">
                     <span class="form-label">+7</span>
-                    <input type="tel" ng-model="form.tel">
+                    <input type="tel" name="tel" ng-model="form.tel">
                 </span>
             </label>
         </span>
@@ -58,31 +58,31 @@ animationIn: fadeIn
         <span class="small-7">
             <label class="bee-font-norm">
                 Город
-                <input type="text" placeholder="Город" ng-model="form.city">
+                <input type="text" name="city" placeholder="Город" ng-model="form.city">
             </label>
             <div class="grid-block">
                 <span class="small-6 grid-content">
                     <label class="bee-font-norm">
                         Улица
-                        <input type="text" placeholder="Улица" ng-model="form.street">
+                        <input type="text" name="street" placeholder="Улица" ng-model="form.street">
                     </label>
                 </span>
                 <span class="small-2 grid-content">
                     <label class="bee-font-norm">
                         Дом
-                        <input type="text" placeholder="Дом" ng-model="form.house">
+                        <input type="text" name="house" placeholder="Дом" ng-model="form.house">
                     </label>
                 </span>
                 <span class="small-2 grid-content">
                     <label class="bee-font-norm">
                         Корп.
-                        <input type="text" placeholder="Корп." ng-model="form.housing">
+                        <input type="text" name="housing" placeholder="Корп." ng-model="form.housing">
                     </label>
                 </span>
                 <span class="small-2 grid-content">
                     <label class="bee-font-norm">
                         Кв.
-                        <input type="text" placeholder="Кв." ng-model="form.flat">
+                        <input type="text" name="flat" placeholder="Кв." ng-model="form.flat">
                     </label>
                 </span>
             </div>
@@ -106,7 +106,7 @@ animationIn: fadeIn
         </span>
         <span class="small-7">
             <label class="bee-font-norm">
-                <input type="email" placeholder="Электронная почта" ng-model="form.email">
+                <input type="email" name="email" placeholder="Электронная почта" ng-model="form.email">
             </label>
         </span>
     </div>

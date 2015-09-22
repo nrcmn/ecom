@@ -51,7 +51,7 @@ angular.module('services', [])
                     market_region: window.market_region,
                     collection: id,
                     amount: 15,
-                    page: 1
+                    page: page
                 }
             })
             .success(function (data) {
@@ -62,6 +62,22 @@ angular.module('services', [])
             .error(function (data) {
                 console.log(data);
                 __SPINER.hide();
+            })
+        }
+    })
+
+    .service('loadRecomendations', function ($http, $rootScope) {
+        return function (id) {
+            $http({
+                method: 'GET',
+                url: 'https://backend.vimpelcom.ru/api/public/v1/products/' + id + '/',
+                params: {
+                    api_key: window.api_key,
+                    market_region: window.market_region
+                }
+            })
+            .success(function (data) {
+                $rootScope.recomendations.push(data);
             })
         }
     })

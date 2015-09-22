@@ -6,7 +6,7 @@ animationIn: fadeIn
 
 <zf-notification-set id="confirm-notify" position="top-right"></zf-notification-set>
 <div class="grid-container" ng-controller="BasketConfirmCtrl">
-    <div class="grid-content">
+    <div class="grid-content" style="margin-bottom: 280px;">
         <div class="card padding">
             <div class="card-divider">
                 <h3>Подтверждение заказа</h3>
@@ -14,7 +14,7 @@ animationIn: fadeIn
             <div class="card-section padding">
                 <div class="grid-content">
                     <section class="block-list padding">
-                        <h5>Cписок покупок</h5>
+                        <h4>Cписок покупок</h4>
                         <ul>
                             <li class="padding" ng-repeat="item in basket">
                                 <div class="grid-block">
@@ -44,25 +44,41 @@ animationIn: fadeIn
                         </ul>
                     </section>
                 </div>
-                <div class="grid-content">
-                    <h5>Контактная информация</h5>
-                    <p class="bee-font-norm">
-                        <i>{{form.name}}<br/>
-                        + 7 {{form.tel}}, {{form.email}}</i>
-                    </p>
-                </div>
-                <div class="grid-content">
-                    <h5>Оплата</h5>
-                    <p class="bee-font-norm">
-                        <i>{{form.paymentType}}</i>
-                    </p>
-                </div>
-                <div class="grid-content">
-                    <h5>Доставка</h5>
-                    <p class="bee-font-norm">
-                        <i>{{form.city}},&nbsp;{{form.street}},&nbsp;д.{{form.house}},&nbsp;корп.{{form.housing}},&nbsp;кв.{{form.flat}}<br/>
-                        {{form.date | date : 'dd.MM.yyyy'}},&nbsp;{{form.time.time}}</i>
-                    </p>
+                <div class="grid-block padding">
+                    <div class="grid-block align-center padding">
+                        <div class="grid-content">
+                            <h4>Контактная информация</h4>
+                            <p class="bee-font-norm" style="font-size: 1.5em;">
+                                <span>ФИО: {{form.name}}</span><br/>
+                                <span>Номер телефона: + 7 {{form.tel}}</span><br/>
+                                <span>Email: {{form.email}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid-block align-center padding">
+                        <div class="grid-content">
+                            <h4>Оплата</h4>
+                            <p class="bee-font-norm" style="font-size: 1.5em;">
+                                <span>{{form.paymentType}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid-block align-center padding">
+                        <div class="grid-content">
+                            <h4>Доставка</h4>
+                            <p class="bee-font-norm" style="font-size: 1.5em;">
+                                <span ng-if="form.city">Город: {{form.city}}<br/></span>
+                                <span ng-if="form.street">Улица: {{form.street}}<br/></span>
+                                <span ng-if="form.house">Дом: {{form.house}}<br/></span>
+                                <span ng-if="form.housing">Корпус: {{form.housing}}<br/></span>
+                                <span ng-if="form.flat">Квартира: {{form.flat}}<br/></span>
+                                <span ng-if="form.date">
+                                    Дата и время: {{form.date | date : 'dd.MM.yyyy'}}<br/>
+                                    {{form.time.time}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <a class="warning button float-left" onclick="history.back()"><img zf-iconic="" icon="Chevron" size="small" style="transform: rotate(180deg)"> Назад</a>

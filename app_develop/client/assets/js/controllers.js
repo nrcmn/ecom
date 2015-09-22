@@ -15,6 +15,10 @@ angular.module('controllers', [])
             console.log(section);
             loadProducts(section.id, 1);
         }
+
+        function imageLoadProgress () {
+            console.log('Progress');
+        }
     })
 
     .controller('ProductsListCtrl', function ($http, $scope, $rootScope, $state, __SPINER) {
@@ -24,11 +28,14 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('DetailPageCtrl', function ($http, $rootScope, $scope, FoundationApi) {
+    .controller('DetailPageCtrl', function ($http, $rootScope, $scope, FoundationApi, loadRecomendations) {
+        // recomendations loader
+        $rootScope.recomendations = [];
+        window.product.recommendations.forEach(function (item, i, arr) {
+            loadRecomendations(item);
+        })
+
         $scope.loadDetailData = false;
-
-        console.log(window.product);
-
         window.product.intags_leftColumn = [];
         window.product.intags_rightColumn = [];
         var intagsLength = window.product.intags_categories.length;
@@ -43,11 +50,8 @@ angular.module('controllers', [])
         })
 
         $scope.product = window.product;
-        console.log($scope.product);
-
 
         $scope.toBasket = function (product) {
-
             function showNotify(argument) {
                 FoundationApi.publish('to-basket-notify', {
                     content: 'Товар добавлен в корзину.',
@@ -77,20 +81,15 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('BasketCtrl', function ($scope, FoundationApi) {
-        
-    })
-
     .controller('BasketProductListCtrl', function ($scope, $rootScope, $state) {
-        console.log($rootScope.basket);
 
         // $rootScope.basket = [
         //     {
         //         "count":1,
-        //         "article":"3700000630",
-        //         "image":"/media/goods/fullsize/a4a5eb44-d261-4b48-bd76-ea84a8828c44.jpg",
-        //         "price":100,
-        //         "name":"Смартфон Apple iPhone 6 16Gb Space Gray"
+        //         "article":"1409001020",
+        //         "image":"http://static.beeline.ru/shop/media/goods/fullsize/5c942c5b-7732-4419-acfb-82cfa2212f66.jpg",
+        //         "price":590,
+        //         "name":"Ремешок Samsung ET-SR350B для Samsung Gear Fit Gray/Silver"
         //     }
         // ]
 
@@ -115,13 +114,8 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('BasketDeliveryFormCtrl', function ($scope) {
-
-    })
-
     .controller('CourierDeliveryCtrl', function ($scope, $state, $rootScope) {
         $rootScope.form = {};
-
         $scope.deliveryTime = [
             {
                 id: 1,
@@ -151,27 +145,45 @@ angular.module('controllers', [])
     })
 
     .controller('BasketConfirmCtrl', function ($scope, $state, $rootScope, FoundationApi, $timeout) {
-        console.log($rootScope.form);
-
         // $rootScope.basket = [
         //     {
         //         "count":1,
-        //         "article":"3700000630",
-        //         "image":"/media/goods/fullsize/a4a5eb44-d261-4b48-bd76-ea84a8828c44.jpg",
-        //         "price":100,
-        //         "name":"Смартфон Apple iPhone 6 16Gb Space Gray"
+        //         "article":"1409001020",
+        //         "image":"http://static.beeline.ru/shop/media/goods/fullsize/5c942c5b-7732-4419-acfb-82cfa2212f66.jpg",
+        //         "price":590,
+        //         "name":"Ремешок Samsung ET-SR350B для Samsung Gear Fit Gray/Silver"
         //     }
         // ]
+        //
+        // $rootScope.form = {
+        //     city: "mo",
+        //     date: '2015-09-25T00:00:00.511Z',
+        //     email: "mail.ru",
+        //     flat: "3",
+        //     house: "2",
+        //     housing: "1",
+        //     name: "qwerty",
+        //     paymentType: "Наличными",
+        //     street: "test",
+        //     tel: "9162255977",
+        //     time: {
+        //         id: 1,
+        //         time: 'С 9:00 до 10:00'
+        //     },
+        //     id: 2,
+        //     time: "С 10:00 до 11:00"
+        // }
 
         $scope.onward = function () {
             FoundationApi.publish('confirm-notify', {
-                content: 'Спасибо!\nВаш заказ отправлен в никуда..',
+                content: 'Спасибо!\nВаш заказ отправлен!',
                 color: "success",
                 autoclose: "4000"
             });
 
             $timeout(function () {
-                $state.go('phones');
+                $state.go('categories');
+                $rootScope.basket = [];
             }, 4000)
         }
 

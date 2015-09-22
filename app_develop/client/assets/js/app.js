@@ -11,7 +11,7 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
         $locationProvider.hashPrefix('!');
     }])
 
-    .run(function ($rootScope, $websocket, FoundationApi) {
+    .run(function ($rootScope, $websocket, FoundationApi, $state) {
         FastClick.attach(document.body);
 
         window.version =  "0.0.1";
@@ -31,27 +31,36 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
             $rootScope.product = product;
         }
 
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            if (fromState.url == '/products/:article') {
-                if ($rootScope.productsHistory.length == 10) {
-                    $rootScope.productsHistory.splice(0, 1);
-                }
-
-                // ---------------------------------------
-                // checking that array haven't this object
-                // method: array.some([callback]);
-                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some
-                if($rootScope.productsHistory.some(function(item){return item.article == $rootScope.product.article})){
-                    return false
-                }
-
-                $rootScope.productsHistory.push({
-                    image: $rootScope.product.images[0].image,
-                    name: $rootScope.product.name,
-                    price: $rootScope.product.price,
-                    article: $rootScope.product.article
-                })
+        $rootScope.statesNavigation = {
+            lastState: function () {
+                console.log('back');
+                history.back();
+            },
+            forwardState: function () {
+                console.log('forward');
+                $state.go(window.forwState)
             }
+        }
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+            var back,
+                forward;
+
+            // for first app run
+            if (fromState.name == '') {
+                back = false;
+                forward = false
+            }
+
+            // products navigation
+            if (fromState.name == "products" && toState.name == "detail") {
+                back = true;
+                forward: false;
+            }
+
+
+            $rootScope.navBack = back;
+            $rootScope.navForw = forward;
         })
 
         document.addEventListener('focus', function (elm) {
@@ -142,7 +151,7 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
 
     .directive('keyboard', function () {
         return {
-            controller: function ($scope) {
+            controller: function ($scope, $rootScope) {
                 var keyboard = {
                     keys: [
                         {
@@ -474,35 +483,42 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
 
                 $scope.keys = keyboard.keys
                 $scope.keyClick = function (key) {
+                    var elm = document.getElementById('focus');
+                    if (!$rootScope.form[elm.name])
+                        $rootScope.form[elm.name] = '';
 
                     // keyboard button rules
                     if (key.class == 'symbol' && key.shiftChange == false) {
-                        document.getElementById('focus').value += key.value
+                        elm.value += key.value;
+                        $rootScope.form[elm.name] += key.value;
                     }
                     else if (key.class == 'symbol' && key.shiftChange == true) {
-                        document.getElementById('focus').value += key.shift
+                        elm.value += key.shift;
+                        $rootScope.form[elm.name] += key.shift;
                     }
                     else if (key.class == 'letter') {
-                        document.getElementById('focus').value += key.value
+                        elm.value += key.value;
+                        $rootScope.form[elm.name] += key.value;
                     }
                     else if (key.class == 'letter uppercase') {
-                        document.getElementById('focus').value += key.value.toUpperCase();
+                        elm.value += key.value.toUpperCase();
+                        $rootScope.form[elm.name] += key.value.toUpperCase();
                     }
                     else if (key.class == 'space lastitem') {
-                        document.getElementById('focus').value += ' ';
+                        elm.value += ' ';
+                        $rootScope.form[elm.name] += ' ';
                     }
                     else if (key.class == 'delete lastitem') {
-                        var stringArr = document.getElementById('focus').value.split('');
+                        var stringArr = elm.value.split('');
                         stringArr.pop();
 
-                        document.getElementById('focus').value = stringArr.join('')
+                        elm.value = stringArr.join('')
+                        $rootScope.form[elm.name] = elm.value;
                     }
                     else if (key.class == 'left-shift' || key.class == 'right-shift lastitem') {
                         angular.forEach($scope.keys, function (item, i, arr) {
                             item.shiftChange = item.shift != null && item.shiftChange == false ? true : false;
                         })
-
-
                     }
                     else if (key.class == 'capslock') {
                         angular.forEach($scope.keys, function (item, i, arr) {
@@ -516,3 +532,14 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
             }
         }
     })
+
+    .directive('imageonload', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs, rootScope) {
+                element.bind('load', function() {
+                    window.masonry.layout()
+                });
+            }
+        };
+    });
