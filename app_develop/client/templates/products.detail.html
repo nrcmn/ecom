@@ -66,11 +66,8 @@ animationIn: fadeIn
                                 <div ng-repeat="intag_l in left.intags track by $index" class="intag-list grid-block small-up-3">
                                     <span class="grid-content small-8">{{intag_l.name}}</span>
                                     <span class="grid-content small-4 text-right">
-                                        <span ng-if="intag_l.is_many" ng-repeat="val in intag_l.value track by $index">
+                                        <span ng-repeat="val in intag_l.value track by $index">
                                             {{val}}<br/>
-                                        </span>
-                                        <span ng-if="!intag_l.is_many">
-                                            {{intag_l.value}}
                                         </span>
                                     </span>
                                 </div>
@@ -81,11 +78,8 @@ animationIn: fadeIn
                                 <div ng-repeat="intag_r in right.intags track by $index" class="intag-list grid-block small-up-3">
                                     <span class="grid-content small-8">{{intag_r.name}}</span>
                                     <span class="grid-content small-4 text-right">
-                                        <span ng-if="intag_r.is_many" ng-repeat="val in intag_r.value track by $index">
+                                        <span ng-repeat="val in intag_r.value track by $index">
                                             {{val}}<br/>
-                                        </span>
-                                        <span ng-if="!intag_r.is_many">
-                                            {{intag_r.value}}
                                         </span>
                                     </span>
                                 </div>
