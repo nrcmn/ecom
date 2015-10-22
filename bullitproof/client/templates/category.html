@@ -1,0 +1,17 @@
+---
+name: category
+url: /category
+---
+
+<div class="grid-container" ng-controller="CategoryMainCtrl" style="">
+    <div class="grid-block small-up-4 align-center">
+        <div class="align-center padding" ng-repeat="content in categoryMainContent"  ng-click="openProductList(content)">
+            <div class="card padding" style="min-width: 100%; max-width: 98%;">
+                <img ng-src="{{content.image}}">
+                <div class="card-section text-center">
+                    <h4>{{content.name}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

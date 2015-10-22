@@ -1,0 +1,16 @@
+---
+name: home
+url: /
+---
+
+<div class="grid-container" ng-controller="CategoryCtrl" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="grid-block small-up-4 align-center">
+        <div class="align-center padding" ng-repeat="category in categories" ng-if="category.parent == null">
+            <div class="card padding" style="min-width: 100%; max-width: 98%;">
+                <div class="card-section text-center" ng-click="openCategory(category)">
+                    <h1>{{category.name}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

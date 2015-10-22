@@ -1,0 +1,19 @@
+---
+name: products
+url: /products
+---
+
+<div class="grid-container" ng-controller="ProductsCtrl">
+    <div class="grid-block small-up-3 align-center">
+        <div class="align-center padding" ng-repeat="product in products" style="height: 500px;">
+            <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
+                <div style="width: 250px; height: 250px; margin: auto;">
+                    <img ng-src="{{product.images[0]}}" style="max-width: 100%; max-height: 100%; border-radius: 5px;"/>
+                </div>
+                <div class="card-section text-center">
+                    <h4>{{product.name}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

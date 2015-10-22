@@ -1,0 +1,45 @@
+---
+name: detail
+url: /detail
+---
+
+<div class="grid-container" ng-controller="DetailCtrl">
+    <h2>{{detail.name}}</h2>
+    <div class="grid-block">
+        <div class="small-6 grid-content">
+            <div class="grid-block">
+                <div style="width:500px; height: 500px; text-align: center;">
+                    <img ng-src="{{detail.images[0]}}" style="max-width: 100%; max-height: 100%; border-radius: 5px;"/>
+                </div>
+            </div>
+        </div>
+        <div class="small-6 grid-content">
+                <h2>ЦЕНА: {{detail.price + ' рублей'}}</h2>
+                <h4>Наличие: {{detail.remain}}</h4>
+                <a class="warning hollow button">Вызвать продовца</a>
+                <a class="success hollow button">Положить в корзину</a>
+        </div>
+    </div>
+    <div class="grid-block">
+        <div class="grid-content">
+            <h3>Описание:</h3>
+            {{detail.description || 'Описание тут.....'}}
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="grid-block">
+        <div class="grid-content">
+            <h3>Характеристики:</h3>
+            <zf-accordion>
+                <zf-accordion-item title="{{intag.name}}" ng-repeat="intag in detail.intags_categories">
+                    <ul>
+                        <li ng-repeat="value in intag.intags" style="list-style-type: none;">
+                            {{value.name}}: {{value.value[0] || 'нет данных'}}
+                        </li>
+                    </ul>
+                </zf-accordion-item>
+            </zf-accordion>
+        </div>
+    </div>
+</div>
