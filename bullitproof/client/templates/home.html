@@ -1,14 +1,39 @@
 ---
 name: home
 url: /
+animationIn: fadeIn
 ---
+<div class="grid-container" ng-controller="CategoryCtrl">
+    <div class="grid-block">
+        <div class="grid-block small-up-3 align-center">
+            <div class="align-center padding" ng-repeat="category in categories" ng-if="category.parent == null">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;">
+                    <div class="card-section text-center" ng-click="openCategoryDetail(category)">
+                        <h1>{{category.name}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-block vertical">
+            <div class="grid-content">
+                <br>
+                <br>
+                <h3>Лидеры</h3>
+                <div class="align-center card">
+                    <div class="card-section">
+                        <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                    </div>
+                </div>
+            </div>
 
-<div class="grid-container" ng-controller="CategoryCtrl" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    <div class="grid-block small-up-4 align-center">
-        <div class="align-center padding" ng-repeat="category in categories" ng-if="category.parent == null">
-            <div class="card padding" style="min-width: 100%; max-width: 98%;">
-                <div class="card-section text-center" ng-click="openCategory(category)">
-                    <h1>{{category.name}}</h1>
+            <div class="grid-content">
+                <br>
+                <br>
+                <h3>Ранее просматривали</h3>
+                <div class="align-center card">
+                    <div class="card-section">
+                        <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                    </div>
                 </div>
             </div>
         </div>

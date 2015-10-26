@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>prototype</title>
         <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="./assets/lib/swiper/dist/css/swiper.min.css" charset="utf-8">
+
+        <!-- Swiper.js -->
+        <script src="./assets/lib/swiper/dist/js/swiper.min.js" charset="utf-8"></script>
+
         <script src="./assets/js/foundation.js"></script>
         <script src="./assets/js/templates.js"></script>
         <script src="./assets/js/routes.js"></script>
@@ -14,18 +21,59 @@
             .grid-container {
                 min-width: 95% !important;
             }
+            .swiper-img {
+                max-width: 100% !important;
+                max-height: 100% !important;
+                width: initial !important;
+            }
         </style>
     </head>
     <body>
         <div class="grid-frame vertical">
             <div class="grid-content shrink" style="margin-bottom: 20px;" ng-controller="CategoryCtrl">
-                <ul class="menu-bar" ng-show="headerShow">
-                    <li ng-repeat="category in categories" ng-if="category.parent == null">
-                        <a ng-click="openCategory(category)">{{category.name}}</a>
+                <ul class="menu-bar">
+                    <li>
+                        <a href="">Девайсы</a>
+                    </li>
+                    <li>
+                        <a href="">Тарифы</a>
+                    </li>
+                    <li>
+                        <a href="">4G мобильный интернет</a>
+                    </li>
+                    <li>
+                        <a href="">Финансовые сервисы</a>
+                    </li>
+                    <li>
+                        <a href="">B2B</a>
+                    </li>
+                    <li>
+                        <a href="">ШПД</a>
                     </li>
                 </ul>
             </div>
             <div ui-view class="grid-content"></div>
+            <div>
+                <div class="menu-group dark">
+                    <div class="menu-group-left">
+                        <ul class="menu-bar primary">
+                            <li>
+                                <a onclick="history.back();">Назад</a>
+                            </li>
+                            <li>
+                                <a href="/#!/">Домой</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu-group-right">
+                        <ul class="icon-left primary menu-bar">
+                            <li>
+                                <a href="#"><img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">Корзина</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

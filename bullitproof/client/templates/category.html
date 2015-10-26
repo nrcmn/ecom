@@ -1,11 +1,12 @@
 ---
 name: category
 url: /category
+animationIn: fadeIn
 ---
 
-<div class="grid-container" ng-controller="CategoryMainCtrl" style="">
+<div class="grid-container" ng-controller="CategoryMainCtrl">
     <div class="grid-block small-up-4 align-center">
-        <div class="align-center padding" ng-repeat="content in categoryMainContent"  ng-click="openProductList(content)">
+        <div class="align-center padding" ng-repeat="content in sections"  ng-click="openProductList(content)">
             <div class="card padding" style="min-width: 100%; max-width: 98%;">
                 <img ng-src="{{content.image}}">
                 <div class="card-section text-center">

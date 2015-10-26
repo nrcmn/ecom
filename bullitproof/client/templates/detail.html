@@ -4,42 +4,91 @@ url: /detail
 ---
 
 <div class="grid-container" ng-controller="DetailCtrl">
-    <h2>{{detail.name}}</h2>
-    <div class="grid-block">
-        <div class="small-6 grid-content">
+    <h2>{{detailProduct.name}}</h2>
+    <div class="card">
+        <div class="card-section">
             <div class="grid-block">
-                <div style="width:500px; height: 500px; text-align: center;">
-                    <img ng-src="{{detail.images[0]}}" style="max-width: 100%; max-height: 100%; border-radius: 5px;"/>
+                <div class="small-6 grid-content">
+                    <div class="swiper-container padding">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" ng-repeat="img in detailProduct.images" style="text-align: center;">
+                                <img class="swiper-img" ng-src="{{img}}" draggable="false">
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div ng-if="product.images.length != 1" class="swiper-pagination swiper-pagination-black"></div>
+                        <!-- Add Arrows -->
+                        <div ng-if="product.images.length != 1" class="swiper-button-next swiper-button-black"></div>
+                        <div ng-if="product.images.length != 1" class="swiper-button-prev swiper-button-black"></div>
+                    </div>
+
+                    <!-- Initialize Swiper -->
+                    <swiper></swiper>
+                </div>
+                <div class="small-6 grid-content">
+                    <a href="" class="hollow warning button">Все устройства</a>
+                    <div style="border: 2px dashed #999; padding: 15px;">
+                        <h5>Рекомендации</h5>
+                        <ul style="list-style-type: none;">
+                            <li ng-repeat="recommend in detailProduct.recommendations">{{recommend}}</li>
+                        </ul>
+                    </div>
+                    <h3>Цена: <b>{{detailProduct.price}}</b></h3>
+                    <h5 style=" text-decoration:line-through;">{{detailProduct.price + 1000}}</h5>
+                    <span>{{'На складе: ' + detailProduct.remain}}</span>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="#" class="expand success hollow button">В корзину</a>
+                </div>
+            </div>
+            <div class="grid-block">
+                <div class="grid-content">
+                    <h3>Описание:</h3>
+                    {{detailProduct.description || 'Описание тут.....'}}
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="grid-block">
+                <div class="grid-content">
+                    <h3>Характеристики:</h3>
+                    <zf-accordion multi-open="true">
+                        <zf-accordion-item title="{{intag.name}}" ng-repeat="intag in detailProduct.intags_categories">
+                            <ul>
+                                <li ng-repeat="value in intag.intags" style="list-style-type: none;">
+                                    {{value.name}}: {{value.value[0] || 'нет данных'}}
+                                </li>
+                            </ul>
+                        </zf-accordion-item>
+                    </zf-accordion>
                 </div>
             </div>
         </div>
-        <div class="small-6 grid-content">
-                <h2>ЦЕНА: {{detail.price + ' рублей'}}</h2>
-                <h4>Наличие: {{detail.remain}}</h4>
-                <a class="warning hollow button">Вызвать продовца</a>
-                <a class="success hollow button">Положить в корзину</a>
-        </div>
     </div>
-    <div class="grid-block">
+    <div class="grid-block vertical">
         <div class="grid-content">
-            <h3>Описание:</h3>
-            {{detail.description || 'Описание тут.....'}}
+            <br>
+            <br>
+            <h3>Лидеры</h3>
+            <div class="align-center card">
+                <div class="card-section">
+                    <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                </div>
+            </div>
         </div>
-    </div>
-    <br/>
-    <br/>
-    <div class="grid-block">
+
         <div class="grid-content">
-            <h3>Характеристики:</h3>
-            <zf-accordion>
-                <zf-accordion-item title="{{intag.name}}" ng-repeat="intag in detail.intags_categories">
-                    <ul>
-                        <li ng-repeat="value in intag.intags" style="list-style-type: none;">
-                            {{value.name}}: {{value.value[0] || 'нет данных'}}
-                        </li>
-                    </ul>
-                </zf-accordion-item>
-            </zf-accordion>
+            <br>
+            <br>
+            <h3>Ранее просматривали</h3>
+            <div class="align-center card">
+                <div class="card-section">
+                    <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>

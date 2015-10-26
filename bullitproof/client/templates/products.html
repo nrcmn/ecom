@@ -4,14 +4,50 @@ url: /products
 ---
 
 <div class="grid-container" ng-controller="ProductsCtrl">
-    <div class="grid-block small-up-3 align-center">
-        <div class="align-center padding" ng-repeat="product in products" style="height: 500px;">
-            <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
-                <div style="width: 250px; height: 250px; margin: auto;">
-                    <img ng-src="{{product.images[0]}}" style="max-width: 100%; max-height: 100%; border-radius: 5px;"/>
+    <h2>{{productsListName}}</h2>
+    <div class="grid-frame">
+        <div class="medium-4 grid-content">
+            <div class="card">
+                <div class="card-divider">
+                    Фильтр по цвету
                 </div>
-                <div class="card-section text-center">
-                    <h4>{{product.name}}</h4>
+                <div class="card-section">
+                    <input id="checkbox1" type="checkbox">
+                    <label for="checkbox1">Checkbox 1</label>
+                    <br/><br/>
+                    <input id="checkbox2" type="checkbox">
+                    <label for="checkbox2">Checkbox 2</label>
+                </div>
+
+                <div class="card-divider">
+                    Фильтр чего-то еще...
+                </div>
+                <div class="card-section">
+                    <input type="radio" name="pokemon" value="Red" id="pokemonRed">
+                    <label for="pokemonRed">Red</label>
+                    <br/><br/>
+                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
+                    <label for="pokemonBlue">Blue</label>
+                    <br/><br/>
+                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
+                    <label for="pokemonBlue">Green</label>
+                    <br/><br/>
+                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
+                    <label for="pokemonBlue">Yellow</label>
+                </div>
+            </div>
+        </div>
+        <div class="medium-8 grid-content">
+            <div class="grid-block small-up-3 align-center">
+                <div class="align-center padding" ng-repeat="product in products" style="height: 500px;">
+                    <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
+                        <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                            <img ng-src="{{product.images[0]}}" class="swiper-img"/>
+                        </div>
+                        <div class="card-section text-center">
+                            <h4>{{product.name}}</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

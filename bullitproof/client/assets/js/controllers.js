@@ -1,37 +1,27 @@
 angular.module('controllers', [])
 
-    .controller('CategoryCtrl', function ($scope, $rootScope, $state, __CATEGORIES) {
-        $scope.openCategory = function (cat) {
+    .controller('CategoryCtrl', function ($scope, $rootScope, $state) {
+        $scope.openCategoryDetail = function (cat) {
             window.categoryId = cat.id;
-            $rootScope.categoryMainContent = [];
-            __CATEGORIES.forEach(function (item, i, arr) {
-                if (item.parent == window.categoryId) {
-                    $rootScope.categoryMainContent.push(item);
-                }
-            })
-
             $state.go('category');
         }
-
-        $rootScope.headerShow = false;
     })
 
-    .controller('CategoryMainCtrl', function ($scope, $rootScope, $state, __CATEGORIES) {
-        $rootScope.categoryMainContent = [];
-        __CATEGORIES.forEach(function (item, i, arr) {
+    .controller('CategoryMainCtrl', function ($scope, $rootScope, $state, loadProducts) {
+        $scope.sections = [];
+        window.categories.forEach(function (item, i, arr) {
             if (item.parent == window.categoryId) {
-                $scope.categoryMainContent.push(item);
+                $scope.sections.push(item);
             }
         })
 
-        $rootScope.headerShow = true;
         $scope.openProductList = function (content) {
-            $state.go('products');
+            console.log(content);
+            loadProducts(content.id, 1, content.name)
         }
     })
 
-    .controller('ProductsCtrl', function ($scope, $state, __ACCESSORIES) {
-        $scope.products = __ACCESSORIES;
+    .controller('ProductsCtrl', function ($scope, $state) {
         $scope.openDetail = function (product) {
             window.product = product;
             $state.go('detail');
@@ -39,6 +29,6 @@ angular.module('controllers', [])
     })
 
     .controller('DetailCtrl', function ($scope) {
-        $scope.detail = window.product;
-        console.log($scope.detail);
+        $scope.detailProduct = window.product;
+        console.log($scope.detailProduct);
     })
