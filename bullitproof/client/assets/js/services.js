@@ -7,7 +7,7 @@ angular.module('services', [])
 
                 // Delete rates
                 data.forEach(function (item, i, arr) {
-                    if (item.id == 6 || item.id == 5 || item.id == 4 || item.id == 101) {
+                    if (item.id == 6 || item.id == 5 || item.id == 4 || item.id == 101 || item.id == 202 || item.id == 15) {
                         return false
                     }
                     else {
