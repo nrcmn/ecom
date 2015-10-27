@@ -1,14 +1,16 @@
 ---
 name: detail
 url: /detail
+animationIn: fadeIn
 ---
 
 <div class="grid-container" ng-controller="DetailCtrl">
     <h2>{{detailProduct.name}}</h2>
-    <div class="card">
-        <div class="card-section">
-            <div class="grid-block">
-                <div class="small-6 grid-content">
+    <div class="">
+        <div class="">
+            <div class="grid-block ">
+                <div class="small-8 grid-content">
+                    <div class="card card-section">
                     <div class="swiper-container padding">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" ng-repeat="img in detailProduct.images" style="text-align: center;">
@@ -24,24 +26,34 @@ url: /detail
 
                     <!-- Initialize Swiper -->
                     <swiper></swiper>
+                    </div>
                 </div>
-                <div class="small-6 grid-content">
-                    <a href="" class="hollow warning button">Все устройства</a>
-                    <div style="border: 2px dashed #999; padding: 15px;">
+
+                <div class="small-4 grid-content">
+                    <div class="card card-section">
+                    <a href="" style="text-decoration:underline;color:#555;">Все устройства</a>
+                    <br>
+                    <br>
+                    <!-- <div style="border: 2px dashed #999; padding: 15px;">
                         <h5>Рекомендации</h5>
                         <ul style="list-style-type: none;">
                             <li ng-repeat="recommend in detailProduct.recommendations">{{recommend}}</li>
                         </ul>
-                    </div>
-                    <h3>Цена: <b>{{detailProduct.price}}</b></h3>
-                    <h5 style=" text-decoration:line-through;">{{detailProduct.price + 1000}}</h5>
+                    </div> -->
+                    Цена:
+                    <h5 style="text-decoration:line-through;color:#555;font-weight:bold;">{{detailProduct.price + 1000}}</h5>
+                    <h3><b>{{detailProduct.price}}</b></h3>
+
+
                     <span>{{'На складе: ' + detailProduct.remain}}</span>
                     <br>
                     <br>
                     <br>
-                    <a href="#" class="expand success hollow button">В корзину</a>
+                    <a href="#" class="expand success hollow button" style="color: #000; font-size: 18px; background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%); border: 2px solid #f1a011; border-radius: 25px;">В корзину</a>
+                    </div>
                 </div>
             </div>
+
             <div class="grid-block">
                 <div class="grid-content">
                     <h3>Описание:</h3>
