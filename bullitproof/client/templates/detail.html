@@ -74,7 +74,14 @@ url: /detail
             <h3>Лидеры</h3>
             <div class="align-center card">
                 <div class="card-section">
-                    <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                    <div class="grid-block small-up-5 align-center">
+                        <div class="grid-content" ng-click="openDetail(leader)" ng-repeat="leader in leaders" style="height: 150px; text-align: center; margin-bottom: 30px;">
+                            <img class="swiper-img" ng-src="{{leader.images[0]}}" alt="" />
+                            <br/>
+                            <br/>
+                            <span>{{leader.name}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,7 +92,14 @@ url: /detail
             <h3>Ранее просматривали</h3>
             <div class="align-center card">
                 <div class="card-section">
-                    <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+                    <div class="grid-block small-up-5 align-center">
+                        <div class="grid-content" ng-click="openDetail(last)" ng-repeat="last in lastProducts" style="height: 150px; text-align: center; margin-bottom: 30px;">
+                            <img class="swiper-img" ng-src="{{last.images[0]}}" alt="" />
+                            <br/>
+                            <br/>
+                            <span>{{last.name}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

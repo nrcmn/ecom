@@ -17,7 +17,7 @@ angular.module('services', [])
     })
 
     .service('loadProducts', function ($http, $state, $rootScope) {
-        return function (id, page, name) {
+        return function (id, page, amount, name, sort) {
             $http({
                 method: 'GET',
                 url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/products/',
@@ -25,14 +25,25 @@ angular.module('services', [])
                     api_key: window.api_key,
                     market_region: window.market_region,
                     collection: id,
-                    amount: 15,
-                    page: page
+                    amount: amount,
+                    page: page,
+                    sort_by: sort
                 }
             })
             .success(function (data) {
-                $rootScope.productsListName = name;
-                $rootScope.products = data;
-                $state.go('products');
+                switch (sort) {
+                    case null:
+                        $rootScope.productsListName = name;
+                        $rootScope.products = data;
+                        $state.go('products');
+                        break;
+                    case 'weight':
+                        $rootScope.leaders = data;
+                        break;
+                    case '-weight':
+                        $rootScope.lastProducts = data;
+                        break;
+                }
             })
             .error(function (data) {
                 console.log(data);

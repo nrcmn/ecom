@@ -3,36 +3,53 @@ name: home
 url: /
 animationIn: fadeIn
 ---
-<div class="grid-container" ng-controller="CategoryCtrl">
-    <div class="grid-block">
-        <div class="grid-block small-up-3 align-center">
-            <div class="align-center padding" ng-repeat="category in categories" ng-if="category.parent == null">
-                <div class="card padding" style="min-width: 100%; max-width: 98%;">
-                    <div class="card-section text-center" ng-click="openCategoryDetail(category)">
-                        <h1>{{category.name}}</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grid-block vertical">
-            <div class="grid-content">
-                <br>
-                <br>
-                <h3>Лидеры</h3>
-                <div class="align-center card">
-                    <div class="card-section">
-                        <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="grid-content">
-                <br>
-                <br>
-                <h3>Ранее просматривали</h3>
-                <div class="align-center card">
-                    <div class="card-section">
-                        <p>The most basic elements in the Foundation for Apps grid are the Group and Block.</p>
+<div class="grid-content" ng-controller="CategoryCtrl">
+    <div class="grid-container">
+        <div class="grid-block">
+            <div class="grid-block small-up-3 align-center">
+                <div class="align-center padding" ng-repeat="category in categories" ng-if="category.parent == null">
+                    <div class="card padding" style="min-width: 100%; max-width: 98%;">
+                        <div class="card-section text-center" ng-click="openCategoryDetail(category)">
+                            <h1>{{category.name}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-block vertical">
+                <div class="grid-content">
+                    <br>
+                    <br>
+                    <h3>Лидеры</h3>
+                    <div class="align-center card">
+                        <div class="card-section">
+                            <div class="grid-block small-up-5 align-center">
+                                <div class="grid-content" ng-click="openDetail(leader)" ng-repeat="leader in leaders" style="height: 150px; text-align: center; margin-bottom: 30px;">
+                                    <img class="swiper-img" ng-src="{{leader.images[0]}}" alt="" />
+                                    <br/>
+                                    <br/>
+                                    <span>{{leader.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-content">
+                    <br>
+                    <br>
+                    <h3>Ранее просматривали</h3>
+                    <div class="align-center card">
+                        <div class="card-section">
+                            <div class="grid-block small-up-5 align-center">
+                                <div class="grid-content" ng-click="openDetail(last)" ng-repeat="last in lastProducts" style="height: 150px; text-align: center; margin-bottom: 30px;">
+                                    <img class="swiper-img" ng-src="{{last.images[0]}}" alt="" />
+                                    <br/>
+                                    <br/>
+                                    <span>{{last.name}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
