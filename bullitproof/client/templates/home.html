@@ -8,7 +8,7 @@ animationIn: fadeIn
 <div class="grid-content" ng-controller="CategoryCtrl">
     <div class="grid-container">
         <div class="grid-block">
-            <div class="grid-block small-up-3 align-center">
+            <div class="grid-block small-up-2 align-center">
                 <div class="align-center padding" ng-repeat="category in categories.slice().reverse()" ng-if="category.parent == null">
                     <div class="card padding" style="min-width: 100%; max-width: 98%;">
                         <div class="card-section text-center" ng-click="openCategoryDetail(category)">
@@ -36,7 +36,7 @@ animationIn: fadeIn
                     </div>
                 </div>
 
-                <div class="grid-content">
+                <!-- <div class="grid-content">
                     <br>
                     <br>
                     <h3>Ранее просматривали</h3>
@@ -52,7 +52,7 @@ animationIn: fadeIn
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

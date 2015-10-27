@@ -3,15 +3,19 @@ angular.module('services', [])
     .service('loadCategories', function ($http, $rootScope) {
         return function () {
             $http.get('http://beeline-ecommerce.herokuapp.com/api/public/v1/collections/?api_key=' + window.api_key + '&market_region=' + window.market_region).success(function (data) {
+                window.categories = [];
+
                 // Delete rates
                 data.forEach(function (item, i, arr) {
-                    if (item.id == 101) {
-                        data.splice(i, 1);
+                    if (item.id == 6 || item.id == 5 || item.id == 4 || item.id == 101) {
+                        return false
+                    }
+                    else {
+                        window.categories.push(item)
                     }
                 })
 
-                window.categories = data;
-                $rootScope.categories = data;
+                $rootScope.categories = window.categories;
             })
         }
     })
