@@ -4,6 +4,8 @@ url: /detail
 animationIn: fadeIn
 ---
 
+<zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>
+
 <div class="grid-container" ng-controller="DetailCtrl">
     <h2>{{detailProduct.name}}</h2>
     <div class="">
@@ -49,7 +51,7 @@ animationIn: fadeIn
                     <br>
                     <br>
                     <br>
-                    <a href="#" class="expand success hollow button" style="color: #000; font-size: 18px; background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%); border: 2px solid #f1a011; border-radius: 25px;">Вызвать консультанта</a>
+                    <a href="#" title="Помощь консультанта" content="Пояснение по необходимости" color="success" autoclose="5000" zf-notify="main-notifications" class="expand success hollow button" style="color: #000; font-size: 18px; background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%); border: 2px solid #f1a011; border-radius: 25px;">Вызвать консультанта</a>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,7 @@ animationIn: fadeIn
             </div>
         </div>
 
-        <div class="grid-content">
+        <!-- <div class="grid-content">
             <br>
             <br>
             <h3>Ранее просматривали</h3>
@@ -114,7 +116,7 @@ animationIn: fadeIn
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </div>

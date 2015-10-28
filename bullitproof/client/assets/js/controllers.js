@@ -40,6 +40,16 @@ angular.module('controllers', [])
         }
     })
 
+    .controller('ModalCtrl', function ($scope) {
+        $scope.showVariants = false;
+
+        $scope.openFilter = function (arg) {
+            console.log('ok');
+            $scope.showVariants = true;
+            $scope.variant = arg;
+        }
+    })
+
     .controller('DetailCtrl', function ($scope, loadProducts) {
         $scope.detailProduct = window.product;
 
