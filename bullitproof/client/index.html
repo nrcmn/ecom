@@ -32,128 +32,6 @@
         </style>
     </head>
     <body>
-
-        <zf-offcanvas id="menu" position="left">
-            <a zf-close="" class="close-button">×</a>
-            <div>
-                <div class="card-divider">
-                    <b>Фильтр по цвету</b>
-                </div>
-                <div class="card-section">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Checkbox 1</label>
-                    <br/><br/>
-                    <input id="checkbox2" type="checkbox">
-                    <label for="checkbox2">Checkbox 2</label>
-                </div>
-
-                <div class="card-divider">
-                    <b>Фильтр чего-то еще...</b>
-                </div>
-                <div class="card-section">
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed">
-                    <label for="pokemonRed">Red</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Blue</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Green</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Yellow</label>
-                </div>
-                <div class="card-divider">
-                    <b>Фильтр выбора</b>
-                </div>
-                <div class="card-section">
-                    <input type="range" ng-model="range" name="points" min="0" max="10">
-                    {{range || 0}}
-                </div>
-                <div class="card-divider">
-                    <b>Фильтр по цвету</b>
-                </div>
-                <div class="card-section">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Checkbox 1</label>
-                    <br/><br/>
-                    <input id="checkbox2" type="checkbox">
-                    <label for="checkbox2">Checkbox 2</label>
-                </div>
-
-                <div class="card-divider">
-                    Фильтр чего-то еще...
-                </div>
-                <div class="card-section">
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed">
-                    <label for="pokemonRed">Red</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Blue</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Green</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Yellow</label>
-                </div>
-                <div class="card-divider">
-                    Фильтр по цвету
-                </div>
-                <div class="card-section">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Checkbox 1</label>
-                    <br/><br/>
-                    <input id="checkbox2" type="checkbox">
-                    <label for="checkbox2">Checkbox 2</label>
-                </div>
-
-                <div class="card-divider">
-                    Фильтр чего-то еще...
-                </div>
-                <div class="card-section">
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed">
-                    <label for="pokemonRed">Red</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Blue</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Green</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Yellow</label>
-                </div>
-                <div class="card-divider">
-                    Фильтр по цвету
-                </div>
-                <div class="card-section">
-                    <input id="checkbox1" type="checkbox">
-                    <label for="checkbox1">Checkbox 1</label>
-                    <br/><br/>
-                    <input id="checkbox2" type="checkbox">
-                    <label for="checkbox2">Checkbox 2</label>
-                </div>
-
-                <div class="card-divider">
-                    Фильтр чего-то еще...
-                </div>
-                <div class="card-section">
-                    <input type="radio" name="pokemon" value="Red" id="pokemonRed">
-                    <label for="pokemonRed">Red</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Blue</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Green</label>
-                    <br/><br/>
-                    <input type="radio" name="pokemon" value="Blue" id="pokemonBlue">
-                    <label for="pokemonBlue">Yellow</label>
-                </div>
-            </div>
-        </zf-offcanvas>
-
         <div zf-modal="" id="basicModal">
             <a zf-close="" class="close-button">×</a>
             <h3>Фильтруй!</h3>
@@ -212,7 +90,7 @@
         </div>
 
         <div class="grid-frame vertical">
-            <!-- <div class="shrink" style="margin:20px;" ng-controller="CategoryCtrl">
+            <div class="shrink" style="margin:20px;" ng-controller="CategoryCtrl">
                 <ul class="menu-bar">
                     <li style="border:2px solid #555;border-radius:8px;">
                         <a href="/#!/">Девайсы</a>
@@ -233,32 +111,10 @@
                         <a href="">Домашний интернет и ТВ</a>
                     </li>
                 </ul>
-            </div> -->
+            </div>
             <div ui-view class="grid-block"></div>
             <div>
                 <div class="menu-group dark">
-                    <div class="shrink" style="margin:20px;" ng-controller="CategoryCtrl">
-                        <ul class="menu-bar">
-                            <li style="border:2px solid #555;border-radius:8px;">
-                                <a href="/#!/"><b>Девайсы</b></a>
-                            </li>
-                            <li>
-                                <a href=""><b>Тарифы</b></a>
-                            </li>
-                            <li>
-                                <a href=""><b>Мобильный интернет</b></a>
-                            </li>
-                            <li>
-                                <a href=""><b>Финансовые сервисы</b></a>
-                            </li>
-                            <li>
-                                <a href=""><b>Юридическим лицам</b></a>
-                            </li>
-                            <li>
-                                <a href=""><b>Домашний интернет и ТВ</b></a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="menu-group-left">
                         <ul class="menu-bar primary">
                             <li>

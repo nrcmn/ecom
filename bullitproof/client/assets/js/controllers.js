@@ -52,6 +52,7 @@ angular.module('controllers', [])
 
     .controller('DetailCtrl', function ($scope, loadProducts) {
         $scope.detailProduct = window.product;
+        $scope.modalIntags = undefined;
 
         $scope.openDetail = function (product) {
             window.product = product;
@@ -60,4 +61,8 @@ angular.module('controllers', [])
 
         loadProducts(10, 1, 5, null, 'weight');
         loadProducts(10, 1, 5, null, '-weight');
+
+        $scope.openField = function (f) {
+            $scope.modalIntags = f.intags;
+        }
     })

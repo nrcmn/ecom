@@ -57,26 +57,56 @@ animationIn: fadeIn
             </div>
 
             <div class="grid-block">
-                <div class="grid-content">
-                    <h3>Описание:</h3>
-                    {{detailProduct.description || 'Описание тут.....'}}
+                <div class="grid-block medium-6">
+                    <div class="grid-content">
+                        <h3>Описание:</h3>
+                        {{detailProduct.description || 'Описание тут.....'}}
+                    </div>
                 </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <div class="grid-block">
-                <div class="grid-content">
-                    <h3>Характеристики:</h3>
-                    <zf-accordion multi-open="true">
-                        <zf-accordion-item title="{{intag.name}}" ng-repeat="intag in detailProduct.intags_categories">
-                            <ul>
-                                <li ng-repeat="value in intag.intags" style="list-style-type: none;">
-                                    {{value.name}}: {{value.value[0] || 'нет данных'}}
-                                </li>
-                            </ul>
-                        </zf-accordion-item>
-                    </zf-accordion>
+                <div class="grid-block">
+                    <div class="grid-content">
+                        <h3>Характеристики:</h3>
+                        <div class="grid-block">
+                            <div class="medium-7 grid-content" ng-repeat-start="intag in detailProduct.intags_categories[detailProduct.intags_categories.length - 1].intags">
+                                {{intag.name}}
+                            </div>
+                            <div class="medium-5 grid-content" ng-repeat-end style="text-align: right;">
+                                {{intag.value[0]}}
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <a zf-open="intagModal">Подробнее..</a>
+
+                        <div zf-modal="" id="intagModal">
+                            <a zf-close="" class="close-button">×</a>
+                            <div class="grid-block">
+                                <div class="grid-content medium-5">
+                                    <section class="block-list">
+                                        <ul>
+                                            <li class="with-chevron" ng-repeat="field in  detailProduct.intags_categories">
+                                                <a ng-click="openField(field)">{{field.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </div>
+                                <div class="grid-content medium-7">
+                                    <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
+                                        <h3>Выберите характеристику</h3>
+                                    </div>
+
+                                    <ul style="list-style-type: none;">
+                                        <li ng-repeat="param in modalIntags">
+                                            <div class="grid-block">
+                                                <span class="grid-block">{{param.name}}:</span>
+                                                <span class="grid-block align-right">{{param.value[0]}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
