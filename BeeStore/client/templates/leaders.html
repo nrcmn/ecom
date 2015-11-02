@@ -1,0 +1,31 @@
+<div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="text-align: center;" ng-repeat="slide in leaders">
+                <div class="grid-block">
+                    <div class="grid-block align-center" ng-repeat="item in slide">
+                        <div class="card grid-content" style="max-width: 100px;">
+                            <img ng-src="{{item.images[0]}}" style="min-width: 100%; min-height: 100%; width: initial;">
+                            <div class="card-divider">
+                                {{item.name}}
+                            </div>
+                            <div class="card-section">
+                                Цена: {{item.price}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <!-- <swiper></swiper> -->
+</div>

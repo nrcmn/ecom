@@ -1,0 +1,14 @@
+---
+name: categories
+url: /categories
+---
+
+<div class="grid-container" ng-controller="SubCategoryCtrl">
+    <div class="grid-block small-up-2">
+        <div class="grid-content" ng-repeat="subCategory in subCategories">
+            {{subCategory.name}}
+        </div>
+
+        <h1 ng-show="showLeader">HELLOWORL</h1>
+    </div>
+</div>

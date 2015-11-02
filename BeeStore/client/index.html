@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru" ng-app="BeeStore">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BeeStore</title>
+        <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="./assets/lib/swiper/dist/css/swiper.min.css" charset="utf-8">
+
+        <!-- Swiper.js -->
+        <script src="./assets/lib/swiper/dist/js/swiper.min.js" charset="utf-8"></script>
+
+        <script src="./assets/js/foundation.js"></script>
+        <script src="./assets/js/templates.js"></script>
+        <script src="./assets/js/routes.js"></script>
+        <script src="./assets/js/app.js"></script>
+
+    </head>
+    <body>
+        <div class="grid-frame vertical">
+
+            <!-- HEADER -->
+            <div class="grid-content shrink" style="padding: 0;">
+                <ul class="dark menu-bar">
+                    <li><a href="#">Девайсы</a></li>
+                    <li><a href="#">Тарифы</a></li>
+                    <li><a href="#">Мобильный интернет</a></li>
+                    <li><a href="#">Финансовые сервисы</a></li>
+                    <li><a href="#">Юридическим лицам</a></li>
+                    <li><a href="#">Домашний интернет и ТВ</a></li>
+                </ul>
+            </div>
+
+            <!-- CONTENT -->
+            <div ui-view class="grid-content"></div>
+
+            <!-- FOOTER -->
+            <div class="menu-group dark">
+                <div class="menu-group-left">
+                    <ul class="menu-bar primary">
+                        <li><a href="#">НАЗАД</a></li>
+                        <li><a href="#">домой</a></li>
+                    </ul>
+                </div>
+                <div class="menu-group-right">
+                    <ul class="icon-left primary menu-bar">
+                        <li>
+                            <a>
+                                <img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">
+                                Корзина
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
