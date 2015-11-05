@@ -1,0 +1,59 @@
+---
+name: products
+url: /products
+---
+
+
+<div zf-modal="" id="filterModal" ng-controller="FilterCtrl">
+    <a zf-close="" class="close-button">×</a>
+    <div class="grid-block">
+        <div class="grid-content medium-4">
+            <section class="block-list">
+                <ul>
+                    <li class="with-chevron" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                        <a>{{filter.name}}</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="grid-content medium-8">
+            <label>Choose Your Value</label>
+            <div ng-repeat="val in productsListFilter[filterInd].choices" style="padding: 10px; border-bottom: 2px dashed #999;">
+                <input type="checkbox" ng-value="{{val.id}}" id="{{val.id}}">
+                <label for="{{val.id}}">{{val.value}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="grid-block">
+        <a class="success button" href="#">Применить фильтр</a>
+        <a href="#" class="alert hollow button">Отмена</a>
+    </div>
+</div>
+
+<div class="grid-container" ng-controller="ProductListCtrl">
+
+    <div style="position: absolute; left: 0; top: 50%; font-size: 2em; z-index: 1;">
+        <a zf-open="filterModal" style="
+        transform: rotate(270deg);
+        border: 1px solid rgb(255, 0, 0);
+        width: 140px;
+        position: absolute;
+        left: -45px;
+        padding: 10px;">
+            Фильтр
+        </a>
+    </div>
+
+    <div ng-if="!productsList">
+        <h3>Загрузка данных</h3>
+    </div>
+
+    <div class="grid-block small-up-4">
+        <div class="card grid-content" ng-repeat="products in productsList">
+            <img ng-src="{{products.images[0]}}">
+            <div class="card-divider">
+                {{products.name}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,4 @@
 angular.module('directives', [])
-
-    // .directive('swiper', function ($rootScope, $timeout) {
-    //     return {
-    //         link: function (scope, element, attributes) {
-                // $timeout(function () {
-                //     var swiper = new Swiper('.swiper-container', {
-                //         pagination: '.swiper-pagination',
-                //         paginationClickable: '.swiper-pagination',
-                //         nextButton: '.swiper-button-next',
-                //         prevButton: '.swiper-button-prev'
-                //     });
-                // }, 0.000001);
-    //         }
-    //     }
-    // })
-
     .directive("leaders", function ($timeout) {
         return {
             templateUrl: 'templates/leaders.html',

@@ -5,10 +5,10 @@ url: /categories
 
 <div class="grid-container" ng-controller="SubCategoryCtrl">
     <div class="grid-block small-up-2">
-        <div class="grid-content" ng-repeat="subCategory in subCategories">
+        <div class="grid-content" ng-repeat="subCategory in subCategories" ng-click="openSubCategory(subCategory)">
             {{subCategory.name}}
         </div>
-
-        <h1 ng-show="showLeader">HELLOWORL</h1>
     </div>
+    
+    <leaders ng-show="showLeader"></leaders>
 </div>

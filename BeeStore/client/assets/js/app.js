@@ -14,6 +14,6 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
     .run(function ($rootScope, FoundationApi, $state) {
         FastClick.attach(document.body);
 
-        window.api_key = '3269460fc771fe1d97f0a3bdc13be279f3d07d96',
+        window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
             market_region = 98082;
     })
