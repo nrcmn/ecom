@@ -44,10 +44,6 @@ url: /products
         </a>
     </div>
 
-    <div ng-if="!productsList">
-        <h3>Загрузка данных</h3>
-    </div>
-
     <div class="grid-block small-up-4">
         <div class="card grid-content" ng-repeat="products in productsList">
             <img ng-src="{{products.images[0]}}">
@@ -55,5 +51,9 @@ url: /products
                 {{products.name}}
             </div>
         </div>
+    </div>
+
+    <div ng-if="!productsList || progress == true">
+        <h3>Загрузка данных...</h3>
     </div>
 </div>

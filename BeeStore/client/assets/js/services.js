@@ -16,15 +16,16 @@ angular.module('services', [])
                 };
 
                 data.forEach(function (item, i, arr) {
-                    if (categories.indexOf(item.id) > -1 && !item.parent) {
+                    if (categories.indexOf(item.id) > -1) {
+                        return false
+                    }
+                    else if (!item.parent) {
                         $rootScope.categories.main.push(item);
                     }
-                    else if (categories.indexOf(item.id) > -1 && item.parent) {
+                    else if (item.parent) {
                         $rootScope.categories.sub.push(item);
                     }
                 })
-
-                console.log($rootScope.categories);
             })
             .error(function () {
                 console.error('ERROR! "__LoadCategories"');
@@ -48,7 +49,16 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
-                $rootScope.productsList = data;
+                if (!$rootScope.productsList) {
+                    $rootScope.productsList = data;
+                }
+                else {
+                    data.forEach(function (item, i, arr) {
+                        $rootScope.productsList.push(item);
+                    })
+                }
+
+                $rootScope.progress = false;
             })
             .error(function () {
                 console.error('ERROR! "__LoadProducts"');

@@ -16,6 +16,13 @@
         <script src="./assets/js/templates.js"></script>
         <script src="./assets/js/routes.js"></script>
         <script src="./assets/js/app.js"></script>
+
+        <style media="screen">
+            /* Product list bug */
+            .grid-frame {
+                height: initial;
+            }
+        </style>
     </head>
     <body>
 
@@ -34,7 +41,7 @@
             </div>
 
             <!-- CONTENT -->
-            <div ui-view class="grid-content"></div>
+            <div ui-view class="grid-content"  when-scroll-ends></div>
 
             <!-- FOOTER -->
             <div class="menu-group dark">

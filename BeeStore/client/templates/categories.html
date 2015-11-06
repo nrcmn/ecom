@@ -4,11 +4,15 @@ url: /categories
 ---
 
 <div class="grid-container" ng-controller="SubCategoryCtrl">
-    <div class="grid-block small-up-2">
-        <div class="grid-content" ng-repeat="subCategory in subCategories" ng-click="openSubCategory(subCategory)">
-            {{subCategory.name}}
+    <div class="grid-block small-up-3">
+        <div class="grid-content card" style="text-align: center;" ng-repeat="subCategory in subCategories | orderBy:'order':true" ng-click="openSubCategory(subCategory)">
+            <img ng-src="{{subCategory.image}}" ng-if="$index <= 2">
+            <img ng-src="{{subCategory.image}}" ng-if="$index > 2" style="width: 50%;"/>
+            <div class="card-divider">
+                {{subCategory.name}}
+            </div>
         </div>
     </div>
-    
+
     <leaders ng-show="showLeader"></leaders>
 </div>
