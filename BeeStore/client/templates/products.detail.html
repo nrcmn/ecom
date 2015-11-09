@@ -1,0 +1,79 @@
+---
+name: detail
+url: /products/:id
+---
+
+
+<div class="grid-container" ng-controller="ProductDetailCtrl">
+    <h1>{{product.name}}</h1>
+    <div class="grid-block">
+        <div class="grid-content  medium-8">
+            <images></images>
+        </div>
+        <div class="grid-content  medium-4">
+            <p>
+                Цена:<br/>
+                <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span>
+                {{product.price}}
+            </p>
+            <p>
+                На складе: {{product.remain}}
+            </p>
+        </div>
+    </div>
+    <div class="grid-block">
+        <div class="grid-block medium-6">
+            <div class="grid-content">
+                <h3>Описание:</h3>
+                <p>
+                    {{product.description || 'Описание'}}
+                </p>
+            </div>
+        </div>
+        <div class="grid-block medium-6">
+            <div class="grid-content">
+                <h3>Характеристики:</h3>
+                <ul style="list-style-type: none; margin: 0;">
+                    <li  ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags">
+                        <div style="display: inline-block; text-align: left; width: 50%;">
+                            {{intag.name}}
+                        </div>
+                        <div style="display: inline-block; text-align: right; width: 45%;">
+                            {{intag.value[0]}}
+                        </div>
+                    </li>
+                </ul>
+                <a zf-open="intagModal">Подробнее..</a>
+
+                <div zf-modal="" id="intagModal">
+                    <a zf-close="" class="close-button">×</a>
+                    <div class="grid-block">
+                        <div class="grid-content medium-5">
+                            <section class="block-list">
+                                <ul>
+                                    <li class="with-chevron" ng-repeat="field in product.intags_categories">
+                                        <a ng-click="openField(field)">{{field.name}}</a>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                        <div class="grid-content medium-7">
+                            <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
+                                <h3>Выберите характеристику</h3>
+                            </div>
+
+                            <ul style="list-style-type: none;">
+                                <li ng-repeat="param in modalIntags">
+                                    <div class="grid-block">
+                                        <span class="grid-block">{{param.name}}:</span>
+                                        <span class="grid-block align-right">{{param.value[0]}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

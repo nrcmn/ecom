@@ -37,7 +37,8 @@ url: /products
         transform: rotate(270deg);
         border: 1px solid rgb(255, 0, 0);
         width: 140px;
-        position: absolute;
+        position: fixed;
+        top: 50%;
         left: -45px;
         padding: 10px;">
             Фильтр
@@ -45,7 +46,7 @@ url: /products
     </div>
 
     <div class="grid-block small-up-4">
-        <div class="card grid-content" ng-repeat="products in productsList">
+        <div class="card grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
             <img ng-src="{{products.images[0]}}">
             <div class="card-divider">
                 {{products.name}}

@@ -1,5 +1,6 @@
 angular.module('services', [])
-    .service('__LoadCategories', function ($http, $rootScope) {
+    .service('__LoadCategories', function ($http, $q) {
+        var deferred = $q.defer();
         return function (categories) {
             $http({
                 method: 'GET',
@@ -10,29 +11,15 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
-                $rootScope.categories = {
-                    main: [],
-                    sub: []
-                };
-
-                data.forEach(function (item, i, arr) {
-                    if (categories.indexOf(item.id) > -1) {
-                        return false
-                    }
-                    else if (!item.parent) {
-                        $rootScope.categories.main.push(item);
-                    }
-                    else if (item.parent) {
-                        $rootScope.categories.sub.push(item);
-                    }
-                })
+                deferred.resolve(data);
             })
             .error(function () {
-                console.error('ERROR! "__LoadCategories"');
+                deferred.reject('ERROR! "__LoadOneProduct"');
             })
+
+            return deferred.promise;
         }
     })
-
 
     .service('__LoadProducts', function ($http, $rootScope) {
         return function (subCategory, amount, page, sort) {
@@ -49,6 +36,7 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
+                // for lazy loading function
                 if (!$rootScope.productsList) {
                     $rootScope.productsList = data;
                 }
@@ -66,29 +54,46 @@ angular.module('services', [])
         }
     })
 
-    .service('__LoadFilters', function($http, $rootScope) {
+    .service('__LoadFilters', function ($http, $q) {
+        var deferred = $q.defer();
         return function (subCategory) {
             $http({
                 method: 'GET',
                 url: 'https://public.backend.vimpelcom.ru/api/public/v1/collections/' + subCategory.id + '/filters/',
-                // url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/filters/',
-                // url: 'http://localhost:7000/filters',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region
                 }
             })
             .success(function (data) {
-                $rootScope.productsListFilter = data;
+                deferred.resolve(data);
             })
             .error(function () {
-                console.error('ERROR! "__LoadFilters"');
+                deferred.reject('ERROR! "__LoadFilters"');
             })
+
+            return deferred.promise;
         }
     })
 
-    .service('__LoadLeaders', function ($http) {
+    .service('__LoadOneProduct', function ($http, $rootScope, $q) {
+        var deferred = $q.defer();
         return function (id) {
+            $http({
+                method: 'GET',
+                url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/' + id + '/',
+                params: {
+                    "api_key": window.api_key,
+                    "market_region": window.market_region
+                }
+            })
+            .success(function (data) {
+                deferred.resolve(data);
+            })
+            .error(function () {
+                deferred.reject('ERROR! "__LoadOneProduct"');
+            })
 
+            return deferred.promise;
         }
     })

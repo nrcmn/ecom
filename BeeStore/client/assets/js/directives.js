@@ -54,3 +54,21 @@ angular.module('directives', [])
             }
         }
     })
+
+    .directive("images", function ($timeout) {
+        return {
+            templateUrl: 'templates/images.html',
+            replace: true,
+            scope: false,
+            link: function () {
+                $timeout(function () {
+                    var swiper = new Swiper('.swiper-container', {
+                        pagination: '.swiper-pagination',
+                        paginationClickable: '.swiper-pagination',
+                        nextButton: '.swiper-button-next',
+                        prevButton: '.swiper-button-prev'
+                    });
+                }, 1000);
+            }
+        }
+    })
