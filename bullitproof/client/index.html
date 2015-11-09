@@ -31,7 +31,9 @@
             }
         </style>
     </head>
-    <body>
+
+    <!-- oncontextmenu="return false;" -->
+    <body style="-webkit-user-select: none;">
         <div zf-modal="" id="basicModal">
             <a zf-close="" class="close-button">×</a>
             <h3>Фильтруй!</h3>
@@ -90,8 +92,8 @@
         </div>
 
         <div class="grid-frame vertical">
-            <div class="shrink" style="margin:20px;" ng-controller="CategoryCtrl">
-                <ul class="menu-bar">
+            <div class="shrink" style="margin:20px;height:128px;" ng-controller="CategoryCtrl">
+                <ul class="menu-bar" style="">
                     <li style="border:2px solid #555;border-radius:8px;">
                         <a href="/#!/">Девайсы</a>
                     </li>
@@ -102,33 +104,27 @@
                         <a href="">Мобильный интернет</a>
                     </li>
                     <li>
-                        <a href="">Финансовые сервисы</a>
-                    </li>
-                    <li>
-                        <a href="">Юридическим лицам</a>
-                    </li>
-                    <li>
-                        <a href="">Домашний интернет и ТВ</a>
+                        <a style="color:#666;" href="">Другие вопросы</a>
                     </li>
                 </ul>
             </div>
             <div ui-view class="grid-block"></div>
             <div>
-                <div class="menu-group dark">
+                <div class="menu-group dark" style="height:96px;">
                     <div class="menu-group-left">
                         <ul class="menu-bar primary">
                             <li>
-                                <a onclick="history.back();">Назад</a>
+                                <a style="font-size:24px;" onclick="history.back();">Назад</a>
                             </li>
-                            <li>
-                                <a href="/#!/">Домой</a>
-                            </li>
+                            <!-- <li>
+                                <a style="font-size:24px;" href="/#!/">Домой</a>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="menu-group-right">
                         <ul class="icon-left primary menu-bar">
                             <li>
-                                <a href="#"><img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">Корзина</a>
+                                <a style="font-size:24px;" href="#"><img zf-iconic="" icon="Cart" size="medium" class="iconic-color-primary">Корзина</a>
                             </li>
                         </ul>
                     </div>
