@@ -51,10 +51,7 @@ angular.module('controllers', [])
             __LoadProducts(window.subCategory, 15, 1, 'weight');
 
             if (!window.filter[window.subCategory.id]) {
-                __LoadFilters(window.subCategory).then(function (data) {
-                    window.filter[window.subCategory.id] = data;
-                    $rootScope.productsListFilter = data;
-                });
+                __LoadFilters(window.subCategory.id);
             }
             else {
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];

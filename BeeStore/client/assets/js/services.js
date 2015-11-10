@@ -54,25 +54,23 @@ angular.module('services', [])
         }
     })
 
-    .service('__LoadFilters', function ($http, $q) {
-        var deferred = $q.defer();
-        return function (subCategory) {
+    .service('__LoadFilters', function ($http, $rootScope) {
+        return function (id) {
             $http({
                 method: 'GET',
-                url: 'https://public.backend.vimpelcom.ru/api/public/v1/collections/' + subCategory.id + '/filters/',
+                url: 'https://public.backend.vimpelcom.ru/api/public/v1/collections/' + id + '/filters/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region
                 }
             })
             .success(function (data) {
-                deferred.resolve(data);
+                window.filter[window.subCategory.id] = data;
+                $rootScope.productsListFilter = data;
             })
             .error(function () {
-                deferred.reject('ERROR! "__LoadFilters"');
+                console.error('ERROR! "__LoadFilters"');
             })
-
-            return deferred.promise;
         }
     })
 
