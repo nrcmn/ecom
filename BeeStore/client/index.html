@@ -26,7 +26,7 @@
     </head>
     <body>
 
-        <div class="grid-frame vertical">
+        <div class="grid-frame vertical" style="margin-bottom: 50px;">
 
             <!-- HEADER -->
             <div class="grid-content shrink" style="padding: 0;">
@@ -42,25 +42,25 @@
 
             <!-- CONTENT -->
             <div ui-view class="grid-content"  when-scroll-ends></div>
+        </div>
 
-            <!-- FOOTER -->
-            <div class="menu-group dark">
-                <div class="menu-group-left">
-                    <ul class="menu-bar primary">
-                        <li><a onclick="history.back()">НАЗАД</a></li>
-                        <li><a href="#">домой</a></li>
-                    </ul>
-                </div>
-                <div class="menu-group-right">
-                    <ul class="icon-left primary menu-bar">
-                        <li>
-                            <a>
-                                <img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">
-                                Корзина
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <!-- FOOTER -->
+        <div class="menu-group dark" style="position: fixed; bottom: 0; width: 100%;">
+            <div class="menu-group-left">
+                <ul class="menu-bar primary">
+                    <li><a onclick="history.back()">НАЗАД</a></li>
+                    <li><a href="#">домой</a></li>
+                </ul>
+            </div>
+            <div class="menu-group-right">
+                <ul class="icon-left primary menu-bar">
+                    <li>
+                        <a>
+                            <img zf-iconic="" icon="Cart" size="small" class="iconic-color-primary">
+                            Корзина
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </body>
