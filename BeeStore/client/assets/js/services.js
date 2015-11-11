@@ -22,7 +22,7 @@ angular.module('services', [])
     })
 
     .service('__LoadProducts', function ($http, $rootScope) {
-        return function (subCategory, amount, page, sort) {
+        return function (subCategory, amount, page, sort, intags) {
             $http({
                 method: 'GET',
                 url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/products/',
@@ -32,10 +32,17 @@ angular.module('services', [])
                     collection: subCategory.id,
                     amount: amount,
                     page: page,
-                    sort_by: sort
+                    sort_by: sort,
+                    intag_choices: intags
                 }
             })
             .success(function (data) {
+
+                if (intags) {
+                    $rootScope.productsList = data;
+                    return true
+                }
+
                 // for lazy loading function
                 if (!$rootScope.productsList) {
                     $rootScope.productsList = data;
@@ -53,6 +60,28 @@ angular.module('services', [])
             })
         }
     })
+
+    // .service('__LoadFilteredProducts', function ($http, $rootScope) {
+    //     return function (subCategory, amount, page, sort) {
+    //         $http({
+    //             method: 'GET',
+    //             url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/products/',
+    //             params: {
+    //                 "api_key": window.api_key,
+    //                 "market_region": window.market_region,
+    //                 collection: subCategory.id,
+    //                 amount: amount,
+    //                 page: page,
+    //                 sort_by: sort,
+    //                 intag_choices: window.intagChoices
+    //             }
+    //         })
+    //         .success(function (data) {
+    //             console.log(data);
+    //             window.page += 0;
+    //         })
+    //     }
+    // })
 
     .service('__LoadFilters', function ($http, $rootScope) {
         return function (id) {

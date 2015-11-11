@@ -48,7 +48,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory;
-            __LoadProducts(window.subCategory, 15, 1, 'weight');
+            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
 
             if (!window.filter[window.subCategory.id]) {
                 __LoadFilters(window.subCategory.id);
@@ -63,9 +63,11 @@ angular.module('controllers', [])
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
         $rootScope.productsList = undefined;
+        window.intagChoices = [];
+
         window.onscroll = function scrollEvent () {
             if (window.pageYOffset == (document.body.scrollHeight - window.innerHeight)) {
-                __LoadProducts(window.subCategory, 15, window.page += 1, 'weight')
+                __LoadProducts(window.subCategory, 15, window.page += 1, 'weight', window.intagChoices)
                 $rootScope.progress = true;
             }
         }
@@ -91,9 +93,24 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('FilterCtrl', function ($scope, $rootScope) {
+    .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
+        window.intagChoices = [];
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
             // $rootScope.filterValues = filter;
+        }
+
+        $rootScope.check = function ($event) {
+            var checkbox = $event.target;
+            if (checkbox.checked) {
+                intagChoices.push(checkbox.value);
+            }
+            else if (!checkbox.checked) {
+                intagChoices.splice(intagChoices.indexOf(checkbox.value), 1);
+            }
+        }
+
+        $rootScope.setFilter = function () {
+            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
         }
     })
