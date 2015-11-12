@@ -1,0 +1,105 @@
+---
+name: internet
+url: /internet
+animationIn: fadeIn
+---
+
+<div class="grid-block" ng-controller="CategoryMainCtrl">
+
+    <div class="medium-12 grid-content">
+        <!-- <h2>Выберите категорию:</h2> -->
+
+        <div class="grid-block small-up-3 align-center">
+
+            <div class="align-center padding text-center">
+
+                <h2>Смартфоны</h2>
+
+            </div>
+
+            <div class="align-center padding text-center">
+
+                <h2>Планшеты</h2>
+
+            </div>
+
+            <div class="align-center padding text-center">
+
+                <h2>Модемы</h2>
+
+            </div>
+
+
+            
+            <div class="align-center padding" ng-click="openProductList({id:10, name:'Смартфоны с поддержкой 4G'})">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/smart.jpg" style="margin-top:16px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Смартфоны</b></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="align-center padding">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openProductList({id:3, name:'Планшеты с поддержкой 4G'})">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/tablet.jpg" style="margin-top:16px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Планшеты</b></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="align-center padding">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openProductList({id:163, name:'Модемы и роутеры с поддержкой 4G'})">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/router.png" style="margin-top:64px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Модемы</b></h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="align-center padding">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ui-sref="tarrif">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/vse.jpg" style="margin-top:44px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Тарифы для Смартфонов</b></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="align-center padding">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/vse.jpg" style="margin-top:44px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Тарифы для Планшетов</b></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="align-center padding">
+                <div class="card padding" style="min-width: 100%; max-width: 98%;" ng-click="openDetail(product)">
+                    <div style="width: 250px; height: 250px; margin: auto; text-align: center;">
+                        <img src="assets/img/vse.jpg" style="margin-top:44px;" class="swiper-img"/>
+                    </div>
+                    <div class="card-section text-center">
+                        <h3><b>Тарифы для<br>Модемов</b></h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
