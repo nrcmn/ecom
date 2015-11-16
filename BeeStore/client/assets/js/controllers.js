@@ -65,7 +65,7 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
-        if (!window.product) {
+        if (!window.product || window.product.main_collection.id != window.subCategory.id) {
             $rootScope.productsList = undefined;
         }
         else {
@@ -137,7 +137,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.cancelFilter = function () {
-            
+
             // if (window.intagChoices.length != 0) {
                 // window.intagChoices.length = 0;
                 // $rootScope.productsList = undefined;
