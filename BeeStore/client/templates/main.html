@@ -5,8 +5,10 @@ url: /
 
 <div class="grid-container" ng-controller="MainCtrl">
     <div class="grid-block small-up-2">
-        <div class="grid-content" ng-repeat="category in categories.main" ng-if="!category.parent" ng-click="openCategory(category)">
-            {{category.name}}
+        <div style="height:200px;" class="grid-content card" ng-repeat="category in categories.main" ng-if="!category.parent" ng-click="openCategory(category)">
+            <div class="card-section">
+            	<h2>{{category.name}}</h2>
+            </div>
         </div>
     </div>
 
