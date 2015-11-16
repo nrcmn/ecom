@@ -8,9 +8,11 @@ animationIn: fadeIn
     <div class="grid-block small-up-3 align-center">
         <div class="align-center padding" ng-repeat="content in sections.slice().reverse()"  ng-click="openProductList(content)" ng-if="$index <= 2" >
             <div class="card padding" style="min-width: 100%; max-width: 98%;">
-                <img ng-src="{{content.image}}">
                 <div class="card-section text-center">
-                    <h4>{{content.name}}</h4>
+                    <img ng-src="{{content.image}}">
+                </div>
+                <div class="card-section text-center">
+                    <h3>{{content.name}}</h3>
                 </div>
             </div>
         </div>
@@ -18,10 +20,12 @@ animationIn: fadeIn
 
     <div class="grid-block small-up-4 align-center">
         <div class="align-center padding" ng-repeat="content in sections.slice().reverse()" ng-click="openProductList(content)" ng-if="$index > 2">
-            <div class="card padding" style="height: 300px; text-align: center;">
-                <img class="swiper-img" ng-src="{{content.image}}">
+            <div class="card padding" style="height: 360px; text-align: center;">
                 <div class="card-section text-center">
-                    <h4>{{content.name}}</h4>
+                    <img class="swiper-img" ng-src="{{content.image}}">
+                </div>
+                <div class="card-section text-center">
+                    <h3>{{content.name}}</h3>
                 </div>
             </div>
         </div>

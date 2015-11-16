@@ -27,12 +27,26 @@ angular.module('application', ['ui.router','ngAnimate', 'foundation', 'foundatio
         return {
             link: function (scope, element, attributes) {
                 $timeout(function () {
-                    var swiper = new Swiper('.swiper-container', {
-                        pagination: '.swiper-pagination',
-                        paginationClickable: '.swiper-pagination',
+                    // var swiper = new Swiper('.main-swiper', {
+                    //     pagination: '.swiper-pagination',
+                    //     paginationClickable: '.swiper-pagination',
+                    //     nextButton: '.swiper-button-next',
+                    //     prevButton: '.swiper-button-prev'
+                    // });
+                    var swiper1 = new Swiper('.gallery-top', {
                         nextButton: '.swiper-button-next',
-                        prevButton: '.swiper-button-prev'
+                        prevButton: '.swiper-button-prev',
+                        spaceBetween: 10,
                     });
+                    var swiper2 = new Swiper('.gallery-thumbs', {
+                        spaceBetween: 10,
+                        centeredSlides: true,
+                        slidesPerView: 'auto',
+                        touchRatio: 0.2,
+                        slideToClickedSlide: true
+                    });
+                    swiper1.params.control = swiper2;
+                    swiper2.params.control = swiper1;
                 }, 0.000001);
             }
         }

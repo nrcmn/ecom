@@ -13,21 +13,42 @@ animationIn: fadeIn
             <div class="grid-block ">
                 <div class="small-8 grid-content">
                     <div class="card card-section">
-                    <div class="swiper-container padding">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" ng-repeat="img in detailProduct.images" style="text-align: center;">
-                                <img class="swiper-img" ng-src="{{img}}" draggable="false">
-                            </div>
-                        </div>
-                        <!-- Add Pagination -->
-                        <div ng-if="product.images.length != 1" class="swiper-pagination swiper-pagination-black"></div>
-                        <!-- Add Arrows -->
-                        <div ng-if="product.images.length != 1" class="swiper-button-next swiper-button-black"></div>
-                        <div ng-if="product.images.length != 1" class="swiper-button-prev swiper-button-black"></div>
-                    </div>
+                        <!-- <div class="swiper-container main-swiper padding">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" ng-repeat="img in detailProduct.images" style="text-align: center;">
+                                    <img class="swiper-img" ng-src="{{img}}" draggable="false">
+                                </div>
+                            </div> -->
+                            <!-- Add Pagination -->
+                            <!-- <div ng-if="product.images.length != 1" class="swiper-pagination swiper-pagination-black"></div> -->
+                            <!-- Add Arrows -->
+                            <!-- <div ng-if="product.images.length != 1" class="swiper-button-next swiper-button-black"></div>
+                            <div ng-if="product.images.length != 1" class="swiper-button-prev swiper-button-black"></div>
+                        </div> -->
 
-                    <!-- Initialize Swiper -->
-                    <swiper></swiper>
+                        <div class="swiper-container gallery-top">
+                            <div class="swiper-wrapper">
+                                
+                                <div ng-repeat="img in detailProduct.images" class="swiper-slide" style="background-image:url({{img}});">
+                                </div>
+                                
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next swiper-button-black"></div>
+                            <div class="swiper-button-prev swiper-button-black"></div>
+                        </div>
+
+                        <div class="swiper-container gallery-thumbs">
+                            <div class="swiper-wrapper">
+                                
+                                <div ng-repeat="img in detailProduct.images" class="swiper-slide" style="background-image:url({{img}});">
+                                </div>
+                                
+                            </div>
+                        </div>                 
+
+                        <!-- Initialize Swiper -->
+                        <swiper></swiper>
                     </div>
                 </div>
 
