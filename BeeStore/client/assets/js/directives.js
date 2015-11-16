@@ -23,7 +23,7 @@ angular.module('directives', [])
                                 market_region: window.market_region,
                                 collection: id,
                                 amount: 5,
-                                sort_by: 'weight'
+                                sort_by: '-weight'
                             }
                         })
                         .success(function (data) {
