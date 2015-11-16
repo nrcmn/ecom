@@ -125,15 +125,23 @@ angular.module('controllers', [])
             $rootScope.productsList = undefined;
         }
 
-        $rootScope.cancelFilter = function () {
+        $rootScope.clearFilter = function () {
+            window.intagChoices.length = 0; // clear global intag choices array
+
+            // delete all checked filters
             window.filter[window.subCategory.id].forEach(function (item, i, arr) {
                 item.choices.forEach(function (_item, _i, _arr) {
                     delete _item['check'];
                 })
             })
+        }
 
-            window.intagChoices.length = 0;
-            $rootScope.productsList = undefined;
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+        $rootScope.cancelFilter = function () {
+            
+            // if (window.intagChoices.length != 0) {
+                // window.intagChoices.length = 0;
+                // $rootScope.productsList = undefined;
+                // __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+            // }
         }
     })
