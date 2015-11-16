@@ -48,7 +48,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory;
-            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
 
             if (!window.filter[window.subCategory.id]) {
                 __LoadFilters(window.subCategory.id);
@@ -65,13 +65,18 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
-        $rootScope.productsList = undefined;
+        if (!window.product) {
+            $rootScope.productsList = undefined;
+        }
+        else {
+            window.product = undefined;
+        }
         window.intagChoices = []; // delete filter history
 
         window.onscroll = function scrollEvent () {
-            // LAZY LOADING
+            // lazy loading
             if (window.pageYOffset == (document.body.scrollHeight - window.innerHeight)) {
-                __LoadProducts(window.subCategory, 15, window.page += 1, 'weight', window.intagChoices)
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices)
                 $rootScope.progress = true;
             }
         }
@@ -116,7 +121,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
             $rootScope.productsList = undefined;
         }
 
@@ -129,6 +134,6 @@ angular.module('controllers', [])
 
             window.intagChoices.length = 0;
             $rootScope.productsList = undefined;
-            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
         }
     })
