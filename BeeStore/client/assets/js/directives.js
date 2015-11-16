@@ -4,7 +4,7 @@ angular.module('directives', [])
             templateUrl: 'templates/leaders.html',
             replace: true,
             scope: {},
-            controller: function ($scope, $http, $q) {
+            controller: function ($scope, $http, $q, $state) {
                 function loadLeaders () {
                     var deferred = $q.defer();
                     var idsForLeaders = [9, 8, 10, 3];
@@ -41,6 +41,11 @@ angular.module('directives', [])
                 loadLeaders().then(function (leaders) {
                     $scope.leaders = leaders;
                 })
+
+                $scope.openLeader = function (item) {
+                    window.product = item;
+                    $state.go('detail', {id: item.id});
+                }
             },
             link: function(scope, element, attributes) {
                 $timeout(function () {
