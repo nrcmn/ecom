@@ -74,9 +74,11 @@ angular.module('services', [])
             .success(function (data) {
                 window.filter[window.subCategory.id] = data;
                 $rootScope.productsListFilter = data;
+                $rootScope.filterShow = true;
             })
             .error(function () {
                 console.error('ERROR! "__LoadFilters"');
+                $rootScope.filterShow = false;
             })
         }
     })

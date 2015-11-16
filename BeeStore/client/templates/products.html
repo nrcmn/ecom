@@ -4,7 +4,7 @@ url: /products
 ---
 
 
-<div zf-modal="" id="filterModal" ng-controller="FilterCtrl">
+<div zf-modal="" ng-show="filterShow" id="filterModal" ng-controller="FilterCtrl">
     <a zf-close="" class="close-button">×</a>
     <div class="grid-block">
         <div class="grid-content medium-4">
@@ -25,8 +25,8 @@ url: /products
         </div>
     </div>
     <div class="grid-block">
-        <a class="success button" ng-click="setFilter()">Применить фильтр</a>
-        <a href="#" class="alert hollow button" ng-click="cancelFilter()">Отмена</a>
+        <a zf-close="" class="success button" ng-click="setFilter()">Применить фильтр</a>
+        <a zf-close="" href="#" class="alert hollow button" ng-click="cancelFilter()">Отмена</a>
     </div>
 </div>
 

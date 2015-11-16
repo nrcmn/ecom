@@ -52,10 +52,12 @@ angular.module('controllers', [])
 
             if (!window.filter[window.subCategory.id]) {
                 __LoadFilters(window.subCategory.id);
+                $rootScope.filterShow = false;
             }
             else {
                 $rootScope.cancelFilter(); // delete all later checked params
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];
+                $rootScope.filterShow = true;
             }
 
             $state.go('products');
@@ -99,7 +101,6 @@ angular.module('controllers', [])
         window.intagChoices = [];
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
-            // $rootScope.filterValues = filter;
         }
 
         $rootScope.check = function ($event, val) {
@@ -116,6 +117,7 @@ angular.module('controllers', [])
 
         $rootScope.setFilter = function () {
             __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
+            $rootScope.productsList = undefined;
         }
 
         $rootScope.cancelFilter = function () {
@@ -124,5 +126,9 @@ angular.module('controllers', [])
                     delete _item['check'];
                 })
             })
+
+            window.intagChoices.length = 0;
+            $rootScope.productsList = undefined;
+            __LoadProducts(window.subCategory, 15, 1, 'weight', window.intagChoices);
         }
     })
