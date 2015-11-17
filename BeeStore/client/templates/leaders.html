@@ -2,14 +2,14 @@
     <div class="swiper-container" style="height:320px;">
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="" ng-repeat="slide in leaders">
-                <div class="grid-block small-up-4">
+                <div class="grid-block small-up-3">
                     <div class="grid-block align-center" ng-repeat="item in slide" ng-click="openLeader(item)">
                         <div class="card grid-content" style="">
                             <div class="card-section" style="height:100px;text-align:center;">
                                 <img ng-src="{{item.images[0]}}" style="height:100%; width:initial;">
                             </div>
                             <div class="card-section">
-                                <h5>{{item.name}}</h5>
+                                <h6>{{item.name}}</h6>
                                 <h4>{{item.price}}</h4>
                             </div>
                         </div>
