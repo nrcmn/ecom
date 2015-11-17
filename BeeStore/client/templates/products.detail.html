@@ -15,7 +15,7 @@ url: /products/:id
             <p>
                 Цена:<br/>
                 <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span>
-                <div ng-if="product.price">   
+                <div ng-if="product.price">
                     <h2 style="display:inline;">{{product.price}}</h2><span> руб.</span>
                 </div>
             </p>
@@ -35,7 +35,7 @@ url: /products/:id
         </div>
         <div class="grid-content medium-6">
             <h3>Характеристики:</h3>
-            
+
             <section class="block-list grid-content">
                 <ul>
                     <li style="display:flex;padding:10px 2px;" ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags">
@@ -97,7 +97,7 @@ url: /products/:id
                     </div>
                 </div>
             </div>
-                
+
 
         </div>
 

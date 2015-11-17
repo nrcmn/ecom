@@ -31,7 +31,7 @@ angular.module('controllers', [])
         }
 
         $scope.openCategory = function (arg) {
-            window.subCategoryId = arg.id;
+            window.category = arg;
             $state.go('categories');
         }
     })
@@ -40,7 +40,7 @@ angular.module('controllers', [])
         $scope.subCategories = [];
         window.page = 1; // set page number in products list
         window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope
-            if (item.parent == window.subCategoryId) {
+            if (item.parent == window.category.id) {
                 $scope.subCategories.push(item);
             }
 
