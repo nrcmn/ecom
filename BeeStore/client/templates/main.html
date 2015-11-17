@@ -3,7 +3,7 @@ name: main
 url: /
 ---
 
-<div class="grid-container" ng-controller="MainCtrl">
+<div class="grid-container" ng-controller="MainCategoryCtrl">
     <div class="grid-block small-up-2">
         <div style="height:320px;padding:10px;display:flex;align-items:center;justify-content:center;" class="grid-content card" ng-repeat="category in categories.main" ng-if="!category.parent" ng-click="openCategory(category)">
 

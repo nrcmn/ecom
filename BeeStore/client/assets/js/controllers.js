@@ -1,5 +1,5 @@
 angular.module('controllers', [])
-    .controller('MainCtrl', function ($scope, $state, __LoadCategories) {
+    .controller('MainCategoryCtrl', function ($scope, $state, __LoadCategories) {
         var unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 224]; // unacceptable categories ids
 
         // if haven't categories data, load them
@@ -38,28 +38,27 @@ angular.module('controllers', [])
 
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = [];
-        window.page = 1;
-
-        window.categories.sub.forEach(function (item, i, arr) {
+        window.page = 1; // set page number in products list
+        window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope
             if (item.parent == window.subCategoryId) {
                 $scope.subCategories.push(item);
             }
 
-            ($scope.subCategories.length <= 3) ? $scope.showLeader = true : $scope.showLeader = false;
+            ($scope.subCategories.length <= 3) ? $scope.showLeader = true : $scope.showLeader = false; // show leader rule
         })
 
         $scope.openSubCategory = function (subCategory) {
-            window.subCategory = subCategory;
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+            window.subCategory = subCategory; // set subCategory to global variable
+            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices); // load products
 
+
+            /* Cache filters */
             if (!window.filter[window.subCategory.id]) {
                 __LoadFilters(window.subCategory.id);
-                // $rootScope.filterShow = false;
             }
             else {
                 $rootScope.cancelFilter(); // delete all later checked params
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];
-                // $rootScope.filterShow = true;
             }
 
             $state.go('products');
@@ -67,6 +66,7 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
+        // productsList cleaner
         if (!window.product || window.product.collectionId != window.subCategory.id) {
             $rootScope.productsList = undefined;
         }
@@ -75,7 +75,7 @@ angular.module('controllers', [])
         }
 
         window.intagChoices = []; // delete filter history
-        $rootScope.progress = true;
+        $rootScope.progress = true; // set progressbar status
 
         window.onscroll = function scrollEvent () {
             // lazy loading
@@ -85,15 +85,18 @@ angular.module('controllers', [])
             }
         }
 
+
         $scope.openProduct = function (product) {
-            product.collectionId = window.subCategory.id;
-            window.product = product;
+            product.collectionId = window.subCategory.id; // set collectionId to product data
+            window.product = product; // set this product to global variable
 
             $state.go('detail', {id: product.id});
         }
     })
 
     .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, __LoadOneProduct) {
+        window.scroll(0,0); // scroll to top
+
         if (!window.product) {
             __LoadOneProduct($stateParams.id).then(function (data) {
                 $scope.product = data;
@@ -109,7 +112,7 @@ angular.module('controllers', [])
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
-        window.intagChoices = [];
+        window.intagChoices = []; // array for intag_choices ids
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
         }
