@@ -38,6 +38,8 @@ angular.module('controllers', [])
 
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = [];
+        window.page = 1;
+
         window.categories.sub.forEach(function (item, i, arr) {
             if (item.parent == window.subCategoryId) {
                 $scope.subCategories.push(item);
