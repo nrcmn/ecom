@@ -49,16 +49,18 @@ url: /products
         </a>
     </div>
 
-    <div class="grid-block small-up-4">
-        <div class="card grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
-            <img style="width: 100px; height: 100px;" ng-src="{{products.images[0]}}">
-            <div class="card-divider">
-                {{products.name}}
+    <div class="grid-block small-up-3">
+        <div class="grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
+            <div class="card-section" style="height:240px;text-align:center;">
+                <img style="height:100%; width:initial; margin:auto;" ng-src="{{products.images[0]}}">
+            </div>
+            <div class="card-section" style="padding-top:0;">
+                <h4>{{products.name}}</h4>
             </div>
         </div>
     </div>
 
-    <div ng-if="!productsList || progress == true">
-        <h3>Загрузка данных...</h3>
+    <div style="text-align:center;padding:40px;" ng-if="!productsList || progress == true">
+        <img src="assets/img/ripple.svg">
     </div>
 </div>

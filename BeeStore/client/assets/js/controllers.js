@@ -74,6 +74,8 @@ angular.module('controllers', [])
         window.intagChoices = []; // delete filter history
 
         window.onscroll = function scrollEvent () {
+            console.log(window.pageYOffset == (document.body.scrollHeight - window.innerHeight));
+
             // lazy loading
             if (window.pageYOffset == (document.body.scrollHeight - window.innerHeight)) {
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices)

@@ -1,16 +1,16 @@
 <div>
-    <div class="swiper-container">
+    <div class="swiper-container" style="height:320px;">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="text-align: center;" ng-repeat="slide in leaders">
-                <div class="grid-block">
+            <div class="swiper-slide" style="" ng-repeat="slide in leaders">
+                <div class="grid-block small-up-4">
                     <div class="grid-block align-center" ng-repeat="item in slide" ng-click="openLeader(item)">
-                        <div class="card grid-content" style="max-width: 100px;">
-                            <img ng-src="{{item.images[0]}}" style="min-width: 100%; min-height: 100%; width: initial;">
-                            <div class="card-divider">
-                                {{item.name}}
+                        <div class="card grid-content" style="">
+                            <div class="card-section" style="height:100px;text-align:center;">
+                                <img ng-src="{{item.images[0]}}" style="height:100%; width:initial;">
                             </div>
                             <div class="card-section">
-                                Цена: {{item.price}}
+                                <h5>{{item.name}}</h5>
+                                <h4>{{item.price}}</h4>
                             </div>
                         </div>
                     </div>
@@ -19,10 +19,10 @@
         </div>
 
         <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-pagination"></div> -->
 
         <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next swiper-button-black"></div>
+        <div class="swiper-button-prev swiper-button-black"></div>
     </div>
 </div>

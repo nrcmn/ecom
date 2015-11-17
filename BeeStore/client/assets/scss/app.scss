@@ -2,9 +2,15 @@
 @import "foundation";
 @import "fonts"; // Beeline Officina
 
-// * {
-// 	user-select: none;
-// }
+
+* {
+	user-select: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
 
 h1,h2,h3,h4 {
 	font-family: 'officinaserifcbold';

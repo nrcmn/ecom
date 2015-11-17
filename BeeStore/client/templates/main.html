@@ -5,8 +5,13 @@ url: /
 
 <div class="grid-container" ng-controller="MainCtrl">
     <div class="grid-block small-up-2">
-        <div style="height:200px;" class="grid-content card" ng-repeat="category in categories.main" ng-if="!category.parent" ng-click="openCategory(category)">
-            <div class="card-section">
+        <div style="height:320px;padding:10px;display:flex;align-items:center;justify-content:center;" class="grid-content card" ng-repeat="category in categories.main" ng-if="!category.parent" ng-click="openCategory(category)">
+
+        	<!-- <svg viewBox="0 0 1024 1024"><title>tablet</title><path class="path1" d="M844.8 1024h-665.6c-42.347 0-76.8-34.451-76.8-76.8v-870.4c0-42.347 34.453-76.8 76.8-76.8h665.6c42.349 0 76.8 34.453 76.8 76.8v870.4c0 42.349-34.451 76.8-76.8 76.8zM179.2 51.2c-14.115 0-25.6 11.485-25.6 25.6v870.4c0 14.115 11.485 25.6 25.6 25.6h665.6c14.115 0 25.6-11.485 25.6-25.6v-870.4c0-14.115-11.485-25.6-25.6-25.6h-665.6z"></path><path class="path2" d="M537.6 921.6h-51.2c-14.138 0-25.6-11.461-25.6-25.6s11.462-25.6 25.6-25.6h51.2c14.139 0 25.6 11.461 25.6 25.6s-11.461 25.6-25.6 25.6z"></path><path class="path3" d="M793.6 819.2h-563.2c-14.138 0-25.6-11.461-25.6-25.6v-665.6c0-14.138 11.462-25.6 25.6-25.6h563.2c14.139 0 25.6 11.462 25.6 25.6v665.6c0 14.139-11.461 25.6-25.6 25.6zM256 768h512v-614.4h-512v614.4z"></path></svg> -->
+
+            <div class="card-section" style="text-align:center;">
+
+            	<svg style="width:100px;" viewBox="0 0 1024 1024"><title>smartphone</title><path class="path1" d="M537.6 921.6h-51.2c-14.138 0-25.6-11.461-25.6-25.6s11.462-25.6 25.6-25.6h51.2c14.139 0 25.6 11.461 25.6 25.6s-11.461 25.6-25.6 25.6z"></path><path class="path2" d="M742.4 1024h-460.8c-42.347 0-76.8-34.451-76.8-76.8v-870.4c0-42.347 34.453-76.8 76.8-76.8h460.8c42.349 0 76.8 34.453 76.8 76.8v870.4c0 42.349-34.451 76.8-76.8 76.8zM281.6 51.2c-14.115 0-25.6 11.485-25.6 25.6v870.4c0 14.115 11.485 25.6 25.6 25.6h460.8c14.115 0 25.6-11.485 25.6-25.6v-870.4c0-14.115-11.485-25.6-25.6-25.6h-460.8z"></path><path class="path3" d="M691.2 819.2h-358.4c-14.138 0-25.6-11.461-25.6-25.6v-665.6c0-14.138 11.462-25.6 25.6-25.6h358.4c14.139 0 25.6 11.462 25.6 25.6v665.6c0 14.139-11.461 25.6-25.6 25.6zM358.4 768h307.2v-614.4h-307.2v614.4z"></path></svg>
             	<h2>{{category.name}}</h2>
             </div>
         </div>

@@ -4,12 +4,39 @@ url: /categories
 ---
 
 <div class="grid-container" ng-controller="SubCategoryCtrl">
-    <div class="grid-block small-up-3">
+    
+    <!-- <div class="grid-block small-up-3">
         <div class="grid-content card" style="text-align: center;" ng-repeat="subCategory in subCategories | orderBy:'order':true" ng-click="openSubCategory(subCategory)">
             <img ng-src="{{subCategory.image}}" ng-if="$index <= 2">
             <img ng-src="{{subCategory.image}}" ng-if="$index > 2" style="width: 50%;"/>
-            <div class="card-divider">
-                {{subCategory.name}}
+            <div class="card-section">
+                <h3>{{subCategory.name}}</h3>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="grid-block small-up-3 align-center">
+        <div class="align-center padding" ng-repeat="subCategory in subCategories | orderBy:'order':true" ng-click="openSubCategory(subCategory)" ng-if="$index <= 2" >
+            <div class="card padding" style="min-width: 100%; max-width: 98%;">
+                <div class="card-section text-center">
+                    <img ng-src="{{subCategory.image}}">
+                </div>
+                <div class="card-section text-center">
+                    <h3>{{subCategory.name}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-block small-up-4 align-center">
+        <div class="align-center padding" ng-repeat="subCategory in subCategories | orderBy:'order':true" ng-click="openSubCategory(subCategory)" ng-if="$index > 2">
+            <div class="card padding" style="height: 360px; text-align: center;">
+                <div class="card-section text-center">
+                    <img class="swiper-img" ng-src="{{subCategory.image}}">
+                </div>
+                <div class="card-section text-center">
+                    <h3>{{subCategory.name}}</h3>
+                </div>
             </div>
         </div>
     </div>

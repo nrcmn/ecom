@@ -6,23 +6,105 @@ url: /products/:id
 
 <div class="grid-container" ng-controller="ProductDetailCtrl">
     <h1>{{product.name}}</h1>
+    <br>
     <div class="grid-block">
         <div class="grid-content  medium-8">
             <images></images>
         </div>
-        <div class="grid-content  medium-4">
+        <div class="grid-content medium-4">
             <p>
                 Цена:<br/>
                 <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span>
-                {{product.price}}
+                <div ng-if="product.price">   
+                    <h2 style="display:inline;">{{product.price}}</h2><span> руб.</span>
+                </div>
             </p>
             <p>
                 На складе: {{product.remain}}
             </p>
+            <a href="#" title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="main-notifications" class="expand success hollow button" style="color: #000; font-size: 18px; background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%); border: 2px solid #f1a011; border-radius: 25px;">В корзину</a>
         </div>
     </div>
-    <div class="grid-block">
-        <div class="grid-block medium-6">
+    <div class="grid-block" style="margin-top:20px;margin-bottom:20px;">
+
+        <div class="grid-content medium-6">
+            <h3>Описание:</h3>
+            <p>
+                {{product.description || 'Описание'}}
+            </p>
+        </div>
+        <div class="grid-content medium-6">
+            <h3>Характеристики:</h3>
+            
+            <section class="block-list grid-content">
+                <ul>
+                    <li style="display:flex;padding:10px 2px;" ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags">
+                        <div style="flex:2;">
+                            {{intag.name}}
+                        </div>
+                        <div style="flex:1;">
+                            <b>{{intag.value[0]}}</b>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <a class="large dark hollow button" zf-open="intagModal">Все характеристики</a>
+
+            <div zf-modal="" id="intagModal">
+                <a zf-close="" class="close-button"><img src="assets/img/close.svg" style="width:40px;"></a>
+                <div class="grid-block">
+                    <div class="grid-content medium-4">
+                        <section class="block-list">
+                            <ul>
+                                <li ng-repeat="field in product.intags_categories">
+                                    <a style="" ng-click="openField(field)">{{field.name}}</a>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="grid-content medium-8">
+                        <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
+                            <h3>Выберите характеристику</h3>
+                        </div>
+
+                        <section class="block-list grid-content">
+                            <ul>
+                                <li style="display:flex;padding:10px 2px;" ng-repeat="param in modalIntags">
+                                    <div style="flex:1;">
+                                        {{param.name}}
+                                    </div>
+                                    <div style="flex:1;">
+                                        <b>{{param.value[0]}}</b>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <!-- <ul style="list-style-type: none;">
+                            <li ng-repeat="param in modalIntags">
+                                <div class="grid-block">
+                                    <div style="flex:2;">
+                                        {{param.name}}
+                                    </div>
+                                    <div style="flex:1;">
+                                        <b>{{param.value[0]}}</b>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+                
+
+        </div>
+
+    </div>
+
+    <!-- <div class="grid-block">
+        <div class="grid-block small-6">
             <div class="grid-content">
                 <h3>Описание:</h3>
                 <p>
@@ -30,9 +112,24 @@ url: /products/:id
                 </p>
             </div>
         </div>
-        <div class="grid-block medium-6">
+        <div class="grid-block small-6">
             <div class="grid-content">
                 <h3>Характеристики:</h3>
+                <section class="block-list">
+                <header>Характеристики:</header>
+                    <ul>
+                        <li style="display:flex;">
+                            <div style="flex:1;">
+                                text
+                            </div>
+                            <div style="flex:1;">
+                                text
+                            </div>
+                        </li>
+                        <li>text</li>
+                        <li>text</li>
+                    </ul>
+                </section>
                 <ul style="list-style-type: none; margin: 0;">
                     <li  ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags">
                         <div style="display: inline-block; text-align: left; width: 50%;">
@@ -75,5 +172,5 @@ url: /products/:id
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
