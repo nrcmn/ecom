@@ -4,7 +4,8 @@ url: /products
 ---
 
 
-<div zf-modal="" ng-show="filterShow" id="filterModal" ng-controller="FilterCtrl">
+<!-- *** FILTERS MODAL *** -->
+<div zf-modal="" id="filterModal" ng-controller="FilterCtrl">
     <a zf-close="" class="close-button">×</a>
     <div class="grid-block">
         <div class="grid-content medium-4">
@@ -33,6 +34,7 @@ url: /products
 
 <div class="grid-container" ng-controller="ProductListCtrl">
 
+    <!-- *** FILTERS BUTTON *** -->
     <div style="position: absolute; left: 0; top: 50%; font-size: 2em; z-index: 1;">
         <a zf-open="filterModal" style="
         transform: rotate(270deg);
@@ -49,6 +51,15 @@ url: /products
         </a>
     </div>
 
+    <!-- *** IF PRODUCTS LIST IS EMPTY *** -->
+    <div ng-if="productsList.length == 0" style="padding: 10px; width: 100%; border: 2px dashed #999; border-radius: 10px; margin-top: 50px; text-align: center;">
+        <h3>Список товаров пуст</h3>
+        <p>
+            попробуйте еще раз
+        </p>
+    </div>
+
+    <!-- *** PRODUCT GRID *** -->
     <div class="grid-block small-up-3">
         <div class="grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
             <div class="card-section" style="height:240px;text-align:center;">
@@ -60,6 +71,7 @@ url: /products
         </div>
     </div>
 
+    <!-- *** LOADING BAR *** -->
     <div style="text-align:center;padding:40px;" ng-if="!productsList || progress == true">
         <img src="assets/img/ripple.svg">
     </div>

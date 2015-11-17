@@ -54,12 +54,12 @@ angular.module('controllers', [])
 
             if (!window.filter[window.subCategory.id]) {
                 __LoadFilters(window.subCategory.id);
-                $rootScope.filterShow = false;
+                // $rootScope.filterShow = false;
             }
             else {
                 $rootScope.cancelFilter(); // delete all later checked params
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];
-                $rootScope.filterShow = true;
+                // $rootScope.filterShow = true;
             }
 
             $state.go('products');
@@ -75,6 +75,8 @@ angular.module('controllers', [])
         }
 
         window.intagChoices = []; // delete filter history
+        $rootScope.progress = true;
+
         window.onscroll = function scrollEvent () {
             // lazy loading
             if (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5) {
