@@ -92,6 +92,28 @@ angular.module('controllers', [])
 
             $state.go('detail', {id: product.id});
         }
+
+        $scope.items = [
+            {
+                value: '-weight',
+                label: 'популярности',
+            },
+            {
+                value: 'price',
+                label: 'цене: по возрастанию',
+            },
+            {
+                value: '-price',
+                label: 'цене: по убыванию',
+            }
+        ];
+
+        $scope.selected = $scope.items[0];
+        $scope.sortBy = function () {
+            window.page = 1;
+            $rootScope.productsList = undefined;
+            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices)
+        }
     })
 
     .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, __LoadOneProduct) {

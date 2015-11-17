@@ -34,6 +34,17 @@ url: /products
 
 <div class="grid-container" ng-controller="ProductListCtrl">
 
+    <div class="small-12 medium-4 grid-content">
+        <label>Сортировать по:</label>
+        <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
+        <!-- <label>Сортировать по:</label>
+        <select>
+            <option ng-click="sortBy()" value="-weight">Популярности</option>
+            <option ng-click="sortBy()" value="price">Цене: по возрастанию</option>
+            <option ng-click="sortBy()" value="-price">Цене: по убыванию</option>
+        </select> -->
+    </div>
+
     <!-- *** FILTERS BUTTON *** -->
     <div style="position: absolute; left: 0; top: 50%; font-size: 2em; z-index: 1;">
         <a zf-open="filterModal" style="
