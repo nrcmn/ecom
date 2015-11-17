@@ -53,21 +53,21 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             page = 1;
 
 
-        // Bread scrumbs
+        // Bread crumbs
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
             if (toState.url == '/') { // if this is main
                 var main = true;
             }
 
-            if (!fromState.title || main) { // delete all data from scrumbs, and push main page
-                $rootScope.scrumbs = [];
-                $rootScope.scrumbs.push(toState.title());
+            if (!fromState.title || main) { // delete all data from crumbs, and push main page
+                $rootScope.crumbs = [];
+                $rootScope.crumbs.push(toState.title());
             }
-            else if ($rootScope.scrumbs.indexOf(toState.title()) > -1) { // if scrumbs have this title, delete them (back button event)
-                $rootScope.scrumbs.pop()
+            else if ($rootScope.crumbs.indexOf(toState.title()) > -1) { // if crumbs have this title, delete them (back button event)
+                $rootScope.crumbs.pop()
             }
             else { // for all others conditions
-                $rootScope.scrumbs.push(toState.title());
+                $rootScope.crumbs.push(toState.title());
             }
         })
     })
