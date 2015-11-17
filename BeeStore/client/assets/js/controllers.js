@@ -67,17 +67,16 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
-        if (!window.product || window.product.main_collection.id != window.subCategory.id) {
+        if (!window.product || window.product.collectionId != window.subCategory.id) {
             $rootScope.productsList = undefined;
         }
         else {
             window.product = undefined;
         }
-        window.intagChoices = []; // delete filter history
 
+        window.intagChoices = []; // delete filter history
         window.onscroll = function scrollEvent () {
             // lazy loading
-            // if (window.pageYOffset == (document.body.scrollHeight - window.innerHeight)) {
             if (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5) {
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices)
                 $rootScope.progress = true;
@@ -85,7 +84,9 @@ angular.module('controllers', [])
         }
 
         $scope.openProduct = function (product) {
+            product.collectionId = window.subCategory.id;
             window.product = product;
+
             $state.go('detail', {id: product.id});
         }
     })
