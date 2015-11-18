@@ -13,7 +13,7 @@ url: /products/:id
         </div>
         <div class="grid-content medium-4">
             <p>
-                Цена:<br/>
+                <span style="text-decoration: line-through;">{{product.old_price}}<br/></span>
                 <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span>
                 <div ng-if="product.price">
                     <h2 style="display:inline;">{{product.price}}</h2><span> руб.</span>

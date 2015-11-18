@@ -75,7 +75,7 @@ url: /products
     <div class="grid-block small-up-3">
         <div class="grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
             <div class="card-section" style="height:240px;text-align:center;">
-                <img src="http://hddesktopwallpapers.in/wp-content/uploads/2015/06/Homer-Simpson-poster.jpg" style="height:100%; width:initial; margin:auto;" ng-src="{{products.images[0]}}">
+                <img src="http://hddesktopwallpapers.in/wp-content/uploads/2015/06/Homer-Simpson-poster.jpg" style="height:100%; width:initial; margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}">
             </div>
             <div class="card-section" style="padding-top:0;">
                 <h4>{{products.name}}</h4>
