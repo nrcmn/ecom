@@ -53,7 +53,8 @@ angular.module('directives', [])
                         pagination: '.swiper-pagination',
                         paginationClickable: '.swiper-pagination',
                         nextButton: '.swiper-button-next',
-                        prevButton: '.swiper-button-prev'
+                        prevButton: '.swiper-button-prev',
+                        freeMode: true
                     });
                 }, 1000);
             }
