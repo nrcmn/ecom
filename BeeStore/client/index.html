@@ -60,7 +60,7 @@
             </div> -->
 
             <!-- CONTENT -->
-            <h4 style="padding: 10px;">{{crumbs.join('-->')}}</h4>
+            <h4 style="padding: 10px;" ng-show="showCrumbs">{{crumbs.join(' - ')}}</h4>
             <div ui-view class="grid-content"></div>
 
         </div>

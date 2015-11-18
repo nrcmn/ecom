@@ -35,11 +35,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 url: '/categories/products/{id}',
                 templateUrl: './templates/products.detail.html',
                 title: function () {
-                    try {
-                        return window.product.name
-                    } catch (e) {
-                        return true
-                    }
+                    return null // hide on detail page
                 }
             })
     })
@@ -55,18 +51,27 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
 
         // Bread crumbs
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            if (toState.url == '/') { // if this is main
+            if (toState.url == '/') { // if this is main page
                 var main = true;
+                $rootScope.showCrumbs = false;
+            }
+            else {
+                var main = false;
+                $rootScope.showCrumbs = true;
             }
 
-            if (!fromState.title || main) { // delete all data from crumbs, and push main page
+
+            if (main) { // delete all data from crumbs, and push main page
                 $rootScope.crumbs = [];
                 $rootScope.crumbs.push(toState.title());
             }
-            else if ($rootScope.crumbs.indexOf(toState.title()) > -1) { // if crumbs have this title, delete them (back button event)
+            else if (fromState.title() == null || toState.title() == null) {
+                return false
+            }
+            else if ($rootScope.crumbs.indexOf(toState.title()) > -1) { // if crumbs array have this title, delete them (back button event)
                 $rootScope.crumbs.pop()
             }
-            else { // for all others conditions
+            else if (toState.title() != null) { // for all others conditions
                 $rootScope.crumbs.push(toState.title());
             }
         })
