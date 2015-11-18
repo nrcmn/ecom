@@ -1,6 +1,6 @@
 angular.module('controllers', [])
     .controller('MainCategoryCtrl', function ($scope, $state, __LoadCategories, mainCategories) {
-        var unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87]; // unacceptable categories ids
+        var unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 163]; // unacceptable categories ids
 
         // if haven't categories data, load them
         if(!window.categories){
