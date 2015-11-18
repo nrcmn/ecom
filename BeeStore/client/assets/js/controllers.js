@@ -78,9 +78,6 @@ angular.module('controllers', [])
             window.product = undefined;
         }
 
-        console.log(window.product, 1);
-        console.log($rootScope.productsList, 2);
-
         $rootScope.progress = true; // show progress bar
         window.scrollLoad = true;
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except

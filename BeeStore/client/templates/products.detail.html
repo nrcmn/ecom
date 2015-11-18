@@ -71,7 +71,16 @@
                                         {{param.name}}
                                     </div>
                                     <div style="flex:1;">
-                                        <b>{{param.value[0]}}</b>
+                                        <span>
+                                            <div>
+                                                <b ng-if="param.id == 21">{{param.value[0].split(';')[0]}}</b>
+                                            </div>
+                                            <div style="border-radius:50%; width:30px; height:30px; background: {{param.value[0].split(';')[1]}};"></div>
+                                        </span>
+                                        <span>
+                                            <b ng-if="param.id != 21">{{param.value[0]}}</b>
+                                        </span>
+
                                     </div>
                                 </li>
                             </ul>
