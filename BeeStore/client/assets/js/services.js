@@ -43,6 +43,14 @@ angular.module('services', [])
                     return true
                 }
 
+                console.log(data);
+                if (data.length == 0) {
+                    window.scrollLoad = false;
+                    $rootScope.progress = false;
+
+                    return true
+                }
+
                 // for lazy loading function
                 if (!$rootScope.productsList) {
                     $rootScope.productsList = data;
@@ -53,7 +61,7 @@ angular.module('services', [])
                     })
                 }
 
-                $rootScope.progress = false;
+                // $rootScope.progress = false;
             })
             .error(function () {
                 console.error('ERROR! "__LoadProducts"');

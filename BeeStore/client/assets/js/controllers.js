@@ -52,7 +52,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory; // set subCategory to global variable
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices); // load products
+            __LoadProducts(window.subCategory, 10, 1, '-weight', window.intagChoices); // load products
 
 
             /* Cache filters */
@@ -69,6 +69,7 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
+
         // productsList cleaner
         if (!window.product || window.product.collectionId != window.subCategory.id) {
             $rootScope.productsList = undefined;
@@ -77,17 +78,18 @@ angular.module('controllers', [])
             window.product = undefined;
         }
 
+        $rootScope.progress = true; // show progress bar
+        window.scrollLoad = true;
+        __LoadProducts(window.subCategory, 5, 2, '-weight', window.intagChoices); // load other for empty array except
         window.intagChoices = []; // delete filter history
-        $rootScope.progress = true; // set progressbar status
 
-        window.onscroll = function scrollEvent () {
-            // lazy loading
-            if (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5) {
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices)
+        // -- LAZY loading block
+        window.onscroll = function () {
+            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -2)) {
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices);
                 $rootScope.progress = true;
             }
         }
-
 
         $scope.openProduct = function (product) {
             product.collectionId = window.subCategory.id; // set collectionId to product data
@@ -96,6 +98,7 @@ angular.module('controllers', [])
             $state.go('detail', {id: product.id});
         }
 
+        // -- SORT block
         $scope.items = [
             {
                 value: '-weight',
