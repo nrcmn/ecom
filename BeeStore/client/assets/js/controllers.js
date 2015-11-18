@@ -52,7 +52,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory; // set subCategory to global variable
-            __LoadProducts(window.subCategory, 10, 1, '-weight', window.intagChoices); // load products
+            __LoadProducts(window.subCategory, 10, 1, '-weight', null); // load products
 
 
             /* Cache filters */
@@ -78,9 +78,12 @@ angular.module('controllers', [])
             window.product = undefined;
         }
 
+        console.log(window.product, 1);
+        console.log($rootScope.productsList, 2);
+
         $rootScope.progress = true; // show progress bar
         window.scrollLoad = true;
-        __LoadProducts(window.subCategory, 5, 2, '-weight', window.intagChoices); // load other for empty array except
+        __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
         window.intagChoices = []; // delete filter history
 
         // -- LAZY loading block
@@ -117,6 +120,7 @@ angular.module('controllers', [])
         $scope.selected = $scope.items[0];
         $scope.sortBy = function () {
             window.page = 1;
+            window.sortItem = $scope.selected.value;
             $rootScope.productsList = undefined;
             __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices)
         }
@@ -158,7 +162,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem, window.intagChoices);
             $rootScope.productsList = undefined;
         }
 
