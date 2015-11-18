@@ -27,7 +27,9 @@ angular.module('directives', [])
                             }
                         })
                         .success(function (data) {
-                            leaders.push(data);
+                            data.forEach(function (item, i, arr) {
+                                leaders.push(item);
+                            })
 
                             if (i == idsForLeaders.length - 1) {
                                 deferred.resolve(leaders);
@@ -54,7 +56,8 @@ angular.module('directives', [])
                         paginationClickable: '.swiper-pagination',
                         nextButton: '.swiper-button-next',
                         prevButton: '.swiper-button-prev',
-                        freeMode: true
+                        freeMode: true,
+                        slidesPerView: 3,
                     });
                 }, 1000);
             }

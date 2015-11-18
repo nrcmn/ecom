@@ -4,14 +4,14 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="" ng-repeat="slide in leaders">
                 <div class="grid-block small-up-5">
-                    <div class="grid-block align-center" ng-repeat="item in slide" ng-click="openLeader(item)">
+                    <div class="grid-block align-center" ng-click="openLeader(slide)">
                         <div class="card grid-content" style="">
                             <div class="card-section" style="height:100px;text-align:center;">
-                                <img ng-src="{{item.images[0]}}" style="height:100%; width:initial;">
+                                <img ng-src="{{slide.images[0]}}" style="height:100%; width:initial;">
                             </div>
                             <div class="card-section">
-                                <h6>{{item.name}}</h6>
-                                <h4>{{item.price}}</h4>
+                                <h6>{{slide.name}}</h6>
+                                <h4>{{slide.price}}</h4>
                             </div>
                         </div>
                     </div>
