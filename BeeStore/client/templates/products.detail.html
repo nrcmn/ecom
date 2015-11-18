@@ -12,17 +12,18 @@ url: /products/:id
             <images></images>
         </div>
         <div class="grid-content medium-4">
-            <p>
+            
                 <span style="text-decoration: line-through;">{{product.old_price}}<br/></span>
-                <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span>
+                <!-- <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span> -->
+                <span ng-if="product.price" style="color:#777;font-size:1.5rem;margin-bottom:0;text-decoration: line-through;color:#666;">{{product.price * 0.9}}</span> руб.
                 <div ng-if="product.price">
-                    <h2 style="display:inline;">{{product.price}}</h2><span> руб.</span>
+                    <h1 style="display:inline;font-size:3.75rem;">{{product.price}}</h1><span> руб.</span>
                 </div>
-            </p>
+            
             <p>
                 На складе: {{product.remain}}
             </p>
-            <a href="#" title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="main-notifications" class="expand success hollow button" style="color: #000; font-size: 18px; background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%); border: 2px solid #f1a011; border-radius: 25px;">В корзину</a>
+            <a href="#" title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="main-notifications" class="beeline-button" style="">Позвать консультанта</a>
         </div>
     </div>
     <div class="grid-block" style="margin-top:20px;margin-bottom:20px;">
