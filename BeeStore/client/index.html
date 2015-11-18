@@ -24,10 +24,11 @@
             }
         </style>
     </head>
-    <body oncontextmenu="return false;">
+    <!-- <body oncontextmenu="return false;"> -->
+    <body>
 
         <!-- HEADER -->
-        <div class="shrink" style="padding:40px;position: fixed; top: 0; width: 100%;z-index:9999;background:#fff;">
+        <div class="shrink" style="padding:20px 40px;position: fixed; top: 0; width: 100%;z-index:9999;background:#fff;">
             <ul class="menu-bar" style="">
                 <li style="border:2px solid #555;border-radius:8px;">
                     <a href="/#!/">Девайсы</a>
@@ -42,6 +43,10 @@
                     <a style="color:#666;" href="">Другие вопросы &dtrif;</a>
                 </li>
             </ul>
+
+            <h4 style="padding: 10px;" ng-show="showCrumbs">{{crumbs.join(' / ')}}</h4>
+
+
         </div>
 
         <div class="grid-frame vertical" style="padding-top:128px;padding-bottom:256px;">
@@ -60,7 +65,6 @@
             </div> -->
 
             <!-- CONTENT -->
-            <h4 style="padding: 10px;" ng-show="showCrumbs">{{crumbs.join(' - ')}}</h4>
             <div ui-view class="grid-content"></div>
 
         </div>

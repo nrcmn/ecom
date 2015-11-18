@@ -33,7 +33,9 @@ url: /products
 </div>
 
 <div class="grid-container" ng-controller="ProductListCtrl">
-
+    <br>
+    <br>
+    <br>
     <div class="small-12 medium-4 grid-content">
         <label>Сортировать по:</label>
         <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
@@ -73,7 +75,7 @@ url: /products
 
     <!-- *** PRODUCT GRID *** -->
     <div class="grid-block small-up-3">
-        <div class="grid-content" ng-repeat="products in productsList" ng-click="openProduct(products)">
+        <div class="grid-content" ng-repeat="products in productsList">
             <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:center;">
                 <img src="assets/img/ring.svg" style="max-height:100%; width:initial; margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}">
             </div>
@@ -82,8 +84,8 @@ url: /products
                 <div ng-if="products.price">
                     <h2 style="display:inline;">{{products.price}}</h2><span> руб.</span>
                 </div>
-                <div style="padding-top:20px;">
-                    <a href="#" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
+                <div style="padding:32px 0;">
+                    <a href="#" ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
                 </div>
             </div>
         </div>

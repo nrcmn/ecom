@@ -57,7 +57,7 @@ angular.module('directives', [])
                         nextButton: '.swiper-button-next',
                         prevButton: '.swiper-button-prev',
                         freeMode: true,
-                        slidesPerView: 3,
+                        slidesPerView: 3.5,
                     });
                 }, 1000);
             }
