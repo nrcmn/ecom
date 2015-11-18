@@ -1,5 +1,5 @@
 angular.module('controllers', [])
-    .controller('MainCategoryCtrl', function ($scope, $state, __LoadCategories) {
+    .controller('MainCategoryCtrl', function ($scope, $state, __LoadCategories, mainCategories) {
         var unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87]; // unacceptable categories ids
 
         // if haven't categories data, load them
@@ -22,13 +22,16 @@ angular.module('controllers', [])
                     }
                 })
 
-                $scope.categories = window.categories;
+                // $scope.categories = window.categories;
+
             });
         }
         // if have categories data initialize to variable
-        else {
-            $scope.categories = window.categories;
-        }
+        // else {
+        //     $scope.categories = window.categories;
+        // }
+
+        $scope.categories = mainCategories;
 
         $scope.openCategory = function (arg) {
             window.category = arg;
