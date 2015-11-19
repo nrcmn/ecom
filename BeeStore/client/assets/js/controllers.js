@@ -141,19 +141,34 @@ angular.module('controllers', [])
 
                 $scope.product = data;
                 window.product = data;
+
+                $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
             })
         }
         else {
             $scope.product = window.product;
+            $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         }
 
+        // open field in intags
         $scope.openField = function (f) {
-            $scope.modalIntags = f.intags;
+            $scope.modalIntags = f;
+        }
+
+        // active style for intags
+        $scope.setActiveStyle = function (condition) {
+            if (condition) {
+                return {background: '#999'}
+            }
+            else {
+                return {background: '#FFF'}
+            }
         }
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
         window.intagChoices = []; // array for intag_choices ids
+        $rootScope.filterInd = 0;
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
         }
@@ -193,5 +208,14 @@ angular.module('controllers', [])
                 // $rootScope.productsList = undefined;
                 // __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
             // }
+        }
+
+        $rootScope.setActiveStyle = function (condition) {
+            if (condition) {
+                return {background: '#999'}
+            }
+            else {
+                return {background: '#FFF'}
+            }
         }
     })

@@ -55,19 +55,19 @@
                         <section class="block-list">
                             <ul>
                                 <li ng-repeat="field in product.intags_categories">
-                                    <a style="" ng-click="openField(field)">{{field.name}}</a>
+                                    <a ng-style="setActiveStyle(field.id == modalIntags.id)" ng-click="openField(field)">{{field.name}}</a>
                                 </li>
                             </ul>
                         </section>
                     </div>
                     <div class="grid-content medium-8">
-                        <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
+                        <!-- <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
                             <h3>Выберите характеристику</h3>
-                        </div>
+                        </div> -->
 
                         <section class="block-list grid-content">
                             <ul>
-                                <li style="display:flex;padding:10px 2px;" ng-repeat="param in modalIntags" ng-if="param.value[0] != null">
+                                <li style="display:flex;padding:10px 2px;" ng-repeat="param in modalIntags.intags" ng-if="param.value[0] != null">
                                     <div style="flex:1;">
                                         {{param.name}}
                                     </div>
@@ -81,7 +81,6 @@
                                         <span>
                                             <b ng-if="param.id != 21">{{param.value[0]}}</b>
                                         </span>
-
                                     </div>
                                 </li>
                             </ul>
