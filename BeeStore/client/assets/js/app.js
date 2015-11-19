@@ -34,9 +34,13 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             .state('detail', {
                 url: '/categories/products/{id}',
                 templateUrl: './templates/products.detail.html',
-                title: function () {
-                    return null // hide on detail page
-                }
+                title: function () {return null} // hide on detail page
+            })
+
+            .state('leaders', {
+                url: '/leaders/{id}',
+                templateUrl: './templates/products.detail.html',
+                title: function () {return 'Лидеры'}
             })
     })
 
@@ -46,7 +50,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
             market_region = 98082,
             filter = {},
-            page = 1;
+            page = 2;
 
 
         // Bread crumbs
@@ -59,7 +63,6 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 var main = false;
                 $rootScope.showCrumbs = true;
             }
-
 
             if (main) { // delete all data from crumbs, and push main page
                 $rootScope.crumbs = [];

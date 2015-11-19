@@ -52,7 +52,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory; // set subCategory to global variable
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices); // load products
+            __LoadProducts(window.subCategory, 10, 1, '-weight', null); // load products
 
 
             /* Cache filters */
@@ -69,6 +69,7 @@ angular.module('controllers', [])
     })
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
+
         // productsList cleaner
         if (!window.product || window.product.collectionId != window.subCategory.id) {
             $rootScope.productsList = undefined;
@@ -77,25 +78,32 @@ angular.module('controllers', [])
             window.product = undefined;
         }
 
+        $rootScope.progress = true; // show progress bar
+        window.scrollLoad = true;
+        __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
         window.intagChoices = []; // delete filter history
-        $rootScope.progress = true; // set progressbar status
 
-        window.onscroll = function scrollEvent () {
-            // lazy loading
-            if (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5) {
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices)
+        // -- LAZY loading block
+        window.onscroll = function () {
+            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -2)) {
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices);
                 $rootScope.progress = true;
             }
         }
 
-
         $scope.openProduct = function (product) {
             product.collectionId = window.subCategory.id; // set collectionId to product data
-            window.product = product; // set this product to global variable
+            product.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                if (item.id == 61) {
+                    product.general_intags = item;
+                }
+            })
 
+            window.product = product; // set this product to global variable
             $state.go('detail', {id: product.id});
         }
 
+        // -- SORT block
         $scope.items = [
             {
                 value: '-weight',
@@ -114,6 +122,7 @@ angular.module('controllers', [])
         $scope.selected = $scope.items[0];
         $scope.sortBy = function () {
             window.page = 1;
+            window.sortItem = $scope.selected.value;
             $rootScope.productsList = undefined;
             __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices)
         }
@@ -124,7 +133,14 @@ angular.module('controllers', [])
 
         if (!window.product) {
             __LoadOneProduct($stateParams.id).then(function (data) {
+                data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                    if (item.id == 61) {
+                        data.general_intags = item;
+                    }
+                })
+
                 $scope.product = data;
+                window.product = data;
             })
         }
         else {
@@ -155,7 +171,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem, window.intagChoices);
             $rootScope.productsList = undefined;
         }
 
