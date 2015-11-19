@@ -74,10 +74,10 @@
             <div class="card-section" style="padding-top:0;">
                 <h4>{{products.name}}</h4>
                 <div ng-if="products.price">
-                    <h2 style="display:inline;">{{products.price}}</h2><span> руб.</span>
+                    <h2 style="display:inline;">{{products.price | price}}</h2><span> руб.</span>
                 </div>
                 <div style="padding:32px 0;">
-                    <a href="#" ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
+                    <a ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
                 </div>
             </div>
         </div>

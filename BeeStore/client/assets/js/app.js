@@ -7,40 +7,50 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             .state('main', {
                 url: "/",
                 templateUrl: "./templates/mainCategories.html",
-                title: function () {return 'Главная'}
+                getTitle: function () {return 'Главная'},
+                show: false,
+                id: 1
             })
             .state('categories', {
                 url: "/categories",
                 templateUrl: "./templates/subCategories.html",
-                title: function () {
+                getTitle: function () {
                     try {
                         return window.category.name
                     } catch (e) {
                         return true
                     }
-                }
+                },
+                show: true,
+                id: 2
             })
             .state('products', {
                 url: '/categories/products',
                 templateUrl: './templates/products.html',
-                title: function () {
+                getTitle: function () {
                     try {
                         return window.subCategory.name
                     } catch (e) {
                         return true
                     }
-                }
+                },
+                show: true,
+                id: 3
             })
             .state('detail', {
                 url: '/categories/products/{id}',
                 templateUrl: './templates/products.detail.html',
-                title: function () {return null} // hide on detail page
+                getTitle: function () {return null}, // hide on detail page
+                show: false,
+                id: 4
             })
 
             .state('leaders', {
                 url: '/leaders/{id}',
                 templateUrl: './templates/products.detail.html',
-                title: function () {return 'Лидеры'}
+                getTitle: function () {return 'Лидеры'},
+                show: true,
+                id: 5
             })
     })
 
@@ -52,32 +62,36 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             filter = {},
             page = 2;
 
-
         // Bread crumbs
+        $rootScope.crumbs = [];
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            if (toState.url == '/') { // if this is main page
-                var main = true;
-                $rootScope.showCrumbs = false;
-            }
-            else {
-                var main = false;
-                $rootScope.showCrumbs = true;
+
+            toState.title = toState.getTitle(); // get readable crumb name
+
+            // condition for main page
+            if (toState.url == '/') {
+                return $rootScope.crumbs.length = 0, toState.show = false, $rootScope.crumbs.push(toState);
             }
 
-            if (main) { // delete all data from crumbs, and push main page
-                $rootScope.crumbs = [];
-                $rootScope.crumbs.push(toState.title());
+            // for other pages
+            for (var i = 0; i < $rootScope.crumbs.length; i++) {
+                var crumb = $rootScope.crumbs[i];
+                if (crumb.id == toState.id) {
+                    return $rootScope.crumbs.splice(i + 1, 10); // back button event
+                }
             }
-            else if (fromState.title() == null || toState.title() == null) {
-                return false
+            try {
+                $rootScope.crumbs[0].show = true; // show first state in other states
+            } catch (e) {
+                console.log('ok');
             }
-            else if ($rootScope.crumbs.indexOf(toState.title()) > -1) { // if crumbs array have this title, delete them (back button event)
-                $rootScope.crumbs.pop()
-            }
-            else if (toState.title() != null) { // for all others conditions
-                $rootScope.crumbs.push(toState.title());
-            }
+
+            return $rootScope.crumbs.push(toState);
         })
+
+        $rootScope.openCrumb = function (crumb) {
+            $state.go(crumb.name);
+        }
     })
 
     .value('mainCategories', [
@@ -112,3 +126,11 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             img: './assets/img/close.svg'
         }
     ])
+
+    .filter('price', function () {
+        return function (price) {
+            var priceMask = price.toString().split('');
+            priceMask.splice(-3, 0, ' ');
+            return price = priceMask.join('');
+        };
+    })

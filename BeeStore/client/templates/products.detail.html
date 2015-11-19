@@ -10,9 +10,9 @@
 
                 <span style="text-decoration: line-through;">{{product.old_price}}<br/></span>
                 <!-- <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span> -->
-                <span ng-if="product.price" style="color:#777;font-size:1.5rem;margin-bottom:0;text-decoration: line-through;color:#666;">{{product.price * 0.9}}</span> руб.
+                <span ng-if="product.price" style="color:#777;font-size:1.5rem;margin-bottom:0;text-decoration: line-through;color:#666;">{{product.price * 0.9 | price}}</span> руб.
                 <div ng-if="product.price">
-                    <h1 style="display:inline;font-size:3.75rem;">{{product.price}}</h1><span> руб.</span>
+                    <h1 style="display:inline;font-size:3.75rem;">{{product.price | price}}</h1><span> руб.</span>
                 </div>
 
             <p>

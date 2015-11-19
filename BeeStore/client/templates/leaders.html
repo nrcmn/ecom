@@ -12,7 +12,7 @@
                                     <img ng-src="{{slide.images[0]}}" style="height:100%; width:initial;">
                                 </div>
                                 <div class="card-section">
-                                    <h3 style="display:inline;">{{slide.price}}</h3><span> руб.</span>
+                                    <h3 style="display:inline;">{{slide.price | price}}</h3><span> руб.</span>
                                     <h6>{{slide.name}}</h6>
                                 </div>
 
@@ -27,7 +27,7 @@
 
         </div>
 
-    
+
         <!-- Add Arrows -->
         <div class="swiper-button-next swiper-button-black"></div>
         <div class="swiper-button-prev swiper-button-black"></div>

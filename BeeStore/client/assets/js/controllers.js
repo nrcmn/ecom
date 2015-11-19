@@ -124,7 +124,7 @@ angular.module('controllers', [])
             window.page = 1;
             window.sortItem = $scope.selected.value;
             $rootScope.productsList = undefined;
-            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices)
+            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices);
         }
     })
 
