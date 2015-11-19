@@ -34,7 +34,7 @@
 
             <section class="block-list grid-content">
                 <ul>
-                    <li style="display:flex;padding:10px 2px;" ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags" ng-if="intag.value[0] != null">
+                    <li style="display:flex;padding:10px 2px;" ng-repeat="intag in product.general_intags.intags" ng-if="intag.value[0] != null">
                         <div style="flex:2;">
                             {{intag.name}}
                         </div>

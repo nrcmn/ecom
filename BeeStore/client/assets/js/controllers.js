@@ -93,8 +93,13 @@ angular.module('controllers', [])
 
         $scope.openProduct = function (product) {
             product.collectionId = window.subCategory.id; // set collectionId to product data
-            window.product = product; // set this product to global variable
+            product.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                if (item.id == 61) {
+                    product.general_intags = item;
+                }
+            })
 
+            window.product = product; // set this product to global variable
             $state.go('detail', {id: product.id});
         }
 
@@ -128,7 +133,14 @@ angular.module('controllers', [])
 
         if (!window.product) {
             __LoadOneProduct($stateParams.id).then(function (data) {
+                data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                    if (item.id == 61) {
+                        data.general_intags = item;
+                    }
+                })
+
                 $scope.product = data;
+                window.product = data;
             })
         }
         else {

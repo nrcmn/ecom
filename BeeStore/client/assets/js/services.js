@@ -43,7 +43,6 @@ angular.module('services', [])
                     return true
                 }
 
-                console.log(data);
                 if (data.length == 0) {
                     window.scrollLoad = false;
                     $rootScope.progress = false;
