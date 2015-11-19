@@ -24,49 +24,58 @@
             }
         </style>
     </head>
-    <body oncontextmenu="return false;">
-    <!-- <body> -->
-
-        <!-- HEADER -->
-        <div class="shrink" style="padding:20px 40px;position: fixed; top: 0; width: 100%;z-index:9999;background:#fff;">
-            <ul class="menu-bar" style="">
-                <li style="border:2px solid #555;border-radius:8px;">
-                    <a href="/#!/">Девайсы</a>
-                </li>
-                <li>
-                    <a href="">Тарифы</a>
-                </li>
-                <li>
-                    <a ui-sref="internet">Мобильный интернет</a>
-                </li>
-                <li>
-                    <a style="color:#666;" href="">Другие вопросы &dtrif;</a>
-                </li>
-            </ul>
-
-            <h4 style="padding: 10px;" ng-show="showCrumbs">{{crumbs.join('  /  ')}}</h4>
-
-
+    <!-- <body oncontextmenu="return false;"> -->
+    <body>
+        <div style="height:30vh;">
+            <video style="width:100%;" src="assets/img/gorod.webm" autoplay="true" loop="true">
+            </video>
         </div>
-
-        <div class="grid-frame vertical" style="padding-top:160px;padding-bottom:256px;">
-
-
-
-            <!-- <div class="grid-content shrink" style="padding: 0;">
-                <ul class="dark menu-bar">
-                    <li><a href="/#!/">Девайсы</a></li>
-                    <li><a href="#">Тарифы</a></li>
-                    <li><a href="#">Мобильный интернет</a></li>
-                    <li><a href="#">Финансовые сервисы</a></li>
-                    <li><a href="#">Юридическим лицам</a></li>
-                    <li><a href="#">Домашний интернет и ТВ</a></li>
+        <div style="position:relative;">
+            <!-- HEADER -->
+            <div class="shrink" style="padding:20px 40px;position: absolute; top: 0; width: 100%;z-index:100;background:#fff;">
+                <ul class="menu-bar" style="">
+                    <li style="border:2px solid #555;border-radius:8px;">
+                        <a href="/#!/">Девайсы</a>
+                    </li>
+                    <li>
+                        <a href="">Тарифы</a>
+                    </li>
+                    <li>
+                        <a ui-sref="internet">Мобильный интернет</a>
+                    </li>
+                    <li>
+                        <a style="color:#666;" href="">Другие вопросы &dtrif;</a>
+                    </li>
                 </ul>
-            </div> -->
 
-            <!-- CONTENT -->
-            <div ui-view class="grid-content"></div>
+                <!-- <h4 ng-cloak style="padding: 10px; font-family: sans-serif;" ng-show="showCrumbs"><span><a style="font-size:28px;color:#666;" onclick="history.back();">&#9666;Назад | </a></span> {{crumbs.join('  /  ')}}</h4> -->
 
+                <h4 ng-cloak style="padding: 10px; font-family: sans-serif;">
+                    <span ng-show="crumb.show" ng-repeat="crumb in crumbs">{{crumb.title}}</span>
+                </h4>
+
+
+            </div>
+
+            <div class="grid-frame vertical" style="height:70vh; padding-top:160px;padding-bottom:0;">
+
+                <!-- <div class="grid-content shrink" style="padding: 0;">
+                    <ul class="dark menu-bar">
+                        <li><a href="/#!/">Девайсы</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Мобильный интернет</a></li>
+                        <li><a href="#">Финансовые сервисы</a></li>
+                        <li><a href="#">Юридическим лицам</a></li>
+                        <li><a href="#">Домашний интернет и ТВ</a></li>
+                    </ul>
+                </div> -->
+
+                <!-- CONTENT -->
+                <div ui-view class="grid-content"></div>
+
+            </div>
+            <!-- FOOTER shadow -->            
+            <div style="position:absolute;height:200px;bottom:-100px;background:red;z-index:100;"></div>
         </div>
 
 
