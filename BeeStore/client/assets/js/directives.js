@@ -46,7 +46,7 @@ angular.module('directives', [])
 
                 $scope.openLeader = function (item) {
                     window.product = item;
-                    $state.go('detail', {id: item.id});
+                    $state.go('leaders', {id: item.id});
                 }
             },
             link: function(scope, element, attributes) {
