@@ -79,7 +79,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.progress = true; // show progress bar
-        window.scrollLoad = true;
+        window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
         window.intagChoices = []; // delete filter history
 
