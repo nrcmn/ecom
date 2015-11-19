@@ -44,9 +44,15 @@ angular.module('directives', [])
                     $scope.leaders = leaders;
                 })
 
-                $scope.openLeader = function (item) {
-                    window.product = item;
-                    $state.go('leaders', {id: item.id});
+                $scope.openLeader = function (data) {
+                    data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                        if (item.id == 61) {
+                            data.general_intags = item;
+                        }
+                    })
+
+                    window.product = data;
+                    $state.go('leaders', {id: data.id});
                 }
             },
             link: function(scope, element, attributes) {
