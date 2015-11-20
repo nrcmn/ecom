@@ -26,13 +26,18 @@
     </head>
     <!-- <body oncontextmenu="return false;"> -->
     <body>
-        <div style="height:30vh;">
-            <video style="width:100%;" src="assets/img/gorod.webm" autoplay="true" loop="true">
-            </video>
-        </div>
-        <div style="position:relative;">
+
+            <!-- Upper Video block (fixed positioned) -->
+            <div class="video-block">
+                <!-- <video style="width:100%;" src="assets/img/gorod.webm" autoplay="true" loop="true">
+                </video> -->
+            </div>
+
+            <!-- Shadow block (fixed positioned) -->
+            <div class="shadow-block"></div>
+
             <!-- HEADER -->
-            <div class="shrink" style="padding:20px 40px;position: absolute; top: 0; width: 100%;z-index:100;background:#fff;">
+            <div class="shrink" style="padding:20px 40px;position: fixed; top: 30%; width: 100%;z-index:100;background:#fff;">
                 <ul class="menu-bar" style="">
                     <li style="border:2px solid #555;border-radius:8px;">
                         <a href="/#!/">Девайсы</a>
@@ -56,16 +61,16 @@
 
 
             </div>
+            
 
-            <div class="grid-frame vertical" style="height:70vh; padding-top:160px;padding-bottom:0;">
+        <div class="grid-frame vertical" style="padding-top:66%;padding-bottom:256px;">
 
-                <!-- CONTENT -->
-                <div ui-view class="grid-content"></div>
+            <!-- CONTENT -->
+            <div ui-view class="grid-content"></div>
 
-            </div>
-            <!-- FOOTER shadow -->
-            <div style="position:absolute;height:200px;bottom:-100px;background:red;z-index:100;"></div>
         </div>
+        
+
 
 
 

@@ -11,6 +11,25 @@
     display: none;
 }
 
+// Upper Video Block styles
+.video-block {
+    background: #ddd;
+    height: 30%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+.shadow-block {
+    background: red;
+    height: 200px;
+    width: 100%;
+    position: fixed;
+    bottom: -200px;
+    z-index: 133;
+    box-shadow: 0 0 256px 128px rgba(255,255,255,0.9);
+}
 
 h1,h2,h3,h4 {
 	font-family: 'officinaserifcbold';
@@ -75,4 +94,6 @@ a:hover, a:focus {
     border: 0;
     box-shadow: 0 0 6px 6px rgba(0,0,0,0.16) inset;
 }
+
+
 
