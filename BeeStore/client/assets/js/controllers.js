@@ -79,12 +79,22 @@ angular.module('controllers', [])
         }
 
         $rootScope.progress = true; // show progress bar
+        $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
         window.intagChoices = []; // delete filter history
 
         // -- LAZY loading block
         window.onscroll = function () {
+            if (Number(window.pageYOffset.toFixed()) > 250) {
+                $scope.leftFilter = true;
+                $scope.$apply();
+            }
+            else {
+                $scope.leftFilter = false;
+                $scope.$apply();
+            }
+
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -2)) {
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices);
                 $rootScope.progress = true;
