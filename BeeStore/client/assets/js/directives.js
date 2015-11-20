@@ -8,7 +8,14 @@ angular.module('directives', [])
                 function loadLeaders () {
                     var deferred = $q.defer();
                     var idsForLeaders = [9, 8, 10, 3];
-                    var leaders = [];
+
+                    if (Array.isArray(window.leaders)) { // cache leaders
+                        deferred.resolve(window.leaders);
+                        return deferred.promise;
+                    }
+                    else {
+                        window.leaders = [];
+                    }
 
                     idsForLeaders.forEach(function (item, i, arr) {
                         load(item, i);
@@ -28,11 +35,11 @@ angular.module('directives', [])
                         })
                         .success(function (data) {
                             data.forEach(function (item, i, arr) {
-                                leaders.push(item);
+                                window.leaders.push(item);
                             })
 
                             if (i == idsForLeaders.length - 1) {
-                                deferred.resolve(leaders);
+                                deferred.resolve(window.leaders);
                             }
                         })
                     }
