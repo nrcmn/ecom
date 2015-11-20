@@ -87,6 +87,11 @@ angular.module('controllers', [])
 
         // -- LAZY loading block
         window.onscroll = function () {
+
+            if ($state.current.name != "products") {
+                return false
+            }
+
             if (Number(window.pageYOffset.toFixed()) > 250) {
                 $scope.leftFilter = true;
                 $scope.$apply();
