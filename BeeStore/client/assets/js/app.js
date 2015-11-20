@@ -52,6 +52,18 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 show: true,
                 id: 5
             })
+            .state('basket', {
+                url: '/basket',
+                templateUrl: './templates/basket.html',
+                abstract: true
+            })
+            .state('basket.products', {
+                url: '/products',
+                templateUrl: './templates/basket.products.html',
+                getTitle: function () {return 'Корзина'},
+                show: true,
+                id: 6
+            })
     })
 
     .run(function ($rootScope, FoundationApi, $state) {
