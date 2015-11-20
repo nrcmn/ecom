@@ -25,11 +25,11 @@
 
     <div class="grid-block small-up-4 align-center">
         <div class="align-center padding" ng-repeat="subCategory in subCategories | orderBy:'order':true" ng-click="openSubCategory(subCategory)" ng-if="$index > 2">
-            <div class="card padding" style="height: 360px; text-align: center;">
+            <div class="card padding" style="height: 340px; text-align: center;">
                 <div class="card-section text-center">
                     <img class="swiper-img" ng-src="{{subCategory.image}}">
                 </div>
-                <div class="card-section text-center">
+                <div class="card-section text-center" style="padding-left:0;padding-right:0;">
                     <h4>{{subCategory.name}}</h4>
                 </div>
             </div>

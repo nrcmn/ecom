@@ -100,31 +100,31 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             name: 'Телефоны',
             order: 1,
             id: 2,
-            img: './assets/img/close.svg'
+            img: './assets/img/phone.jpg'
         },
         {
             name: 'Планшеты',
             order: 2,
             id: 21,
-            img: './assets/img/close.svg'
+            img: './assets/img/tablet.jpg'
         },
         {
             name: 'Модемы и роутеры',
             order: 3,
             id: 224,
-            img: './assets/img/close.svg'
+            img: './assets/img/modem.jpg'
         },
         {
             name: 'Гаджеты',
             order: 4,
             id: 8,
-            img: './assets/img/close.svg'
+            img: './assets/img/watch.png'
         },
         {
             name: 'Аксессуары',
             order: 5,
             id: 9,
-            img: './assets/img/close.svg'
+            img: './assets/img/head.jpg'
         }
     ])
 
