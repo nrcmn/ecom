@@ -42,6 +42,7 @@ angular.module('controllers', [])
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = [];
         window.page = 1; // set page number in products list
+        window.sortItem = undefined;
         window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope
             if (item.parent == window.category.id) {
                 $scope.subCategories.push(item);
@@ -129,11 +130,18 @@ angular.module('controllers', [])
             }
         ];
 
-        $scope.selected = $scope.items[0];
+        $scope.selected = (window.sortItem) ? $scope.items[window.sortItem.index] : $scope.items[0];
         $scope.sortBy = function () {
-            window.page = 1;
-            window.sortItem = $scope.selected.value;
             $rootScope.productsList = undefined;
+
+            window.page = 1;
+            window.sortItem = $scope.selected;
+            $scope.items.forEach(function (item, i, arr) {
+                if (item.value == $scope.selected.value) {
+                    window.sortItem.index = i;
+                }
+            })
+
             __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices);
         }
     })
@@ -196,7 +204,7 @@ angular.module('controllers', [])
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem, window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoices);
             $rootScope.productsList = undefined;
         }
 
