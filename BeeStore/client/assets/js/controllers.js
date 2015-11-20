@@ -187,10 +187,10 @@ angular.module('controllers', [])
         // active style for intags
         $scope.setActiveStyle = function (condition) {
             if (condition) {
-                return {background: '#999'}
+                return {background: '#fff'}
             }
             else {
-                return {background: '#FFF'}
+                return {background: '#ccc'}
             }
         }
 
@@ -246,10 +246,10 @@ angular.module('controllers', [])
 
         $rootScope.setActiveStyle = function (condition) {
             if (condition) {
-                return {background: '#999'}
+                return {background: '#fff'}
             }
             else {
-                return {background: '#FFF'}
+                return {background: '#ccc'}
             }
         }
     })

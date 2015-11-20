@@ -112,7 +112,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             name: 'Модемы и роутеры',
             order: 3,
             id: 224,
-            img: './assets/img/modem.jpg'
+            img: './assets/img/router.png'
         },
         {
             name: 'Гаджеты',

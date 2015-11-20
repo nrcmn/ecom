@@ -1,9 +1,13 @@
 <div class="grid-container" ng-controller="ProductDetailCtrl">
     <zf-notification-set id="orderNotify" position="top-right"></zf-notification-set>
 
-    <h1>{{product.name}}</h1>
-    <br>
+    <!-- <h1>{{product.name}}</h1>
+    <br> -->
     <div class="grid-block">
+        <div class="grid-content  medium-12">
+            <h2>{{product.name}}</h2>
+            <br>
+        </div>
         <div class="grid-content  medium-8">
             <images></images>
         </div>
@@ -11,16 +15,17 @@
 
                 <span style="text-decoration: line-through;">{{product.old_price}}<br/></span>
                 <!-- <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span> -->
-                <span ng-if="product.price" style="color:#777;font-size:1.5rem;margin-bottom:0;text-decoration: line-through;color:#666;">{{product.price * 0.9 | price}}</span> руб.
+                <h3 ng-if="product.price" class="inline old-price">{{product.price * 2 | price}}</h3> руб.
                 <div ng-if="product.price">
                     <h1 style="display:inline;font-size:3.75rem;">{{product.price | price}}</h1><span> руб.</span>
                 </div>
 
             <p>
-                На складе: {{product.remain}}
+                <!-- На складе: {{product.remain}} -->
             </p>
+
             <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a>
-            <a title="В корзину" content="Товар добавлен в корзину" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">В корзину</a>
+            <!-- <a title="В корзину" content="Товар добавлен в корзину" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">В корзину</a> -->
         </div>
     </div>
     <div class="grid-block" style="margin-top:20px;margin-bottom:20px;">
@@ -50,7 +55,7 @@
             <a class="large dark hollow button" zf-open="intagModal">Все характеристики</a>
 
             <div zf-modal="" id="intagModal">
-                <a zf-close="" class="close-button"><img src="assets/img/close.svg" style="width:40px;"></a>
+                <a zf-close="" class="close-button" style="top:0.1rem;right:0.1rem;"><img src="assets/img/close.svg" style="width:40px;"></a>
                 <div class="grid-block">
                     <div class="grid-content medium-4">
                         <section class="block-list">
@@ -61,19 +66,18 @@
                             </ul>
                         </section>
                     </div>
-                    <div class="grid-content medium-8">
-                        <!-- <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
-                            <h3>Выберите характеристику</h3>
-                        </div> -->
+                    <div class="grid-block medium-8">
+                        
 
                         <section class="block-list grid-content">
                             <ul>
                                 <li style="display:flex;padding:10px 2px;" ng-repeat="param in modalIntags.intags" ng-if="param.value[0] != null">
-                                    <div style="flex:1;">
+                                    <div style="flex:3;padding-right:1rem;">
                                         {{param.name}}
                                     </div>
-                                    <div style="flex:1;">
-                                        <span>
+                                    <div style="flex:2;">
+                                        <b>{{param.value[0]}}</b>
+                                        <!-- <span>
                                             <div>
                                                 <b ng-if="param.id == 21">{{param.value[0].split(';')[0]}}</b>
                                             </div>
@@ -81,25 +85,14 @@
                                         </span>
                                         <span>
                                             <b ng-if="param.id != 21">{{param.value[0]}}</b>
-                                        </span>
+                                        </span> -->
                                     </div>
                                 </li>
+                            
                             </ul>
                         </section>
 
-                        <!-- <ul style="list-style-type: none;">
-                            <li ng-repeat="param in modalIntags">
-                                <div class="grid-block">
-                                    <div style="flex:2;">
-                                        {{param.name}}
-                                    </div>
-                                    <div style="flex:1;">
-                                        <b>{{param.value[0]}}</b>
-                                    </div>
 
-                                </div>
-                            </li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -109,74 +102,5 @@
 
     </div>
 
-    <!-- <div class="grid-block">
-        <div class="grid-block small-6">
-            <div class="grid-content">
-                <h3>Описание:</h3>
-                <p>
-                    {{product.description || 'Описание'}}
-                </p>
-            </div>
-        </div>
-        <div class="grid-block small-6">
-            <div class="grid-content">
-                <h3>Характеристики:</h3>
-                <section class="block-list">
-                <header>Характеристики:</header>
-                    <ul>
-                        <li style="display:flex;">
-                            <div style="flex:1;">
-                                text
-                            </div>
-                            <div style="flex:1;">
-                                text
-                            </div>
-                        </li>
-                        <li>text</li>
-                        <li>text</li>
-                    </ul>
-                </section>
-                <ul style="list-style-type: none; margin: 0;">
-                    <li  ng-repeat="intag in product.intags_categories[product.intags_categories.length - 1].intags">
-                        <div style="display: inline-block; text-align: left; width: 50%;">
-                            {{intag.name}}
-                        </div>
-                        <div style="display: inline-block; text-align: right; width: 45%;">
-                            {{intag.value[0]}}
-                        </div>
-                    </li>
-                </ul>
-                <a zf-open="intagModal">Подробнее..</a>
-
-                <div zf-modal="" id="intagModal">
-                    <a zf-close="" class="close-button">×</a>
-                    <div class="grid-block">
-                        <div class="grid-content medium-5">
-                            <section class="block-list">
-                                <ul>
-                                    <li class="with-chevron" ng-repeat="field in product.intags_categories">
-                                        <a ng-click="openField(field)">{{field.name}}</a>
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="grid-content medium-7">
-                            <div style="width: 100%; padding: 50px; text-align: center; border: 2px dashed #999; border-radius: 3px;" ng-if="!modalIntags">
-                                <h3>Выберите характеристику</h3>
-                            </div>
-
-                            <ul style="list-style-type: none;">
-                                <li ng-repeat="param in modalIntags">
-                                    <div class="grid-block">
-                                        <span class="grid-block">{{param.name}}:</span>
-                                        <span class="grid-block align-right">{{param.value[0]}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    
 </div>

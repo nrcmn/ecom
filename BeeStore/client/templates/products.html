@@ -5,24 +5,30 @@
         <div class="grid-content medium-4">
             <section class="block-list">
                 <ul>
-                    <li class="with-chevron" ng-style="setActiveStyle($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                    <li ng-style="setActiveStyle($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
                         <a>{{filter.name}}</a>
                     </li>
                 </ul>
             </section>
         </div>
         <div class="grid-content medium-8">
-            <label>Choose Your Value</label>
+            <div class="grid-frame vertical">
+            <label>Выберите значение:</label>
             <div ng-repeat="val in productsListFilter[filterInd].choices"  ng-if="$index <= 4" style="padding: 10px; border-bottom: 2px dashed #999;">
                 <input type="checkbox" ng-value="{{val.id}}" id="{{val.id}}" ng-checked="val.check" ng-click="check($event, val)">
                 <label for="{{val.id}}">{{val.value}}</label>
             </div>
+            </div>
         </div>
     </div>
     <div class="grid-block">
-        <a zf-close="" class="success button" ng-click="setFilter()">Применить фильтр</a>
-        <a class="warning hollow button" ng-click="clearFilter()">Очистить фильтр</a>
-        <a zf-close="" class="alert hollow button" ng-click="cancelFilter()">Отмена</a>
+        <div class="grid-content medium-6">
+            <a zf-close="" class="beeline-button" ng-click="setFilter()">Применить фильтр</a>
+        </div>
+        <div class="grid-content medium-6">
+            <a class="beeline-button" style="background:transparent;" ng-click="clearFilter()">Очистить фильтр</a>
+        </div>
+        <!-- <a zf-close="" class="alert hollow button" ng-click="cancelFilter()">Отмена</a> -->
     </div>
 </div>
 
@@ -35,50 +41,42 @@
             <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
         </div>
         <div class="small-12 medium-4 grid-content">
-            <a zf-open="filterModal" class="warning button">Фильтр</a>
+            <label>Фильтровать по:</label>
+            <a style="width:100%;" zf-open="filterModal" class="warning button">Выбрано фильтров (2)</a>
         </div>
     </div>
 
     <!-- *** FILTERS BUTTON *** -->
-    <div style="position: absolute; left: 0; top: 50%; font-size: 2em; z-index: 1;" ng-show="leftFilter">
-        <a zf-open="filterModal" style="
-        transform: rotate(270deg);
-        border: 3px dashed #fbc300;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background: rgba(255,255,255,0.7);
-        width: 162px;
-        position: fixed;
-        top: 50%;
-        left: -45px;
-        padding: 0 16px;
-        text-align: center;">
-            <h2>Фильтр</h2>
-        </a>
-    </div>
+    <a ng-show="leftFilter" zf-open="filterModal" class="filters-button">
+        Фильтры
+    </a>
+
+
 
     <!-- *** IF PRODUCTS LIST IS EMPTY *** -->
     <div ng-if="productsList.length == 0" style="padding: 10px; width: 100%; border: 2px dashed #999; border-radius: 10px; margin-top: 50px; text-align: center;">
         <h3>Список товаров пуст</h3>
         <p>
-            попробуйте еще раз
+            Попробуйте другие фильтры
         </p>
     </div>
 
     <!-- *** PRODUCT GRID *** -->
     <div class="grid-block small-up-3">
-        <div class="grid-content" ng-repeat="products in productsList">
-            <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:center;">
-                <img src="assets/img/ring.svg" style="max-height:100%; width:initial; margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}">
+        <div class="grid-content" style="padding;2rem;" ng-repeat="products in productsList">
+            <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:flex-start;">
+                <img src="assets/img/ring.svg" style="max-height:100%; width:initial;margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
             </div>
             <div class="card-section" style="padding-top:0;">
-                <h4>{{products.name}}</h4>
                 <div ng-if="products.price">
-                    <h2 style="display:inline;">{{products.price | price}}</h2><span> руб.</span>
+                    <h4 class="inline old-price">{{products.price * 2 | price}}</h4><span> руб.</span>
+                <br>
+                    <h2 class="inline">{{products.price | price}}</h2><span> руб.</span>
                 </div>
-                <div style="padding:32px 0;">
+                <h4>{{products.name}}</h4>
+                <!-- <div style="padding:32px 0;">
                     <a ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
