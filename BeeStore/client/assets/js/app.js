@@ -64,6 +64,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
 
         // Bread crumbs
         $rootScope.crumbs = [];
+        $rootScope.basket = [];
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
 
             toState.title = toState.getTitle(); // get readable crumb name
