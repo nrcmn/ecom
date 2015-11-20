@@ -135,7 +135,13 @@ angular.module('controllers', [])
             }
         ];
 
-        $scope.selected = (window.sortItem) ? $scope.items[window.sortItem.index] : $scope.items[0];
+        try {
+            $scope.selected = $scope.items[window.sortItem.index]
+        } catch (e) {
+            window.sortItem = $scope.selected = $scope.items[0];
+            window.sortItem.index = 0;
+        }
+
         $scope.sortBy = function () {
             $rootScope.productsList = undefined;
 
@@ -186,6 +192,11 @@ angular.module('controllers', [])
             else {
                 return {background: '#FFF'}
             }
+        }
+
+        $scope.addToBasket = function () {
+            window.product.quantity = 1;
+            $rootScope.basket.push(window.product);
         }
     })
 
