@@ -41,10 +41,11 @@ angular.module('controllers', [])
 
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = []; // clear subCategories
-        $rootScope.intagChoicesList = undefined; // clear filters
+        $rootScope.intagChoicesList = []; // clear filters
+        $rootScope.productsList = undefined;
         window.scroll(0,0); // scroll to top
         window.page = 1; // set page number in products list
-        window.sortItem = undefined;
+        window.sortItem = undefined; // set sortItem
         window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope
             if (item.parent == window.category.id) {
                 $scope.subCategories.push(item);
@@ -55,6 +56,7 @@ angular.module('controllers', [])
 
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory; // set subCategory to global variable
+            $rootScope.progress = true; // show progress bar
             __LoadProducts(window.subCategory, 10, 1, '-weight', null); // load products
 
 
@@ -73,22 +75,9 @@ angular.module('controllers', [])
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, $document, __LoadProducts) {
 
-        // productsList cleaner
-        if (!window.product || window.product.collectionId != window.subCategory.id) {
-            $rootScope.productsList = undefined;
-        }
-        else {
-            window.product = undefined;
-        }
-
-        $rootScope.progress = true; // show progress bar
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
-
-        if (!Array.isArray($rootScope.intagChoicesList)) {
-            $rootScope.intagChoicesList = [];
-        }
 
         // -- LAZY loading block
         window.onscroll = function () {
@@ -106,7 +95,7 @@ angular.module('controllers', [])
                 $scope.$apply();
             }
 
-            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -2)) {
+            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5)) {
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
                 $rootScope.progress = true;
             }
@@ -246,15 +235,6 @@ angular.module('controllers', [])
             $rootScope.productsList = undefined;
             $rootScope.progress = true; // show progress bar
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
-        }
-
-        $rootScope.cancelFilter = function () {
-
-            // if ($rootScope.intagChoicesList.length != 0) {
-                // $rootScope.intagChoicesList.length = 0;
-                // $rootScope.productsList = undefined;
-                // __LoadProducts(window.subCategory, 15, 1, '-weight', $rootScope.intagChoicesList);
-            // }
         }
 
         $rootScope.setActiveStyle = function (condition) {

@@ -37,6 +37,10 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
+                if (data.length < amount && page == 1) {
+                    window.scrollLoad = false;
+                    $rootScope.progress = false;
+                }
 
                 if (intags && page == 1) {
                     $rootScope.productsList = data;
@@ -59,7 +63,7 @@ angular.module('services', [])
                         $rootScope.productsList.push(item);
                     })
                 }
-
+                //
                 // $rootScope.progress = false;
             })
             .error(function () {
