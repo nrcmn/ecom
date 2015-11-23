@@ -123,3 +123,35 @@ a:hover, a:focus {
     color:#666;
 }
 
+// Dark Overlay styles
+.dark-overlay {
+    position: absolute;
+    z-index: 9999;
+    top:0;
+    bottom:0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 33%;
+    padding-top: 66%;
+    text-align: center;
+
+    h1 {
+        color: #eee;
+        padding-bottom: 32px;
+    }
+}
+
+.hide-overlay {
+    display: none;
+    // bottom: 3000px;
+    // transition: all linear 1s;
+}
+
+.modal {
+    min-width: 600px; 
+}
