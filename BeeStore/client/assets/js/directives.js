@@ -72,7 +72,7 @@ angular.module('directives', [])
                         freeMode: true,
                         slidesPerView: 3.5,
                     });
-                }, 1000);
+                }, 1500);
             }
         }
     })

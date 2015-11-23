@@ -70,7 +70,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductListCtrl', function ($scope, $rootScope, $state, __LoadProducts) {
+    .controller('ProductListCtrl', function ($scope, $rootScope, $state, $document, __LoadProducts) {
 
         // productsList cleaner
         if (!window.product || window.product.collectionId != window.subCategory.id) {
@@ -109,6 +109,10 @@ angular.module('controllers', [])
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
                 $rootScope.progress = true;
             }
+        }
+
+        $scope.scrollToTop = function () {
+            $document.scrollTop(0, 1200).then(function() {});
         }
 
         $scope.openProduct = function (product) {
@@ -161,7 +165,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, __LoadOneProduct) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, __LoadOneProduct) {
         window.scroll(0,0); // scroll to top
 
         if (!window.product) {

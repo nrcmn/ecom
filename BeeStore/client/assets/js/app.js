@@ -1,4 +1,4 @@
-angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers', 'directives', 'services'])
+angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers', 'directives', 'services', 'duScroll'])
 
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise("/");
