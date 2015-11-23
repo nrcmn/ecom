@@ -7,7 +7,7 @@ angular.module('directives', [])
             controller: function ($scope, $http, $q, $state) {
                 function loadLeaders () {
                     var deferred = $q.defer();
-                    var idsForLeaders = [9, 8, 10, 3];
+                    var idsForLeaders = [76, 10];
 
                     if (Array.isArray(window.leaders)) { // cache leaders
                         deferred.resolve(window.leaders);
@@ -29,7 +29,7 @@ angular.module('directives', [])
                                 api_key: window.api_key,
                                 market_region: window.market_region,
                                 collection: id,
-                                amount: 5,
+                                amount: 8,
                                 sort_by: '-weight'
                             }
                         })
