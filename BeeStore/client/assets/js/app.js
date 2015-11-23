@@ -149,19 +149,19 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
     })
 
     .filter('color', function () {
-        return function (par) {
-            console.log(par);
+        return function (value) {
+            console.log(value);
             try {
-                par.forEach(function (item, i, arr) {
+                value.forEach(function (item, i, arr) {
                     if (item.id == 21 && item.value.length < 2) {
                         item.value = item.value[0].split(';')
                         console.log(item.value);
                     }
                 })
 
-                return par;
+                return value;
             } catch (e) {
-                return par;
+                return value;
             }
         }
     })

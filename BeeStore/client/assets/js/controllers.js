@@ -239,6 +239,10 @@ angular.module('controllers', [])
                     delete _item['check'];
                 })
             })
+
+            $rootScope.productsList = undefined;
+            $rootScope.progress = true; // show progress bar
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
         }
 
         $rootScope.cancelFilter = function () {
