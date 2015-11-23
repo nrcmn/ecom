@@ -84,12 +84,10 @@ angular.module('controllers', [])
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
-        console.log($rootScope.intagChoicesList, 1);
+
         if (!Array.isArray($rootScope.intagChoicesList)) {
             $rootScope.intagChoicesList = [];
         }
-
-        console.log($rootScope.intagChoicesList, 2)
 
         // -- LAZY loading block
         window.onscroll = function () {

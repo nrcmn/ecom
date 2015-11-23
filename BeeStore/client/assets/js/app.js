@@ -8,6 +8,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 url: "/",
                 templateUrl: "./templates/mainCategories.html",
                 getTitle: function () {return 'Главная'},
+                controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: false,
                 id: 1
             })
@@ -21,6 +22,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                         return true
                     }
                 },
+                controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: true,
                 id: 2
             })
@@ -34,6 +36,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                         return true
                     }
                 },
+                controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: true,
                 id: 3
             })
@@ -41,6 +44,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 url: '/categories/products/{id}',
                 templateUrl: './templates/products.detail.html',
                 getTitle: function () {return null}, // hide on detail page
+                controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: false,
                 id: 4
             })
@@ -49,6 +53,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 url: '/leaders/{id}',
                 templateUrl: './templates/products.detail.html',
                 getTitle: function () {return 'Лидеры'},
+                controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: true,
                 id: 5
             })
@@ -150,12 +155,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
 
     .filter('color', function () {
         return function (value) {
-            console.log(value);
             try {
                 value.forEach(function (item, i, arr) {
                     if (item.id == 21 && item.value.length < 2) {
                         item.value = item.value[0].split(';')
-                        console.log(item.value);
                     }
                 })
 
