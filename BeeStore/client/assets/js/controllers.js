@@ -42,6 +42,7 @@ angular.module('controllers', [])
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = []; // clear subCategories
         $rootScope.intagChoicesList = undefined; // clear filters
+        window.scroll(0,0); // scroll to top
         window.page = 1; // set page number in products list
         window.sortItem = undefined;
         window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope

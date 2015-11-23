@@ -1,4 +1,4 @@
-angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers', 'directives', 'services', 'duScroll'])
+angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.dynamicRouting.animations', 'controllers', 'directives', 'services', 'duScroll'])
 
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise("/");
@@ -10,7 +10,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 getTitle: function () {return 'Главная'},
                 controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: false,
-                id: 1
+                id: 1,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
             .state('categories', {
                 url: "/categories",
@@ -24,7 +27,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 },
                 controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: true,
-                id: 2
+                id: 2,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
             .state('products', {
                 url: '/categories/products',
@@ -38,7 +44,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 },
                 controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: true,
-                id: 3
+                id: 3,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
             .state('detail', {
                 url: '/categories/products/{id}',
@@ -46,7 +55,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 getTitle: function () {return null}, // hide on detail page
                 controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: false,
-                id: 4
+                id: 4,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
 
             .state('leaders', {
@@ -55,7 +67,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
                 getTitle: function () {return 'Лидеры'},
                 controller: function ($rootScope) {$rootScope.shadowShow = true;},
                 show: true,
-                id: 5
+                id: 5,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
             .state('basket', {
                 url: '/basket',
