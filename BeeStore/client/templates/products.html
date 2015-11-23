@@ -1,6 +1,6 @@
 <!-- *** FILTERS MODAL *** -->
 <div zf-modal="" id="filterModal" ng-controller="FilterCtrl">
-    <a zf-close="" class="close-button">×</a>
+    <a zf-close="" class="close-button" style="top:0.1rem;right:0.1rem;"><img src="assets/img/close.svg" style="width:40px;"></a>
     <div class="grid-block">
         <div class="grid-content medium-4">
             <section class="block-list">
@@ -47,8 +47,8 @@
     </div>
 
     <!-- *** FILTERS BUTTON *** -->
-    <a ng-show="leftFilter" zf-open="filterModal" class="filters-button">
-        Фильтры
+    <a ng-show="leftFilter" zf-open="filterModal" class="filters-button beeline-button">
+        Выбрано фильтров ({{intagChoicesList.length}})
     </a>
 
 
