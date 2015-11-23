@@ -65,7 +65,13 @@ angular.module('controllers', [])
                 __LoadFilters(window.subCategory.id);
             }
             else {
-                $rootScope.cancelFilter(); // delete all later checked params
+                // delete all checked filters
+                window.filter[window.subCategory.id].forEach(function (item, i, arr) {
+                    item.choices.forEach(function (_item, _i, _arr) {
+                        delete _item['check'];
+                    })
+                })
+                
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];
             }
 
