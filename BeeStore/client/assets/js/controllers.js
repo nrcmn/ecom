@@ -83,7 +83,7 @@ angular.module('controllers', [])
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
-        window.intagChoices = []; // delete filter history
+        $rootScope.intagChoicesList = []; // delete filter history
 
         // -- LAZY loading block
         window.onscroll = function () {
@@ -102,7 +102,7 @@ angular.module('controllers', [])
             }
 
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -2)) {
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoices);
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
                 $rootScope.progress = true;
             }
         }
@@ -153,7 +153,7 @@ angular.module('controllers', [])
                 }
             })
 
-            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, $rootScope.intagChoicesList);
         }
     })
 
@@ -201,7 +201,7 @@ angular.module('controllers', [])
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
-        window.intagChoices = []; // array for intag_choices ids
+        $rootScope.intagChoicesList = []; // array for intag_choices ids
         $rootScope.filterInd = 0;
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
@@ -210,22 +210,22 @@ angular.module('controllers', [])
         $rootScope.check = function ($event, val) {
             var checkbox = $event.target;
             if (checkbox.checked) {
-                intagChoices.push(checkbox.value);
+                $rootScope.intagChoicesList.push(checkbox.value);
                 val.check = true;
             }
             else if (!checkbox.checked) {
-                intagChoices.splice(intagChoices.indexOf(checkbox.value), 1);
+                $rootScope.intagChoicesList.splice(intagChoices.indexOf(checkbox.value), 1);
                 val.check = false;
             }
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoices);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             $rootScope.productsList = undefined;
         }
 
         $rootScope.clearFilter = function () {
-            window.intagChoices.length = 0; // clear global intag choices array
+            $rootScope.intagChoicesList.length = 0; // clear global intag choices array
 
             // delete all checked filters
             window.filter[window.subCategory.id].forEach(function (item, i, arr) {
@@ -237,10 +237,10 @@ angular.module('controllers', [])
 
         $rootScope.cancelFilter = function () {
 
-            // if (window.intagChoices.length != 0) {
-                // window.intagChoices.length = 0;
+            // if ($rootScope.intagChoicesList.length != 0) {
+                // $rootScope.intagChoicesList.length = 0;
                 // $rootScope.productsList = undefined;
-                // __LoadProducts(window.subCategory, 15, 1, '-weight', window.intagChoices);
+                // __LoadProducts(window.subCategory, 15, 1, '-weight', $rootScope.intagChoicesList);
             // }
         }
 
