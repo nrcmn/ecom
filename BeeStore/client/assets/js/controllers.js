@@ -40,7 +40,8 @@ angular.module('controllers', [])
     })
 
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
-        $scope.subCategories = [];
+        $scope.subCategories = []; // clear subCategories
+        $rootScope.intagChoicesList = undefined; // clear filters
         window.page = 1; // set page number in products list
         window.sortItem = undefined;
         window.categories.sub.forEach(function (item, i, arr) { // all subcategories to global scope
@@ -83,7 +84,12 @@ angular.module('controllers', [])
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
         __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
-        $rootScope.intagChoicesList = []; // delete filter history
+        console.log($rootScope.intagChoicesList, 1);
+        if (!Array.isArray($rootScope.intagChoicesList)) {
+            $rootScope.intagChoicesList = [];
+        }
+
+        console.log($rootScope.intagChoicesList, 2)
 
         // -- LAZY loading block
         window.onscroll = function () {
@@ -201,7 +207,7 @@ angular.module('controllers', [])
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
-        $rootScope.intagChoicesList = []; // array for intag_choices ids
+        // $rootScope.intagChoicesList = []; // array for intag_choices ids
         $rootScope.filterInd = 0;
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
@@ -214,7 +220,7 @@ angular.module('controllers', [])
                 val.check = true;
             }
             else if (!checkbox.checked) {
-                $rootScope.intagChoicesList.splice(intagChoices.indexOf(checkbox.value), 1);
+                $rootScope.intagChoicesList.splice($rootScope.intagChoicesList.indexOf(checkbox.value), 1);
                 val.check = false;
             }
         }
