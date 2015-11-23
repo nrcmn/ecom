@@ -6,4 +6,4 @@ build
 .sass-cache
 proxy_api
 
-/gulpfile.js
+BeeStore/gulpfile.js
