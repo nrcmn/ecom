@@ -115,6 +115,12 @@ a:hover, a:focus {
     text-align: center;
     width: 420px;
     z-index: 300;
+    transition: 1s ease-in left;
+}
+
+.filters-button.ng-hide {
+    left:-500px;
+    transition: 1s ease-out left;
 }
 
 // Utiliti classes 
