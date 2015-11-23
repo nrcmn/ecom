@@ -147,3 +147,21 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'controllers'
             return price = priceMask.join('');
         };
     })
+
+    .filter('color', function () {
+        return function (par) {
+            console.log(par);
+            try {
+                par.forEach(function (item, i, arr) {
+                    if (item.id == 21 && item.value.length < 2) {
+                        item.value = item.value[0].split(';')
+                        console.log(item.value);
+                    }
+                })
+
+                return par;
+            } catch (e) {
+                return par;
+            }
+        }
+    })
