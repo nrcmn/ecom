@@ -82,7 +82,30 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 templateUrl: './templates/basket.products.html',
                 getTitle: function () {return 'Корзина'},
                 show: true,
-                id: 6
+                id: 6,
+                animation: {
+                    enter: 'fadeIn'
+                }
+            })
+            .state('basket.form', {
+                url: '/form',
+                templateUrl: './templates/basket.form.html',
+                getTitle: function () {return 'Персональные данные'},
+                show: true,
+                id: 7,
+                animation: {
+                    enter: 'fadeIn'
+                }
+            })
+            .state('plans', {
+                url: '/plans',
+                templateUrl: './templates/plans.html',
+                getTitle: function () {return 'Тарифы'},
+                show: false,
+                id: 8,
+                animation: {
+                    enter: 'fadeIn'
+                }
             })
     })
 
@@ -95,8 +118,24 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             page = 2;
 
         // Bread crumbs
-        $rootScope.crumbs = [];
-        $rootScope.basket = [];
+        $rootScope.crumbs = []; // crumbs
+        $rootScope.basket = []; // basket
+        $rootScope.basketProductsCount = $rootScope.basket.length; // basket products summary count
+
+        $rootScope.$watch('basketProductsCount', function () { // basket summary price
+            var price = 0;
+            $rootScope.basket.forEach(function (item, i, arr) {
+                if (item.quantity) {
+                    price += (item.price * item.quantity);
+                }
+                else {
+                    price += item.price;
+                }
+            })
+
+            return $rootScope.basketPrice = price; // basket summary price variable
+        })
+
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
 
             toState.title = toState.getTitle(); // get readable crumb name
@@ -115,9 +154,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             }
             try {
                 $rootScope.crumbs[0].show = true; // show first state in other states
-            } catch (e) {
-                console.log('ok');
-            }
+            } catch (e) {console.log('ok');}
 
             return $rootScope.crumbs.push(toState);
         })

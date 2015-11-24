@@ -199,8 +199,18 @@ angular.module('controllers', [])
         }
 
         $scope.addToBasket = function () {
-            window.product.quantity = 1;
+            if (!window.product.quantity) {
+                window.product.quantity = 1;
+            }
+
+            for (var i = 0; i < $rootScope.basket.length; i++) {
+                if ($rootScope.basket[i].id == window.product.id) {
+                    return $rootScope.basket[i].quantity += 1, $rootScope.basketProductsCount += 1;
+                }
+            }
+
             $rootScope.basket.push(window.product);
+            $rootScope.basketProductsCount += 1;
         }
     })
 
@@ -250,5 +260,42 @@ angular.module('controllers', [])
             else {
                 return {background: '#ccc'}
             }
+        }
+    })
+
+    .controller('BasketProductListCtrl', function ($scope, $rootScope) {
+        $scope.quantity = function (bool, item) {
+            if (item.quantity == 5 && bool) {
+                return false
+            }
+            else if (item.quantity == 1 && !bool) {
+                return false
+            }
+
+            (bool) ? (item.quantity += 1, $rootScope.basketProductsCount += 1) : (item.quantity -= 1, $rootScope.basketProductsCount -= 1);
+        }
+
+        $scope.deleteItem = function (product, $index) {
+            $rootScope.basketProductsCount -= product.quantity;
+            $rootScope.basket.splice($index, 1);
+        }
+    })
+
+    .controller('BasketFormCtrl', function ($scope, $timeout, $state) {
+        $scope.form = {};
+        $scope.form.news = true;
+        $scope.checkNews = function ($event) {
+            $scope.form.news = $event.target.checked;
+        }
+
+        $scope.placeAnOrder = function () {
+            console.log($scope.form);
+            $timeout(function () {
+                $state.go('main')
+            }, 2000)
+        }
+
+        $scope.cancel = function () {
+            $scope.form = {};
         }
     })

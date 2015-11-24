@@ -1,0 +1,63 @@
+<div class="grid-block padding" ng-controller="BasketFormCtrl">
+    <div class="grid-content medium-12" style="border: 3px dashed #999; border-radius: 10px; padding: 10px;">
+        <div class="grid-block">
+            <div class="grid-content medium-4">
+                <label>
+                    Фамилия
+                    <input type="text" placeholder="Фамилия" ng-model="form.surname">
+                </label>
+            </div>
+            <div class="grid-content medium-4">
+                <label>
+                    Имя
+                    <input type="text" placeholder="Имя" ng-model="form.name">
+                </label>
+            </div>
+            <div class="grid-content medium-4">
+                <label>
+                    Отчество
+                    <input type="text" placeholder="Отчество" ng-model="form.patronymic">
+                </label>
+            </div>
+        </div>
+
+        <div class="grid-block">
+            <div class="grid-content medium-6">
+                <label>
+                    Номер телефона
+                    <span class="inline-label">
+                        <span class="form-label">+7</span>
+                        <input type="tel" placeholder="Номер телефона" ng-model="form.phone">
+                    </span>
+                </label>
+            </div>
+            <div class="grid-content medium-6">
+                <label>
+                    Email
+                    <input type="email" placeholder="Email" ng-model="form.email">
+                </label>
+            </div>
+        </div>
+
+        <div class="grid-block">
+            <div class="grid-content medium-5">
+                <label>Комментарии к заказу</label>
+                <textarea rows="6" cols="5" ng-model="form.comments"></textarea>
+            </div>
+        </div>
+
+        <div class="grid-block">
+            <div class="grid-content">
+                <input id="checkbox1" type="checkbox" checked ng-model="form.news" ng-click="checkNews($event)">
+                <label for="checkbox1">Получать новости и акции на почту</label>
+            </div>
+        </div>
+
+        <div class="grid-block">
+            <div class="grid-content" style="margin-top: 50px;">
+                <a class="warning button" ng-click="placeAnOrder()">Оформить заказ</a>
+                <a class="alert hollow button" ng-click="cancel()">Отмена</a>
+            </div>
+        </div>
+    </div>
+</div>
