@@ -2,7 +2,7 @@
 <html lang="ru" ng-app="BeeStore">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>BeeStore</title>
         <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
 
@@ -28,8 +28,8 @@
         </style>
     </head>
 
-    <!-- <body oncontextmenu="return false;"> -->
-    <body>
+    <body oncontextmenu="return false;">
+    <!-- <body> -->
 
             <!-- Upper Video block (fixed positioned) -->
             <div class="video-block">
@@ -38,10 +38,10 @@
             </div>
 
             <!-- Dark Overlay -->
-            <!-- <div id="dark-overlay" class="dark-overlay">
-                <h1>Все товары католога Билайн</h1>
+            <div id="dark-overlay" class="dark-overlay">
+                <h1>Все товары<br>каталога Билайн</h1>
                 <button style="width:200px;" class="beeline-button" onclick="document.getElementById('dark-overlay').className = 'hide-overlay';">Посмотреть</button>
-            </div> -->
+            </div>
 
             <!-- Shadow block (fixed positioned) -->
             <div class="shadow-block" ng-show="shadowShow"></div>

@@ -9,6 +9,7 @@ var $        = require('gulp-load-plugins')();
 var argv     = require('yargs').argv;
 var gulp     = require('gulp');
 var rimraf   = require('rimraf');
+var del = require('del');
 var router   = require('front-router');
 var sequence = require('run-sequence');
 
@@ -48,23 +49,34 @@ var paths = {
     'client/assets/js/controllers.js',
     'client/assets/js/services.js',
     'client/assets/js/directives.js'
-  ]
+  ],
+  build: 'c:/git/beestore'
+  // build: './build'
 }
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
 
 // Cleans the build directory
-gulp.task('clean', function(cb) {
-  rimraf('./build', cb);
+gulp.task('clean', function(cb){
+  return del([
+    paths.build + '/**/*',
+    '!' + paths.build + '/.git',
+    '!' + paths.build + '/web.config'
+  ],
+  {force: true}, cb);
 });
+// gulp.task('clean', function(cb) {
+//   rimraf(paths.build, cb);
+// });
+
 
 // Copies everything in the client folder except templates, Sass, and JS
 gulp.task('copy', function() {
   return gulp.src(paths.assets, {
     base: './client/'
   })
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest(paths.build))
   ;
 });
 
@@ -72,10 +84,10 @@ gulp.task('copy', function() {
 gulp.task('copy:templates', function() {
   return gulp.src('./client/templates/**/*.html')
     .pipe(router({
-      path: 'build/assets/js/routes.js',
+      path: paths.build + '/assets/js/routes.js',
       root: 'client'
     }))
-    .pipe(gulp.dest('./build/templates'))
+    .pipe(gulp.dest(paths.build + '/templates'))
   ;
 });
 
@@ -89,12 +101,12 @@ gulp.task('copy:foundation', function(cb) {
     }))
     .pipe($.uglify())
     .pipe($.concat('templates.js'))
-    .pipe(gulp.dest('./build/assets/js'))
+    .pipe(gulp.dest(paths.build + '/assets/js'))
   ;
 
   // Iconic SVG icons
   gulp.src('./bower_components/foundation-apps/iconic/**/*')
-    .pipe(gulp.dest('./build/assets/img/iconic/'))
+    .pipe(gulp.dest(paths.build + '/assets/img/iconic/'))
   ;
 
   cb();
@@ -111,7 +123,7 @@ gulp.task('sass', function () {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie 10']
     }))
-    .pipe(gulp.dest('./build/assets/css/'))
+    .pipe(gulp.dest(paths.build + '/assets/css/'))
   ;
 });
 
@@ -127,7 +139,7 @@ gulp.task('uglify:foundation', function(cb) {
   return gulp.src(paths.foundationJS)
     .pipe(uglify)
     .pipe($.concat('foundation.js'))
-    .pipe(gulp.dest('./build/assets/js/'))
+    .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 });
 
@@ -140,13 +152,13 @@ gulp.task('uglify:app', function() {
   return gulp.src(paths.appJS)
     .pipe(uglify)
     .pipe($.concat('app.js'))
-    .pipe(gulp.dest('./build/assets/js/'))
+    .pipe(gulp.dest(paths.build + '/assets/js/'))
   ;
 });
 
 // Starts a test server, which you can view at http://localhost:8079
 gulp.task('server', ['build'], function() {
-  gulp.src('./build')
+  gulp.src(paths.build)
     .pipe($.webserver({
       port: 8079,
       host: 'localhost',

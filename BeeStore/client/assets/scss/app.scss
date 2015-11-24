@@ -129,9 +129,9 @@ a:hover, a:focus {
 
 // Dark Overlay styles
 .dark-overlay {
-    position: absolute;
+    position: fixed;
     z-index: 9999;
-    top:0;
+    top:30%;
     bottom:0;
     width: 100%;
     background: rgba(0,0,0,0.9);
@@ -140,14 +140,27 @@ a:hover, a:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 33%;
-    padding-top: 66%;
+    padding: 20%;
     text-align: center;
 
     h1 {
         color: #eee;
         padding-bottom: 32px;
+        font-size: 4rem;
     }
+
+    button {
+        animation: 2s infinite alternate button-animation;
+    }
+}
+
+@keyframes button-animation {
+    0% {transform: scale(1);}
+    84% {transform: scale(1.33);}
+    96% {transform: scale(1.33) translateY(5px);}
+    99% {transform: scale(1.33) translateY(0px);}
+    100% {transform: scale(1.33) translateY(0px);}
+
 }
 
 .hide-overlay {
@@ -183,4 +196,11 @@ a:hover, a:focus {
 .arrow-up.ng-hide {
     transition: opacity 0.5s linear;
     opacity: 0;
+}
+
+
+// temp
+
+.notification-container.top-right {
+    top: 31%;
 }

@@ -5,6 +5,7 @@
     "start": "gulp"
   },
   "devDependencies": {
+    "del": "^2.1.0",
     "front-router": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
