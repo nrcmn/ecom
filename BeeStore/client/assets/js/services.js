@@ -37,20 +37,13 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
-                if (data.length < amount && page == 1) {
+                if (data.length < amount) {
                     window.scrollLoad = false;
                     $rootScope.progress = false;
                 }
 
                 if (intags && page == 1) {
                     $rootScope.productsList = data;
-                    return true
-                }
-
-                if (data.length == 0) {
-                    window.scrollLoad = false;
-                    $rootScope.progress = false;
-
                     return true
                 }
 
@@ -63,8 +56,6 @@ angular.module('services', [])
                         $rootScope.productsList.push(item);
                     })
                 }
-                //
-                // $rootScope.progress = false;
             })
             .error(function () {
                 console.error('ERROR! "__LoadProducts"');

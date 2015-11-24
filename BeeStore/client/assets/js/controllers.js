@@ -57,7 +57,7 @@ angular.module('controllers', [])
         $scope.openSubCategory = function (subCategory) {
             window.subCategory = subCategory; // set subCategory to global variable
             $rootScope.progress = true; // show progress bar
-            __LoadProducts(window.subCategory, 10, 1, '-weight', null); // load products
+            __LoadProducts(window.subCategory, 15, 1, '-weight', null); // load products
 
 
             /* Cache filters */
@@ -71,7 +71,7 @@ angular.module('controllers', [])
                         delete _item['check'];
                     })
                 })
-                
+
                 $rootScope.productsListFilter = window.filter[window.subCategory.id];
             }
 
@@ -83,7 +83,7 @@ angular.module('controllers', [])
 
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
-        __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
+        // __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
 
         // -- LAZY loading block
         window.onscroll = function () {
