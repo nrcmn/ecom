@@ -45,7 +45,9 @@
         </div>
         <div class="small-12 medium-4 grid-content">
             <label>Фильтровать по:</label>
-            <a style="width:100%;" zf-open="filterModal" class="warning button">Выбрано фильтров ({{intagChoicesList.length}})</a>
+            <a ng-if="intagChoicesList.length == 0" style="width:100%;border: 1px solid #ddd;" zf-open="filterModal" class="secondary button">Выбрано фильтров ({{intagChoicesList.length}})</a>
+            <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">Выбрано фильтров ({{intagChoicesList.length}})</a>
+
         </div>
     </div>
 

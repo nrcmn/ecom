@@ -35,12 +35,13 @@
             <div class="video-block">
                 <video style="width:100%;" src="assets/img/gorod.webm" autoplay="true" loop="true">
                 </video>
+                <div class="show-overlay-button" onclick="document.getElementById('dark-overlay').classList.toggle('hide-overlay');"></div>
             </div>
 
             <!-- Dark Overlay -->
             <div id="dark-overlay" class="dark-overlay">
                 <h1>Все товары<br>каталога Билайн</h1>
-                <button style="width:200px;" class="beeline-button" onclick="document.getElementById('dark-overlay').className = 'hide-overlay';">Посмотреть</button>
+                <button style="width:200px;" class="beeline-button" onclick="document.getElementById('dark-overlay').classList.toggle('hide-overlay');">Посмотреть</button>
             </div>
 
             <!-- Shadow block (fixed positioned) -->

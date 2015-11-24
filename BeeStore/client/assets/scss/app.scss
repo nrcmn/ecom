@@ -21,6 +21,17 @@
     z-index: 99;
 }
 
+//temp
+.show-overlay-button {
+    position: fixed;
+    top: 15%;
+    left: 0;
+    z-index: 1000;
+    background: rgba(255,0,0,0.03);
+    width: 200px;
+    height: 200px;
+}
+
 .shadow-block {
     background: red;
     height: 200px;
@@ -165,8 +176,10 @@ a:hover, a:focus {
 
 .hide-overlay {
     display: none;
-    // bottom: 3000px;
-    // transition: all linear 1s;
+}
+
+.show-overlay {
+    display: block;
 }
 
 .modal {
