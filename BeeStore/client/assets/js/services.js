@@ -56,6 +56,8 @@ angular.module('services', [])
                         $rootScope.productsList.push(item);
                     })
                 }
+
+                window.lazyLoad = false; // end lazy loading process
             })
             .error(function () {
                 console.error('ERROR! "__LoadProducts"');

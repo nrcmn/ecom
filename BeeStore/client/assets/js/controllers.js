@@ -101,9 +101,14 @@ angular.module('controllers', [])
                 $scope.$apply();
             }
 
-            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -5)) {
+            console.log(Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight));
+
+            if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500)) {
+                if (lazyLoadNow) {return false} // if loading process running later
+
                 __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
                 $rootScope.progress = true;
+                window.lazyLoadNow = true; // start lazy loading process
             }
         }
 
