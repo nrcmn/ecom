@@ -37,24 +37,31 @@
 
 <div class="grid-container" ng-controller="ProductListCtrl">
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="filters-block">
+        <div class="grid-block">
+            <div class="small-12 medium-5 grid-content">
+                <label>Сортировать по:</label>
+                <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
+            </div>
+            <div class="small-12 medium-5 grid-content">
+                <label>Фильтровать по:</label>
+                <a ng-if="intagChoicesList.length == 0" style="width:100%;border: 1px solid #ddd;" zf-open="filterModal" class="secondary button">Выберите параметры</a>
+                <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">Выбрано параметров ({{intagChoicesList.length}})</a>
 
-    <div class="grid-block">
-        <div class="small-12 medium-4 grid-content">
-            <label>Сортировать по:</label>
-            <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
-        </div>
-        <div class="small-12 medium-4 grid-content">
-            <label>Фильтровать по:</label>
-            <a ng-if="intagChoicesList.length == 0" style="width:100%;border: 1px solid #ddd;" zf-open="filterModal" class="secondary button">Выбрано фильтров ({{intagChoicesList.length}})</a>
-            <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">Выбрано фильтров ({{intagChoicesList.length}})</a>
-
+            </div>
         </div>
     </div>
 
     <!-- *** FILTERS BUTTON *** -->
-    <a ng-show="leftFilter" zf-open="filterModal" class="filters-button beeline-button">
-        Выбрано фильтров ({{intagChoicesList.length}})
-    </a>
+    <!-- <a ng-show="leftFilter" zf-open="filterModal" class="filters-button beeline-button">
+        <span ng-if="intagChoicesList.length == 0">Выберите параметры</span>
+        <span ng-if="intagChoicesList.length != 0">Выбрано параметров ({{intagChoicesList.length}})</span>
+    </a> -->
 
     <!-- *** Arrow Up BUTTON *** -->
     <div class="arrow-up" ng-show="leftFilter" ng-click="scrollToTop()">

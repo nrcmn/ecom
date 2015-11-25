@@ -110,7 +110,7 @@ a:hover, a:focus {
 .filters-button { 
     transform: rotate(270deg);
     line-height: 2rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     box-shadow: 0 0 32px 10px rgba(0,0,0,0.16);
     padding: 2rem;
     padding-top: 3rem;
@@ -121,6 +121,17 @@ a:hover, a:focus {
     width: 420px;
     z-index: 300;
     transition: 1s ease-in left;
+}
+
+.filters-block {
+    position: fixed;
+    top: 38%;
+    left: 0;
+    z-index: 150;
+    width: 100%;
+    background: #fff;
+    padding: 1rem 3rem;
+    box-shadow: 0 20px 44px 1px rgba(255,255,255,0.9);
 }
 
 .filters-button.ng-hide {
