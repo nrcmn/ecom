@@ -219,7 +219,7 @@ angular.module('controllers', [])
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
         // $rootScope.intagChoicesList = []; // array for intag_choices ids
-        $rootScope.filterInd = 0;
+        $rootScope.filterInd = 1;
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
         }

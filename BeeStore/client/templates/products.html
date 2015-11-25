@@ -5,7 +5,7 @@
         <div class="grid-content medium-4">
             <section class="block-list">
                 <ul>
-                    <li ng-style="setActiveStyle($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                    <li ng-if="$index != 0" ng-style="setActiveStyle($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
                         <a>{{filter.name}}</a>
                     </li>
                 </ul>
@@ -45,14 +45,13 @@
     <div class="filters-block">
         <div class="grid-block">
             <div class="small-12 medium-5 grid-content">
-                <label>Сортировать по:</label>
-                <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
-            </div>
-            <div class="small-12 medium-5 grid-content">
                 <label>Фильтровать по:</label>
                 <a ng-if="intagChoicesList.length == 0" style="width:100%;border: 1px solid #ddd;" zf-open="filterModal" class="secondary button">Выберите параметры</a>
                 <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">Выбрано параметров ({{intagChoicesList.length}})</a>
-
+            </div>
+            <div class="small-12 medium-5 grid-content">
+                <label>Сортировать по:</label>
+                <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
             </div>
         </div>
     </div>
