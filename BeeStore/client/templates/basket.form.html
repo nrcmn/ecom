@@ -4,19 +4,19 @@
             <div class="grid-content medium-4">
                 <label>
                     Фамилия
-                    <input type="text" placeholder="Фамилия" ng-model="form.surname">
+                    <input field="surname" zf-open="keyboard_block" type="text" placeholder="Фамилия" ng-model="form.surname">
                 </label>
             </div>
             <div class="grid-content medium-4">
                 <label>
                     Имя
-                    <input type="text" placeholder="Имя" ng-model="form.name">
+                    <input field="name" zf-open="keyboard_block" type="text" placeholder="Имя" ng-model="form.name">
                 </label>
             </div>
             <div class="grid-content medium-4">
                 <label>
                     Отчество
-                    <input type="text" placeholder="Отчество" ng-model="form.patronymic">
+                    <input field="patronymic" zf-open="keyboard_block" type="text" placeholder="Отчество" ng-model="form.patronymic">
                 </label>
             </div>
         </div>
@@ -27,14 +27,14 @@
                     Номер телефона
                     <span class="inline-label">
                         <span class="form-label">+7</span>
-                        <input type="tel" placeholder="Номер телефона" ng-model="form.phone">
+                        <input zf-open="keyboard_block" type="tel" placeholder="Номер телефона" ng-model="form.phone">
                     </span>
                 </label>
             </div>
             <div class="grid-content medium-6">
                 <label>
                     Email
-                    <input type="email" placeholder="Email" ng-model="form.email">
+                    <input zf-open="keyboard_block" type="email" placeholder="Email" ng-model="form.email">
                 </label>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="grid-block">
             <div class="grid-content medium-5">
                 <label>Комментарии к заказу</label>
-                <textarea rows="6" cols="5" ng-model="form.comments"></textarea>
+                <textarea zf-open="keyboard_block" rows="6" cols="5" ng-model="form.comments"></textarea>
             </div>
         </div>
 
@@ -60,4 +60,11 @@
             </div>
         </div>
     </div>
+
+    <zf-offcanvas id="keyboard_block" position="bottom">
+        <a zf-close="" class="close-button">×</a>
+        <keyboard></keyboard>
+    </zf-offcanvas>
+
+    <!-- <a zf-open="keyboard_block" class="button">Open Off-canvas</a> -->
 </div>

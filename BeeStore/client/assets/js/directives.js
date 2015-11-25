@@ -109,3 +109,42 @@ angular.module('directives', [])
             }
         }
     })
+
+    .directive('keyboard', function () {
+        return {
+            templateUrl: 'templates/keyboard.html',
+            replace: true,
+            controller: function () {
+                // document.addEventListener("blur", function( $event ) {
+                //     // console.log($event.srcElement);
+                //     window.selectedInput = null;
+                // }, true);
+            }
+        }
+    })
+
+    .directive('field', function () {
+        return {
+            controller: function ($scope, $element, $attrs) {
+                $element.on('focus', function () {
+                    window.selectedInput = $attrs.field;
+                })
+            }
+        }
+    })
+
+    .directive('letter', function () {
+        return {
+            restrict: 'C',
+            controller: function ($scope, $element, $attrs) {
+                $element.on('click', function () {
+                    if ($scope.form[window.selectedInput] == undefined) {
+                        $scope.form[window.selectedInput] = ''
+                    }
+
+                    $scope.form[window.selectedInput] += $element[0].innerText;
+                    $scope.$apply();
+                })
+            }
+        }
+    })

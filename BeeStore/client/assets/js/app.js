@@ -81,6 +81,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: '/products',
                 templateUrl: './templates/basket.products.html',
                 getTitle: function () {return 'Корзина'},
+                controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: true,
                 id: 6,
                 animation: {
@@ -91,6 +92,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: '/form',
                 templateUrl: './templates/basket.form.html',
                 getTitle: function () {return 'Персональные данные'},
+                controller: function ($rootScope) {$rootScope.shadowShow = false;},
                 show: true,
                 id: 7,
                 animation: {

@@ -284,15 +284,17 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('BasketFormCtrl', function ($scope, $timeout, $state) {
+    .controller('BasketFormCtrl', function ($scope, $rootScope, $timeout, $state) {
         $scope.form = {};
         $scope.form.news = true;
+
         $scope.checkNews = function ($event) {
             $scope.form.news = $event.target.checked;
         }
 
         $scope.placeAnOrder = function () {
             console.log($scope.form);
+            $rootScope.basket.length = 0;
             $timeout(function () {
                 $state.go('main')
             }, 2000)
@@ -300,5 +302,6 @@ angular.module('controllers', [])
 
         $scope.cancel = function () {
             $scope.form = {};
+            $scope.form.news = true;
         }
     })
