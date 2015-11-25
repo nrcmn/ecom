@@ -101,8 +101,6 @@ angular.module('controllers', [])
                 $scope.$apply();
             }
 
-            console.log(Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight));
-
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500)) {
                 if (lazyLoadNow) {return false} // if loading process running later
 

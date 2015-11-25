@@ -57,7 +57,7 @@ angular.module('services', [])
                     })
                 }
 
-                window.lazyLoad = false; // end lazy loading process
+                window.lazyLoadNow = false; // end lazy loading process
             })
             .error(function () {
                 console.error('ERROR! "__LoadProducts"');
