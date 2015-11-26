@@ -79,6 +79,10 @@ h1,h2,h3,h4 {
     // border-radius: 5px;
 }
 
+.gallery-top .swiper-button-disabled {
+  opacity: 0.1 !important; }
+
+
 // Beeline button styles
 .beeline-button {
     color: #000;
