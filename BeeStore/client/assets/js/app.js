@@ -154,6 +154,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                     return $rootScope.crumbs.splice(i + 1, 10); // back button event
                 }
             }
+            
             try {
                 $rootScope.crumbs[0].show = true; // show first state in other states
             } catch (e) {console.log('ok');}
