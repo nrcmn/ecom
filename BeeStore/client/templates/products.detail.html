@@ -63,7 +63,7 @@
                     <div class="grid-content medium-4">
                         <section class="block-list">
                             <ul>
-                                <li ng-repeat="field in product.intags_categories">
+                                <li ng-repeat="field in product.intags_categories" ng-if="field.intags[0].value[0] != null">
                                     <a ng-style="setActiveStyle(field.id == modalIntags.id)" ng-click="openField(field)">{{field.name}}</a>
                                 </li>
                             </ul>
