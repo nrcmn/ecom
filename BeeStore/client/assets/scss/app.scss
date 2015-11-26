@@ -80,7 +80,7 @@ h1,h2,h3,h4 {
 }
 
 .gallery-top .swiper-button-disabled {
-  opacity: 0.1 !important; }
+  opacity: 0.05 !important; }
 
 
 // Beeline button styles
@@ -205,7 +205,7 @@ a:hover, a:focus {
 .arrow-up {
     position: fixed;
     right: 2rem;
-    bottom: 3rem;
+    bottom: 10rem;
     display: inline-block;
     padding: 2rem;
     background: rgba(0,0,0,0.2);
