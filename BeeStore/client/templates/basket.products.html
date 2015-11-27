@@ -20,9 +20,9 @@
         </div>
         <div class="grid-block" ng-repeat="product in basket">
             <div class="grid-content medium-2 text-center">
-                <img ng-src="{{product.images[0]}}" />
+                <img ng-src="{{product.images[0]}}" ng-click="openProduct(product)"/>
             </div>
-            <div class="grid-content medium-5" style="font-size: 25px">
+            <div class="grid-content medium-5" style="font-size: 25px" ng-click="openProduct(product)">
                 {{product.name}}
             </div>
             <div class="grid-content medium-2 text-center" style="font-size: 40px">
