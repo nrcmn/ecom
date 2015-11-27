@@ -281,6 +281,10 @@ angular.module('controllers', [])
         $scope.deleteItem = function (product, $index) {
             $rootScope.basketProductsCount -= product.quantity;
             $rootScope.basket.splice($index, 1);
+
+            if ($rootScope.basket.length == 0) {
+                $rootScope.basketProductsCount = 0;
+            }
         }
     })
 
