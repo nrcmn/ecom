@@ -164,7 +164,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, __LoadOneProduct) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, FoundationApi, __LoadOneProduct) {
         window.scroll(0,0); // scroll to top
 
         if (!window.product) {
@@ -208,12 +208,20 @@ angular.module('controllers', [])
 
             for (var i = 0; i < $rootScope.basket.length; i++) {
                 if ($rootScope.basket[i].id == window.product.id) {
-                    return $rootScope.basket[i].quantity += 1, $rootScope.basketProductsCount += 1;
+                    if ($rootScope.basket[i].quantity == 5) {
+                        FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Количество одинаковых позиций не может быть больше 5', color: 'alert', autoclose: '5000'});
+                        return false
+                    }
+                    else {
+                        FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
+                        return $rootScope.basket[i].quantity += 1, $rootScope.basketProductsCount += 1;
+                    }
                 }
             }
 
             $rootScope.basket.push(window.product);
             $rootScope.basketProductsCount += 1;
+            FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
         }
     })
 
@@ -266,7 +274,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('BasketProductListCtrl', function ($scope, $rootScope) {
+    .controller('BasketProductListCtrl', function ($scope, $rootScope, $state) {
         $scope.quantity = function (bool, item) {
             if (item.quantity == 5 && bool) {
                 return false
@@ -281,6 +289,16 @@ angular.module('controllers', [])
         $scope.deleteItem = function (product, $index) {
             $rootScope.basketProductsCount -= product.quantity;
             $rootScope.basket.splice($index, 1);
+
+            if ($rootScope.basket.length == 0) {
+                $rootScope.basketProductsCount = 0;
+            }
+        }
+
+        $scope.openProduct = function (product) {
+            console.log(product);
+            window.product = product;
+            $state.go('detail', {id: product.id});
         }
     })
 

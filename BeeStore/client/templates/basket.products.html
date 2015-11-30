@@ -7,7 +7,7 @@
     <div ng-if="basket.length != 0" class="grid-content medium-12">
         <div class="grid-block">
             <div class="grid-content medium-12 text-center">
-                <h2>Шаш 1 из 2</h2>
+                <h2>Шаг 1 из 2</h2>
             </div>
 
             <br><br>
@@ -26,21 +26,27 @@
         </div>
 
         <div class="grid-block" ng-repeat="product in basket" style="margin-bottom:32px;">
+            
             <div class="grid-content medium-2 text-center swiper-image">
-                <img style="max-height:120px;" ng-src="{{product.images[0]}}" />
+                <img style="max-height:120px;" ng-src="{{product.images[0]}}" ng-click="openProduct(product)"/>
             </div>
-            <div class="grid-content medium-4">
+
+            <div class="grid-content medium-4" ng-click="openProduct(product)">
                 <h4>{{product.name}}</h4>
             </div>
+
             <div class="grid-content medium-3 text-center" style="font-size: 40px">
                 <button style="font-size: 44px; width:52px;" ng-click="quantity(false, product)">-</button> {{product.quantity}} <button style="font-size: 44px; width:52px;" ng-click="quantity(true, product)">+</button>
             </div>
+
             <div class="grid-content medium-2 text-center" style="font-size: 28px">
                 {{product.price | price}}
             </div>
+
             <div class="grid-content medium-1 text-center" ng-click="deleteItem(product, $index)">
                 <a><img src="assets/img/close.svg" style="width:40px;"></a>
             </div>
+            
         </div>
 
         <br><br>
