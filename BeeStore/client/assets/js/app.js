@@ -200,6 +200,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             return $rootScope.crumbs.push(toState);
         })
 
+        window.touchEvents = {};
 
         document.addEventListener('touchstart', function(event) {
             console.info('user start touch');
