@@ -164,7 +164,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, FoundationApi, __LoadOneProduct) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct) {
         window.scroll(0,0); // scroll to top
 
         if (!window.product) {
@@ -202,6 +202,8 @@ angular.module('controllers', [])
         }
 
         $scope.addToBasket = function () {
+            $rootScope.basketBottomShow = false;
+            
             if (!window.product.quantity) {
                 window.product.quantity = 1;
             }
@@ -214,14 +216,16 @@ angular.module('controllers', [])
                     }
                     else {
                         FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
-                        return $rootScope.basket[i].quantity += 1, $rootScope.basketProductsCount += 1;
+                        return $rootScope.basket[i].quantity += 1, $rootScope.basketProductsCount += 1, $state.go('basket.products');
                     }
                 }
             }
 
             $rootScope.basket.push(window.product);
             $rootScope.basketProductsCount += 1;
-            FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
+            $state.go('basket.products');
+
+            // FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
         }
     })
 
@@ -275,6 +279,24 @@ angular.module('controllers', [])
     })
 
     .controller('BasketProductListCtrl', function ($scope, $rootScope, $state) {
+        // clear crumbs
+        $rootScope.crumbs.length = 0;
+
+        // push mock main state
+        $rootScope.crumbs.push(
+            {
+                animation: {
+                    enter: 'fadeIn'
+                },
+                controller: function ($rootScope) {$rootScope.shadowShow = false;},
+                getTitle: function () {return 'На главную'},
+                id: 1,
+                show: true,
+                title: 'На главную',
+                name: 'main'
+            }
+        )
+
         $scope.quantity = function (bool, item) {
             if (item.quantity == 5 && bool) {
                 return false
@@ -296,19 +318,23 @@ angular.module('controllers', [])
         }
 
         $scope.openProduct = function (product) {
-            console.log(product);
+            var cart = $state.current; // set mock "back to cart" crumb
+            cart.title = 'Назад в корзину';
+            cart.show = true;
+            $rootScope.crumbs.push(cart);
+
             window.product = product;
-            $state.go('detail', {id: product.id});
+            $state.go('basketDetail', {id: product.id});
         }
     })
 
     .controller('BasketFormCtrl', function ($scope, $rootScope, $timeout, $state) {
         $scope.form = {};
-        $scope.form.news = true;
+        $scope.form.phone = '';
 
-        $scope.checkNews = function ($event) {
-            $scope.form.news = $event.target.checked;
-        }
+        // $scope.checkNews = function ($event) {
+        //     $scope.form.news = $event.target.checked;
+        // }
 
         $scope.placeAnOrder = function () {
             console.log($scope.form);
@@ -316,10 +342,5 @@ angular.module('controllers', [])
             $timeout(function () {
                 $state.go('main')
             }, 2000)
-        }
-
-        $scope.cancel = function () {
-            $scope.form = {};
-            $scope.form.news = true;
         }
     })

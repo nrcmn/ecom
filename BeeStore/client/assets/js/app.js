@@ -8,7 +8,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: "/",
                 templateUrl: "./templates/mainCategories.html",
                 getTitle: function () {return 'Главная'},
-                controller: function ($rootScope) {$rootScope.shadowShow = false;},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = false;
+                    $rootScope.basketBottomShow = true;
+                },
                 show: false,
                 id: 1,
                 animation: {
@@ -25,7 +28,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                         return true
                     }
                 },
-                controller: function ($rootScope) {$rootScope.shadowShow = false;},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = false;
+                    $rootScope.basketBottomShow = true;
+                },
                 show: true,
                 id: 2,
                 animation: {
@@ -42,7 +48,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                         return true
                     }
                 },
-                controller: function ($rootScope) {$rootScope.shadowShow = true;},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = true;
+                    $rootScope.basketBottomShow = true;
+                },
                 show: true,
                 id: 3,
                 animation: {
@@ -53,7 +62,11 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: '/categories/products/{id}',
                 templateUrl: './templates/products.detail.html',
                 getTitle: function () {return null}, // hide on detail page
-                controller: function ($rootScope) {$rootScope.shadowShow = true;},
+                controller: function ($rootScope, $scope) {
+                    $rootScope.shadowShow = true;
+                    $scope.toCartShow = true;
+                    $rootScope.basketBottomShow = true;
+                },
                 show: false,
                 id: 4,
                 animation: {
@@ -65,7 +78,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: '/leaders/{id}',
                 templateUrl: './templates/products.detail.html',
                 getTitle: function () {return 'Лидеры'},
-                controller: function ($rootScope) {$rootScope.shadowShow = true;},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = true;
+                    $rootScope.basketBottomShow = true;
+                },
                 show: true,
                 id: 5,
                 animation: {
@@ -81,7 +97,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 url: '/products',
                 templateUrl: './templates/basket.products.html',
                 getTitle: function () {return 'Корзина'},
-                controller: function ($rootScope) {$rootScope.shadowShow = false;},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = false;
+                    $rootScope.basketBottomShow = false;
+                },
                 show: true,
                 id: 6,
                 animation: {
@@ -91,20 +110,39 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             .state('basket.form', {
                 url: '/form',
                 templateUrl: './templates/basket.form.html',
-                getTitle: function () {return 'Персональные данные'},
-                controller: function ($rootScope) {$rootScope.shadowShow = false;},
+                getTitle: function () {return 'Оформление заказа'},
+                controller: function ($rootScope) {
+                    $rootScope.shadowShow = false;
+                    $rootScope.basketBottomShow = false;
+                },
                 show: true,
                 id: 7,
                 animation: {
                     enter: 'fadeIn'
                 }
             })
+            .state('basketDetail', {
+                url: '/basket/products/{id}',
+                templateUrl: './templates/products.detail.html',
+                getTitle: function () {return null}, // hide on detail page
+                controller: function ($rootScope, $scope) {
+                    $rootScope.shadowShow = true;
+                    $scope.toCartShow = false;
+                    $rootScope.basketBottomShow = true;
+                },
+                show: false,
+                id: 8,
+                animation: {
+                    enter: 'fadeIn'
+                }
+            })
+
             .state('plans', {
                 url: '/plans',
                 templateUrl: './templates/plans.html',
                 getTitle: function () {return 'Тарифы'},
                 show: false,
-                id: 8,
+                id: 9,
                 animation: {
                     enter: 'fadeIn'
                 }
@@ -154,7 +192,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                     return $rootScope.crumbs.splice(i + 1, 10); // back button event
                 }
             }
-            
+
             try {
                 $rootScope.crumbs[0].show = true; // show first state in other states
             } catch (e) {console.log('ok');}

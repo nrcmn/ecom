@@ -110,6 +110,64 @@ angular.module('directives', [])
         }
     })
 
+    .directive('key', function () {
+        return {
+            restrict: 'C',
+            controller: function ($scope, $element, $attrs) {
+                $element.on('click', function () {
+                    var phoneLength = $scope.form.phone.length;
+                    switch (phoneLength) {
+                        case 0:
+                            $scope.form.phone += '(';
+                            break;
+                        case 4:
+                            $scope.form.phone += ') ';
+                            break;
+                        case 9:
+                            $scope.form.phone += ' ';
+                            break;
+                        case 12:
+                            $scope.form.phone += ' ';
+                            break;
+                        case 15:
+                            return false
+                    }
+
+                    $scope.form.phone += $element[0].innerText;
+                    $scope.$apply();
+                })
+            }
+        }
+    })
+
+    .directive('clear', function () {
+        return {
+            restrict: 'C',
+            controller: function ($scope, $element, $attrs) {
+                $element.on('click', function () {
+                    $scope.form = {};
+                    $scope.form.phone = '';
+                    $scope.$apply();
+                })
+            }
+        }
+    })
+
+    .directive('backspace', function () {
+        return {
+            restrict: 'C',
+            controller: function ($scope, $element, $attrs) {
+                $element.on('click', function () {
+                    var a = $scope.form.phone.split('');
+                    a.pop();
+
+                    $scope.form.phone = a.join('');
+                    $scope.$apply();
+                })
+            }
+        }
+    })
+
     // basket form
     .directive('field', function () {
         return {
@@ -248,7 +306,6 @@ angular.module('directives', [])
             }
         }
     })
-
     .directive('space', function () {
         return {
             restrict: 'C',
