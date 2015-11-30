@@ -200,6 +200,43 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             return $rootScope.crumbs.push(toState);
         })
 
+
+        document.addEventListener('touchstart', function(event) {
+            console.info('user start touch');
+            window.touchEvents = {};
+            window.touchEvents.start = true;
+            window.touchEvents.touches = event.touches;
+        }, false)
+
+        document.addEventListener('touchmove', function () {
+            console.info('user start scroll');
+            window.touchEvents.scroll = true;
+        }, false)
+
+        document.addEventListener('touchend', function(event) {
+            console.info('user end touch')
+
+            if (!window.touchEvents.scroll && window.touchEvents.touches.length > 1) {
+                FoundationApi.publish('eventError', {content: 'Пожалуйста используйте один палец!', color: 'alert', autoclose: '5000'});
+            }
+
+
+            // if (!window.touchEvents.scroll && window.touchEvents.touches.length > 0) {
+            //     // var evObj = document.createEvent('Events');
+            //     // evObj.initEvent('click', true, false);
+            //     // console.log(event);
+            //     // event.srcElement.dispatchEvent(evObj);
+            //     simulateEvent(event)
+            // }
+
+            // console.log(event);
+            // event.touches.length = 0;
+            //
+            // var evObj = document.createEvent('Events');
+            // evObj.initEvent('click', true, false);
+            // event.touches[0].target.dispatchEvent(evObj);
+        }, false);
+
         $rootScope.openCrumb = function (crumb) {
             $state.go(crumb.name);
         }
