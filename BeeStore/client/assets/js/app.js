@@ -217,10 +217,9 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             console.info('user end touch')
 
             if (!window.touchEvents.scroll && window.touchEvents.touches.length > 1) {
-                // FoundationApi.publish('eventError', {content: 'Пожалуйста используйте один палец!', color: 'alert', autoclose: '5000'});
-
-                var e = document.createEvent('TouchEvent');
-                e.touches = [{pageX: window.touchEvents.touches[0].pageX, pageY: window.touchEvents.touches[0].pageY}];
+                var evObj = document.createEvent('Events');
+                evObj.initEvent('touchstart', true, false);
+                event.target.dispatchEvent(evObj);
             }
 
 
