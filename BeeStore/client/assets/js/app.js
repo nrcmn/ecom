@@ -200,8 +200,20 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             return $rootScope.crumbs.push(toState);
         })
 
+        /* --------- Multi-touch event handlers --------- */
+        if (window.navigator.msPointerEnabled) {
+            var start = 'MSPointerDown',
+                move = 'MSPointerMove',
+                end = 'MSPointerUp';
+        }
+        else {
+            var start = 'touchstart',
+                move = 'touchmove',
+                end = 'touchend';
+        }
+
         window.touchEvents = {};
-        document.addEventListener('touchstart', function(event) {
+        document.addEventListener(start, function(event) {
             window.touchEvents = {
                 start: true,
                 scroll: false,
@@ -210,11 +222,11 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             }
         }, false)
 
-        document.addEventListener('touchmove', function () {
+        document.addEventListener(move, function () {
             window.touchEvents.scroll = true;
         }, false)
 
-        document.addEventListener('touchend', function(event) {
+        document.addEventListener(end, function(event) {
             window.touchEvents.end = true;
             if (!window.touchEvents.scroll && window.touchEvents.e.touches.length > 1) {
                 var evObj = document.createEvent('Events');
@@ -222,6 +234,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 event.target.dispatchEvent(evObj);
             }
         }, false);
+        /* -------- END -------- */
 
 
         $rootScope.openCrumb = function (crumb) {
