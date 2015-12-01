@@ -203,19 +203,25 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         window.touchEvents = {};
         document.addEventListener('touchstart', function(event) {
             console.info('user start touch');
-
-            if (window.touchEvents.simulate) {
-                var evObj = document.createEvent('Events');
-                evObj.initEvent('click', true, false);
-                event.target.dispatchEvent(evObj);
-
-                window.touchEvents.simulate = false;
+            window.touchEvents = {
+                start: true,
+                scroll: false,
+                end: false
             }
-            else {
-                window.touchEvents = {};
-                window.touchEvents.start = true;
-                window.touchEvents.touches = event.touches;
-            }
+
+            //
+            // if (window.touchEvents.simulate) {
+            //     var evObj = document.createEvent('Events');
+            //     evObj.initEvent('click', true, false);
+            //     event.target.dispatchEvent(evObj);
+            //
+            //     window.touchEvents.simulate = false;
+            // }
+            // else {
+            //     window.touchEvents = {};
+            //     window.touchEvents.start = true;
+            //     window.touchEvents.touches = event.touches;
+            // }
         }, false)
 
         document.addEventListener('touchmove', function () {
@@ -225,17 +231,28 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
 
         document.addEventListener('touchend', function(event) {
             console.info('user end touch')
-            console.log(window.touchEvents, 'touchend');
+            window.touchEvents.end = true;
+            // console.log(event);
 
-            if (!window.touchEvents.scroll && window.touchEvents.touches.length > 1) {
+            if (!window.touchEvents.scroll && event.changedTouches.length > 1) {
+                console.log('more touches');
+                
                 var evObj = document.createEvent('Events');
-                evObj.initEvent('touchstart', true, false);
+                evObj.initEvent('click', true, false);
                 event.target.dispatchEvent(evObj);
-                window.touchEvents.simulate = true;
             }
-            else {
-                window.touchEvents.simulate = false;
-            }
+
+            // console.log(window.touchEvents, 'touchend');
+            //
+            // if (!window.touchEvents.scroll && window.touchEvents.touches.length > 1) {
+            //     var evObj = document.createEvent('Events');
+            //     evObj.initEvent('touchstart', true, false);
+            //     event.target.dispatchEvent(evObj);
+            //     window.touchEvents.simulate = true;
+            // }
+            // else {
+            //     window.touchEvents.simulate = false;
+            // }
         }, false);
 
 
