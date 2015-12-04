@@ -31,6 +31,7 @@ angular.module('controllers', [])
         //     $scope.categories = window.categories;
         // }
 
+        window.category = {}; // for leaders loader
         $scope.categories = mainCategories;
 
         $scope.openCategory = function (arg) {
@@ -42,7 +43,7 @@ angular.module('controllers', [])
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = []; // clear subCategories
         $rootScope.intagChoicesList = []; // clear filters
-        $rootScope.productsList = undefined;
+        $rootScope.productsList = undefined; // clear products list
         window.scroll(0,0); // scroll to top
         window.page = 1; // set page number in products list
         window.sortItem = undefined; // set sortItem
@@ -83,7 +84,6 @@ angular.module('controllers', [])
 
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
-        // __LoadProducts(window.subCategory, 5, 2, '-weight', null); // load other for empty array except
 
         // -- LAZY loading block
         window.onscroll = function () {
@@ -114,16 +114,16 @@ angular.module('controllers', [])
             $document.scrollTop(0, 1200).then(function() {});
         }
 
-        $scope.openProduct = function (product) {
-            product.collectionId = window.subCategory.id; // set collectionId to product data
-            product.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
-                if (item.id == 61) {
-                    product.general_intags = item;
-                }
-            })
+        $scope.openProduct = function (data) {
+            data.collectionId = window.subCategory.id; // set collectionId to product data
+            // product.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+            //     if (item.id == 61) {
+            //         product.general_intags = item;
+            //     }
+            // })
 
-            window.product = product; // set this product to global variable
-            $state.go('detail', {id: product.id});
+            window.product = data; // set this product to global variable
+            $state.go('detail', {id: data.id});
         }
 
         // -- SORT block
@@ -166,25 +166,24 @@ angular.module('controllers', [])
 
     .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct) {
         window.scroll(0,0); // scroll to top
+        $scope.product = window.product;
 
-        if (!window.product) {
-            __LoadOneProduct($stateParams.id).then(function (data) {
-                data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
-                    if (item.id == 61) {
-                        data.general_intags = item;
-                    }
-                })
-
-                $scope.product = data;
-                window.product = data;
-
-                $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
+        __LoadOneProduct($stateParams.id).then(function (data) {
+            data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
+                if (item.id == 61) {
+                    data.general_intags = item;
+                }
             })
-        }
-        else {
+
+            try {
+                window.product.__proto__ = data; // load detail after product list page
+            } catch (e) {
+                window.product = data; // load detail without products list page
+            }
+
             $scope.product = window.product;
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
-        }
+        })
 
         // open field in intags
         $scope.openField = function (f) {
@@ -203,7 +202,7 @@ angular.module('controllers', [])
 
         $scope.addToBasket = function () {
             $rootScope.basketBottomShow = false;
-            
+
             if (!window.product.quantity) {
                 window.product.quantity = 1;
             }

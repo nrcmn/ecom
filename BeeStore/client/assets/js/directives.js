@@ -1,78 +1,113 @@
 angular.module('directives', [])
-    .directive("leaders", function ($timeout) {
+    .directive("leaders", function ($timeout, $q, $http) {
         return {
             templateUrl: 'templates/leaders.html',
             replace: true,
             scope: {},
             controller: function ($scope, $http, $q, $state) {
-                function loadLeaders () {
-                    var deferred = $q.defer();
-                    var idsForLeaders = [76, 10];
-
-                    if (Array.isArray(window.leaders)) { // cache leaders
-                        deferred.resolve(window.leaders);
-                        return deferred.promise;
-                    }
-                    else {
-                        window.leaders = [];
-                    }
-
-                    idsForLeaders.forEach(function (item, i, arr) {
-                        load(item, i);
-                    })
-
-                    function load (id, i) {
-                        $http({
-                            method: 'GET',
-                            url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/products/',
-                            params: {
-                                api_key: window.api_key,
-                                market_region: window.market_region,
-                                collection: id,
-                                amount: 8,
-                                sort_by: '-weight'
-                            }
-                        })
-                        .success(function (data) {
-                            data.forEach(function (item, i, arr) {
-                                window.leaders.push(item);
-                            })
-
-                            if (i == idsForLeaders.length - 1) {
-                                deferred.resolve(window.leaders);
-                            }
-                        })
-                    }
-
-                    return deferred.promise;
-                }
-
-                loadLeaders().then(function (leaders) {
-                    $scope.leaders = leaders;
-                })
-
                 $scope.openLeader = function (data) {
-                    data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
-                        if (item.id == 61) {
-                            data.general_intags = item;
-                        }
-                    })
-
+                    console.log(data);
                     window.product = data;
                     $state.go('leaders', {id: data.id});
                 }
             },
             link: function(scope, element, attributes) {
-                $timeout(function () {
-                    var swiper = new Swiper('.swiper-container', {
-                        pagination: '.swiper-pagination',
-                        paginationClickable: '.swiper-pagination',
-                        nextButton: '.swiper-button-next',
-                        prevButton: '.swiper-button-prev',
-                        freeMode: true,
-                        slidesPerView: 3.5,
-                    });
-                }, 1500);
+                (function load() {
+                    var deferred = $q.defer();
+                    var categories = [2, 21, 8, 9];
+
+                    $http({
+                        method: 'GET',
+                        url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/recommendation/popular/',
+                        params: {
+                            api_key: window.api_key,
+                            market_region: window.market_region,
+                            collection: window.category.id || categories[Math.floor(Math.random() * categories.length)]
+                        }
+                    })
+                    .success(function (data) {
+                        deferred.resolve(data);
+                    })
+                    .error(function () {
+                        console.error('load leaders error');
+                    })
+
+                    return deferred.promise;
+                })().then(function (result) {
+                    scope.leaders = window.leaders = result;
+                    $timeout(function () {
+                        var swiper = new Swiper('.swiper-container', {
+                            pagination: '.swiper-pagination',
+                            paginationClickable: '.swiper-pagination',
+                            nextButton: '.swiper-button-next',
+                            prevButton: '.swiper-button-prev',
+                            freeMode: true,
+                            slidesPerView: 3.5,
+                        });
+                    }, 0.0001);
+                })
+            }
+        }
+    })
+
+    .directive("recommendations", function ($q, $http, $timeout) {
+        return {
+            templateUrl: 'templates/recommendations.html',
+            replace: true,
+            scope: {list: '@'},
+            link: function(scope, element, attributes) {
+                (function () {
+                    var deferred = $q.defer();
+                    var i = 0;
+                    window.recommendations = [];
+
+                    function load() {
+                        var index = Math.random() * ((arr.length - 1) - 0) + 0;
+
+                        $http({
+                            method: 'GET',
+                            url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',
+                            params: {
+                                api_key: window.api_key,
+                                market_region: window.market_region
+                            }
+                        })
+                        .success(function (data) {
+                            arr.splice(index, 1);
+                            window.recommendations.push(data);
+
+                            if (i == 3) {
+                                deferred.resolve();
+                                return false
+                            }
+
+                            i++;
+                            load();
+                        })
+                        .error(function () {
+                            console.error('load recommendation error');
+                        })
+                    }
+
+                    scope.$watch('list', function () {
+                        if (scope.list != '') {
+                            arr = scope.list.replace(/[\[\]']+/g,'').split(','); // to global variable
+                            load();
+                        }
+                    })
+
+                    return deferred.promise;
+                })().then(function () {
+                    scope.recommendations = window.recommendations;
+                    $timeout(function () {
+                        var swiper = new Swiper('.recomendation-swiper', {
+                            nextButton: '.swiper-button-next-recomend',
+                            prevButton: '.swiper-button-prev-recomend',
+                            freeMode: true,
+                            slidesPerView: 4,
+                        });
+                    }, 0.000001);
+                })
             }
         }
     })
@@ -84,12 +119,6 @@ angular.module('directives', [])
             scope: false,
             link: function () {
                 $timeout(function () {
-                    // var swiper = new Swiper('.swiper-container', {
-                    //     pagination: '.swiper-pagination',
-                    //     paginationClickable: '.swiper-pagination',
-                    //     nextButton: '.swiper-button-next',
-                    //     prevButton: '.swiper-button-prev'
-                    // });
                     //two-way control swiper
                     var swiper1 = new Swiper('.gallery-top', {
                         nextButton: '.swiper-button-next',
@@ -103,6 +132,7 @@ angular.module('directives', [])
                         touchRatio: 0.2,
                         slideToClickedSlide: true
                     });
+
                     swiper1.params.control = swiper2;
                     swiper2.params.control = swiper1;
                 }, 1000);
