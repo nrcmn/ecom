@@ -261,3 +261,9 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             }
         }
     })
+
+    .filter('multiCardColor', function () {
+        return function (color) {
+            return color.split(';').pop();
+        }
+    })

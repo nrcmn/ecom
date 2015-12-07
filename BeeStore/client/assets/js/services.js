@@ -89,8 +89,8 @@ angular.module('services', [])
     })
 
     .service('__LoadOneProduct', function ($http, $rootScope, $q) {
-        var deferred = $q.defer();
         return function (id) {
+            var deferred = $q.defer();
 
             var params = (!window.product) ? 'id,name,remain,price,images,article,description,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products' : 'description,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products';
 
@@ -109,7 +109,7 @@ angular.module('services', [])
             .error(function () {
                 deferred.reject('ERROR! "__LoadOneProduct"');
             })
-
+            
             return deferred.promise;
         }
     })

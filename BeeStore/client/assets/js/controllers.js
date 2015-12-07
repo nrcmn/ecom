@@ -200,6 +200,12 @@ angular.module('controllers', [])
             }
         }
 
+        $scope.openCard = function (key) {
+            delete window.product;
+            $state.go('detail', {id: key});
+            // $state.go($state.current, {id: key}, {reload: true});
+        }
+
         $scope.addToBasket = function () {
             $rootScope.basketBottomShow = false;
 

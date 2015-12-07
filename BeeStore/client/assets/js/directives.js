@@ -5,6 +5,7 @@ angular.module('directives', [])
             replace: true,
             scope: {},
             controller: function ($scope, $http, $q, $state) {
+                $scope.leaders = undefined;
                 $scope.openLeader = function (data) {
                     console.log(data);
                     window.product = data;
@@ -62,6 +63,10 @@ angular.module('directives', [])
                     window.recommendations = [];
 
                     function load() {
+                        if (arr.length == 0) {
+                            return false;
+                        }
+
                         var index = Math.random() * ((arr.length - 1) - 0) + 0;
 
                         $http({
@@ -69,19 +74,22 @@ angular.module('directives', [])
                             url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',
                             params: {
                                 api_key: window.api_key,
-                                market_region: window.market_region
+                                market_region: window.market_region,
+                                params: 'article,id,images,name,price,remain,kind'
                             }
                         })
                         .success(function (data) {
                             arr.splice(index, 1);
-                            window.recommendations.push(data);
+                            if (data.kind.id != 30) {
+                                window.recommendations.push(data);
+                                i++;
+                            }
 
-                            if (i == 3) {
+                            if (i == 4) {
                                 deferred.resolve();
                                 return false
                             }
 
-                            i++;
                             load();
                         })
                         .error(function () {

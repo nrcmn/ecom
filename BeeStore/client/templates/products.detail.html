@@ -28,6 +28,14 @@
 
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
 
+            <div class="grid-block small-up-2">
+                <div class="grid-content text-center" ng-click="openCard(key)" ng-repeat="(key, value) in product.multicard_products">
+                    <span class="text-center" style="display: block; padding-bottom: 10px;">{{value[0].intag_choice}}</span>
+                    <span style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{value.sort()[1].intag_choice | multiCardColor}};"></span>
+                    <hr/>
+                </div>
+            </div>
+
             <a class="beeline-button" ng-click="addToBasket()" ng-show="toCartShow">В корзину</a>
         </div>
     </div>
