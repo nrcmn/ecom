@@ -50,8 +50,8 @@ var paths = {
     'client/assets/js/services.js',
     'client/assets/js/directives.js'
   ],
-  build: 'c:/git/beestore'
-  // build: './build'
+  // build: 'c:/git/beestore'
+  build: './build'
 }
 
 // 3. TASKS
