@@ -56,6 +56,12 @@ angular.module('directives', [])
             templateUrl: 'templates/recommendations.html',
             replace: true,
             scope: {list: '@'},
+            controller: function ($scope, $state) {
+                $scope.openRecomendation = function (arg) {
+                    delete window.product;
+                    $state.go('detail', {id: arg.id});
+                }
+            },
             link: function(scope, element, attributes) {
                 (function () {
                     var deferred = $q.defer();
