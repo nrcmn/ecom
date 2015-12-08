@@ -69,12 +69,12 @@ angular.module('directives', [])
                     window.recommendations = [];
 
                     function load() {
+                        console.log(arr.length, arr);
                         if (arr.length == 0) {
                             return false;
                         }
 
                         var index = Math.random() * ((arr.length - 1) - 0) + 0;
-
                         $http({
                             method: 'GET',
                             url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',

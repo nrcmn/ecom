@@ -106,5 +106,5 @@
         </div>
     </div>
 
-    <recommendations list="{{product.rr_recommendations}}"></recommendations>
+    <recommendations ng-if="product.rr_recommendations.length > 0" list="{{product.rr_recommendations}}"></recommendations>
 </div>
