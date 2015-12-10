@@ -16,7 +16,11 @@
     <div class="swiper-container gallery-top">
     <div class="swiper-wrapper">
 
-        <div ng-repeat="image in product.images" class="swiper-slide" style="background-image:url({{image}});">
+        <!-- <div ng-repeat="image in product.images" class="swiper-slide" style="background-image:url({{image}});">
+        </div> -->
+
+        <div ng-repeat="image in product.images" class="swiper-slide dead-center">
+            <img ng-src="{{image}}" src="assets/img/ring.gif" style="max-height:100%; width:initial;margin:auto;">
         </div>
 
     </div>

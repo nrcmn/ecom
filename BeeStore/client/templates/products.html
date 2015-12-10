@@ -40,8 +40,6 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
     <div class="filters-block">
         <div class="grid-block">
             <div class="small-12 medium-5 grid-content">
@@ -80,7 +78,7 @@
     <div class="grid-block small-up-3">
         <div class="grid-content" style="padding;2rem;" ng-repeat="products in productsList">
             <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:flex-start;">
-                <img src="assets/img/ring.svg" style="max-height:100%; width:initial;margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
+                <img src="assets/img/ring.gif" style="max-height:100%; width:initial;margin:auto;" onerror="this.src = 'http://1.bp.blogspot.com/-AbUg0eTuZ48/VGkgHfMen_I/AAAAAAAAKG0/n4pOJGy_jRE/s1600/homer-Doh.jpg'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
             </div>
             <div class="card-section" style="padding-top:0;">
                 <div ng-if="products.price">
@@ -98,6 +96,6 @@
 
     <!-- *** LOADING BAR *** -->
     <div style="text-align:center;padding:40px;" ng-if="!productsList || progress == true">
-        <img src="assets/img/ripple.svg">
+        <img src="assets/img/ripple.gif">
     </div>
 </div>

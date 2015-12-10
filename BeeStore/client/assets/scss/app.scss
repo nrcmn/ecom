@@ -55,6 +55,8 @@ h1,h2,h3,h4 {
     margin-right: auto;
 }
 .swiper-slide {
+    padding: 16px 48px;
+    box-sizing: border-box;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -130,12 +132,12 @@ a:hover, a:focus {
 
 .filters-block {
     position: fixed;
-    top: 38%;
+    top: 34%;
     left: 0;
     z-index: 150;
     width: 100%;
     background: #fff;
-    padding: 1rem 3rem;
+    padding: 2rem 3rem 1rem;
     box-shadow: 0 20px 44px 1px rgba(255,255,255,0.9);
 }
 
@@ -145,6 +147,12 @@ a:hover, a:focus {
 }
 
 // Utiliti classes
+.dead-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .inline {
     display: inline;
 }
