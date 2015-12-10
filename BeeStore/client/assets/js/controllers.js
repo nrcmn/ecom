@@ -175,6 +175,17 @@ angular.module('controllers', [])
                 }
             })
 
+            for (var i in data.multicard_products) {
+                data.multicard_products[i].sort(function (a,b) {
+                    if (a.intag_slug == 'obem-vstroennoi-pamiati') {
+                        return -1;
+                    }
+                    else {
+                        return 1;
+                    }
+                });
+            }
+
             try {
                 window.product.__proto__ = data; // load detail after product list page
             } catch (e) {

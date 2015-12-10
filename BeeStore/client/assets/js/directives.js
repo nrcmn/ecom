@@ -7,7 +7,6 @@ angular.module('directives', [])
             controller: function ($scope, $http, $q, $state) {
                 $scope.leaders = undefined;
                 $scope.openLeader = function (data) {
-                    console.log(data);
                     window.product = data;
                     $state.go('leaders', {id: data.id});
                 }
@@ -69,7 +68,6 @@ angular.module('directives', [])
                     window.recommendations = [];
 
                     function load() {
-                        console.log(arr.length, arr);
                         if (arr.length == 0) {
                             return false;
                         }
