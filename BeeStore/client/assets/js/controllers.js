@@ -164,7 +164,7 @@ angular.module('controllers', [])
 
     .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct) {
         window.scroll(0,0); // scroll to top
-        $scope.product = window.product;
+        (window.product && window.product.id == $stateParams.id) ? $scope.product = window.product : window.product = undefined; // back from multicard bug fix
 
         __LoadOneProduct($stateParams.id).then(function (data) {
             data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
@@ -173,6 +173,7 @@ angular.module('controllers', [])
                 }
             })
 
+            // custom sorter for multicards
             for (var i in data.multicard_products) {
                 data.multicard_products[i].sort(function (a,b) {
                     if (a.intag_slug == 'obem-vstroennoi-pamiati') {
