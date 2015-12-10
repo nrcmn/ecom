@@ -18,15 +18,26 @@ angular.module('directives', [])
 
                     $http({
                         method: 'GET',
-                        url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/recommendation/popular/',
+                        url: 'https://public.backend.vimpelcom.ru/api/public/v1/recommendation/popular/',
                         params: {
                             api_key: window.api_key,
                             market_region: window.market_region,
-                            collection: window.category.id || categories[Math.floor(Math.random() * categories.length)]
+                            collection: window.category.id || categories[Math.floor(Math.random() * categories.length)],
+                            params: 'article,id,images,name,price,remain,main_collection'
                         }
                     })
                     .success(function (data) {
-                        deferred.resolve(data);
+                        var formatedData = [];
+                        data.forEach(function (item, i, arr) {
+                            if (unacceptableCategories.indexOf(item.main_collection.id) > -1 || item.main_collection.id == 30 || item.remain == 'временно нет' || item.remain == 'нет') {
+                                return false
+                            }
+                            else {
+                                formatedData.push(item)
+                            }
+                        })
+
+                        deferred.resolve(formatedData);
                     })
                     .error(function () {
                         console.error('load leaders error');
@@ -75,21 +86,24 @@ angular.module('directives', [])
                         var index = Math.random() * ((arr.length - 1) - 0) + 0;
                         $http({
                             method: 'GET',
-                            url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',
+                            url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',
                             params: {
                                 api_key: window.api_key,
                                 market_region: window.market_region,
-                                params: 'article,id,images,name,price,remain,kind'
+                                params: 'article,id,images,name,price,remain,main_collection'
                             }
                         })
                         .success(function (data) {
-                            arr.splice(index, 1);
-                            if (data.kind.id != 30) {
+                            arr.splice(index.toFixed(), 1);
+                            if (unacceptableCategories.indexOf(data.main_collection.id) > -1 || data.main_collection.id == 30 || data.remain == 'временно нет' || data.remain == 'нет') {
+                                return load();
+                            }
+                            else {
                                 window.recommendations.push(data);
                                 i++;
                             }
 
-                            if (i == 4) {
+                            if (i == 4 || arr.length == 0) {
                                 deferred.resolve();
                                 return false
                             }
@@ -111,14 +125,15 @@ angular.module('directives', [])
                     return deferred.promise;
                 })().then(function () {
                     scope.recommendations = window.recommendations;
-                    $timeout(function () {
-                        var swiper = new Swiper('.recomendation-swiper', {
-                            nextButton: '.swiper-button-next-recomend',
-                            prevButton: '.swiper-button-prev-recomend',
-                            freeMode: true,
-                            slidesPerView: 4,
-                        });
-                    }, 0.000001);
+
+                    // $timeout(function () {
+                    //     var swiper = new Swiper('.recomendation-swiper', {
+                    //         nextButton: '.swiper-button-next-recomend',
+                    //         prevButton: '.swiper-button-prev-recomend',
+                    //         freeMode: true,
+                    //         slidesPerView: 4,
+                    //     });
+                    // }, 0.000001);
                 })
             }
         }

@@ -25,8 +25,7 @@ angular.module('services', [])
         return function (subCategory, amount, page, sort, intags) {
             $http({
                 method: 'GET',
-                // url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/products/',
-                url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/',
+                url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
@@ -96,7 +95,7 @@ angular.module('services', [])
 
             $http({
                 method: 'GET',
-                url: 'https://public.backend-test.vimpelcom.ru/api/public/v1/products/' + id + '/',
+                url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/' + id + '/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
@@ -109,7 +108,7 @@ angular.module('services', [])
             .error(function () {
                 deferred.reject('ERROR! "__LoadOneProduct"');
             })
-            
+
             return deferred.promise;
         }
     })
