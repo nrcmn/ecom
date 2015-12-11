@@ -29,11 +29,11 @@
             <div class="grid-block small-up-3">
                 <div class="grid-content text-center" ng-click="openCard(key)" ng-repeat="(key, value) in product.multicard_products">
                     <div ng-repeat="value in value.sort()">
-                        <span class="text-center" ng-style="key == product.id && {'opacity':'0.3'}" style="display: block; padding-bottom: 10px;" ng-show="value.intag_slug == 'obem-vstroennoi-pamiati'">
+                        <span class="text-center" ng-style="key == product.id && {'text-decoration':'underline'}" style="display: block; padding-bottom: 10px;" ng-show="value.intag_slug == 'obem-vstroennoi-pamiati'">
                             {{value.intag_choice}}
                         </span>
 
-                        <span ng-show="value.intag_slug == 'tsvet'" ng-style="key == product.id && {'opacity':'0.3'}" style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{value.intag_choice | multiCardColor}};"></span>
+                        <span ng-show="value.intag_slug == 'tsvet'" ng-style="key == product.id && {'box-shadow':'0 0 0 4px #fff, 0 0 0 7px red'}" style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{value.intag_choice | multiCardColor}};"></span>
                     </div>
                     <hr/>
                 </div>
