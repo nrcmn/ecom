@@ -55,7 +55,7 @@ h1,h2,h3,h4 {
     margin-right: auto;
 }
 .swiper-slide {
-    padding: 16px 48px;
+    padding: 16px;
     box-sizing: border-box;
     background-size: contain;
     background-position: center;
@@ -64,6 +64,10 @@ h1,h2,h3,h4 {
 .gallery-top {
     height: 80%;
     width: 100%;
+}
+.gallery-top .swiper-slide {
+    padding: 16px 48px;
+    box-sizing: border-box;
 }
 .gallery-thumbs {
     height: 100px;

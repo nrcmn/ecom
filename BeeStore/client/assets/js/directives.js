@@ -52,7 +52,7 @@ angular.module('directives', [])
                             paginationClickable: '.swiper-pagination',
                             nextButton: '.swiper-button-next',
                             prevButton: '.swiper-button-prev',
-                            freeMode: true,
+                            freeMode: false,
                             slidesPerView: 3.5,
                         });
                     }, 0.0001);
