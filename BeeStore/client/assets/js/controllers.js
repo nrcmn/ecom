@@ -173,17 +173,45 @@ angular.module('controllers', [])
                 }
             })
 
-            // custom sorter for multicards
+            var multicardMemories = {};
             for (var i in data.multicard_products) {
-                data.multicard_products[i].sort(function (a,b) {
-                    if (a.intag_slug == 'obem-vstroennoi-pamiati') {
-                        return -1;
+                var multicardArrays = data.multicard_products[i];
+                multicardArrays.forEach(function (item,index,arr) {
+                    if (!multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
+                        multicardMemories[item.intag_choice] = {
+                            current: (i == data.id) ? true : false,
+                            ids: []
+                        };
+
+                        multicardMemories[item.intag_choice].ids.push(i);
                     }
-                    else {
-                        return 1;
+                    else if (multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
+                        if (!multicardMemories[item.intag_choice].current) {
+                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;
+                        }
+
+                        multicardMemories[item.intag_choice].ids.push(i);
                     }
-                });
+
+                    if (multicardMemories[item.intag_choice] && multicardMemories[item.intag_choice].current) {
+                        return data.approvedIdsList = multicardMemories[item.intag_choice].ids;
+                    }
+                })
             }
+
+            var colors = new Array();
+            for (var i in data.multicard_products) {
+                var multicardArrays = data.multicard_products[i];
+                multicardArrays.forEach(function (item,index,arr) {
+                    if (item.intag_slug != "obem-vstroennoi-pamiati") {
+                        item.id = i;
+                        colors.push(item);
+                    }
+                })
+            }
+
+            data.memories = multicardMemories;
+            data.colors = colors;
 
             try {
                 window.product.__proto__ = data; // load detail after product list page
@@ -194,6 +222,19 @@ angular.module('controllers', [])
             $scope.product = window.product;
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         })
+
+        $scope.checkMemory = function (m) {
+            for (var i in $scope.product.memories) {
+                $scope.product.memories[i].current = false;
+            }
+
+            m.current = true;
+            $scope.product.approvedIdsList = m.ids;
+        }
+
+        $scope.checkColor = function (id) {
+            $state.go('detail', {id: id});
+        }
 
         // open field in intags
         $scope.openField = function (f) {

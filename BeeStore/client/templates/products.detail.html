@@ -26,18 +26,19 @@
 
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
 
-            <div class="grid-block small-up-3">
-                <div class="grid-content text-center" ng-click="openCard(key)" ng-repeat="(key, value) in product.multicard_products">
-                    <div ng-repeat="value in value.sort()">
-                        <span class="text-center" ng-style="key == product.id && {'opacity':'0.3'}" style="display: block; padding-bottom: 10px;" ng-show="value.intag_slug == 'obem-vstroennoi-pamiati'">
-                            {{value.intag_choice}}
-                        </span>
+            <div class="grid-block">
+                <div class="grid-content" ng-repeat="(key, value) in product.memories" style="width: 100%;" ng-click="checkMemory(product.memories[key])">
+                    <span ng-style="value.current && {'font-weight':'bold'}">{{key}}</span>
+                </div>
 
-                        <span ng-show="value.intag_slug == 'tsvet'" ng-style="key == product.id && {'opacity':'0.3'}" style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{value.intag_choice | multiCardColor}};"></span>
+                <div class="grid-block small-up-3" ng-repeat="color in product.colors" ng-if="product.approvedIdsList.indexOf(color.id) != -1" ng-click="checkColor(color.id)">
+                    <div class="grid-content">
+                        <span style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{color.intag_choice | multiCardColor}};"></span>
 
-                        <span ng-show="value.intag_slug == 'obem-pamiati'" ng-style="key == product.id && {'font-weight':'bold', 'font-size':'1.2rem'}" style="display: block; padding-bottom: 10px;">{{value.intag_choice}}</span>
+                        <span ng-if="color.intag_slug != 'tsvet'">{{color.intag_choice}}</span>
                     </div>
-                    <hr/>
+
+
                 </div>
             </div>
 
