@@ -155,6 +155,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 163]; // unacceptable categories ids
 
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
+            url = 'https://public.backend.vimpelcom.ru',
             market_region = 98082,
             filter = {},
             page = 2;

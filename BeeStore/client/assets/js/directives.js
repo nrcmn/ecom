@@ -18,7 +18,7 @@ angular.module('directives', [])
 
                     $http({
                         method: 'GET',
-                        url: 'https://public.backend.vimpelcom.ru/api/public/v1/recommendation/popular/',
+                        url: window.url + '/api/public/v1/recommendation/popular/',
                         params: {
                             api_key: window.api_key,
                             market_region: window.market_region,
@@ -86,7 +86,7 @@ angular.module('directives', [])
                         var index = Math.random() * ((arr.length - 1) - 0) + 0;
                         $http({
                             method: 'GET',
-                            url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/' + arr[index.toFixed()] + '/',
+                            url: window.url + '/api/public/v1/products/' + arr[index.toFixed()] + '/',
                             params: {
                                 api_key: window.api_key,
                                 market_region: window.market_region,

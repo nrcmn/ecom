@@ -4,7 +4,7 @@ angular.module('services', [])
         return function (categories) {
             $http({
                 method: 'GET',
-                url: 'http://beeline-ecommerce.herokuapp.com/api/public/v1/collections/',
+                url: window.url + '/api/public/v1/collections/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region
@@ -25,7 +25,7 @@ angular.module('services', [])
         return function (subCategory, amount, page, sort, intags) {
             $http({
                 method: 'GET',
-                url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/',
+                url: window.url + '/api/public/v1/products/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
@@ -69,7 +69,7 @@ angular.module('services', [])
         return function (id) {
             $http({
                 method: 'GET',
-                url: 'https://public.backend.vimpelcom.ru/api/public/v1/collections/' + id + '/filters/',
+                url: window.url + '/api/public/v1/collections/' + id + '/filters/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region
@@ -95,7 +95,7 @@ angular.module('services', [])
 
             $http({
                 method: 'GET',
-                url: 'https://public.backend.vimpelcom.ru/api/public/v1/products/' + id + '/',
+                url: window.url + '/api/public/v1/products/' + id + '/',
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
