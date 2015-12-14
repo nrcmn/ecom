@@ -388,10 +388,6 @@ angular.module('controllers', [])
         $scope.form = {};
         $scope.form.phone = '';
 
-        // $scope.checkNews = function ($event) {
-        //     $scope.form.news = $event.target.checked;
-        // }
-
         $scope.placeAnOrder = function () {
             console.log($scope.form);
             $rootScope.basket.length = 0;

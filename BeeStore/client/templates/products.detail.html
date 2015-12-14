@@ -13,7 +13,7 @@
 
         <div class="grid-content medium-4">
 
-            <span style="text-decoration: line-through;">{{product.old_price}}<br/></span>
+            <span style="text-decoration: line-through;" ng-if="product.old_price > product.price">{{product.old_price}}<br/></span>
             <!-- <span ng-if="product.oplPrice" style="text-decoration: overline;">{{product.oplPrice}}</span> -->
             <h3 ng-if="product.price" class="inline old-price">{{product.price * 2 | price}}</h3> руб.
             <div ng-if="product.price">
