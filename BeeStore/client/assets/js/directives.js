@@ -144,27 +144,41 @@ angular.module('directives', [])
             templateUrl: 'templates/images.html',
             replace: true,
             scope: false,
-            link: function () {
-                $timeout(function () {
-                    //two-way control swiper
-                    var swiper1 = new Swiper('.gallery-top', {
-                        nextButton: '.swiper-button-next',
-                        prevButton: '.swiper-button-prev',
-                        spaceBetween: 10,
-                    });
-                    var swiper2 = new Swiper('.gallery-thumbs', {
-                        spaceBetween: 10,
-                        centeredSlides: true,
-                        slidesPerView: 'auto',
-                        touchRatio: 0.2,
-                        slideToClickedSlide: true
-                    });
-
-                    swiper1.params.control = swiper2;
-                    swiper2.params.control = swiper1;
-                }, 1000);
+            controller: function () {
+                imagesCount = 0;
             }
         }
+    })
+
+    .directive('imageonload', function($timeout) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind('load', function() {
+                    imagesCount += 1;
+                    if (imagesCount == window.product.images.length) {
+                        $timeout(function () {
+                            //two-way control swiper
+                            var swiper1 = new Swiper('.gallery-top', {
+                                nextButton: '.swiper-button-next',
+                                prevButton: '.swiper-button-prev',
+                                spaceBetween: 10,
+                            });
+                            var swiper2 = new Swiper('.gallery-thumbs', {
+                                spaceBetween: 10,
+                                centeredSlides: true,
+                                slidesPerView: 'auto',
+                                touchRatio: 0.2,
+                                slideToClickedSlide: true
+                            });
+
+                            swiper1.params.control = swiper2;
+                            swiper2.params.control = swiper1;
+                        }, 0.000001);
+                    }
+                });
+            }
+        };
     })
 
     .directive('key', function () {
