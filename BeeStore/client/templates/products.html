@@ -5,7 +5,7 @@
         <div class="grid-content medium-4">
             <section class="block-list">
                 <ul>
-                    <li ng-if="$index != 0" ng-style="setActiveStyle($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                    <li ng-if="$index != 0" ng-class="setActiveClass($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
                         <a>{{filter.name}}</a>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
                 <label>Сортировать по:</label>
                 <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select>
             </div>
-            
+
         </div>
     </div>
 

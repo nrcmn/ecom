@@ -242,12 +242,12 @@ angular.module('controllers', [])
         }
 
         // active style for intags
-        $scope.setActiveStyle = function (condition) {
+        $scope.setActiveClass = function (condition) {
             if (condition) {
-                return {background: '#fff'}
+                return 'active-item'
             }
             else {
-                return {background: '#ccc'}
+                return ''
             }
         }
 
@@ -324,12 +324,12 @@ angular.module('controllers', [])
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
         }
 
-        $rootScope.setActiveStyle = function (condition) {
+        $rootScope.setActiveClass = function (condition) {
             if (condition) {
-                return {background: '#fff'}
+                return 'active-item'
             }
             else {
-                return {background: '#ccc'}
+                return ''
             }
         }
     })
