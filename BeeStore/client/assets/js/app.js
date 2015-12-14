@@ -64,7 +64,6 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 getTitle: function () {return null}, // hide on detail page
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
-                    $scope.toCartShow = true;
                     $rootScope.basketBottomShow = true;
                 },
                 show: false,
@@ -127,7 +126,6 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 getTitle: function () {return null}, // hide on detail page
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
-                    $scope.toCartShow = false;
                     $rootScope.basketBottomShow = true;
                 },
                 show: false,

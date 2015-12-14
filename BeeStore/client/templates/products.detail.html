@@ -34,7 +34,7 @@
                 <div class="grid-block small-up-3" ng-repeat="color in product.colors" ng-if="product.approvedIdsList.indexOf(color.id) != -1" ng-click="checkColor(color.id)">
                     <div class="grid-content">
                         <span style="display:block; margin: auto; width: 30px; height: 30px; border-radius: 20px; background: {{color.intag_choice | multiCardColor}};"></span>
-                        
+
                         <span ng-if="color.intag_slug != 'tsvet'">{{color.intag_choice}}</span>
                     </div>
 
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <a class="beeline-button" ng-click="addToBasket()" ng-show="toCartShow">В корзину</a>
+            <a class="beeline-button" ng-click="addToBasket()">В корзину</a>
         </div>
     </div>
 
