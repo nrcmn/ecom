@@ -79,7 +79,7 @@ angular.module('directives', [])
                     window.recommendations = [];
 
                     function load() {
-                        if (arr.length == 0) {
+                        if (arr.length == 0 || arr[0] == '') {
                             return false;
                         }
 
