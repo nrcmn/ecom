@@ -307,6 +307,7 @@ angular.module('controllers', [])
         $rootScope.setFilter = function () {
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             $rootScope.productsList = undefined;
+            window.page = 1;
         }
 
         $rootScope.clearFilter = function () {
@@ -322,6 +323,7 @@ angular.module('controllers', [])
             $rootScope.productsList = undefined;
             $rootScope.progress = true; // show progress bar
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
+            window.page = 1;
         }
 
         $rootScope.setActiveClass = function (condition) {

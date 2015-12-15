@@ -41,6 +41,9 @@ angular.module('services', [])
                     window.scrollLoad = false;
                     $rootScope.progress = false;
                 }
+                else if (data.length >= amount) {
+                    window.scrollLoad = true;
+                }
 
                 if (intags && page == 1) {
                     $rootScope.productsList = data;
