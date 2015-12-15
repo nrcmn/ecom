@@ -5,7 +5,7 @@
         <div class="grid-content medium-4">
             <section class="block-list">
                 <ul>
-                    <li ng-if="$index != 0" ng-class="setActiveClass($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                    <li ng-if="filter.id != 659" ng-class="setActiveClass($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
                         <a>{{filter.name}}</a>
                     </li>
                 </ul>
