@@ -212,7 +212,11 @@ a:hover, a:focus {
 
 .modal {
     min-width: 600px;
+    border: 4px #FFB612 solid;
+    border-radius: 4px;
 }
+
+
 
 .arrow-up {
     position: fixed;
@@ -244,4 +248,9 @@ a:hover, a:focus {
 
 .notification-container.top-right {
     top: 31%;
+}
+
+
+.block-list .active-item {
+    background: orange;
 }
