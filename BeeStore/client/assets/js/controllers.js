@@ -127,16 +127,24 @@ angular.module('controllers', [])
         // -- SORT block
         $scope.items = [
             {
+                value: null,
+                label: 'Сортировать по:',
+                selected: true
+            },
+            {
                 value: '-weight',
                 label: 'популярности',
+                selected: false
             },
             {
                 value: 'price',
                 label: 'цене: по возрастанию',
+                selected: false
             },
             {
                 value: '-price',
                 label: 'цене: по убыванию',
+                selected: false
             }
         ];
 
@@ -147,18 +155,18 @@ angular.module('controllers', [])
             window.sortItem.index = 0;
         }
 
-        $scope.sortBy = function () {
+        $scope.sortBy = function (arg) {
             $rootScope.productsList = undefined;
-
             window.page = 1;
-            window.sortItem = $scope.selected;
-            $scope.items.forEach(function (item, i, arr) {
-                if (item.value == $scope.selected.value) {
-                    window.sortItem.index = i;
-                }
-            })
+            window.sortItem = arg.value;
+            $scope.items[0].label = arg.label;
+            $scope.customSelectActiveClass = ' ';
 
-            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, $rootScope.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem, $rootScope.intagChoicesList);
+        }
+
+        $scope.customSelect = function () {
+            return $scope.customSelectActiveClass = (!$scope.customSelectActiveClass) ? 'cs-active' : '';
         }
     })
 
