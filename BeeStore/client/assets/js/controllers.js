@@ -127,16 +127,24 @@ angular.module('controllers', [])
         // -- SORT block
         $scope.items = [
             {
+                value: null,
+                label: 'Сортировать по:',
+                selected: true
+            },
+            {
                 value: '-weight',
                 label: 'популярности',
+                selected: false
             },
             {
                 value: 'price',
                 label: 'цене: по возрастанию',
+                selected: false
             },
             {
                 value: '-price',
                 label: 'цене: по убыванию',
+                selected: false
             }
         ];
 
@@ -147,18 +155,18 @@ angular.module('controllers', [])
             window.sortItem.index = 0;
         }
 
-        $scope.sortBy = function () {
+        $scope.sortBy = function (arg) {
             $rootScope.productsList = undefined;
-
             window.page = 1;
-            window.sortItem = $scope.selected;
-            $scope.items.forEach(function (item, i, arr) {
-                if (item.value == $scope.selected.value) {
-                    window.sortItem.index = i;
-                }
-            })
+            window.sortItem = arg.value;
+            $scope.items[0].label = arg.label;
+            $scope.customSelectActiveClass = ' ';
 
-            __LoadProducts(window.subCategory, 15, 1, $scope.selected.value, $rootScope.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem, $rootScope.intagChoicesList);
+        }
+
+        $scope.customSelect = function () {
+            return $scope.customSelectActiveClass = (!$scope.customSelectActiveClass) ? 'cs-active' : '';
         }
     })
 
@@ -173,66 +181,75 @@ angular.module('controllers', [])
                 }
             })
 
-            var multicardMemories = {};
+            var multicardMemories = {}; // object with parent multicard params
             for (var i in data.multicard_products) {
                 var multicardArrays = data.multicard_products[i];
                 multicardArrays.forEach(function (item,index,arr) {
+                    // if this is memory and object haven't this value as key.
                     if (!multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
                         multicardMemories[item.intag_choice] = {
-                            current: (i == data.id) ? true : false,
+                            current: (i == data.id) ? true : false, // if this is current product
                             ids: []
                         };
 
-                        multicardMemories[item.intag_choice].ids.push(i);
+                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
                     }
+                    // if this is memory and object have this value as key
                     else if (multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
                         if (!multicardMemories[item.intag_choice].current) {
-                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;
+                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;  // if this is current product
                         }
 
-                        multicardMemories[item.intag_choice].ids.push(i);
+                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
                     }
 
+                    // create list with ids, which is approved for request for this object key
                     if (multicardMemories[item.intag_choice] && multicardMemories[item.intag_choice].current) {
                         return data.approvedIdsList = multicardMemories[item.intag_choice].ids;
                     }
                 })
             }
 
+            // create colors array
             var colors = new Array();
+
             for (var i in data.multicard_products) {
                 var multicardArrays = data.multicard_products[i];
                 multicardArrays.forEach(function (item,index,arr) {
-                    if (item.intag_slug != "obem-vstroennoi-pamiati") {
-                        item.id = i;
-                        colors.push(item);
+                    // if this is color slug
+                    if (item.intag_slug == "tsvet") {
+                        item.id = i; // add id to color object
+                        colors.push(item); // push color object to colors array
                     }
                 })
             }
 
+            // import memories object and colors array to data object
             data.memories = multicardMemories;
             data.colors = colors;
 
+            // inheritance data to global product object
             try {
                 window.product.__proto__ = data; // load detail after product list page
             } catch (e) {
                 window.product = data; // load detail without products list page
             }
 
-            $scope.product = window.product;
+            $scope.product = window.product; // set scope
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         })
 
         $scope.checkMemory = function (m) {
             for (var i in $scope.product.memories) {
-                $scope.product.memories[i].current = false;
+                $scope.product.memories[i].current = false; // remove current boolean
             }
 
             m.current = true;
-            $scope.product.approvedIdsList = m.ids;
+            $scope.product.approvedIdsList = m.ids; // set approved ids list
         }
 
         $scope.checkColor = function (id) {
+            // check color functions
             $state.go('detail', {id: id});
         }
 
@@ -254,7 +271,6 @@ angular.module('controllers', [])
         $scope.openCard = function (key) {
             delete window.product;
             $state.go('detail', {id: key});
-            // $state.go($state.current, {id: key}, {reload: true});
         }
 
         $scope.addToBasket = function () {
@@ -288,6 +304,8 @@ angular.module('controllers', [])
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
         // $rootScope.intagChoicesList = []; // array for intag_choices ids
         $rootScope.filterInd = 1;
+        window.selectedFilters = {};
+
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
         }
@@ -297,20 +315,46 @@ angular.module('controllers', [])
             if (checkbox.checked) {
                 $rootScope.intagChoicesList.push(checkbox.value);
                 val.check = true;
+
+                // selected filters
+                if (!window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name]) {
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name] = [];
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                        id: val.id,
+                        value: val.value
+                    })
+                }
+                else {
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                        id: val.id,
+                        value: val.value
+                    })
+                }
             }
             else if (!checkbox.checked) {
                 $rootScope.intagChoicesList.splice($rootScope.intagChoicesList.indexOf(checkbox.value), 1);
                 val.check = false;
+
+                // selected filters
+                window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].forEach(function (item, i, arr) {
+                    if (item.id == val.id) {
+                        window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].splice(i, 1);
+                    }
+                })
             }
+
+            $rootScope.selectedFilters = window.selectedFilters;
         }
 
         $rootScope.setFilter = function () {
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             $rootScope.productsList = undefined;
+            window.page = 1;
         }
 
         $rootScope.clearFilter = function () {
             $rootScope.intagChoicesList.length = 0; // clear global intag choices array
+            $rootScope.selectedFilters = window.selectedFilters = {}; // clear selected filters
 
             // delete all checked filters
             window.filter[window.subCategory.id].forEach(function (item, i, arr) {
@@ -322,6 +366,7 @@ angular.module('controllers', [])
             $rootScope.productsList = undefined;
             $rootScope.progress = true; // show progress bar
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
+            window.page = 1;
         }
 
         $rootScope.setActiveClass = function (condition) {

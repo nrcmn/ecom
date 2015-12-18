@@ -27,7 +27,7 @@
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
 
             <div class="grid-block">
-                <div class="grid-content" ng-repeat="(key, value) in product.memories" style="width: 100%;" ng-click="checkMemory(product.memories[key])">
+                <div class="grid-content" ng-repeat="(key, value) in product.memories track by $index" style="width: 100%;" ng-click="checkMemory(product.memories[key])">
                     <span ng-style="value.current && {'font-weight':'bold'}">{{key}}</span>
                 </div>
 

@@ -33,13 +33,17 @@ angular.module('services', [])
                     amount: amount,
                     page: page,
                     sort_by: sort,
-                    intag_choices: intags
+                    intag_choices: intags/*,
+                    point_codes: "0952"*/
                 }
             })
             .success(function (data) {
                 if (data.length < amount) {
                     window.scrollLoad = false;
                     $rootScope.progress = false;
+                }
+                else if (data.length >= amount) {
+                    window.scrollLoad = true;
                 }
 
                 if (intags && page == 1) {
@@ -90,8 +94,8 @@ angular.module('services', [])
     .service('__LoadOneProduct', function ($http, $rootScope, $q) {
         return function (id) {
             var deferred = $q.defer();
-
-            var params = (!window.product) ? 'id,name,remain,price,images,article,description,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products' : 'description,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,id';
+            var params = (!window.product) ? 'id,name,remain,price,images,article,description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products' : 'description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,id,extended_remains';
+            // TODO: add "description_small" parameter in 1.21 release
 
             $http({
                 method: 'GET',
@@ -99,7 +103,8 @@ angular.module('services', [])
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
-                    params: params
+                    params: params,/*
+                    point_codes: "0952"*/
                 }
             })
             .success(function (data) {
