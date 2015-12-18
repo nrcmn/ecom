@@ -154,9 +154,12 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
 
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
             // url = 'https://public.backend.vimpelcom.ru', // public
-            // url = 'http://backend.vimpelcom.ru:8080' // internal
-            url = 'https://public.backend-test.vimpelcom.ru', // test
-            market_region = 98082,
+            url = 'https://public.backend-test.vimpelcom.ru', // public test
+            // url = 'http://backend.vimpelcom.ru:8080', // internal
+            // url = 'http://backend-test.vimpelcom.ru:8080', // internal test
+
+            market_region = 98082, // Moscow
+            // market_region = 98220, // Ekaterinburg
             filter = {},
             page = 2;
 

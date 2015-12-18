@@ -173,66 +173,75 @@ angular.module('controllers', [])
                 }
             })
 
-            var multicardMemories = {};
+            var multicardMemories = {}; // object with parent multicard params
             for (var i in data.multicard_products) {
                 var multicardArrays = data.multicard_products[i];
                 multicardArrays.forEach(function (item,index,arr) {
+                    // if this is memory and object haven't this value as key.
                     if (!multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
                         multicardMemories[item.intag_choice] = {
-                            current: (i == data.id) ? true : false,
+                            current: (i == data.id) ? true : false, // if this is current product
                             ids: []
                         };
 
-                        multicardMemories[item.intag_choice].ids.push(i);
+                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
                     }
+                    // if this is memory and object have this value as key
                     else if (multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
                         if (!multicardMemories[item.intag_choice].current) {
-                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;
+                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;  // if this is current product
                         }
 
-                        multicardMemories[item.intag_choice].ids.push(i);
+                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
                     }
 
+                    // create list with ids, which is approved for request for this object key
                     if (multicardMemories[item.intag_choice] && multicardMemories[item.intag_choice].current) {
                         return data.approvedIdsList = multicardMemories[item.intag_choice].ids;
                     }
                 })
             }
 
+            // create colors array
             var colors = new Array();
+
             for (var i in data.multicard_products) {
                 var multicardArrays = data.multicard_products[i];
                 multicardArrays.forEach(function (item,index,arr) {
-                    if (item.intag_slug != "obem-vstroennoi-pamiati") {
-                        item.id = i;
-                        colors.push(item);
+                    // if this is color slug
+                    if (item.intag_slug == "tsvet") {
+                        item.id = i; // add id to color object
+                        colors.push(item); // push color object to colors array
                     }
                 })
             }
 
+            // import memories object and colors array to data object
             data.memories = multicardMemories;
             data.colors = colors;
 
+            // inheritance data to global product object
             try {
                 window.product.__proto__ = data; // load detail after product list page
             } catch (e) {
                 window.product = data; // load detail without products list page
             }
 
-            $scope.product = window.product;
+            $scope.product = window.product; // set scope
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         })
 
         $scope.checkMemory = function (m) {
             for (var i in $scope.product.memories) {
-                $scope.product.memories[i].current = false;
+                $scope.product.memories[i].current = false; // remove current boolean
             }
 
             m.current = true;
-            $scope.product.approvedIdsList = m.ids;
+            $scope.product.approvedIdsList = m.ids; // set approved ids list
         }
 
         $scope.checkColor = function (id) {
+            // check color functions
             $state.go('detail', {id: id});
         }
 
@@ -254,7 +263,6 @@ angular.module('controllers', [])
         $scope.openCard = function (key) {
             delete window.product;
             $state.go('detail', {id: key});
-            // $state.go($state.current, {id: key}, {reload: true});
         }
 
         $scope.addToBasket = function () {
