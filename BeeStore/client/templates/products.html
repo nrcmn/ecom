@@ -25,6 +25,19 @@
         </div>
     </div>
     <div class="grid-block">
+        <div class="grid-block small-up-4">
+            <div class="grid-content" ng-repeat="(key,value) in selectedFilters">
+                <b>{{key}}</b>
+                <br/>
+                <ul>
+                    <li ng-repeat="params in value">
+                        {{params.value}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="grid-block">
         <div class="grid-content medium-6">
             <a zf-close="" class="beeline-button" ng-click="setFilter()">Применить фильтр</a>
         </div>

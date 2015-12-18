@@ -304,6 +304,8 @@ angular.module('controllers', [])
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
         // $rootScope.intagChoicesList = []; // array for intag_choices ids
         $rootScope.filterInd = 1;
+        window.selectedFilters = {};
+
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
         }
@@ -313,11 +315,35 @@ angular.module('controllers', [])
             if (checkbox.checked) {
                 $rootScope.intagChoicesList.push(checkbox.value);
                 val.check = true;
+
+                // selected filters
+                if (!window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name]) {
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name] = [];
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                        id: val.id,
+                        value: val.value
+                    })
+                }
+                else {
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                        id: val.id,
+                        value: val.value
+                    })
+                }
             }
             else if (!checkbox.checked) {
                 $rootScope.intagChoicesList.splice($rootScope.intagChoicesList.indexOf(checkbox.value), 1);
                 val.check = false;
+
+                // selected filters
+                window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].forEach(function (item, i, arr) {
+                    if (item.id == val.id) {
+                        window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].splice(i, 1);
+                    }
+                })
             }
+
+            $rootScope.selectedFilters = window.selectedFilters;
         }
 
         $rootScope.setFilter = function () {
@@ -328,6 +354,7 @@ angular.module('controllers', [])
 
         $rootScope.clearFilter = function () {
             $rootScope.intagChoicesList.length = 0; // clear global intag choices array
+            $rootScope.selectedFilters = window.selectedFilters = {}; // clear selected filters
 
             // delete all checked filters
             window.filter[window.subCategory.id].forEach(function (item, i, arr) {
