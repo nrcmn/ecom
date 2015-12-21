@@ -11,6 +11,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = false;
                 },
                 show: false,
                 id: 1,
@@ -31,6 +32,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = true;
                 },
                 show: true,
                 id: 2,
@@ -51,6 +53,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = true;
                 },
                 show: true,
                 id: 3,
@@ -65,6 +68,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = true;
                 },
                 show: false,
                 id: 4,
@@ -80,6 +84,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = true;
                 },
                 show: true,
                 id: 5,
@@ -99,6 +104,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = false;
+                    $rootScope.showHomeButton = true;
                 },
                 show: true,
                 id: 6,
@@ -113,6 +119,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = false;
+                    $rootScope.showHomeButton = true;
                 },
                 show: true,
                 id: 7,
@@ -127,6 +134,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHomeButton = true;
                 },
                 show: false,
                 id: 8,
@@ -153,15 +161,16 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 163]; // unacceptable categories ids
 
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
-            // url = 'https://public.backend.vimpelcom.ru', // public
-            url = 'https://public.backend-test.vimpelcom.ru', // public test
+            url = 'https://public.backend.vimpelcom.ru', // public
+            // url = 'https://public.backend-test.vimpelcom.ru', // public test
             // url = 'http://backend.vimpelcom.ru:8080', // internal
             // url = 'http://backend-test.vimpelcom.ru:8080', // internal test
 
             market_region = 98082, // Moscow
             // market_region = 98220, // Ekaterinburg
             filter = {},
-            page = 2;
+            page = 2,
+            marketCode = 'VIP';
 
         // Bread crumbs
         $rootScope.crumbs = []; // crumbs
