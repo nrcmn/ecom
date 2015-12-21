@@ -97,7 +97,7 @@ angular.module('controllers', [])
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500)) {
                 if (lazyLoadNow) {return false} // if loading process running later
 
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoicesList);
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
                 $rootScope.progress = true;
                 window.lazyLoadNow = true; // start lazy loading process
             }
@@ -148,7 +148,7 @@ angular.module('controllers', [])
             $scope.selected = arg;
             $scope.customSelectActiveClass = ' ';
 
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
         }
 
         $scope.customSelect = function () {
@@ -362,7 +362,7 @@ angular.module('controllers', [])
 
         $rootScope.setFilter = function () {
             $rootScope.intagChoicesList = window.intagChoicesList;
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             $rootScope.productsList = undefined;
             window.page = 1;
         }
@@ -380,7 +380,7 @@ angular.module('controllers', [])
 
             $rootScope.productsList = undefined;
             $rootScope.progress = true; // show progress bar
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             window.page = 1;
         }
 
