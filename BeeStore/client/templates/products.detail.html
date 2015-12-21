@@ -115,7 +115,32 @@
     </div>
 
     <div zf-modal="" id="pricePlanModal">
-
+        <h2>{{pricePlansData.name}}</h2>
+        <ul style="padding: 0; margin: 0; list-style-type: none;">
+            <li ng-repeat="desc in pricePlansData.description" ng-if="desc.type != 'button'">
+                <h4 ng-if="desc.type == 'large'">{{desc.strings[0]}}</h4>
+                <span ng-if="desc.type == 'separator'" style="width: 100%; border-bottom: 3px dashed #666; margin: 10px 0; display: block;"></span>
+                <b ng-if="desc.type == 'normal'">{{desc.strings[0]}}</b>
+                <div ng-if="desc.type == 'terms'" style="padding: 0 1rem;">
+                    <div style="display: flex;">
+                        <div>
+                            &mdash;&nbsp;
+                        </div>
+                        <div>
+                            {{desc.strings[0]}}
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-block" ng-if="desc.type == 'price'" style="border: 2px solid #666; padding: 10px; border-radius: 10px; margin: 10px 0; font-size: 1.3rem">
+                    <div class="grid-content medium-8 text-left">
+                        <span>{{desc.strings[0]}}</span>
+                    </div>
+                    <div class="grid-content medium-4 text-right">
+                        <span>{{desc.strings[1]}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <recommendations list="{{product.rr_recommendations}}"></recommendations>

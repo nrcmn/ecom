@@ -155,7 +155,7 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct, __LoadPricePlan) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct, __LoadPricePlan, __LoadMockPricePlans) {
 
         window.scroll(0,0); // scroll to top
         (window.product && window.product.id == $stateParams.id) ? $scope.product = window.product : window.product = undefined; // back from multicard bug fix
@@ -222,7 +222,8 @@ angular.module('controllers', [])
             }
 
             if (window.product.article.indexOf('kit') > -1) {
-                __LoadPricePlan(window.product.description_small);
+                // __LoadPricePlan(window.product.description_small); // only for working mobile backend
+                __LoadMockPricePlans(window.product.description_small); // service with mock PricePlans data
             }
 
             $scope.product = window.product; // set scope

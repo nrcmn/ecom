@@ -123,6 +123,22 @@ angular.module('services', [])
         }
     })
 
+    .service('__LoadMockPricePlans', function ($http, $rootScope) {
+        return function (arg) {
+            var soc = arg.split(';')[0];
+            $http.get('./assets/http/pricePlans.json')
+            .success(function (data) {
+                $rootScope.showPricePlanPopup = true;
+                data.forEach(function (item, i, arr) {
+                    if (item.plans[0].code[0].name == soc) {
+                        window.currentPricePlan = item.plans[0];
+                        return $rootScope.pricePlansData = item.plans[0];
+                    }
+                })
+            })
+        }
+    })
+
     .service('__LoadPricePlan', function ($http, $rootScope) {
         return function (arg) {
             var soc = arg.split(';')[0];
