@@ -222,7 +222,6 @@ angular.module('controllers', [])
             }
 
             if (window.product.article.indexOf('kit') > -1) {
-                $scope.showPricePlanPopup = true;
                 __LoadPricePlan(window.product.description_small);
             }
 

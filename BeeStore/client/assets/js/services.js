@@ -139,6 +139,7 @@ angular.module('services', [])
             })
             .success(function (data) {
                 console.log(data);
+                $rootScope.showPricePlanPopup = true;
             })
         }
     })
