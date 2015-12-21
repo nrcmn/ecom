@@ -1,3 +1,102 @@
+
+
+<div class="categories" ng-controller="ProductListCtrl">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="filters-block">
+
+        <div class="grid-block">
+            <div class="small-12 medium-4 grid-content">
+                <label>Фильтровать по:</label>
+                <a ng-if="intagChoicesList.length == 0" style="position:relative;width:100%;border: 1px solid #ccc;background:#fff;font-size:1rem; line-height:0.8rem; text-align:left;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a>
+                <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
+            </div>
+            <div class="small-12 medium-4 grid-content">
+                <div class="cs-select cs-skin-border" ng-class="customSelectActiveClass || ''" ng-click="customSelect()">
+					<span class="cs-placeholder">{{items[0].label}}</span>
+					<div class="cs-options">
+						<ul>
+							<li ng-repeat="item in items" ng-if="!$first" ng-click="sortBy(item);">
+								<span>{{item.label}}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+                <!-- <label>Сортировать по:</label>
+                <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select> -->
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- *** PRODUCT GRID *** -->
+    <div class="grid-block small-up-3 align-center products">
+        <div class="grid-block" style="padding;2rem;" ng-repeat="products in productsList">
+
+            <div class="padding">
+                <div class="image-section padding">
+                    <img src="assets/img/ring.gif" ng-src="{{products.images[0]}}" onerror="this.src = 'assets/img/placeholder.png'" ng-click="openProduct(products)">
+                </div>
+                <div class="padding">
+                    <div ng-if="products.price">
+                        <h4 class="inline old-price">{{products.price * 2 | price}}</h4><span> руб.</span>
+                    <br>
+                        <h2 class="inline">{{products.price | price}}</h2><span> руб.</span>
+                    </div>
+                    <h4 ng-click="openProduct(products)">{{products.name}}</h4>
+                </div>
+            </div> 
+
+            <!-- <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:flex-start;">
+                <img src="assets/img/ring.gif" style="max-height:100%; width:initial;margin:;" onerror="this.src = 'assets/img/placeholder.png'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
+            </div>
+            <div class="card-section" style="padding-top:0;">
+                <div ng-if="products.price">
+                    <h4 class="inline old-price">{{products.price * 2 | price}}</h4><span> руб.</span>
+                <br>
+                    <h2 class="inline">{{products.price | price}}</h2><span> руб.</span>
+                </div>
+                <h4 ng-click="openProduct(products)">{{products.name}}</h4>
+                <div style="padding:32px 0;">
+                    <a ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- *** LOADING BAR *** -->
+    <div style="text-align:center;padding:40px;" ng-if="!productsList || progress == true">
+        <img src="assets/img/ripple.gif">
+    </div>
+
+    <!-- *** FILTERS BUTTON *** -->
+    <!-- <a ng-show="leftFilter" zf-open="filterModal" class="filters-button beeline-button">
+        <span ng-if="intagChoicesList.length == 0">Выберите параметры</span>
+        <span ng-if="intagChoicesList.length != 0">Выбрано параметров ({{intagChoicesList.length}})</span>
+    </a> -->
+
+    <!-- *** Arrow Up BUTTON *** -->
+    <div class="arrow-up" ng-show="leftFilter" ng-click="scrollToTop()">
+        <img src="assets/img/arrow-up.svg">
+    </div>
+
+    <!-- *** IF PRODUCTS LIST IS EMPTY *** -->
+    <div ng-if="productsList.length == 0" style="padding: 10px; width: 100%; border: 2px dashed #999; border-radius: 10px; margin-top: 50px; text-align: center;">
+        <h3>Ничего не найдено</h3>
+        <p>
+            Попробуйте поменять значения фильтров
+        </p>
+    </div>
+</div>
+
+
+
+
 <!-- *** FILTERS MODAL *** -->
 <div zf-modal="" id="filterModal" ng-controller="FilterCtrl">
     <a zf-close="" class="close-button" style="top:0.1rem;right:0.1rem;"><img src="assets/img/close.svg" style="width:40px;"></a>
@@ -45,83 +144,5 @@
             <a class="beeline-button" style="background:transparent;" ng-click="clearFilter()">Очистить фильтр</a>
         </div>
         <!-- <a zf-close="" class="alert hollow button" ng-click="cancelFilter()">Отмена</a> -->
-    </div>
-</div>
-
-<div class="grid-container" ng-controller="ProductListCtrl">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="filters-block">
-
-        <div class="grid-block">
-            <div class="small-12 medium-5 grid-content">
-                <label>Фильтровать по:</label>
-                <a ng-if="intagChoicesList.length == 0" style="position:relative;width:100%;border: 1px solid #ccc;background:#fff;font-size:1rem; line-height:0.8rem; text-align:left;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a>
-                <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
-            </div>
-            <div class="small-12 medium-5 grid-content">
-                <div class="cs-select cs-skin-border" ng-class="customSelectActiveClass || ''" ng-click="customSelect()">
-					<span class="cs-placeholder">{{items[0].label}}</span>
-					<div class="cs-options">
-						<ul>
-							<li ng-repeat="item in items" ng-if="!$first" ng-click="sortBy(item);">
-								<span>{{item.label}}</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-                <!-- <label>Сортировать по:</label>
-                <select ng-options="item as item.label for item in items" ng-model="selected" ng-change="sortBy()"></select> -->
-            </div>
-
-        </div>
-    </div>
-
-    <!-- *** FILTERS BUTTON *** -->
-    <!-- <a ng-show="leftFilter" zf-open="filterModal" class="filters-button beeline-button">
-        <span ng-if="intagChoicesList.length == 0">Выберите параметры</span>
-        <span ng-if="intagChoicesList.length != 0">Выбрано параметров ({{intagChoicesList.length}})</span>
-    </a> -->
-
-    <!-- *** Arrow Up BUTTON *** -->
-    <div class="arrow-up" ng-show="leftFilter" ng-click="scrollToTop()">
-        <img src="assets/img/arrow-up.svg">
-    </div>
-
-
-    <!-- *** IF PRODUCTS LIST IS EMPTY *** -->
-    <div ng-if="productsList.length == 0" style="padding: 10px; width: 100%; border: 2px dashed #999; border-radius: 10px; margin-top: 50px; text-align: center;">
-        <h3>Ничего не найдено</h3>
-        <p>
-            Попробуйте поменять значения фильтров
-        </p>
-    </div>
-
-    <!-- *** PRODUCT GRID *** -->
-    <div class="grid-block small-up-3">
-        <div class="grid-content" style="padding;2rem;" ng-repeat="products in productsList">
-            <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:flex-start;">
-                <img src="assets/img/ring.gif" style="max-height:100%; width:initial;margin:;" onerror="this.src = 'assets/img/placeholder.png'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
-            </div>
-            <div class="card-section" style="padding-top:0;">
-                <div ng-if="products.price">
-                    <h4 class="inline old-price">{{products.price * 2 | price}}</h4><span> руб.</span>
-                <br>
-                    <h2 class="inline">{{products.price | price}}</h2><span> руб.</span>
-                </div>
-                <h4 ng-click="openProduct(products)">{{products.name}}</h4>
-                <!-- <div style="padding:32px 0;">
-                    <a ng-click="openProduct(products)" class="beeline-button" style="display:inline;padding:12px 36px;">Подробнее</a>
-                </div> -->
-            </div>
-        </div>
-    </div>
-
-    <!-- *** LOADING BAR *** -->
-    <div style="text-align:center;padding:40px;" ng-if="!productsList || progress == true">
-        <img src="assets/img/ripple.gif">
     </div>
 </div>
