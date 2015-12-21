@@ -5,7 +5,7 @@
         <div class="grid-block align-center padding" ng-repeat="category in categories track by category.order" ng-click="openCategory(category)" ng-if="$index <= 1" >
             <div class="padding text-center">
                 <div class="image-section padding">
-                    <img ng-src="{{category.img}}">
+                    <img draggable="false" ng-src="{{category.img}}">
                 </div>
                 <div class="padding">
                     <h3>{{category.name}}</h3>
@@ -18,7 +18,7 @@
         <div class="grid-block align-center padding" ng-repeat="category in categories track by category.order" ng-click="openCategory(category)" ng-if="$index > 1">
             <div class="padding text-center">
                 <div class="image-section padding">
-                    <img ng-src="{{category.img}}">
+                    <img draggable="false" ng-src="{{category.img}}">
                 </div>
                 <div class="padding">
                     <h3>{{category.name}}</h3>
