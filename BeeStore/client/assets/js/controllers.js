@@ -166,6 +166,13 @@ angular.module('controllers', [])
                 if (item.id == 61) {
                     data.general_intags = item;
                 }
+
+                item.intags.forEach(function (intag_item, intag_i, intag_arr) {
+                    if (!intag_item.value[0]) {
+                        item.intags.splice(intag_i, 1);
+                        intag_i--;
+                    }
+                })
             })
 
             var multicardMemories = {}; // object with parent multicard params
