@@ -35,6 +35,7 @@ angular.module('controllers', [])
         $scope.subCategories = []; // clear subCategories
         $rootScope.productsList = undefined; // clear products list
         $rootScope.intagChoicesList = undefined;
+        $rootScope.selectedFilters = undefined // clear selected filters list
         window.intagChoicesList = []; // clear filters
         window.scroll(0,0); // scroll to top
         window.page = 1; // set page number in products list
@@ -309,37 +310,46 @@ angular.module('controllers', [])
 
             // check filter
             if (checkbox.checked) {
-                window.intagChoicesList.push(checkbox.value);
-                val.check = true;
+                window.intagChoicesList.push(checkbox.value); // add to global intagChoicesList array
+                val.check = true; // set check true
 
-                // selected filters list
+                /* -- selected filters list -- */
+                // window.selectedFilters is object.
+                // if object haven't this name as key, create them.
                 if (!window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name]) {
-                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name] = [];
-                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name] = []; // create array
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({ // push mock data
                         id: val.id,
                         value: val.value
                     })
                 }
                 else {
-                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
+                    // if object have this name as key
+                    window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({ // push new value
                         id: val.id,
                         value: val.value
                     })
                 }
             }
             else if (!checkbox.checked) {
-                window.intagChoicesList.splice(window.intagChoicesList.indexOf(checkbox.value), 1);
-                val.check = false;
+                window.intagChoicesList.splice(window.intagChoicesList.indexOf(checkbox.value), 1); // remove this value from global intagChoicesList array
+                val.check = false; // set check false
 
-                // selected filters list
+                /* -- selected filters list -- */
+                // get this object with this name as key, and remove from array item, with this value id
                 window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].forEach(function (item, i, arr) {
-                    if (item.id == val.id) {
-                        window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].splice(i, 1);
+                    if (item.id == val.id) { // check condition
+                        window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].splice(i, 1); // and remove value
                     }
                 })
+
+                // if array of this object is empty, remove key
+                if (window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].length == 0) {
+                    delete window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name];
+                }
             }
 
-            // selected filters list
+            // set selected filters list
             $rootScope.selectedFilters = window.selectedFilters;
         }
 
