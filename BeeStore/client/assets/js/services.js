@@ -80,13 +80,18 @@ angular.module('services', [])
                 }
             })
             .success(function (data) {
+                // remove sales from data
+                data.forEach(function (item, i, arr) {
+                    if (item.id == 659) {
+                        data.splice(i, 1);
+                    }
+                })
+
                 window.filter[window.subCategory.id] = data;
                 $rootScope.productsListFilter = data;
-                // $rootScope.filterShow = true;
             })
             .error(function () {
                 console.error('ERROR! "__LoadFilters"');
-                // $rootScope.filterShow = false;
             })
         }
     })

@@ -10,15 +10,16 @@
         <div class="grid-block">
             <div class="small-12 medium-4 grid-content">
                 <label>Фильтровать по:</label>
-                <a ng-if="intagChoicesList.length == 0" style="position:relative;width:100%;border: 1px solid #ccc;background:#fff;font-size:1rem; line-height:0.8rem; text-align:left;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a>
-                <a ng-if="intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
+                <a ng-if="!intagChoicesList || intagChoicesList.length == 0" style="position:relative;width:100%;border: 1px solid #ccc;background:#fff;font-size:1rem; line-height:0.8rem; text-align:left;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a>
+
+                <a ng-if="intagChoicesList && intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
             </div>
             <div class="small-12 medium-4 grid-content">
                 <div class="cs-select cs-skin-border" ng-class="customSelectActiveClass || ''" ng-click="customSelect()">
-					<span class="cs-placeholder">{{items[0].label}}</span>
+					<span class="cs-placeholder">{{selected.label}}</span>
 					<div class="cs-options">
 						<ul>
-							<li ng-repeat="item in items" ng-if="!$first" ng-click="sortBy(item);">
+							<li ng-repeat="item in items" ng-click="sortBy(item);">
 								<span>{{item.label}}</span>
 							</li>
 						</ul>
@@ -50,7 +51,7 @@
                     </div>
                     <h4 ng-click="openProduct(products)">{{products.name}}</h4>
                 </div>
-            </div> 
+            </div>
 
             <!-- <div class="card-section" style="height:240px;display:flex;align-items:center;justify-content:flex-start;">
                 <img src="assets/img/ring.gif" style="max-height:100%; width:initial;margin:;" onerror="this.src = 'assets/img/placeholder.png'" ng-src="{{products.images[0]}}" ng-click="openProduct(products)">
@@ -104,7 +105,7 @@
         <div class="grid-content medium-4">
             <section class="block-list">
                 <ul>
-                    <li ng-if="filter.id != 659" ng-class="setActiveClass($index == filterInd)" ng-repeat="filter in productsListFilter" ng-click="checkFilter($index)">
+                    <li ng-class="setActiveClass($index == filterInd)" ng-repeat="filter in productsListFilter track by filter.id" ng-click="checkFilter($index)">
                         <a>{{filter.name}}</a>
                     </li>
                 </ul>

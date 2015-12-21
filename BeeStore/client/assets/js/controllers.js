@@ -40,8 +40,9 @@ angular.module('controllers', [])
 
     .controller('SubCategoryCtrl', function ($scope, $rootScope, $state, __LoadProducts, __LoadFilters) {
         $scope.subCategories = []; // clear subCategories
-        $rootScope.intagChoicesList = []; // clear filters
         $rootScope.productsList = undefined; // clear products list
+        $rootScope.intagChoicesList = undefined;
+        window.intagChoicesList = []; // clear filters
         window.scroll(0,0); // scroll to top
         window.page = 1; // set page number in products list
         window.sortItem = undefined; // set sortItem
@@ -102,7 +103,7 @@ angular.module('controllers', [])
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500)) {
                 if (lazyLoadNow) {return false} // if loading process running later
 
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
+                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', window.intagChoicesList);
                 $rootScope.progress = true;
                 window.lazyLoadNow = true; // start lazy loading process
             }
@@ -127,14 +128,9 @@ angular.module('controllers', [])
         // -- SORT block
         $scope.items = [
             {
-                value: null,
-                label: 'Сортировать по:',
-                selected: true
-            },
-            {
                 value: '-weight',
                 label: 'популярности',
-                selected: false
+                selected: true
             },
             {
                 value: 'price',
@@ -148,21 +144,17 @@ angular.module('controllers', [])
             }
         ];
 
-        try {
-            $scope.selected = $scope.items[window.sortItem.index]
-        } catch (e) {
-            window.sortItem = $scope.selected = $scope.items[0];
-            window.sortItem.index = 0;
-        }
+        // select item in sort list
+        (window.sortItem) ? ($scope.selected = window.sortItem) : (window.sortItem = $scope.selected = $scope.items[0], window.sortItem.index = 0);
 
         $scope.sortBy = function (arg) {
             $rootScope.productsList = undefined;
             window.page = 1;
-            window.sortItem = arg.value;
-            $scope.items[0].label = arg.label;
+            window.sortItem = arg;
+            $scope.selected = arg;
             $scope.customSelectActiveClass = ' ';
 
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem, $rootScope.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
         }
 
         $scope.customSelect = function () {
@@ -302,9 +294,10 @@ angular.module('controllers', [])
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
-        // $rootScope.intagChoicesList = []; // array for intag_choices ids
-        $rootScope.filterInd = 1;
+        // $rootScope.intagChoicesList = window.intagChoicesList; // array for intag_choices ids
+        $rootScope.filterInd = 0;
         window.selectedFilters = {};
+
 
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;
@@ -312,11 +305,13 @@ angular.module('controllers', [])
 
         $rootScope.check = function ($event, val) {
             var checkbox = $event.target;
+
+            // check filter
             if (checkbox.checked) {
-                $rootScope.intagChoicesList.push(checkbox.value);
+                window.intagChoicesList.push(checkbox.value);
                 val.check = true;
 
-                // selected filters
+                // selected filters list
                 if (!window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name]) {
                     window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name] = [];
                     window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].push({
@@ -332,10 +327,10 @@ angular.module('controllers', [])
                 }
             }
             else if (!checkbox.checked) {
-                $rootScope.intagChoicesList.splice($rootScope.intagChoicesList.indexOf(checkbox.value), 1);
+                window.intagChoicesList.splice(window.intagChoicesList.indexOf(checkbox.value), 1);
                 val.check = false;
 
-                // selected filters
+                // selected filters list
                 window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].forEach(function (item, i, arr) {
                     if (item.id == val.id) {
                         window.selectedFilters[$rootScope.productsListFilter[$rootScope.filterInd].name].splice(i, 1);
@@ -343,17 +338,19 @@ angular.module('controllers', [])
                 })
             }
 
+            // selected filters list
             $rootScope.selectedFilters = window.selectedFilters;
         }
 
         $rootScope.setFilter = function () {
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
+            $rootScope.intagChoicesList = window.intagChoicesList;
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
             $rootScope.productsList = undefined;
             window.page = 1;
         }
 
         $rootScope.clearFilter = function () {
-            $rootScope.intagChoicesList.length = 0; // clear global intag choices array
+            $rootScope.intagChoicesList = window.intagChoicesList.length = 0; // clear global intag choices array
             $rootScope.selectedFilters = window.selectedFilters = {}; // clear selected filters
 
             // delete all checked filters
@@ -365,7 +362,7 @@ angular.module('controllers', [])
 
             $rootScope.productsList = undefined;
             $rootScope.progress = true; // show progress bar
-            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
+            __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, window.intagChoicesList);
             window.page = 1;
         }
 
