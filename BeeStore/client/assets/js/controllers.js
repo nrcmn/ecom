@@ -19,15 +19,8 @@ angular.module('controllers', [])
                         window.categories.sub.push(item);
                     }
                 })
-
-                // $scope.categories = window.categories;
-
             });
         }
-        // if have categories data initialize to variable
-        // else {
-        //     $scope.categories = window.categories;
-        // }
 
         window.category = {}; // for leaders loader
         $scope.categories = mainCategories;
@@ -162,7 +155,8 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct, __LoadPricePlan) {
+
         window.scroll(0,0); // scroll to top
         (window.product && window.product.id == $stateParams.id) ? $scope.product = window.product : window.product = undefined; // back from multicard bug fix
 
@@ -227,10 +221,16 @@ angular.module('controllers', [])
                 window.product = data; // load detail without products list page
             }
 
+            if (window.product.article.indexOf('kit') > -1) {
+                $scope.showPricePlanPopup = true;
+                __LoadPricePlan(window.product.description_small);
+            }
+
             $scope.product = window.product; // set scope
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         })
 
+        // check memory in multicards
         $scope.checkMemory = function (m) {
             for (var i in $scope.product.memories) {
                 $scope.product.memories[i].current = false; // remove current boolean
@@ -240,8 +240,8 @@ angular.module('controllers', [])
             $scope.product.approvedIdsList = m.ids; // set approved ids list
         }
 
+        // check color in multicards
         $scope.checkColor = function (id) {
-            // check color functions
             $state.go('detail', {id: id});
         }
 
@@ -291,6 +291,7 @@ angular.module('controllers', [])
 
             // FoundationApi.publish('orderNotify', { title: 'В корзину', content: 'Товар добавлен в корзину', color: 'success', autoclose: '5000'});
         }
+
     })
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {

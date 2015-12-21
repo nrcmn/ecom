@@ -11,6 +11,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = false;
                 },
                 show: false,
                 id: 1,
@@ -31,6 +32,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: true,
                 id: 2,
@@ -51,6 +53,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: true,
                 id: 3,
@@ -65,6 +68,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: false,
                 id: 4,
@@ -80,6 +84,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: true,
                 id: 5,
@@ -99,6 +104,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = false;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: true,
                 id: 6,
@@ -113,6 +119,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope) {
                     $rootScope.shadowShow = false;
                     $rootScope.basketBottomShow = false;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: true,
                 id: 7,
@@ -127,6 +134,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 controller: function ($rootScope, $scope) {
                     $rootScope.shadowShow = true;
                     $rootScope.basketBottomShow = true;
+                    $rootScope.showHistoryBlock = true;
                 },
                 show: false,
                 id: 8,
@@ -161,7 +169,8 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             market_region = 98082, // Moscow
             // market_region = 98220, // Ekaterinburg
             filter = {},
-            page = 2;
+            page = 2,
+            marketCode = 'VIP';
 
         // Bread crumbs
         $rootScope.crumbs = []; // crumbs

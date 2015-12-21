@@ -43,6 +43,7 @@
             </div>
 
             <a class="beeline-button" ng-click="addToBasket()">В корзину</a>
+            <a class="beeline-button" ng-show="showPricePlanPopup" zf-open="pricePlanModal">Об акции</a>
         </div>
     </div>
 
@@ -71,6 +72,7 @@
 
             <a class="large dark hollow button" zf-open="intagModal">Все характеристики</a>
 
+            <!-- *** INTAGS POPUP *** -->
             <div zf-modal="" id="intagModal">
                 <a zf-close="" class="close-button" style="top:0.1rem;right:0.1rem;"><img src="assets/img/close.svg" style="width:40px;"></a>
                 <div class="grid-block">
@@ -110,6 +112,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div zf-modal="" id="pricePlanModal">
+
     </div>
 
     <recommendations list="{{product.rr_recommendations}}"></recommendations>

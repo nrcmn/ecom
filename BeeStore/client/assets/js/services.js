@@ -99,7 +99,7 @@ angular.module('services', [])
     .service('__LoadOneProduct', function ($http, $rootScope, $q) {
         return function (id) {
             var deferred = $q.defer();
-            var params = (!window.product) ? 'id,name,remain,price,images,article,description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products' : 'description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,id,extended_remains';
+            var params = (!window.product) ? 'id,name,remain,price,images,article,description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,description_small' : 'description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,id,extended_remains,description_small';
             // TODO: add "description_small" parameter in 1.21 release
 
             $http({
@@ -120,5 +120,25 @@ angular.module('services', [])
             })
 
             return deferred.promise;
+        }
+    })
+
+    .service('__LoadPricePlan', function ($http, $rootScope) {
+        return function (arg) {
+            var soc = arg.split(';')[0];
+            $http({
+                method: 'GET',
+                url: 'http://api.beeline.ru/api/products/mobile/priceplans/query/marketandsocs',
+                headers: {
+                    Accept: 'application/vnd.beeline.api.v1.mobapp+json'
+                },
+                params: {
+                    marketCode: window.marketCode,
+                    arrSoc: soc
+                }
+            })
+            .success(function (data) {
+                console.log(data);
+            })
         }
     })
