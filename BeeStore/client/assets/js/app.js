@@ -42,7 +42,8 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             })
             .state('products', {
                 url: '/categories/products',
-                templateUrl: './templates/products.html',
+                // templateUrl: './templates/products.html',
+                templateUrl: './templates/products.test.html',
                 getTitle: function () {
                     try {
                         return window.subCategory.name

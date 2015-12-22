@@ -24,9 +24,10 @@
         <style media="screen">
 
             /* Product list bug */
-            /*.grid-frame {
+            .grid-frame {
+                height: auto;
                 height: initial;
-            }*/
+            }
 
 
             .recomendation-swiper {
@@ -44,10 +45,35 @@
               -ms-overflow-style: none;
             }
 
-            
 
+            .flex-container {
+              padding: 0;
+              margin: 0;
+              list-style: none;
 
+              display: -webkit-box;
+              display: -moz-box;
+              display: -ms-flexbox;
+              display: -webkit-flex;
+              display: flex;
 
+              -webkit-flex-flow: row wrap;
+              justify-content: space-around;
+            }
+
+            .flex-item {
+              background: tomato;
+              padding: 5px;
+              width: 200px;
+              height: 300px;
+              margin-top: 10px;
+
+              line-height: 150px;
+              color: white;
+              font-weight: bold;
+              font-size: 3em;
+              text-align: center;
+            }
         </style>
 
     </head>
@@ -105,11 +131,11 @@
 
                 <!-- <h4 ng-cloak style="padding: 10px; font-family: sans-serif;" ng-show="showCrumbs"><span><a style="font-size:28px;color:#666;" onclick="history.back();">&#9666;Назад | </a></span> {{crumbs.join('  /  ')}}</h4> -->
 
-                <h3 ng-show="crumbs.length > 1" ng-cloak style="display: inline-block; padding: 10px; font-family: sans-serif;"><a style="font-size:24px;color:#282828;border:2px solid #555;border-radius:8px;padding:10px 20px 10px 10px;" onclick="history.back();">&#8592; Назад</a></h3>
+                <!-- <h3 ng-show="crumbs.length > 1" ng-cloak style="display: inline-block; padding: 10px; font-family: sans-serif;"><a style="font-size:24px;color:#282828;border:2px solid #555;border-radius:8px;padding:10px 20px 10px 10px;" onclick="history.back();">&#8592; Назад</a></h3>
 
-                <h3 ng-show="showHomeButton" ui-sref="main" ng-cloak style="display: inline-block; padding: 10px; font-family: sans-serif;"><a style="font-size:24px;color:#282828;border:2px solid #555;border-radius:8px;padding:10px 20px 10px 10px;"><img style="width:24px;margin-bottom:4px;" src="assets/img/home.svg"> Главная</a></h3>
+                <h3 ng-show="showHomeButton" ui-sref="main" ng-cloak style="display: inline-block; padding: 10px; font-family: sans-serif;"><a style="font-size:24px;color:#282828;border:2px solid #555;border-radius:8px;padding:10px 20px 10px 10px;"><img style="width:24px;margin-bottom:4px;" src="assets/img/home.svg"> Главная</a></h3> -->
 
-                
+
 
                 <!-- <h4 ng-cloak style="margin-top:16px; padding: 10px; font-family: sans-serif;">
                     <span ng-show="crumb.show" ng-repeat="crumb in crumbs" ng-click="openCrumb(crumb)"><span style="text-decoration:underline;">{{crumb.title}}</span> / </span>

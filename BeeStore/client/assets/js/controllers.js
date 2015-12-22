@@ -75,6 +75,10 @@ angular.module('controllers', [])
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, $document, __LoadProducts) {
 
+        // $document.on('scroll', function() {
+        //     console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+        // });
+
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
 
