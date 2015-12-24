@@ -33,8 +33,8 @@ angular.module('services', [])
                     amount: amount,
                     page: page,
                     sort_by: sort,
-                    intag_choices: intags/*,
-                    point_codes: "0952"*/
+                    intag_choices: intags,
+                    point_codes: "0952"
                 }
             })
             .success(function (data) {
@@ -108,8 +108,8 @@ angular.module('services', [])
                 params: {
                     "api_key": window.api_key,
                     "market_region": window.market_region,
-                    params: params,/*
-                    point_codes: "0952"*/
+                    params: params,
+                    point_codes: "0952"
                 }
             })
             .success(function (data) {
