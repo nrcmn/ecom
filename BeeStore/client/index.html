@@ -7,9 +7,6 @@
         <title>BeeStore</title>
         <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
 
-        <!-- Hammer JS -->
-        <script src="./assets/lib/hammer.min.js" charset="utf-8"></script>
-
         <!-- Swiper CSS -->
         <link rel="stylesheet" href="./assets/lib/swiper/dist/css/swiper.min.css">
 
@@ -25,6 +22,10 @@
         <script src="./assets/lib/angular-scroll.min.js"></script>
 
         <style media="screen">
+            /* Pinch-to-zoom disable */
+            html, body, div {
+                touch-action: pan-y !important;
+            }
 
             /* Product list bug */
             .grid-frame {
