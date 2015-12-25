@@ -7,6 +7,9 @@
         <title>BeeStore</title>
         <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
 
+        <!-- Hammer JS -->
+        <script src="./assets/lib/hammer.min.js" charset="utf-8"></script>
+
         <!-- Swiper CSS -->
         <link rel="stylesheet" href="./assets/lib/swiper/dist/css/swiper.min.css">
 
@@ -71,6 +74,15 @@
               text-align: center;
             }
         </style>
+
+        <script type="text/javascript">
+            onload = function () {
+                var mc = new Hammer(document.body);
+                mc.on("pinch", function(ev) {
+                    console.log(ev.scale, 'pinch working', ev);
+                });
+            }
+        </script>
 
         <!-- <script type="text/javascript">
             var ipcRenderer = require('electron').ipcRenderer;
