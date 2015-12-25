@@ -10,9 +10,19 @@
         <div class="grid-block">
             <div class="small-12 medium-4 grid-content">
                 <label>Фильтровать по:</label>
-                <a ng-if="!intagChoicesList || intagChoicesList.length == 0" style="position:relative;width:100%;border: 5px solid #ccc;background:#fff;font-size:1rem; line-height:1.4rem; text-align:left;margin-bottom:0;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a>
 
-                <a ng-if="intagChoicesList && intagChoicesList.length != 0" style="width:100%;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
+                <!-- <a ng-if="!intagChoicesList || intagChoicesList.length == 0" style="position:relative;width:100%;border: 5px solid #ccc;background:#fff;font-size:1rem; line-height:1.4rem; text-align:left;margin-bottom:0;" zf-open="filterModal" class="secondary button">выберите параметры <img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small"></a> -->
+
+                <a
+                    ng-if="!intagChoicesList || intagChoicesList.length == 0"
+                    ng-click="openFilters()"
+                    style="position:relative;width:100%;border: 5px solid #ccc;background:#fff;font-size:1rem; line-height:1.4rem; text-align:left;"
+                    zf-open="filterModal"
+                    class="secondary button">
+                    выберите параметры<img style="position:absolute;right:3px;width:10px;" zf-iconic="" icon="chevron" size="small">
+                </a>
+
+                <a ng-if="intagChoicesList && intagChoicesList.length != 0" style="width:100%; font-size:1rem; line-height:1.4rem; border: 5px solid orange;" zf-open="filterModal" class="warning button">выбрано параметров ({{intagChoicesList.length}})</a>
             </div>
             <div class="small-12 medium-4 grid-content">
                 <label>Сортировать по:</label>
