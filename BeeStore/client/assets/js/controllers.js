@@ -75,15 +75,12 @@ angular.module('controllers', [])
 
     .controller('ProductListCtrl', function ($scope, $rootScope, $state, $document, __LoadProducts) {
 
-        // $document.on('scroll', function() {
-        //     console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
-        // });
-
         $scope.leftFilter = false; //hide filter on left side
         window.scrollLoad = true; // progress bar status
 
         // -- LAZY loading block
         window.onscroll = function () {
+            $scope.customSelectActiveClass = '';
 
             if ($state.current.name != "products") {
                 return false
@@ -113,6 +110,7 @@ angular.module('controllers', [])
 
         $scope.openProduct = function (data) {
             data.collectionId = window.subCategory.id; // set collectionId to product data
+
             // product.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
             //     if (item.id == 61) {
             //         product.general_intags = item;
@@ -157,6 +155,10 @@ angular.module('controllers', [])
 
         $scope.customSelect = function () {
             return $scope.customSelectActiveClass = (!$scope.customSelectActiveClass) ? 'cs-active' : '';
+        }
+
+        $scope.openFilters = function () {
+            $scope.customSelectActiveClass = '';
         }
     })
 
