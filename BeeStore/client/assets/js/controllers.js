@@ -159,6 +159,7 @@ angular.module('controllers', [])
 
         $scope.openFilters = function () {
             $scope.customSelectActiveClass = '';
+            document.body.className += ' no-scroll';
         }
     })
 
@@ -312,7 +313,6 @@ angular.module('controllers', [])
         // $rootScope.intagChoicesList = window.intagChoicesList; // array for intag_choices ids
         $rootScope.filterInd = 0;
         window.selectedFilters = {};
-
 
         $rootScope.checkFilter = function (index) {
             $rootScope.filterInd = index;

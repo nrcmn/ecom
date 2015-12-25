@@ -32,7 +32,6 @@
                 height: initial;
             }
 
-
             .recomendation-swiper {
                 height: 80%;
                 width: 100%;
@@ -42,6 +41,9 @@
                 overflow-x: hidden;
             }
 
+            .no-scroll {
+                overflow: hidden;
+            }
 
             .flex-container {
               padding: 0;
@@ -75,14 +77,14 @@
             }
         </style>
 
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             onload = function () {
                 var mc = new Hammer(document.body);
                 mc.on("pinch", function(ev) {
                     console.log(ev.scale, 'pinch working', ev);
                 });
             }
-        </script>
+        </script> -->
 
         <!-- <script type="text/javascript">
             var ipcRenderer = require('electron').ipcRenderer;
