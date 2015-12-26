@@ -291,8 +291,15 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         return function (value) {
             try {
                 value.forEach(function (item, i, arr) {
-                    if (item.id == 21 && item.value.length < 2) {
-                        item.value = item.value[0].split(';')
+                    // for intags
+                    if (item.id == 21 && item.value && item.value.length < 2) {
+                        item.value = item.value[0].split(';');
+                    }
+                    // for filters
+                    else if (item.id == 21 && item.choices) {
+                        for (var i = 0; i < item.choices.length; i++) {
+                            item.choices[i].value = item.choices[i].value.split(';')[0]; // 0 or 1 == color NAME or color HEX
+                        }
                     }
                 })
 

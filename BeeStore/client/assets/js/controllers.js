@@ -182,6 +182,7 @@ angular.module('controllers', [])
                 })
             })
 
+            // Multircard generator
             var multicardMemories = {}; // object with parent multicard params
             for (var i in data.multicard_products) {
                 var multicardArrays = data.multicard_products[i];
