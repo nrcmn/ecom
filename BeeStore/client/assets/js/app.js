@@ -156,14 +156,13 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             })
     })
 
-    .run(function ($rootScope, FoundationApi, $state) {
+    .run(function ($rootScope, FoundationApi, $state, __closeWebView) {
         FastClick.attach(document.body);
-
         unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 163]; // unacceptable categories ids
 
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
-            // url = 'https://public.backend.vimpelcom.ru', // public
-            url = 'https://public.backend-test.vimpelcom.ru', // public test
+            url = 'https://public.backend.vimpelcom.ru', // public
+            // url = 'https://public.backend-test.vimpelcom.ru', // public test
             // url = 'http://backend.vimpelcom.ru:8080', // internal
             // url = 'http://backend-test.vimpelcom.ru:8080', // internal test
 
@@ -171,7 +170,12 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             market_region = 98220, // Ekaterinburg
             filter = {},
             page = 2,
-            marketCode = 'VIP';
+            marketCode = 'VIP', // for mobile backend
+            webview = location.search.replace(/\?id=/g, ''); // webview id for bridge from electron to this interface
+
+        const TIMER_VALUE = 60;
+        // var timer = TIMER_VALUE;
+        var timerStart = false;
 
         // Bread crumbs
         $rootScope.crumbs = []; // crumbs
@@ -214,6 +218,27 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             } catch (e) {console.log('ok');}
 
             return $rootScope.crumbs.push(toState);
+        })
+
+        function startTimer() {
+            secondsToMars = setInterval(function () {
+                timer--;
+                if (timer == 0) {
+                    __closeWebView();
+                    return timer  = TIMER_VALUE;
+                }
+            }, 1000);
+        }
+
+        document.body.addEventListener('touchstart', function () {
+            try {
+                clearInterval(secondsToMars);
+            } catch (e) {
+                console.info('Timer is not defined yet');
+            }
+
+            startTimer();
+            return timer = TIMER_VALUE;
         })
 
         $rootScope.openCrumb = function (crumb) {

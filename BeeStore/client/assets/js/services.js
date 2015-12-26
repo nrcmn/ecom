@@ -159,3 +159,15 @@ angular.module('services', [])
             })
         }
     })
+
+    .service('__closeWebView', function ($http) {
+        return function () {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000',
+                params: {
+                    id: window.webview
+                }
+            })
+        }
+    })
