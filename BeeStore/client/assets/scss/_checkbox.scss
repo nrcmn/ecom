@@ -6,11 +6,11 @@
 
 $checkbox-width:                  28px !default;
 $checkbox-height:                 28px !default;
-$checkbox-border-radius:          $checkbox-width !default;
+$checkbox-border-radius:          6px !default;
 $checkbox-border-width:           2px !default;
 
 $checkbox-off-bg-color:           #fff !default;
-$checkbox-off-border-default:     $yellow !default;
+$checkbox-off-border-default:     $gray-hard !default;
 $checkbox-on-bg-default:          $yellow !default;
 $checkbox-on-border-default:      $yellow !default;
 

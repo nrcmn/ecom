@@ -314,7 +314,7 @@ angular.module('controllers', [])
         // $rootScope.intagChoicesList = window.intagChoicesList; // array for intag_choices ids
         if (window.intagChoicesList.length == 0) {
             $rootScope.filtersModalButtonConfig = {
-                label: 'выберите параметры',
+                label: 'выберите',
                 class: 'secondary'
             }
         }
@@ -382,13 +382,13 @@ angular.module('controllers', [])
 
             if (window.intagChoicesList > 0) {
                 $rootScope.filtersModalButtonConfig = {
-                    label: 'выбрано параметров',
+                    label: 'выбрано',
                     class: 'warning'
                 }
             }
             else {
                 $rootScope.filtersModalButtonConfig = {
-                    label: 'выберите параметры',
+                    label: 'выберите',
                     class: 'secondary'
                 }
             }
