@@ -31,6 +31,7 @@ $gray-archive: #e0ddd6;
 $yellow: #FFB612;
 $yellow-gradient-start: #F7A700;
 $yellow-gradient-end: #FFE100;
+$yellow-gradient: linear-gradient(-45deg, #ffe100 0%, #f7a700 100%);
 $yellow-light: #FEF7CB;
 
 $orange: #ED7703;
@@ -98,6 +99,9 @@ h1,h2,h3,h4 {
 .gallery-top .swiper-button-disabled {
   opacity: 0.05 !important; }
 
+.yellow-gradient {
+    background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%);
+}
 
 // Beeline button styles
 .beeline-button {
@@ -132,20 +136,21 @@ a:hover, a:focus {
     box-shadow: 0 0 6px 6px rgba(0,0,0,0.16) inset;
 }
 
+
 .filters-button {
-    transform: rotate(270deg);
-    line-height: 2rem;
-    font-size: 1.8rem;
-    box-shadow: 0 0 32px 10px rgba(0,0,0,0.16);
-    padding: 2rem;
-    padding-top: 3rem;
-    position: fixed;
-    top: 50%;
-    left: -180px;
-    text-align: center;
-    width: 420px;
-    z-index: 300;
-    transition: 1s ease-in left;
+    position: relative;
+    width: 100%;
+    border: 5px solid $yellow;
+    background: #fff;
+    font-size: 1rem; 
+    font-weight: bold;
+    line-height: 1.4rem; 
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.filters-button.warning {
+    background: $yellow;
 }
 
 .filters-block {
@@ -159,13 +164,8 @@ a:hover, a:focus {
     box-shadow: 0 20px 44px 1px rgba(255,255,255,0.9);
 }
 
-.filters-button.ng-hide {
-    left:-500px;
-    transition: 1s ease-out left;
-}
-
 .filters.button svg {
-    margin-top: 3px;
+
 }
 
 // Utiliti classes
@@ -241,6 +241,14 @@ a:hover, a:focus {
     min-width: 600px;
     border: 4px #FFB612 solid;
     border-radius: 4px;
+}
+
+.no-padding-left .modal {
+    padding-left: 0;
+}
+
+.no-padding-left .modal ul li a.left-tab {
+    padding-left: 32px!important;
 }
 
 
@@ -331,26 +339,26 @@ a:hover, a:focus {
 }
 
 .block-list .active-item {
-    background: orange;
+    background: $yellow-gradient;
     font-family: 'officinaserifcbold';
     font-weight: bold;
 }
 
 .block-list .active-item:hover {
-    background: orange;
+    background: $yellow-gradient !important;
 }
 
 .block-list .active-item:active {
-    background: orange;
+    background: $yellow-gradient !important;
 }
 
 .block-list .active-item:focused {
-    background: orange;
+    background: $yellow-gradient !important;
 }
 
 .no-scroll {
     overflow: hidden;
-    }
+}
 
 input:focus {
     outline: 0;
@@ -358,7 +366,8 @@ input:focus {
 
 .found-nothing {
     padding: 10px;
-    width: 480px;
+    padding-top: 20px;
+    width: 360px;
     border: 2px dashed #999;
     border-radius: 10px;
     margin: 128px auto;
@@ -420,7 +429,7 @@ input:focus {
             }
 
             .cs-select > span::after {
-                content: '\25BE';
+                content: '\24BE';
                 right: 1em;
             }
 
@@ -476,11 +485,11 @@ input:focus {
             }
 
 div .cs-skin-border {
-                background: transparent;
-                font-size: 1em;
-                font-weight: 700;
-                max-width: 600px;
-            }
+        background: transparent;
+        font-size: 1em;
+        font-weight: 700;
+        max-width: 600px;
+    }
 
             @media screen and (max-width: 30em) {
                 div .cs-skin-border { font-size: 1em; }
@@ -496,7 +505,7 @@ div .cs-skin-border {
             .cs-skin-border > span::after,
             .cs-skin-border .cs-selected span::after {
                 font-family: 'icomoon';
-                content: '+';
+                content: '\25bc';
             }
 
             .cs-skin-border ul span::after {
