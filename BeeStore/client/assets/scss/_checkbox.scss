@@ -1,0 +1,222 @@
+// Checkbox styles from Ionic
+
+
+// Checkbox Variables
+// -------------------------------
+
+$checkbox-width:                  28px !default;
+$checkbox-height:                 28px !default;
+$checkbox-border-radius:          $checkbox-width !default;
+$checkbox-border-width:           2px !default;
+
+$checkbox-off-bg-color:           #fff !default;
+$checkbox-off-border-default:     $orange !default;
+$checkbox-on-bg-default:          $orange !default;
+$checkbox-on-border-default:      $orange !default;
+
+$checkbox-check-width:            2px !default;
+$checkbox-check-color:            $black !default;
+
+// ???
+$checkbox-off-border-light: red;
+$checkbox-on-bg-light: red;
+
+
+$item-padding: 20px;
+
+
+
+// Checkbox Mixins
+// --------------------------------------------------
+
+@mixin checkbox-style($off-border-color, $on-bg-color, $on-border-color) {
+  & input:before,
+  & .checkbox-icon:before {
+    border-color: $off-border-color;
+  }
+
+  // what the background looks like when its checked
+  & input:checked:before,
+  & input:checked + .checkbox-icon:before {
+    background: $on-bg-color;
+    border-color: $on-border-color;
+  }
+}
+
+
+// Transition Mixins
+// --------------------------------------------------
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+          transition: $transition;
+}
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: $transition-delay;
+          transition-delay: $transition-delay;
+}
+@mixin transition-duration($transition-duration) {
+  -webkit-transition-duration: $transition-duration;
+          transition-duration: $transition-duration;
+}
+@mixin transition-timing-function($transition-timing) {
+   -webkit-transition-timing-function: $transition-timing;
+           transition-timing-function: $transition-timing;
+ }
+ @mixin transition-property($property) {
+  -webkit-transition-property: $property;
+          transition-property: $property;
+}
+@mixin transition-transform($properties...) {
+  // special case cuz of transform vendor prefixes
+  -webkit-transition: -webkit-transform $properties;
+          transition: transform $properties;
+}
+
+// Transformation Mixins
+// --------------------------------------------------
+
+@mixin rotate($degrees) {
+  @include transform( rotate($degrees) );
+}
+@mixin scale($ratio) {
+  @include transform( scale($ratio) );
+}
+@mixin translate($x, $y) {
+  @include transform( translate($x, $y) );
+}
+@mixin skew($x, $y) {
+  @include transform( skew($x, $y) );
+  -webkit-backface-visibility: hidden;
+}
+@mixin translate3d($x, $y, $z) {
+  @include transform( translate3d($x, $y, $z) );
+}
+@mixin translateZ($z) {
+  @include transform( translateZ($z) );
+}
+@mixin transform($val) {
+  -webkit-transform: $val;
+          transform: $val;
+}
+
+@mixin transform-origin($left, $top) {
+  -webkit-transform-origin: $left $top;
+          transform-origin: $left $top;
+}
+
+
+
+/**
+ * Checkbox
+ * --------------------------------------------------
+ */
+
+.checkbox {
+  // set the color defaults
+  @include checkbox-style($checkbox-off-border-default, $checkbox-on-bg-default, $checkbox-on-border-default);
+
+  position: relative;
+  display: inline-block;
+  padding: ($checkbox-height / 4) ($checkbox-width / 4);
+  cursor: pointer;
+}
+
+.checkbox input:disabled:before,
+.checkbox input:disabled + .checkbox-icon:before {
+  border-color: $checkbox-off-border-light;
+}
+
+.checkbox input:disabled:checked:before,
+.checkbox input:disabled:checked + .checkbox-icon:before {
+  background: $checkbox-on-bg-light;
+}
+
+
+.checkbox.checkbox-input-hidden input {
+  display: none !important;
+}
+
+.checkbox input,
+.checkbox-icon {
+  position: relative;
+  width: $checkbox-width;
+  height: $checkbox-height;
+  display: block;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  &:before {
+    // what the checkbox looks like when its not checked
+    display: table;
+    width: 100%;
+    height: 100%;
+    border-width: $checkbox-border-width;
+    border-style: solid;
+    border-radius: $checkbox-border-radius;
+    background: $checkbox-off-bg-color;
+    content: ' ';
+    @include transition(background-color 20ms ease-in-out);
+  }
+}
+
+.checkbox input:checked:before,
+input:checked + .checkbox-icon:before {
+  border-width: $checkbox-border-width + 1;
+}
+
+// the checkmark within the box
+.checkbox input:after,
+.checkbox-icon:after {
+  @include transition(opacity .05s ease-in-out);
+  @include rotate(-45deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: ($checkbox-width / 2);
+  height: ($checkbox-width / 4) - 1;
+  border: $checkbox-check-width solid $checkbox-check-color;
+  border-top: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0;
+}
+
+// what the checkmark looks like when its checked
+.checkbox input:checked:after,
+input:checked + .checkbox-icon:after {
+  opacity: 1;
+}
+
+// make sure item content have enough padding on left to fit the checkbox
+.item-checkbox {
+  padding-left: ($item-padding * 2) + $checkbox-width;
+
+  &.active {
+    box-shadow: none;
+  }
+}
+
+// position the checkbox to the left within an item
+.item-checkbox .checkbox {
+  position: absolute;
+  top: 50%;
+  right: $item-padding / 2;
+  left: $item-padding / 2;
+  z-index: 0;
+  margin-top: (($checkbox-height + ($checkbox-height / 2)) / 2) * -1;
+}
+
+
+.item-checkbox.item-checkbox-right {
+  padding-right: ($item-padding * 2) + $checkbox-width;
+  padding-left: $item-padding;
+}
+
+.item-checkbox-right .checkbox input,
+.item-checkbox-right .checkbox-icon {
+  float: right;
+}

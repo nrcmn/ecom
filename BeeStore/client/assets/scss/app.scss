@@ -1,7 +1,10 @@
 @import "settings";
 @import "foundation";
 @import "fonts"; // Beeline Officina
+@import "colors"; // Beeline Colors
 @import "keyboard"; // Custom keyboard
+
+@import "checkbox";
 
 
 * {
@@ -11,6 +14,32 @@
 *::-webkit-scrollbar {
     display: none;
 }
+
+// Beeline Colors
+
+$white: #ffffff;
+
+$black: #282828;
+$black-dark: #212121;
+$black-light: #3E3E3E;
+
+$gray-light: #FAFAFA;
+$gray-medium: #C8C8C8;
+$gray-hard: #787878;
+$gray-archive: #e0ddd6;
+
+$yellow: #FFB612;
+$yellow-gradient-start: #F7A700;
+$yellow-gradient-end: #FFE100;
+$yellow-light: #FEF7CB;
+
+$orange: #ED7703;
+
+$red: #B31736;
+$green: #007300;
+
+$brown-light: #ECE9E2;
+$brown-hard: #CEB57F;
 
 
 
@@ -323,6 +352,9 @@ a:hover, a:focus {
     overflow: hidden;
     }
 
+input:focus {
+    outline: 0;
+}
 
 // select drop-down styles
 
