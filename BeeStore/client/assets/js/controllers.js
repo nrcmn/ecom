@@ -311,6 +311,13 @@ angular.module('controllers', [])
 
     .controller('FilterCtrl', function ($scope, $rootScope, __LoadProducts) {
         // $rootScope.intagChoicesList = window.intagChoicesList; // array for intag_choices ids
+        if (window.intagChoicesList.length == 0) {
+            $rootScope.filtersModalButtonConfig = {
+                label: 'выберите параметры',
+                class: 'secondary'
+            }
+        }
+
         $rootScope.filterInd = 0;
         window.selectedFilters = {};
 
@@ -371,6 +378,19 @@ angular.module('controllers', [])
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             $rootScope.productsList = undefined;
             window.page = 1;
+
+            if (window.intagChoicesList > 0) {
+                $rootScope.filtersModalButtonConfig = {
+                    label: 'выбрано параметров',
+                    class: 'warning'
+                }
+            }
+            else {
+                $rootScope.filtersModalButtonConfig = {
+                    label: 'выберите параметры',
+                    class: 'secondary'
+                }
+            }
         }
 
         $rootScope.clearFilter = function () {
@@ -388,6 +408,11 @@ angular.module('controllers', [])
             $rootScope.progress = true; // show progress bar
             __LoadProducts(window.subCategory, 15, 1, window.sortItem.value, $rootScope.intagChoicesList);
             window.page = 1;
+
+            $rootScope.filtersModalButtonConfig = {
+                label: 'выберите параметры',
+                class: 'secondary'
+            }
         }
 
         $rootScope.setActiveClass = function (condition) {
