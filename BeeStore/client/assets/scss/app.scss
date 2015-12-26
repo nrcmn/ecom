@@ -356,6 +356,15 @@ input:focus {
     outline: 0;
 }
 
+.found-nothing {
+    padding: 10px;
+    width: 480px;
+    border: 2px dashed #999;
+    border-radius: 10px;
+    margin: 128px auto;
+    text-align: center;
+}
+
 // select drop-down styles
 
 /* Default custom select styles */
