@@ -159,7 +159,7 @@ angular.module('controllers', [])
 
         $scope.openFilters = function () {
             $scope.customSelectActiveClass = '';
-            document.body.className += ' no-scroll';
+            // document.body.className += ' no-scroll';
         }
     })
 
