@@ -221,6 +221,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         })
 
         function startTimer() {
+            timer = TIMER_VALUE;
             secondsToMars = setInterval(function () {
                 timer--;
                 if (timer == 0) {
@@ -228,7 +229,8 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                     return timer  = TIMER_VALUE;
                 }
             }, 1000);
-        }
+        };
+        startTimer();
 
         document.body.addEventListener('touchstart', function () {
             try {
@@ -237,8 +239,7 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
                 console.info('Timer is not defined yet');
             }
 
-            startTimer();
-            return timer = TIMER_VALUE;
+            return startTimer();
         })
 
         $rootScope.openCrumb = function (crumb) {
