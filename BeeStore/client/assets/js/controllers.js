@@ -202,7 +202,7 @@ angular.module('controllers', [])
             ]
             */
 
-            if (data.multicard_products) {
+            if (data.multicard_products && Object.keys(data.multicard_products).length > 0) {
                 var multicard = {}; // create object for multicard params
                 for (var i in data.multicard_products) break; // get first object element
                 var first = data.multicard_products[i];
