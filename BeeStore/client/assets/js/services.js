@@ -34,7 +34,8 @@ angular.module('services', [])
                     page: page,
                     sort_by: sort,
                     intag_choices: intags,
-                    point_codes: "0952"
+                    // point_codes: "0952"
+                    point_codes: "0055"
                 }
             })
             .success(function (data) {
@@ -109,7 +110,8 @@ angular.module('services', [])
                     "api_key": window.api_key,
                     "market_region": window.market_region,
                     params: params,
-                    point_codes: "0952"
+                    // point_codes: "0952"
+                    "point_codes": "0055"
                 }
             })
             .success(function (data) {
@@ -117,6 +119,36 @@ angular.module('services', [])
             })
             .error(function () {
                 deferred.reject('ERROR! "__LoadOneProduct"');
+            })
+
+            return deferred.promise;
+        }
+    })
+
+    .service('__LoadProductsListByID', function ($http, $rootScope, $q) {
+        return function (idsList) {
+            var deferred = $q.defer();
+            $rootScope.multicardFilterProductList = new Array();
+            $rootScope.$watchCollection('multicardFilterProductList', function(newNames, oldNames) {
+                if ($rootScope.multicardFilterProductList.length == idsList.length) {
+                    deferred.resolve($rootScope.multicardFilterProductList);
+                };
+            }, false);
+
+            idsList.forEach(function (item, i, arr) {
+                $http({
+                    method: 'GET',
+                    url: window.url + '/api/public/v1/products/' + item + '/',
+                    params: {
+                        "api_key": window.api_key,
+                        "market_region": window.market_region,
+                        // point_codes: "0952"
+                        "point_codes": "0055"
+                    }
+                })
+                .success(function (data) {
+                    $rootScope.multicardFilterProductList.push(data)
+                })
             })
 
             return deferred.promise;

@@ -24,6 +24,36 @@
                 <!-- На складе: {{product.remain}} -->
             </p>
 
+            <div class="grid-block">
+                <div style="margin: 20px 0;" class="grid-content" ng-repeat="(key, value) in product.multicard track by $index">
+                    <span style="font-weight: bold; font-size: 20px; display: block;">{{value.name}}:</span>
+                    <span style="margin: 5px; padding: 10px; border: 2px dashed #999; display: inline-block; border-radius: 5px; font-weight: bold;" ng-repeat="(key, value) in value.choiceValues" ng-click="multicardButton(value)" ng-class="{'test': value.current}">
+                        {{key}} / {{value.show}}
+                    </span>
+                </div>
+            </div>
+
+            <a zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()">Найти ({{availableCount.length}})</a>
+
+            <div zf-modal="" id="multicardModal">
+                <a zf-close="" class="close-button">×</a>
+                <div class="grid-block small-up-3 align-center products">
+                    <div class="grid-block" ng-repeat="card in multicardProductsList">
+                        <div class="">
+                            <div class="image-section padding">
+                                <img src="assets/img/ring.gif" ng-src="{{card.images[0]}}" onerror="this.src = 'assets/img/placeholder.png'" ng-click="openCard(card.id)">
+                            </div>
+                            <div class="padding">
+                                <div ng-if="card.price">
+                                    <h2 class="inline">{{card.price | price}}</h2><span> руб.</span>
+                                </div>
+                                <h4 ng-click="openCard(card.id)">{{card.name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
 
 <!--             <div class="grid-block">

@@ -163,11 +163,12 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct, __LoadPricePlan, __LoadMockPricePlans) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $stateParams, $document, $state, FoundationApi, __LoadOneProduct, __LoadPricePlan, __LoadMockPricePlans, __LoadProductsListByID, ModalFactory) {
 
         window.scroll(0,0); // scroll to top
         (window.product && window.product.id == $stateParams.id) ? $scope.product = window.product : window.product = undefined; // back from multicard bug fix
 
+        var MULTICARD; // unchangeable variable
         __LoadOneProduct($stateParams.id).then(function (data) {
             data.intags_categories.forEach(function (item, i, arr) { // general intags for detail page
                 if (item.id == 61) {
@@ -182,53 +183,55 @@ angular.module('controllers', [])
                 })
             })
 
-            // Multircard generator
-            var multicardMemories = {}; // object with parent multicard params
-            for (var i in data.multicard_products) {
-                var multicardArrays = data.multicard_products[i];
-                multicardArrays.forEach(function (item,index,arr) {
-                    // if this is memory and object haven't this value as key.
-                    if (!multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
-                        multicardMemories[item.intag_choice] = {
-                            current: (i == data.id) ? true : false, // if this is current product
-                            ids: []
-                        };
 
-                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
+            /* -- MULTICARD CONFIGURATION --
+            @SCHEME
+            [
+                {
+                    name: 'name_of_intag',
+                    choices: [
+                        {
+                            choice: "intag_choice",
+                            id: "product_id"
+                        }
+                    ]
+                },
+                {
+                    etc
+                }
+            ]
+            */
+
+            if (data.multicard_products) {
+                var multicard = {}; // create object for multicard params
+                for (var i in data.multicard_products) break; // get first object element
+                var first = data.multicard_products[i];
+
+                // crete scheme
+                first.forEach(function (item, i, arr) {
+                    multicard[item.intag_slug] = {
+                        name: item.intag_name,
+                        choiceValues: {}
                     }
-                    // if this is memory and object have this value as key
-                    else if (multicardMemories[item.intag_choice] && item.intag_slug == 'obem-vstroennoi-pamiati') {
-                        if (!multicardMemories[item.intag_choice].current) {
-                            multicardMemories[item.intag_choice].current = (i == data.id) ? true : false;  // if this is current product
+                })
+
+                for (var i in data.multicard_products) {
+                    data.multicard_products[i].forEach(function (item, index, arr) {
+                        if (!multicard[item.intag_slug].choiceValues[item.intag_choice]) {
+                            multicard[item.intag_slug].choiceValues[item.intag_choice] = {show: true, choices: new Array()};
                         }
 
-                        multicardMemories[item.intag_choice].ids.push(i); // push item to object
-                    }
+                        if (data.id == i) {
+                            multicard[item.intag_slug].choiceValues[item.intag_choice].current = true; // add current trigger
+                        }
 
-                    // create list with ids, which is approved for request for this object key
-                    if (multicardMemories[item.intag_choice] && multicardMemories[item.intag_choice].current) {
-                        return data.approvedIdsList = multicardMemories[item.intag_choice].ids;
-                    }
-                })
+                        multicard[item.intag_slug].choiceValues[item.intag_choice].choices.push(i);
+                    })
+                }
+
+                MULTICARD = JSON.stringify(multicard); // stringify object, because it unchangeable type (look at multicardButton fn)
+                data.multicard = multicard;
             }
-
-            // create colors array
-            var colors = new Array();
-
-            for (var i in data.multicard_products) {
-                var multicardArrays = data.multicard_products[i];
-                multicardArrays.forEach(function (item,index,arr) {
-                    // if this is color slug
-                    if (item.intag_slug == "tsvet") {
-                        item.id = i; // add id to color object
-                        colors.push(item); // push color object to colors array
-                    }
-                })
-            }
-
-            // import memories object and colors array to data object
-            data.memories = multicardMemories;
-            data.colors = colors;
 
             // inheritance data to global product object
             try {
@@ -246,19 +249,33 @@ angular.module('controllers', [])
             $scope.modalIntags = window.product.intags_categories[0]; // set opened intag
         })
 
-        // check memory in multicards
-        $scope.checkMemory = function (m) {
-            for (var i in $scope.product.memories) {
-                $scope.product.memories[i].current = false; // remove current boolean
-            }
-
-            m.current = true;
-            $scope.product.approvedIdsList = m.ids; // set approved ids list
+        $scope.multicardButton = function (arg) {
+            $scope.availableCount = arg.choices;
+            product.multicard = JSON.parse(MULTICARD); // set default values for multicard
+            arg.choices.forEach(function (item) {
+                for (var i in product.multicard) {
+                    for (var a in product.multicard[i].choiceValues) {
+                        if (product.multicard[i].choiceValues[a].choices.indexOf(item) < 0 && !product.multicard[i].choiceValues[a].save) {
+                            product.multicard[i].choiceValues[a].show = false;
+                        }
+                        else if (product.multicard[i].choiceValues[a].choices.indexOf(item) > -1) {
+                            product.multicard[i].choiceValues[a].show = true;
+                            product.multicard[i].choiceValues[a].save = true;
+                        }
+                    }
+                }
+            })
         }
 
-        // check color in multicards
-        $scope.checkColor = function (id) {
-            $state.go('detail', {id: id});
+        $scope.multicardSearchButton = function () {
+            if ($scope.availableCount.length == 1) {
+                $state.go('detail', {id: $scope.availableCount[0]})
+            }
+            else {
+                __LoadProductsListByID($scope.availableCount).then(function (data) {
+                    $scope.multicardProductsList = data;
+                });
+            }
         }
 
         // open field in intags
