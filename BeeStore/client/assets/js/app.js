@@ -174,7 +174,6 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             webview = location.search.replace(/\?id=/g, ''); // webview id for bridge from electron to this interface
 
         const TIMER_VALUE = 60;
-        // var timer = TIMER_VALUE;
         var timerStart = false;
 
         // Bread crumbs
@@ -220,11 +219,21 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             return $rootScope.crumbs.push(toState);
         })
 
+        $rootScope.closeTimer = function () {
+            $rootScope.showTimerNotify = false;
+        }
+
         function startTimer() {
             timer = TIMER_VALUE;
             secondsToMars = setInterval(function () {
                 timer--;
-                if (timer == 0) {
+                if (timer <= 20 && timer != 0) {
+                    $rootScope.timer = timer;
+                    $rootScope.showTimerNotify = true;
+
+                    $rootScope.$apply();
+                }
+                else if (timer == 0) {
                     __closeWebView();
                     return timer  = TIMER_VALUE;
                 }
@@ -235,6 +244,9 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         document.body.addEventListener('touchstart', function () {
             try {
                 clearInterval(secondsToMars);
+
+                $rootScope.showTimerNotify = false;
+                $rootScope.$apply();
             } catch (e) {
                 console.info('Timer is not defined yet');
             }

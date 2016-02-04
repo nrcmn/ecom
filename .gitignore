@@ -8,3 +8,5 @@ proxy_api
 
 BeeStore/gulpfile.js
 BeeStore/gulpfile.js
+
+cert.pem

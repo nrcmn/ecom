@@ -445,7 +445,7 @@ angular.module('controllers', [])
 
     .controller('BasketProductListCtrl', function ($scope, $rootScope, $state) {
         // clear crumbs
-        $rootScope.crumbs.length = 0;
+        // $rootScope.crumbs.length = 0;
 
         // push mock main state
         $rootScope.crumbs.push(

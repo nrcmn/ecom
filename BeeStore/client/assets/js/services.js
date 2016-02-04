@@ -34,8 +34,8 @@ angular.module('services', [])
                     page: page,
                     sort_by: sort,
                     intag_choices: intags,
-                    // point_codes: "0952"
-                    point_codes: "0055"
+                    point_codes: "0952"
+                    // point_codes: "0055"
                 }
             })
             .success(function (data) {
@@ -110,8 +110,8 @@ angular.module('services', [])
                     "api_key": window.api_key,
                     "market_region": window.market_region,
                     params: params,
-                    // point_codes: "0952"
-                    "point_codes": "0055"
+                    point_codes: "0952"
+                    // "point_codes": "0055"
                 }
             })
             .success(function (data) {
@@ -142,8 +142,8 @@ angular.module('services', [])
                     params: {
                         "api_key": window.api_key,
                         "market_region": window.market_region,
-                        // point_codes: "0952"
-                        "point_codes": "0055"
+                        point_codes: "0952"
+                        // "point_codes": "0055"
                     }
                 })
                 .success(function (data) {
