@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <a zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()">Показать ({{availableCount.length}})</a>
+            <button zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()" ng-disabled="availableCount.length == 1 && availableCount[0] == product.id">Показать ({{availableCount.length}})</button>
 
             <div zf-modal="" id="multicardModal">
                 <a zf-close="" class="close-button">×</a>
@@ -57,7 +57,7 @@
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
 
             <a class="beeline-button" ng-click="addToBasket()">В корзину</a>
-            
+
             <!-- <a class="beeline-button" ng-show="showPricePlanPopup" zf-open="pricePlanModal">Об акции</a> -->
         </div>
     </div>

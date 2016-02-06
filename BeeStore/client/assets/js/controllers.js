@@ -493,15 +493,43 @@ angular.module('controllers', [])
         }
     })
 
-    .controller('BasketFormCtrl', function ($scope, $rootScope, $timeout, $state) {
+    .controller('BasketFormCtrl', function ($scope, $rootScope, $timeout, $state, __Ordering) {
         $scope.form = {};
         $scope.form.phone = '';
 
         $scope.placeAnOrder = function () {
-            console.log($scope.form);
-            $rootScope.basket.length = 0;
-            $timeout(function () {
-                $state.go('main')
-            }, 2000)
+            var basketItems = new Array();
+            $rootScope.basket.forEach(function (item, i, arr) {
+                basketItems.push({
+                    product: item.id,
+                    quantity: product.quantity
+                })
+            })
+
+            var checkoutData = {
+                market_region: window.market_region,
+                client: {
+                    first_name: 'Клиент',
+                    last_name: 'уважаемый',
+                    middle_name: '',
+                    phone: $scope.form.phone,
+                    email: ''
+                },
+                items: basketItems,
+                warehouse: "0952",
+                order_status: "approved"
+            }
+
+            __checkout(checkoutData).then(function (data) {
+                $scope.basketResult = 'Заказ оформлен. Номер вашего заказа - ' + data.number;
+                $rootScope.basket.length = 0;
+
+                $timeout(function () {
+                    $state.go('main')
+                }, 2000)
+            }, function (data) {
+                $scope.basketResult = 'Во время оформления заказа произошла ошибка. ' + data.detail;
+                console.log('ERROR! "__Checkout"');
+            });
         }
     })

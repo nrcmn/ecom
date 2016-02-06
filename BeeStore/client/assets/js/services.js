@@ -203,3 +203,25 @@ angular.module('services', [])
             })
         }
     })
+
+    .service('__Ordering', function ($http, $q) {
+        return function (checkoutData) {
+            var deferred = $q.defer();
+            $http({
+                method: 'POST',
+                url: window.url + '/api/public/v1/orders/',
+                params: {
+                    "api_key": window.api_key
+                },
+                data: checkoutData
+            })
+            .success(function (response) {
+                deferred.resolve(response);
+            })
+            .error(function (response) {
+                deferred.reject(response);
+            })
+
+            return deferred.promise;
+        }
+    })
