@@ -161,9 +161,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
         unacceptableCategories = [6, 5, 4, 101, 15, 202, 23, 24, 164, 78, 80, 79, 166, 162, 165, 71, 70, 77, 122, 121, 182, 93, 86, 85, 90, 87, 163]; // unacceptable categories ids
 
         window.api_key = '852bff3ff459f9886729b9de223e8a0340ce008b',
-            url = 'https://public.backend.vimpelcom.ru', // public
+            // url = 'https://public.backend.vimpelcom.ru', // public
             // url = 'https://public.backend-test.vimpelcom.ru', // public test
-            // url = 'http://backend.vimpelcom.ru:8080', // internal
+
+            url = 'http://backend.vimpelcom.ru:8080', // internal
             // url = 'http://backend-test.vimpelcom.ru:8080', // internal test
 
             // market_region = 98082, // Moscow
@@ -172,6 +173,10 @@ angular.module('BeeStore', ['ui.router','ngAnimate', 'foundation', 'foundation.d
             page = 2,
             marketCode = 'VIP', // for mobile backend
             webview = location.search.replace(/\?id=/g, ''); // webview id for bridge from electron to this interface
+
+        if (window.webview.indexOf('/') > -1) {
+            window.webview = window.webview.replace(/\//g, '');
+        }
 
         const TIMER_VALUE = 60;
         var timerStart = false;

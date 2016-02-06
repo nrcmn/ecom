@@ -98,7 +98,7 @@ angular.module('controllers', [])
             if (window.scrollLoad && (Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500)) {
                 if (lazyLoadNow) {return false} // if loading process running later
 
-                __LoadProducts(window.subCategory, 15, window.page += 1, '-weight', $rootScope.intagChoicesList);
+                __LoadProducts(window.subCategory, 15, window.page += 1, window.sortItem.value, $rootScope.intagChoicesList);
                 $rootScope.progress = true;
                 window.lazyLoadNow = true; // start lazy loading process
             }

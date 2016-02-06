@@ -100,7 +100,7 @@ angular.module('services', [])
     .service('__LoadOneProduct', function ($http, $rootScope, $q) {
         return function (id) {
             var deferred = $q.defer();
-            var params = (!window.product) ? 'id,name,remain,price,images,article,description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,description_small' : 'description_yandex,old_price,intags_categories,badges,accessories,rr_recommendations,multicard_products,id,extended_remains,description_small';
+            var params = (!window.product) ? 'id,name,remain,price,images,article,description_yandex,old_price,intags_categories,accessories,rr_recommendations,multicard_products,description_small' : 'description_yandex,old_price,intags_categories,accessories,rr_recommendations,multicard_products,id,extended_remains,description_small';
             // TODO: add "description_small" parameter in 1.21 release
 
             $http({
@@ -196,7 +196,7 @@ angular.module('services', [])
         return function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000',
+                url: 'http://localhost:3000/close',
                 params: {
                     id: window.webview
                 }
