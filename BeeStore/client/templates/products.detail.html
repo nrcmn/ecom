@@ -24,6 +24,8 @@
                 <!-- На складе: {{product.remain}} -->
             </p>
 
+            <a class="beeline-button" ng-click="addToBasket()">В корзину</a>
+
             <div class="grid-block">
                 <div style="margin: 20px 0;" class="grid-content" ng-repeat="(key, value) in product.multicard track by $index">
                     <span style="font-weight: bold; font-size: 20px; display: block;">Выберите {{value.name.toLowerCase()}}:</span>
@@ -55,8 +57,6 @@
             </div>
 
             <!-- <a title="Есть в наличии!" content="Для оформления заказа обратитесь к консультанту" color="success" autoclose="5000" zf-notify="orderNotify" class="beeline-button">Позвать консультанта</a> -->
-
-            <a class="beeline-button" ng-click="addToBasket()">В корзину</a>
 
             <!-- <a class="beeline-button" ng-show="showPricePlanPopup" zf-open="pricePlanModal">Об акции</a> -->
         </div>

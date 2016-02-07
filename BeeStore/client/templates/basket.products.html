@@ -1,7 +1,9 @@
 <div class="grid-block padding" ng-controller="BasketProductListCtrl">
-    <div ng-if="basket.length == 0" class="grid-content medium-12 text-center" style="border: 3px dashed #999; border-radius: 10px; padding: 20px;">
+
+    <div ng-if="basket.length == 0" class="found-nothing">
         <h3>Корзина пуста</h3>
-        <a ui-sref="main">Перейти к товарам</a>
+        <a ui-sref="main">Перейти на главную</a>
+        <p></p>
     </div>
 
     <div ng-if="basket.length != 0" class="grid-content medium-12">
@@ -59,7 +61,7 @@
 
         <div class="grid-block">
             <div class="grid-content align-right text-right">
-                <a class="button beeline-button" style="width:280px;margin:auto;" ui-sref="basket.form">Перейти к оформлению</a>
+                <a class="beeline-button" style="width:200px;margin:auto;" ui-sref="basket.form">Далее</a>
             </div>
         </div>
 

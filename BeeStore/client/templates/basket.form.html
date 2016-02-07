@@ -11,11 +11,11 @@
             <br/><br/>
 
             <div class="grid-container medium-6 text-center">
-                <label>
+                <label style="margin: 20px;">
                     <!-- <span style="font-size:24px;">номер телефона</span> -->
                     <span class="inline-label">
-                        <span class="form-label" style="font-size: 40px;">+7</span>
-                        <input field="phone" zf-open="keyboard_block" type="tel" placeholder="номер телефона" ng-model="form.phone" style="font-size: 40px; height: 60px;">
+                        <span class="form-label" style="font-size: 32px;">+7</span>
+                        <input disabled="true" field="phone" zf-open="keyboard_block" type="tel" placeholder="номер телефона" ng-model="form.phone" style="font-size: 32px; height: 60px; text-align: center;">
                     </span>
                 </label>
             </div>
@@ -42,7 +42,7 @@
 
         <div class="grid-block medium-6" style="margin: auto;">
             <div class="grid-content text-center">
-                <a class="button beeline-button" style="width:280px; margin: auto;" ng-click="placeAnOrder()" title="Заказ оформлен!" content="Заказ отправлен в никуда... Спасибо :)" color="success" autoclose="2000" zf-notify="basketResult">Оформить заказ</a>
+                <a class="beeline-button" style="width:200px; margin: auto;" ng-click="placeAnOrder()" title="Заказ оформлен!" content="Заказ отправлен в никуда... Спасибо :)" color="success" autoclose="2000" zf-notify="basketResult">Заказать</a>
             </div>
         </div>
 

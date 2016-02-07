@@ -1,7 +1,7 @@
-@import "settings";
-@import "foundation";
 @import "fonts"; // Beeline Officina
 @import "colors"; // Beeline Colors
+@import "settings";
+@import "foundation";
 @import "keyboard"; // Custom keyboard
 
 @import "checkbox";
@@ -116,10 +116,11 @@ h1,h2,h3,h4 {
     border: 2px solid #f1a011;
     border-radius: 25px;
     padding-left: 20px;
-    padding-right: 20px; 
+    padding-right: 20px;
+    padding: 0.85em 1em; 
     margin: 0 1rem 1rem 0;
     display: block;
-    width: 100%;
+    max-width: 100%;
     text-align: center;
     vertical-align: middle;
     line-height: 1;
@@ -137,7 +138,7 @@ a:hover, a:focus {
 }
 
 .beeline-button:active {
-    background: linear-gradient(180deg, #ffe100 0%, #f7a700 100%);
+    background: linear-gradient(0deg, #ffe100 0%, #f7a700 100%);
     border: 0;
     box-shadow: 0 0 6px 6px rgba(0,0,0,0.16) inset;
 }
@@ -257,8 +258,6 @@ a:hover, a:focus {
     padding-left: 32px!important;
 }
 
-
-
 .arrow-up {
     position: fixed;
     right: 2rem;
@@ -283,8 +282,6 @@ a:hover, a:focus {
     transition: opacity 0.5s linear;
     opacity: 0;
 }
-
-
 
 .categories {
     .img-section {
@@ -350,15 +347,7 @@ a:hover, a:focus {
     font-weight: bold;
 }
 
-.block-list .active-item:hover {
-    background: $yellow-gradient !important;
-}
-
-.block-list .active-item:active {
-    background: $yellow-gradient !important;
-}
-
-.block-list .active-item:focused {
+.block-list .active-item a:hover {
     background: $yellow-gradient !important;
 }
 
@@ -378,6 +367,11 @@ input:focus {
     border-radius: 10px;
     margin: 128px auto;
     text-align: center;
+}
+
+
+.keypad {
+    
 }
 
 // select drop-down styles
