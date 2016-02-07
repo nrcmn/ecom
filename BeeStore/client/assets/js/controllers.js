@@ -512,7 +512,7 @@ angular.module('controllers', [])
                     first_name: 'Клиент',
                     last_name: 'уважаемый',
                     middle_name: '',
-                    phone: $scope.form.phone,
+                    phone: $scope.form.phone.replace(/\(|\)/g, '').replace(/ /g, ''),
                     email: ''
                 },
                 items: basketItems,
@@ -520,13 +520,9 @@ angular.module('controllers', [])
                 order_status: "approved"
             }
 
-            __checkout(checkoutData).then(function (data) {
+            __Ordering(checkoutData).then(function (data) {
                 $scope.basketResult = 'Заказ оформлен. Номер вашего заказа - ' + data.number;
                 $rootScope.basket.length = 0;
-
-                $timeout(function () {
-                    $state.go('main')
-                }, 2000)
             }, function (data) {
                 $scope.basketResult = 'Во время оформления заказа произошла ошибка. ' + data.detail;
                 console.log('ERROR! "__Checkout"');
