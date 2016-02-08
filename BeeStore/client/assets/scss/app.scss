@@ -2,10 +2,10 @@
 @import "colors"; // Beeline Colors
 @import "settings";
 @import "foundation";
+
 @import "keyboard"; // Custom keyboard
 
 @import "checkbox";
-
 
 * {
 	user-select: none;
@@ -175,8 +175,22 @@ a:hover, a:focus {
 
 }
 
+// Cart
+
+.cart-footer {
+    width: 100%;
+    height: 125px;
+    background: #191919;
+    position: fixed;
+    bottom: 0;
+    z-index: 1001;
+    padding: 30px;
+}
+
+
+
 // Utiliti classes
-.dead-center {
+.dead-center, .dead-center div {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -190,6 +204,8 @@ a:hover, a:focus {
     -ms-flex-align: center;
             align-items: center;
 }
+
+
 
 .inline {
     display: inline;
@@ -347,8 +363,9 @@ a:hover, a:focus {
     font-weight: bold;
 }
 
-.block-list .active-item a:hover {
-    background: $yellow-gradient !important;
+.block-list li > a.active-item:hover,
+.block-list li.active-item > a:hover {
+    background: $yellow-gradient;
 }
 
 .no-scroll {
@@ -369,10 +386,6 @@ input:focus {
     text-align: center;
 }
 
-
-.keypad {
-    
-}
 
 // select drop-down styles
 

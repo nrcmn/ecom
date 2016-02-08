@@ -64,4 +64,26 @@
 .keypad div {
     height: 80px;
     font-size: 36px;
+    background: darken($gray-light, 5%);
+    padding: 6px;
+    border: 6px solid #fff;
 }
+
+.keypad div:active, .step-button:active {
+    background: darken($gray-light, 15%);
+}
+
+input.tel {
+    font-size: 26px;
+    height: 64px;
+    text-align: center;
+    background: #fff;
+}
+
+div.step-button {
+    display: inline-block;
+    background: darken($gray-light, 5%);
+    font-size: 44px;
+    width: 52px;
+}
+

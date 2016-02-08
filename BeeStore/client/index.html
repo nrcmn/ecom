@@ -64,23 +64,6 @@
               justify-content: space-around;
             }
 
-            .flex-item {
-              background: tomato;
-              padding: 5px;
-              width: 200px;
-              height: 500px;
-              margin-top: 10px;
-
-              line-height: 150px;
-              color: white;
-              font-weight: bold;
-              font-size: 3em;
-              text-align: center;
-            }
-
-            .test {
-                background: rgba(0,0,0,0.1);
-            }
         </style>
     </head>
 
@@ -96,18 +79,19 @@
         </div>
 
             <!-- Basket block (fixed positioned to bottom) -->
-            <div ng-if="basket.length != 0" ng-show="basketBottomShow" style="width: 100%; height: 125px; background: #191919; position: fixed; bottom: 0; z-index: 1001; padding: 30px">
+            <div ng-if="basket.length != 0" ng-show="basketBottomShow" class="cart-footer">
                 <div class="grid-block">
-                    <div class="grid-content medium-4 text-left" style="display:flex;flex-direction:row;align-items:center;padding:0;">
+                    <div ui-sref="basket.products" class="grid-content medium-6 text-left" style="display:flex;flex-direction:row;align-items:center;padding:0;">
                         <img zf-iconic="" icon="cart" size="large" class="iconic-color-secondary" style="margin-right:18px;width:64px;height:64px;">
                         <div>
-                            <h4 style="color:#999; margin-bottom:0;line-height:1;">Выбрано товаров ({{basketProductsCount}})</h4>
+                            <h4 style="color:#999; margin-bottom:0;line-height:1;">Товаров в корзине ({{basketProductsCount}})</h4>
                             <h3 style="color:#fff;display:inline;">{{basketPrice | price}}</h3><span style="color:#fff;"> руб.</span>
                         </div>
                     </div>
-                    <div class="grid-content medium-4 text-left" style="padding:0;">
+
+                    <!-- <div class="grid-content medium-4 text-left" style="padding:0;">
                         <a style="margin:6px 0 0 0;border-radius:6px;position:relative;padding-right:2rem;" class="button hollow warning large" ui-sref="basket.products">Перейти в корзину <img style="position:absolute;right:6px;top:44%;widht:12px;height:14px;" zf-iconic="" icon="chevron" size="small"></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
