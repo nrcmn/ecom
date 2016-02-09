@@ -497,7 +497,7 @@ angular.module('controllers', [])
         $scope.form = {};
         $scope.form.phone = '';
 
-        $scope.placeAnOrder = function () {
+        $scope._placeAnOrder = function () {
             var basketItems = new Array();
             $rootScope.basket.forEach(function (item, i, arr) {
                 basketItems.push({
@@ -520,11 +520,15 @@ angular.module('controllers', [])
                 order_status: "approved"
             }
 
+            console.log('Order created');
+
             __Ordering(checkoutData).then(function (data) {
-                $scope.basketResult = 'Заказ оформлен. Номер вашего заказа - ' + data.number;
+                $scope.orderResult = 'Заказ оформлен. Номер вашего заказа - ' + data.number;
                 $rootScope.basket.length = 0;
+                $scope.disable = true;
             }, function (data) {
-                $scope.basketResult = 'Во время оформления заказа произошла ошибка. ' + data.detail;
+                $scope.disable = true;
+                $scope.orderResult = 'Во время оформления заказа произошла ошибка. ' + data.detail;
                 console.log('ERROR! "__Checkout"');
             });
         }

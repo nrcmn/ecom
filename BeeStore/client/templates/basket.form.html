@@ -7,7 +7,7 @@
         </div>
 
         <div class="grid-block medium-4 text-center" style="margin: 50px auto;">
-            
+
 
             <div class="grid-block">
                 <label style="margin:6px;">
@@ -41,11 +41,11 @@
 
         </div>
 
-        {{basketResult}}
+        <h4 ng-if="disable">{{orderResult}}</h4>
 
         <div class="grid-block medium-4" style="margin: auto;">
             <div class="grid-content text-center">
-                <a class="beeline-button" ng-click="_placeAnOrder()" title="Заказ оформлен!" content="Обратитесь к любому консультанту" color="success" autoclose="3000" zf-notify="basketResult">Заказать</a>
+                <a class="beeline-button" ng-click="_placeAnOrder()" ng-hide="disable" title="Заказ оформлен!" content="Обратитесь к любому консультанту" color="success" autoclose="3000" zf-notify="basketResult">Заказать</a>
             </div>
         </div>
 
