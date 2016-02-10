@@ -32,16 +32,16 @@
             <!-- *** -->
             <!-- ** -->
             <!-- * -->
-            <!-- <div class="grid-block">
+            <div class="grid-block">
                 <div style="margin: 20px 0;" class="grid-content" ng-repeat="(key, value) in product.multicard track by $index">
                     <span style="font-weight: bold; font-size: 20px; display: block;">Выберите {{value.name.toLowerCase()}}:</span>
-                    <span style="margin: 5px; padding: 10px; border: 2px dashed #999; display: inline-block; border-radius: 5px; font-weight: bold;" ng-repeat="(key, value) in value.choiceValues" ng-click="multicardButton(value)" ng-class="{'test': value.current}">
+                    <span zf-open="multicardModal" style="margin: 5px; padding: 10px; border: 2px dashed #999; display: inline-block; border-radius: 5px; font-weight: bold;" ng-repeat="(key, value) in value.choiceValues" ng-click="multicardButton(value)" ng-class="{'test': value.current}">
                         {{key}} / {{value.show}}
                     </span>
                 </div>
             </div>
 
-            <button zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()" ng-disabled="availableCount.length == 1 && availableCount[0] == product.id">Показать ({{availableCount.length}})</button>
+            <!-- <button zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()" ng-disabled="availableCount.length == 1 && availableCount[0] == product.id">Показать ({{availableCount.length}})</button> -->
 
             <div zf-modal="" id="multicardModal">
                 <a zf-close="" class="close-button">×</a>
@@ -60,7 +60,8 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
+
             <!-- * -->
             <!-- ** -->
             <!-- *** -->
@@ -126,15 +127,6 @@
                                     <div style="flex:2;">
                                         <b>{{param.value[0]}}</b>
                                         <div ng-if="param.value[1]" style="border-radius:50%; width:30px; height:30px; background: {{param.value[1]}};"></div>
-                                        <!-- <span>
-                                            <div>
-                                                <b ng-if="param.id == 21">{{param.value[0].split(';')[0]}}</b>
-                                            </div>
-                                            <div style="border-radius:50%; width:30px; height:30px; background: {{param.value[0].split(';')[1]}};"></div>
-                                        </span>
-                                        <span>
-                                            <b ng-if="param.id != 21">{{param.value[0]}}</b>
-                                        </span> -->
                                     </div>
                                 </li>
                             </ul>

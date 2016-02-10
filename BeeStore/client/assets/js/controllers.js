@@ -265,9 +265,7 @@ angular.module('controllers', [])
                     }
                 }
             })
-        }
 
-        $scope.multicardSearchButton = function () {
             if ($scope.availableCount.length == 1) {
                 $state.go('detail', {id: $scope.availableCount[0]})
             }
@@ -277,6 +275,17 @@ angular.module('controllers', [])
                 });
             }
         }
+
+        // $scope.multicardSearchButton = function () {
+        //     if ($scope.availableCount.length == 1) {
+        //         $state.go('detail', {id: $scope.availableCount[0]})
+        //     }
+        //     else {
+        //         __LoadProductsListByID($scope.availableCount).then(function (data) {
+        //             $scope.multicardProductsList = data;
+        //         });
+        //     }
+        // }
 
         // open field in intags
         $scope.openField = function (f) {
