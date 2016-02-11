@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Angular 2</title>
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+        <!-- 1. Load libraries -->
+        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="node_modules/typescript/lib/typescript.js" charset="utf-8"></script>
+        <script src="config.js" charset="utf-8"></script>
+        <script src="node_modules/rxjs/bundles/Rx.js"></script>
+        <script src="node_modules/angular2/bundles/router.js"></script>
+        <script src="node_modules/angular2/bundles/angular2.js"></script>
+        <script src="node_modules/angular2/bundles/http.min.js"></script>
+
+        <!-- 2. Configure SystemJS -->
+        <script>
+            System.import('app/boot')
+                .then(null, console.error.bind(console));
+        </script>
+    </head>
+    <base href="/">
+    <body>
+        <!-- 3. Display the application HERE -->
+
+    </body>
+</html>
