@@ -24,7 +24,9 @@
                 <!-- На складе: {{product.remain}} -->
             </p>
 
-            <a class="beeline-button" ng-click="addToBasket()" ng-if="product.remain != 'нет' || product.remain != 'временно нет'">В корзину</a>
+            <a class="beeline-button" ng-click="addToBasket()" ng-if="product.remain != 'нет' && product.remain != 'временно нет'">В корзину</a>
+
+            <h4 ng-if="product.remain == 'нет' || product.remain == 'временно нет'">Извините, нет в наличии</h4>
 
             <!-- ****** Multicard block. Don't DELETE ******* -->
             <!-- ***** -->

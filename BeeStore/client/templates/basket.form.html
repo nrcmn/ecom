@@ -45,7 +45,21 @@
 
         <div class="grid-block medium-4" style="margin: auto;">
             <div class="grid-content text-center">
-                <a class="beeline-button" ng-click="_placeAnOrder()" ng-hide="disable" title="Заказ оформлен!" content="Обратитесь к любому консультанту" color="success" autoclose="3000" zf-notify="basketResult">Заказать</a>
+                <a zf-open="basketFormModal" class="beeline-button" ng-hide="disable">Заказать</a>
+            </div>
+        </div>
+
+        <div zf-modal id="basketFormModal">
+            <a zf-close="" class="close-button">×</a>
+            <h3>Вы собираетесь сделать заказ на сумму<br/>{{basketPrice | price}} руб.</h3>
+
+            <div class="grid-block" style="margin: auto;">
+                <div class="grid-block padding">
+                    <button type="button" name="button" class="beeline-button grid-content" ng-click="_placeAnOrder()"  title="Заказ оформлен!" content="Обратитесь к любому консультанту" color="success" autoclose="3000" zf-notify="basketResult" zf-close="">Оформить</button>
+                </div>
+                <div class="grid-block padding">
+                    <button zf-close="" type="button" name="button" class="beeline-button grid-content" style="background: #fff;">отмена</button>
+                </div>
             </div>
         </div>
 
