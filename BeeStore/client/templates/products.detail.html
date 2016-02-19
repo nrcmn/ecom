@@ -24,7 +24,7 @@
                 <!-- На складе: {{product.remain}} -->
             </p>
 
-            <a class="beeline-button" ng-click="addToBasket()" ng-if="product.remain != 'нет' && product.remain != 'временно нет'">В корзину</a>
+            <!-- <a class="beeline-button" ng-click="addToBasket()" ng-if="product.remain != 'нет' && product.remain != 'временно нет'">В корзину</a> -->
 
             <h4 ng-if="product.remain == 'нет' || product.remain == 'временно нет'">Извините, нет в наличии</h4>
 
@@ -34,18 +34,18 @@
             <!-- *** -->
             <!-- ** -->
             <!-- * -->
-            <div class="grid-block">
+            <!-- <div class="grid-block">
                 <div style="margin: 20px 0;" class="grid-content" ng-repeat="(key, value) in product.multicard track by $index">
                     <span style="font-weight: bold; font-size: 20px; display: block;">Выберите {{value.name.toLowerCase()}}:</span>
                     <span zf-open="multicardModal" style="margin: 5px; padding: 10px; border: 2px dashed #999; display: inline-block; border-radius: 5px; font-weight: bold;" ng-repeat="(key, value) in value.choiceValues" ng-click="multicardButton(value)" ng-class="{'test': value.current}">
                         {{key}} / {{value.show}}
                     </span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- <button zf-open="multicardModal" class="button hollow warning" ng-if="availableCount" ng-click="multicardSearchButton()" ng-disabled="availableCount.length == 1 && availableCount[0] == product.id">Показать ({{availableCount.length}})</button> -->
 
-            <div zf-modal="" id="multicardModal">
+            <!-- <div zf-modal="" id="multicardModal">
                 <a zf-close="" class="close-button">×</a>
                 <div class="grid-block small-up-3 align-center products">
                     <div class="grid-block" ng-repeat="card in multicardProductsList">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- * -->
             <!-- ** -->
