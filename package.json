@@ -1,0 +1,17 @@
+{
+  "name": "gulp-live",
+  "version": "0.1.0",
+  "description": "",
+  "main": "gulp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-server-livereload": "^1.5.4",
+    "gulp-sass": "^2.2.0",
+    "yargs": "^3.32.0"
+  }
+}

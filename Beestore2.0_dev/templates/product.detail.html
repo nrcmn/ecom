@@ -1,0 +1,30 @@
+<h2>{{product?.name}}</h2>
+<div class="row">
+    <div class="small-6 columns">
+
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide" *ngFor="#item of product?.images">
+                    <img src="{{item}}" alt="" />
+                </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination" [ngStyle]="{'display': swiperInit}"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev" [ngStyle]="{'display': swiperInit}"></div>
+            <div class="swiper-button-next" [ngStyle]="{'display': swiperInit}"></div>
+        </div>
+    </div>
+    <div class="small-6 columns">
+        Hello world
+        <button (click)="addToCart()">В корзину</button>
+    </div>
+</div>
+
+<p>
+    {{product?.description_yandex}}
+</p>

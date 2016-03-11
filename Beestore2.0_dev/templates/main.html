@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="small-6 columns" *ngFor="#item of categories | arrayCutTop">
+        <div class="card" (click)="showMe(item)">
+            <img src="{{item.img}}" alt="" />
+            <h3>{{item.name}}</h3>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="small-4 columns" *ngFor="#item of categories | arrayCutBottom">
+        <div class="card" (click)="showMe(item)">
+            <img src="{{item.img}}" alt="" />
+            <h5>{{item.name}}</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div style="overflow: hidden;">
+    <div class="row">
+        <div class="small-3 columns">
+            <button (click)="filterVisibleFunc()">Фильтр</button>
+        </div>
+        <div class="small-3 columns">
+            <select [(ngModel)]="sortType" (ngModelChange)="selectSortType()">
+                <option *ngFor="#s of sortingArr" [value]="s.value">{{s.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div (window:scroll)="onScroll($event)">
+        <filters></filters>
+        <div class="row">
+            <div class="small-4 columns" *ngFor="#item of products">
+                <div class="card" (click)="openProduct(item)">
+                    <img src="{{item.images[0]}}" alt="" />
+                    <h5>{{item.name}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- !!! MODAL WINDOW !!! -->
+    <div class="reveal-overlay" [ngStyle]="{'display': filtersShow}">
+        <div class="reveal" style="display: block; top: 182px; margin: 10.25rem auto 0; position: relative; height: 24rem;">
+            <button class="close-button" (click)="filterVisibleFunc()" type="button">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="row" style="overflow: hidden; height: 90%;">
+                <div class="small-4 colums" style="overflow: scroll;">
+                    <p *ngFor="#filter of filters.results; #i = index" (click)="checkFilterName(filter, i)">
+                        {{filter.name}}
+                    </p>
+                </div>
+                <div class="small-8 colums" style="overflow: scroll;">
+                    <ul>
+                        <li *ngFor="#choice of filterChoices; #i = index">
+                            <input type="checkbox" (change)="selectFilterChoice($event, choice)" [(checked)]="choice.checked" [(disabled)]="choice.disable">
+                            <label>
+                                {{choice.value}}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="expanded button-group">
+                <a class="button" (click)="filtering()">Фильтровать</a>
+                <a class="button" (click)="cancel()">Отмена</a>
+            </div>
+        </div>
+    </div>
+</div>

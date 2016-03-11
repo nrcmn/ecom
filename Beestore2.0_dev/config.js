@@ -15,7 +15,7 @@ System.config({
     //packages defines our app package
     packages: {
         app: {
-            main: './wrap.component.ts',
+            main: './app.ts',
             defaultExtension: 'ts'
         }
     }

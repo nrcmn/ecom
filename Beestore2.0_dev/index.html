@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <title>Angular 2</title>
 
-        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/app.css"> -->
+        <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"> -->
+        <link rel="stylesheet" href="bower_components/foundation-sites/dist/foundation-flex.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="bower_components/Swiper/dist/css/swiper.min.css">
 
         <!-- 1. Load libraries -->
         <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
@@ -16,15 +19,38 @@
         <script src="node_modules/angular2/bundles/angular2.js"></script>
         <script src="node_modules/angular2/bundles/http.min.js"></script>
 
-        <!-- 2. Configure SystemJS -->
+        <!-- 2. Load custom libraries -->
+        <script src="bower_components/Swiper/dist/js/swiper.min.js" charset="utf-8"></script>
+        <script src="bower_components/skrollr/skrollr.min.js" charset="utf-8"></script>
+
+        <!-- 3. Configure SystemJS -->
         <script>
             System.import('app/boot')
                 .then(null, console.error.bind(console));
         </script>
+
+        <!-- Custom styles -->
+        <style media="screen">
+            app {
+                max-width: 500px;
+                display: block;
+                margin: auto;
+            }
+
+            .card {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .swiper-container {
+                width: 200px;
+                height: 200px;
+            }
+        </style>
     </head>
     <base href="/">
     <body>
         <!-- 3. Display the application HERE -->
-
+        <app></app>
     </body>
 </html>

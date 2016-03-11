@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="small-4 columns" *ngFor="#item of currentCollection.reverse()">
+        <div class="card" (click)="openCollection(item)">
+            <img src="{{item.image}}" alt="" />
+            <h5>{{item.name}}</h5>
+        </div>
+    </div>
+</div>
