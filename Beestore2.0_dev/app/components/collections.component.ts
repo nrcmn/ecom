@@ -7,6 +7,10 @@ import {ProductsListComponent} from './products.list.component';
 import {__LoadProductList} from  '../services/product.list.service';
 import {__LoadFilters} from '../services/filters.load.service';
 
+export interface Remains {
+    key: string;
+}
+
 export interface baseProductObject {
     article: string;
     id: number;
@@ -14,9 +18,7 @@ export interface baseProductObject {
     name: string;
     price: number;
     remain: string;
-    pickupOrder?: boolean;
-    deliveryOrder?: boolean;
-    show?: boolean;
+    extended_remains: Remains;
 }
 
 export interface FiltersResults {

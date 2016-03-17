@@ -46,6 +46,11 @@ System.register(['angular2/core', 'angular2/router', './products.list.component'
                     this.cartUpdate = cartUpdate;
                     this.product = products_list_component_1.ProductsListComponent.product; // @view_model variable for product detail view data
                     this.swiperInit = 'none';
+                    let point = localStorage.getItem('shopId');
+                    // if this product have some balance in this point
+                    (point in products_list_component_1.ProductsListComponent.product.extended_remains) ? this.showPickupButton = true : this.showPickupButton = false;
+                    // if this point have some balance in ecommerce shop
+                    (products_list_component_1.ProductsListComponent.product.remain != 'нет' || products_list_component_1.ProductsListComponent.product.remain != 'временно нет') ? this.showCartButton = true : this.showCartButton = false;
                     if (products_list_component_1.ProductsListComponent.product.images.length > 1) {
                         // Swiper.JS codehack
                         setTimeout(() => {
@@ -63,7 +68,7 @@ System.register(['angular2/core', 'angular2/router', './products.list.component'
                         }, 1000);
                     }
                     // Load other data for product description
-                    this.loadDescription.request(this._routeParams.params.id.toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
+                    this.loadDescription.request(this._routeParams.params['id'].toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
                         var data = res.json();
                         for (let i in products_list_component_1.ProductsListComponent.product) {
                             data[i] = products_list_component_1.ProductsListComponent.product[i];

@@ -40,6 +40,8 @@ interface productDetailDescription extends baseProductObject {
 export class DetailProductComponent {
     private product: baseProductObject = ProductsListComponent.product; // @view_model variable for product detail view data
     private swiperInit: string = 'none';
+    private showPickupButton: boolean;
+    private showCartButton: boolean;
 
 
     /*
@@ -47,6 +49,15 @@ export class DetailProductComponent {
         and add optional symbol (for ex: 'product?.name') to templates.
     */
     constructor (private _router: Router, private _routeParams: RouteParams, private loadDescription: __LoadProductDescription, private cartUpdate: CartComponent) {
+        let point = localStorage.getItem('shopId');
+
+        // if this product have some balance in this point
+        (point in ProductsListComponent.product.extended_remains) ? this.showPickupButton = true : this.showPickupButton = false;
+
+        // if this point have some balance in ecommerce shop
+        (ProductsListComponent.product.remain != 'нет' || ProductsListComponent.product.remain != 'временно нет') ? this.showCartButton = true : this.showCartButton = false;
+
+
         if (ProductsListComponent.product.images.length > 1) {
             // Swiper.JS codehack
             setTimeout(() :any => {
@@ -67,7 +78,7 @@ export class DetailProductComponent {
         }
 
         // Load other data for product description
-        this.loadDescription.request(this._routeParams.params.id.toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
+        this.loadDescription.request(this._routeParams.params['id'].toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
             var data = res.json();
             for(let i in ProductsListComponent.product) {data[i] = ProductsListComponent.product[i]}
             this.product = data;

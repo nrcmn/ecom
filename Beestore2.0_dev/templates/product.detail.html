@@ -20,8 +20,9 @@
         </div>
     </div>
     <div class="small-6 columns">
-        Hello world
-        <button (click)="addToCart()">В корзину</button>
+        <h2>{{product?.price}}</h2>
+        <button class="beeline-button" (click)="addToCart()" *ngIf="showCartButton">В корзину</button>
+        <button class="beeline-button" (click)="pickupOrder()" *ngIf="showPickupButton">Забрать сейчас</button>
     </div>
 </div>
 
