@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './main.component', './products.list.component', '../services/product.list.service', '../services/filters.load.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './main.component', '../services/product.list.service', '../services/filters.load.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './main.component', './prod
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, main_component_1, products_list_component_1, product_list_service_1, filters_load_service_1;
+    var core_1, router_1, main_component_1, product_list_service_1, filters_load_service_1;
     var CollectionsComponent;
     return {
         setters:[
@@ -22,9 +22,6 @@ System.register(['angular2/core', 'angular2/router', './main.component', './prod
             },
             function (main_component_1_1) {
                 main_component_1 = main_component_1_1;
-            },
-            function (products_list_component_1_1) {
-                products_list_component_1 = products_list_component_1_1;
             },
             function (product_list_service_1_1) {
                 product_list_service_1 = product_list_service_1_1;
@@ -54,12 +51,7 @@ System.register(['angular2/core', 'angular2/router', './main.component', './prod
                     var promises = [
                         new Promise((resolve, reject) => {
                             // load product list
-                            this.productsLoader.request(arg.id.toString(), '15', '-weight').subscribe(res => {
-                                var data = res.json();
-                                CollectionsComponent_1.productsList = data;
-                                (data.length < 15) ? products_list_component_1.ProductsListComponent.loadProductsStatus = false : products_list_component_1.ProductsListComponent.loadProductsStatus = true; // if length of data is lower then 15 - set false for lazy loading status variable
-                                resolve();
-                            });
+                            this.productsLoader.request(arg.id.toString(), '15', '-weight', null, null, false, resolve, reject);
                         }),
                         new Promise((resolve, reject) => {
                             // load filters for this collection
@@ -81,6 +73,7 @@ System.register(['angular2/core', 'angular2/router', './main.component', './prod
                     });
                 }
             };
+            CollectionsComponent.productsList = new Array(); // init global variable for products list
             CollectionsComponent.selectedFilterIntagChoices = new Array(); // list of selected filters
             CollectionsComponent = CollectionsComponent_1 = __decorate([
                 core_1.Component({

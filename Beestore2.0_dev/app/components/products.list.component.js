@@ -42,6 +42,28 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                     this.sortingArr = [{ value: '-weight', name: 'популярности' }, { value: 'price', name: 'цене: по возрастанию' }, { value: '-price', name: 'цене: по убыванию' }]; // init values for sorting list
                     this.sortType = this.sortingArr[0].value; // set default sort value
                     this.filtersShow = 'none'; // hide filters popup window
+                    this.shopTypes = [{ value: 'all', name: 'Показывать все' }, { value: 'eshop', name: 'Только интернет-магазин' }, { value: 'pickup', name: 'Только эта точка продаж' }]; // list shop types for delivery type in products list (pickup / delivery)
+                    this.checkedShopType = this.shopTypes[0].value; // init default type for products list delivery type
+                }
+                sortByShopType(value, i) {
+                    if (value == 'pickup') {
+                        ProductsListComponent_1.pointCode = true;
+                        new Promise((resolve, reject) => {
+                            this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort, null, '1', ProductsListComponent_1.pointCode, resolve, reject);
+                        }).then(() => {
+                            this.products = collections_component_1.CollectionsComponent.productsList;
+                            this.page = 1;
+                        });
+                    }
+                    else {
+                        ProductsListComponent_1.pointCode = false;
+                        new Promise((resolve, reject) => {
+                            this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort, null, '1', ProductsListComponent_1.pointCode, resolve, reject);
+                        }).then(() => {
+                            this.products = collections_component_1.CollectionsComponent.productsList;
+                            this.page = 1;
+                        });
+                    }
                 }
                 // Open product detail description function
                 openProduct(arg) {
@@ -50,13 +72,12 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                 }
                 // Lazyloading function
                 onScroll(event) {
-                    if ((Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500) && ProductsListComponent_1.loadProductsStatus) {
-                        ProductsListComponent_1.loadProductsStatus = false;
-                        this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort, null, this.page.toString()).subscribe(res => {
-                            ProductsListComponent_1.loadProductsStatus = true;
+                    if ((Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500) && collections_component_1.CollectionsComponent.loadProductsStatus) {
+                        collections_component_1.CollectionsComponent.loadProductsStatus = false;
+                        new Promise((resolve, reject) => {
+                            this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort, null, this.page.toString(), ProductsListComponent_1.pointCode, resolve, reject);
+                        }).then((data) => {
                             this.page += 1;
-                            var data = res.json();
-                            (data.length < 15) ? ProductsListComponent_1.loadProductsStatus = false : ProductsListComponent_1.loadProductsStatus = true;
                             for (let i = 0; i < data.length; i++) {
                                 this.products.push(data[i]);
                             }
@@ -66,9 +87,9 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                 // Sorting functions
                 selectSortType() {
                     ProductsListComponent_1.sort = this.sortType;
-                    this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort).subscribe(res => {
-                        var data = res.json();
-                        collections_component_1.CollectionsComponent.productsList = data;
+                    new Promise((resolve, reject) => {
+                        this.productsLoader.request(collections_component_1.CollectionsComponent.collection, '15', ProductsListComponent_1.sort, null, this.page.toString(), ProductsListComponent_1.pointCode, resolve, reject);
+                    }).then(() => {
                         this.products = collections_component_1.CollectionsComponent.productsList;
                     });
                 }
@@ -157,6 +178,7 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                 }
             };
             ProductsListComponent.sort = '-weight'; // set default sort value for other services
+            ProductsListComponent.pointCode = false; // set default value for loading products only on this point
             ProductsListComponent = ProductsListComponent_1 = __decorate([
                 core_1.Component({
                     selector: 'products-list',

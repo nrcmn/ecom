@@ -1,19 +1,50 @@
+
 <div style="overflow: hidden;">
     <div class="row">
         <div class="small-3 columns">
             <button (click)="filterVisibleFunc()">Фильтр</button>
         </div>
         <div class="small-3 columns">
-            <select [(ngModel)]="sortType" (ngModelChange)="selectSortType()">
+
+            <!-- Uses classes from beestore -->
+            <label>Сортировать по:</label>
+            <div class="cs-select cs-skin-border">
+                <span class="cs-placeholder">placeholder</span>
+                <div class="cs-options">
+                    <ul>
+                        <li *ngFor="#s of sortingArr">
+                            {{s.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- <select [(ngModel)]="sortType" (ngModelChange)="selectSortType()">
                 <option *ngFor="#s of sortingArr" [value]="s.value">{{s.name}}</option>
-            </select>
+            </select> -->
+        </div>
+
+        <div class="small-3 columns">
+
+            <!-- Uses classes from beestore -->
+            <label>Отображать:</label>
+            <div class="cs-select cs-skin-border">
+                <span class="cs-placeholder">placeholder</span>
+                <div class="cs-options">
+                    <ul>
+                        <li *ngFor="#shop of shopTypes; #i = index" (click)="sortByShopType(shop.value, i)">
+                            {{shop.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
     <div (window:scroll)="onScroll($event)">
         <filters></filters>
         <div class="row">
-            <div class="small-4 columns" *ngFor="#item of products">
+            <div class="small-4 columns" *ngFor="#item of products;">
                 <div class="card" (click)="openProduct(item)">
                     <img src="{{item.images[0]}}" alt="" />
                     <h5>{{item.name}}</h5>

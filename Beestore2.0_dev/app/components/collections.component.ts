@@ -14,6 +14,9 @@ export interface baseProductObject {
     name: string;
     price: number;
     remain: string;
+    pickupOrder?: boolean;
+    deliveryOrder?: boolean;
+    show?: boolean;
 }
 
 export interface FiltersResults {
@@ -44,11 +47,11 @@ export interface Filters {
 export class CollectionsComponent {
     private currentCollection: collectionObjectMap[] = []; // @view_model init current collection scope
 
-    static productsList: baseProductObject[]; // init global variable for products list
+    static productsList: baseProductObject[] = new Array(); // init global variable for products list
     static collection: string; // init selected collection ID
     static filters: Filters; // init global variables for filters data
     static selectedFilterIntagChoices: Array<number> = new Array(); // list of selected filters
-
+    static loadProductsStatus: boolean; // init lazy loading statuses variable
 
     constructor (private productsLoader: __LoadProductList, private filtersLoader: __LoadFilters, private _router: Router) {
         // For loop, which push in currentCollection only current collection data
@@ -68,14 +71,16 @@ export class CollectionsComponent {
         var promises = [
             new Promise ((resolve, reject) => {
                 // load product list
-                this.productsLoader.request(arg.id.toString(), '15', '-weight').subscribe(res => {
-                    var data = res.json();
-                    CollectionsComponent.productsList = data;
-
-                    (data.length < 15) ? ProductsListComponent.loadProductsStatus = false : ProductsListComponent.loadProductsStatus = true; // if length of data is lower then 15 - set false for lazy loading status variable
-
-                    resolve();
-                });
+                this.productsLoader.request(
+                    arg.id.toString(),
+                    '15',
+                    '-weight',
+                    null,
+                    null,
+                    false,
+                    resolve,
+                    reject
+                );
             }),
             new Promise ((resolve, reject) => {
                 // load filters for this collection

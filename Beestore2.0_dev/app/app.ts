@@ -49,10 +49,10 @@ export class StaticProperties {
     // public url: string = 'http://backend.vimpelcom.ru:8080'; // Internal API
     // public url: string = 'http://backend-test.vimpelcom.ru:8080'; // Internal test API
 
-    static market_region: number = 98220; // market_region number
+    static market_region: number = 98140; // market_region number
     static marketCode: string = 'VIP'; // for price plans identification
     static TIMER_VALUE: number = 60; // timer value
-    static shopID: string = '0952' // #beestore in Yekaterinburg
+    // static shopID: string = '' // #beestore in Yekaterinburg // unused in this app
 }
 
 export class GlobalAppComponent extends StaticProperties {

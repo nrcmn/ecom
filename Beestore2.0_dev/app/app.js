@@ -57,10 +57,9 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
             // public url: string = 'https://public.backend-test.vimpelcom.ru'; // public test API
             // public url: string = 'http://backend.vimpelcom.ru:8080'; // Internal API
             // public url: string = 'http://backend-test.vimpelcom.ru:8080'; // Internal test API
-            StaticProperties.market_region = 98220; // market_region number
+            StaticProperties.market_region = 98140; // market_region number
             StaticProperties.marketCode = 'VIP'; // for price plans identification
             StaticProperties.TIMER_VALUE = 60; // timer value
-            StaticProperties.shopID = '0952'; // #beestore in Yekaterinburg
             StaticProperties = __decorate([
                 core_1.Component({
                     selector: "app",

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Injectable} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {CollectionsComponent, baseProductObject, Filters, FilterChoices, FiltersResults} from './collections.component';
 
@@ -8,6 +8,11 @@ import {__LoadFilters} from '../services/filters.load.service';
 declare var skrollr: any; // init universal variable for skrollr library
 
 interface Sorting {
+    value: string;
+    name: string;
+}
+
+interface ShopTypes {
     value: string;
     name: string;
 }
@@ -27,12 +32,54 @@ export class ProductsListComponent {
     private sortType: string = this.sortingArr[0].value; // set default sort value
     private filtersShow: string = 'none'; // hide filters popup window
     private filterNameIndex: number; // this variable save index of current selected filter
+    private shopTypes: ShopTypes[] = [{value: 'all', name: 'Показывать все'}, {value: 'eshop', name: 'Только интернет-магазин'}, {value: 'pickup', name: 'Только эта точка продаж'}]; // list shop types for delivery type in products list (pickup / delivery)
+    private checkedShopType: string = this.shopTypes[0].value; // init default type for products list delivery type
 
     static product: baseProductObject; // save data for product detail description
-    static loadProductsStatus: boolean; // init lazy loading statuses variable
     static sort: string = '-weight'; // set default sort value for other services
+    static pointCode: boolean = false; // set default value for loading products only on this point
 
     constructor (private _router?: Router, private productsLoader?: __LoadProductList, private filtersLoader?: __LoadFilters) {}
+
+
+    sortByShopType (value: string, i?: number) :void {
+        if (value == 'pickup') {
+            ProductsListComponent.pointCode = true;
+            new Promise((resolve, reject) => {
+                this.productsLoader.request(
+                    CollectionsComponent.collection,
+                    '15',
+                    ProductsListComponent.sort,
+                    null,
+                    '1',
+                    ProductsListComponent.pointCode,
+                    resolve,
+                    reject
+                )
+            }).then(() => {
+                this.products = CollectionsComponent.productsList;
+                this.page = 1;
+            })
+        }
+        else {
+            ProductsListComponent.pointCode = false;
+            new Promise((resolve, reject) => {
+                this.productsLoader.request(
+                    CollectionsComponent.collection,
+                    '15',
+                    ProductsListComponent.sort,
+                    null,
+                    '1',
+                    ProductsListComponent.pointCode,
+                    resolve,
+                    reject
+                )
+            }).then(() => {
+                this.products = CollectionsComponent.productsList;
+                this.page = 1;
+            })
+        }
+    }
 
     // Open product detail description function
     openProduct (arg: baseProductObject) {
@@ -41,16 +88,22 @@ export class ProductsListComponent {
     }
 
     // Lazyloading function
-    onScroll (event: Event) {
-        if ((Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500) && ProductsListComponent.loadProductsStatus) {
-            ProductsListComponent.loadProductsStatus = false;
-            this.productsLoader.request(CollectionsComponent.collection, '15', ProductsListComponent.sort, null, this.page.toString()).subscribe(res => {
-                ProductsListComponent.loadProductsStatus = true;
+    onScroll (event: Event) :void {
+        if ((Number(window.pageYOffset.toFixed()) - (document.body.scrollHeight - window.innerHeight) >= -1500) && CollectionsComponent.loadProductsStatus) {
+            CollectionsComponent.loadProductsStatus = false;
+            new Promise((resolve, reject) => {
+                this.productsLoader.request(
+                    CollectionsComponent.collection,
+                    '15',
+                    ProductsListComponent.sort,
+                    null,
+                    this.page.toString(),
+                    ProductsListComponent.pointCode,
+                    resolve,
+                    reject
+                )
+            }).then((data: any) => {
                 this.page += 1;
-
-                var data = res.json();
-                (data.length < 15) ? ProductsListComponent.loadProductsStatus = false : ProductsListComponent.loadProductsStatus = true;
-
                 for(let i=0; i < data.length; i++) {
                     this.products.push(data[i]);
                 }
@@ -61,9 +114,18 @@ export class ProductsListComponent {
     // Sorting functions
     selectSortType () :void {
         ProductsListComponent.sort = this.sortType;
-        this.productsLoader.request(CollectionsComponent.collection, '15', ProductsListComponent.sort).subscribe(res => {
-            var data = res.json();
-            CollectionsComponent.productsList = data;
+        new Promise((resolve, reject) => {
+            this.productsLoader.request(
+                CollectionsComponent.collection,
+                '15',
+                ProductsListComponent.sort,
+                null,
+                this.page.toString(),
+                ProductsListComponent.pointCode,
+                resolve,
+                reject
+            )
+        }).then(() => {
             this.products = CollectionsComponent.productsList;
         })
     }
@@ -102,7 +164,6 @@ export class ProductsListComponent {
 
         return;
     }
-
 
     // Select value in filter and save them in global variable for filtering
     selectFilterChoice (event: any, choice: FilterChoices) :void {
