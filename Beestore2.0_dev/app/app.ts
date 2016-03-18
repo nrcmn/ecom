@@ -40,7 +40,7 @@ import {NavigationComponent} from './components/navigation.component';
     new Route({path: '/products', name: 'Products', component: ProductsListComponent}),
     new Route({path: '/products/:id', name: 'Detail', component: DetailProductComponent}),
     new Route({path: '/cart', name: 'Cart', component: CartComponent}),
-    new Route({path: '/cart/form', name: 'Delivery', component: CartOrderComponent}),
+    new Route({path: '/cart/form/:type', name: 'Delivery', component: CartOrderComponent}),
     new Route({path: '/navigation', name: 'Navi', component: NavigationComponent})
 ])
 

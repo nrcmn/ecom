@@ -86,6 +86,16 @@ System.register(['angular2/core', 'angular2/router', './products.list.component'
                     });
                     this._router.navigate(['Cart']); // navigate to cart
                 }
+                pickupOrder() {
+                    this.cartUpdate.addToPickupCart({
+                        product: this.product.id,
+                        quantity: 1,
+                        img: this.product.images[0],
+                        name: this.product.name,
+                        price: this.product.price
+                    });
+                    this._router.navigate(['Delivery', { type: 'pickup' }]); // navigate to form with mobile number input field
+                }
             };
             DetailProductComponent = __decorate([
                 core_1.Component({

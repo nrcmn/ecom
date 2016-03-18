@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" *ngIf="showSteps">
     <div class="medium-12 text-center">
         <h2>Шаг 2 из 2</h2>
     </div>
@@ -71,7 +71,7 @@
 
 <div class="row">
     <div class="medium-3 text-center" style="margin: auto;">
-        <a class="beeline-button">Заказать</a>
+        <a class="beeline-button" (click)="preOrderButton()">Заказать</a>
     </div>
 </div>
 

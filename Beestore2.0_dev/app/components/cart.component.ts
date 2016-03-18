@@ -22,6 +22,7 @@ interface Cart {
 export class CartComponent {
     private cartList: Cart = CartComponent.cart; // @view_model list of products in cart
     static cart: Cart; // static variable for
+    static pickupCart: Cart; // pickup products list
 
     addToCart (arg: CartItems) :any {
         // init cart, if not and push data
@@ -57,5 +58,10 @@ export class CartComponent {
             CartComponent.cart.totalPrice += arg.price;
             CartComponent.cart.totalCount += 1;
         }
+    }
+
+    addToPickupCart (arg: CartItems) :any {
+        CartComponent.pickupCart = {totalPrice: arg.price, totalCount: 1, items: []};
+        return CartComponent.pickupCart.items.push(arg);
     }
 }

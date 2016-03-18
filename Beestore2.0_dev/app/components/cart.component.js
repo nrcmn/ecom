@@ -56,6 +56,10 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                         CartComponent_1.cart.totalCount += 1;
                     }
                 }
+                addToPickupCart(arg) {
+                    CartComponent_1.pickupCart = { totalPrice: arg.price, totalCount: 1, items: [] };
+                    return CartComponent_1.pickupCart.items.push(arg);
+                }
             };
             CartComponent = CartComponent_1 = __decorate([
                 core_1.Component({

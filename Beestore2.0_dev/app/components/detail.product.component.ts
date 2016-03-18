@@ -96,4 +96,16 @@ export class DetailProductComponent {
 
         this._router.navigate(['Cart']); // navigate to cart
     }
+
+    pickupOrder () {
+        this.cartUpdate.addToPickupCart({
+            product: this.product.id,
+            quantity: 1,
+            img: this.product.images[0],
+            name: this.product.name,
+            price: this.product.price
+        });
+
+        this._router.navigate(['Delivery', {type: 'pickup'}]); // navigate to form with mobile number input field
+    }
 }

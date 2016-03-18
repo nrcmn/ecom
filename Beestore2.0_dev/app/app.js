@@ -78,7 +78,7 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
                     new router_1.Route({ path: '/products', name: 'Products', component: products_list_component_1.ProductsListComponent }),
                     new router_1.Route({ path: '/products/:id', name: 'Detail', component: detail_product_component_1.DetailProductComponent }),
                     new router_1.Route({ path: '/cart', name: 'Cart', component: cart_component_1.CartComponent }),
-                    new router_1.Route({ path: '/cart/form', name: 'Delivery', component: cart_order_component_1.CartOrderComponent }),
+                    new router_1.Route({ path: '/cart/form/:type', name: 'Delivery', component: cart_order_component_1.CartOrderComponent }),
                     new router_1.Route({ path: '/navigation', name: 'Navi', component: navigation_component_1.NavigationComponent })
                 ]), 
                 __metadata('design:paramtypes', [])
