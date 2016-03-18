@@ -68,7 +68,7 @@
                 <div class="small-8 colums" style="overflow: scroll;">
                     <ul>
                         <li *ngFor="#choice of filterChoices; #i = index">
-                            <input type="checkbox" (change)="selectFilterChoice($event, choice)" [(checked)]="choice.checked" [(disabled)]="choice.disable">
+                            <input type="checkbox" (change)="selectFilterChoice($event, choice)" [(checked)]="choice.checked">
                             <label>
                                 {{choice.value}}
                             </label>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="expanded button-group">
-                <a class="button" (click)="filtering()">Фильтровать</a>
+                <a class="button" (click)="filtering()">{{filterButton}}</a>
                 <a class="button" (click)="cancel()">Отмена</a>
             </div>
         </div>

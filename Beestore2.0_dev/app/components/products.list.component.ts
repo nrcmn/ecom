@@ -34,6 +34,8 @@ export class ProductsListComponent {
     private filterNameIndex: number; // this variable save index of current selected filter
     private shopTypes: ShopTypes[] = [{value: 'all', name: 'Показывать все'}, {value: 'eshop', name: 'Только интернет-магазин'}, {value: 'pickup', name: 'Только эта точка продаж'}]; // list shop types for delivery type in products list (pickup / delivery)
     private checkedShopType: string = this.shopTypes[0].value; // init default type for products list delivery type
+    private filterButton: string = 'Показать (' + CollectionsComponent.filters.product_count.toString() + ')'; // button text for filtering function
+    private filterButtonDisable: boolean = false; // disable/enable filtering button
 
     static product: baseProductObject; // save data for product detail description
     static sort: string = '-weight'; // set default sort value for other services
@@ -150,7 +152,7 @@ export class ProductsListComponent {
         return this.filterChoices = CollectionsComponent.filters.results[i].choices, this.filterNameIndex = i;
     }
 
-    // This for loop get list of selected choices and checked them on view
+    // This loop get list of selected choices and checked them on view
     loop (ind: number) :void {
         for (let i=0; i < CollectionsComponent.filters.results[ind].choices.length; i++) {
             let choice = CollectionsComponent.filters.results[ind].choices[i];
@@ -170,56 +172,54 @@ export class ProductsListComponent {
         if (event.target.checked) {
             choice.checked = true;
             CollectionsComponent.selectedFilterIntagChoices.push(choice.id);
-            this.filtersLiveConfigure(true);
         }
         else {
             choice.checked = false;
             let removeIndex = CollectionsComponent.selectedFilterIntagChoices.indexOf(choice.id);
             CollectionsComponent.selectedFilterIntagChoices.splice(removeIndex, 1);
-            this.filtersLiveConfigure(false);
         }
 
-        // return CollectionsComponent.selectedFilterIntagChoices;
+        this.filterButton = 'загрузка...';
+        this.filterButtonDisable = true;
+
+        this.filtersLiveConfigure();
     }
 
-    filtersLiveConfigure (enter: boolean) :void {
+    filtersLiveConfigure () :any {
         this.filtersLoader.request(CollectionsComponent.selectedFilterIntagChoices.join(',')).subscribe(res => {
             let data = res.json();
-            let listOfFilteredIntags = new Array();
 
-            for (let i=0; i < data.results.length; i++) {
-                data.results[i].choices.forEach((item, i, arr) => {
-                    listOfFilteredIntags.push(item.id)
-                })
+            this.filters.max_price = data.max_price;
+            this.filters.min_price = data.min_price;
+            this.filters.product_count = data.product_count;
+
+            if (data.product_count == 0) {
+                this.filterButtonDisable = true;
+                return this.filterButton = 'Ничего не найдено';
             }
-
-            for (let i=0; i < this.filters.results.length; i++) {
-                if (i == this.filterNameIndex && enter) {
-                    continue
-                }
-
-                this.filters.results[i].choices.forEach((item, index, arr) => {
-                    if (listOfFilteredIntags.indexOf(this.filters.results[i].choices[index].id) < 0) {
-                        this.filters.results[i].choices[index].checked = false;
-                        this.filters.results[i].choices[index].disable = true;
-
-
-                        // CollectionsComponent.selectedFilterIntagChoices.splice(CollectionsComponent.selectedFilterIntagChoices.indexOf(this.filters.results[i].choices[index].id), 1);
-                    }
-                    else {
-                        this.filters.results[i].choices[index].disable = false;
-                    }
-                })
+            else {
+                this.filterButtonDisable = false;
+                this.filterButton = 'Показать (' + data.product_count.toString() + ')';
             }
         })
     }
 
     // Filter data and load filtered products list
-    filtering () :void {}
+    filtering () :void {
+        if (this.filterButtonDisable) {
+            return;
+        }
+        else {
+            console.log(CollectionsComponent.selectedFilterIntagChoices);
+        }
+    }
 
     // Cancel all changes in filters popup
     cancel () :void {
         CollectionsComponent.selectedFilterIntagChoices = new Array();
+        this.filtersLiveConfigure(); // update filters
+
+        // uncheck all checked items
         for (let i=0; i < this.filters.results.length; i++) {
             this.filters.results[i].choices.forEach((item, index, arr) => {
                 item.disable = false;

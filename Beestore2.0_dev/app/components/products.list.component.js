@@ -44,6 +44,8 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                     this.filtersShow = 'none'; // hide filters popup window
                     this.shopTypes = [{ value: 'all', name: 'Показывать все' }, { value: 'eshop', name: 'Только интернет-магазин' }, { value: 'pickup', name: 'Только эта точка продаж' }]; // list shop types for delivery type in products list (pickup / delivery)
                     this.checkedShopType = this.shopTypes[0].value; // init default type for products list delivery type
+                    this.filterButton = 'Показать (' + collections_component_1.CollectionsComponent.filters.product_count.toString() + ')'; // button text for filtering function
+                    this.filterButtonDisable = false; // disable/enable filtering button
                 }
                 sortByShopType(value, i) {
                     if (value == 'pickup') {
@@ -111,7 +113,7 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                     this.loop(i);
                     return this.filterChoices = collections_component_1.CollectionsComponent.filters.results[i].choices, this.filterNameIndex = i;
                 }
-                // This for loop get list of selected choices and checked them on view
+                // This loop get list of selected choices and checked them on view
                 loop(ind) {
                     for (let i = 0; i < collections_component_1.CollectionsComponent.filters.results[ind].choices.length; i++) {
                         let choice = collections_component_1.CollectionsComponent.filters.results[ind].choices[i];
@@ -129,46 +131,46 @@ System.register(['angular2/core', 'angular2/router', './collections.component', 
                     if (event.target.checked) {
                         choice.checked = true;
                         collections_component_1.CollectionsComponent.selectedFilterIntagChoices.push(choice.id);
-                        this.filtersLiveConfigure(true);
                     }
                     else {
                         choice.checked = false;
                         let removeIndex = collections_component_1.CollectionsComponent.selectedFilterIntagChoices.indexOf(choice.id);
                         collections_component_1.CollectionsComponent.selectedFilterIntagChoices.splice(removeIndex, 1);
-                        this.filtersLiveConfigure(false);
                     }
-                    // return CollectionsComponent.selectedFilterIntagChoices;
+                    this.filterButton = 'загрузка...';
+                    this.filterButtonDisable = true;
+                    this.filtersLiveConfigure();
                 }
-                filtersLiveConfigure(enter) {
+                filtersLiveConfigure() {
                     this.filtersLoader.request(collections_component_1.CollectionsComponent.selectedFilterIntagChoices.join(',')).subscribe(res => {
                         let data = res.json();
-                        let listOfFilteredIntags = new Array();
-                        for (let i = 0; i < data.results.length; i++) {
-                            data.results[i].choices.forEach((item, i, arr) => {
-                                listOfFilteredIntags.push(item.id);
-                            });
+                        this.filters.max_price = data.max_price;
+                        this.filters.min_price = data.min_price;
+                        this.filters.product_count = data.product_count;
+                        if (data.product_count == 0) {
+                            this.filterButtonDisable = true;
+                            return this.filterButton = 'Ничего не найдено';
                         }
-                        for (let i = 0; i < this.filters.results.length; i++) {
-                            if (i == this.filterNameIndex && enter) {
-                                continue;
-                            }
-                            this.filters.results[i].choices.forEach((item, index, arr) => {
-                                if (listOfFilteredIntags.indexOf(this.filters.results[i].choices[index].id) < 0) {
-                                    this.filters.results[i].choices[index].checked = false;
-                                    this.filters.results[i].choices[index].disable = true;
-                                }
-                                else {
-                                    this.filters.results[i].choices[index].disable = false;
-                                }
-                            });
+                        else {
+                            this.filterButtonDisable = false;
+                            this.filterButton = 'Показать (' + data.product_count.toString() + ')';
                         }
                     });
                 }
                 // Filter data and load filtered products list
-                filtering() { }
+                filtering() {
+                    if (this.filterButtonDisable) {
+                        return;
+                    }
+                    else {
+                        console.log(collections_component_1.CollectionsComponent.selectedFilterIntagChoices);
+                    }
+                }
                 // Cancel all changes in filters popup
                 cancel() {
                     collections_component_1.CollectionsComponent.selectedFilterIntagChoices = new Array();
+                    this.filtersLiveConfigure(); // update filters
+                    // uncheck all checked items
                     for (let i = 0; i < this.filters.results.length; i++) {
                         this.filters.results[i].choices.forEach((item, index, arr) => {
                             item.disable = false;
