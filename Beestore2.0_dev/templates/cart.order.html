@@ -1,0 +1,91 @@
+
+<div class="row">
+    <div class="medium-12 text-center">
+        <h2>Шаг 2 из 2</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 text-center">
+        <label style="margin:6px;">
+            <span class="inline-label">
+                <span class="form-label" style="font-size: 28px; font-weight:bold;">+7 {{phoneNumber | phoneNumberMask}}</span>
+                <!-- <input class="tel" disabled="true" field="phone" type="tel" placeholder="номер телефона"> -->
+            </span>
+        </label>
+    </div>
+</div>
+
+<div class="keyboard">
+    <div class="row">
+        <div class="medium-4 text-center" (click)="phoneKeyPress('1', 'key')">
+            1
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('2', 'key')">
+            2
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('3', 'key')">
+            3
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-4 text-center" (click)="phoneKeyPress('4', 'key')">
+            4
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('5', 'key')">
+            5
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('6', 'key')">
+            6
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-4 text-center" (click)="phoneKeyPress('7', 'key')">
+            7
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('8', 'key')">
+            8
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('9', 'key')">
+            9
+        </div>
+    </div>
+    <div class="row">
+        <div class="medium-4 text-center" (click)="phoneKeyPress(null, 'clear')">
+            C
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress('0', 'key')">
+            0
+        </div>
+        <div class="medium-4 text-center" (click)="phoneKeyPress(null, 'backspace')">
+            &#8592;
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-12 text-center">
+        РЕЗУЛЬТАТ
+    </div>
+</div>
+
+<div class="row">
+    <div class="medium-3 text-center" style="margin: auto;">
+        <a class="beeline-button">Заказать</a>
+    </div>
+</div>
+
+<!-- Modal window -->
+<!-- <div zf-modal id="basketFormModal">
+    <a zf-close="" class="close-button">×</a>
+    <h3>Вы собираетесь сделать заказ на сумму<br/>{{basketPrice | price}} руб.</h3>
+
+    <div class="grid-block" style="margin: auto;">
+        <div class="grid-block padding">
+            <button type="button" name="button" class="beeline-button grid-content" ng-click="_placeAnOrder()"  title="Заказ оформлен!" content="Обратитесь к любому консультанту" color="success" autoclose="3000" zf-notify="basketResult" zf-close="">Оформить</button>
+        </div>
+        <div class="grid-block padding">
+            <button zf-close="" type="button" name="button" class="beeline-button grid-content" style="background: #fff;">отмена</button>
+        </div>
+    </div>
+</div> -->

@@ -30,3 +30,28 @@ export class arrayCutBottom {
         return cutVal;
     }
 }
+
+@Pipe({
+    name: 'phoneNumberMask'
+})
+export class phoneNumberMask {
+    transform (value) {
+        var strArr = value.split('');
+        for (let i=0; i < strArr.length; i++) {
+            if (i == 0) {
+                strArr[i] = '(' + strArr[i];
+            }
+            else if (i == 2) {
+                strArr[i] = strArr[i] + ') ';
+            }
+            else if (i == 5) {
+                strArr[i] = strArr[i] + ' ';
+            }
+            else if (i == 7) {
+                strArr[i] = strArr[i] + ' ';
+            }
+        }
+
+        return strArr.join('');
+    }
+}

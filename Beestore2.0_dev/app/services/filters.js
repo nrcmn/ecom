@@ -11,7 +11,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var arrayCutTop, arrayCutBottom;
+    var arrayCutTop, arrayCutBottom, phoneNumberMask;
     return {
         setters:[
             function (core_1_1) {
@@ -54,6 +54,33 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 __metadata('design:paramtypes', [])
             ], arrayCutBottom);
             exports_1("arrayCutBottom", arrayCutBottom);
+            let phoneNumberMask = class phoneNumberMask {
+                transform(value) {
+                    var strArr = value.split('');
+                    for (let i = 0; i < strArr.length; i++) {
+                        if (i == 0) {
+                            strArr[i] = '(' + strArr[i];
+                        }
+                        else if (i == 2) {
+                            strArr[i] = strArr[i] + ') ';
+                        }
+                        else if (i == 5) {
+                            strArr[i] = strArr[i] + ' ';
+                        }
+                        else if (i == 7) {
+                            strArr[i] = strArr[i] + ' ';
+                        }
+                    }
+                    return strArr.join('');
+                }
+            };
+            phoneNumberMask = __decorate([
+                core_1.Pipe({
+                    name: 'phoneNumberMask'
+                }), 
+                __metadata('design:paramtypes', [])
+            ], phoneNumberMask);
+            exports_1("phoneNumberMask", phoneNumberMask);
         }
     }
 });

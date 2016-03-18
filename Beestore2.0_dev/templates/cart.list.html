@@ -1,7 +1,55 @@
-<div *ngFor="#item of cartList?.items">
-    {{item.name}}
-    {{item.quantity}}
+<div *ngIf="!cartList || cartList?.items.length == 0" class="found-nothing">
+    <h3>Корзина пуста</h3>
+    <a [routerLink]="['Main']">Перейти на главную</a>
+    <p></p>
 </div>
 
-<h3>{{cartList?.totalPrice}}</h3>
-<h3>{{cartList?.totalCount}}</h3>
+<div *ngIf="cartList && cartList?.items.length != 0">
+    <div class="row">
+        <div class="medium-12 text-center">
+            <h2>Шаг 1 из 2</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-2"></div>
+        <div class="medium-4">
+            <p>Название</p>
+        </div>
+        <div class="medium-3 text-center">
+            <p>Кол-во</p>
+        </div>
+        <div class="medium-2 text-center">
+            <p>Цена</p>
+        </div>
+        <div class="medium-1"></div>
+    </div>
+
+    <div class="row" *ngFor="#item of cartList?.items">
+        <div class="medium-2">
+            <img style="max-height:120px;" src="{{item.img}}"/>
+        </div>
+        <div class="medium-4">
+            <h4>{{item.name}}</h4>
+        </div>
+        <div class="medium-3 text-center" style="font-size: 40px;">
+            <div class="step-button dead-center">-</div> {{item.quantity}} <div class="step-button dead-center">+</div>
+        </div>
+        <div class="medium-2 text-center">
+            <span style="font-size: 28px">{{item.price}}</span>
+        </div>
+        <div class=" medium-1 text-center">
+            <a><img src="../img/close.svg" style="width:40px;"></a>
+        </div>
+    </div>
+
+    <br/><br/>
+
+    <h2 class="inline">Итого: {{cartList?.totalPrice}}</h2><span> руб.</span>
+
+    <br><br>
+
+    <div class=" align-right text-right">
+        <a class="beeline-button" style="width:200px;margin:auto;" [routerLink]="['Delivery']">Далее</a>
+    </div>
+</div>

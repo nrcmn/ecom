@@ -51,7 +51,13 @@ System.register(['angular2/core', 'angular2/router', './main.component', '../ser
                     var promises = [
                         new Promise((resolve, reject) => {
                             // load product list
-                            this.productsLoader.request(arg.id.toString(), '15', '-weight', null, null, false, resolve, reject);
+                            this.productsLoader.request(arg.id.toString(), // collection
+                            '15', // count
+                            '-weight', // sorting
+                            null, // choices
+                            '1', // page
+                            false, // use point code or not
+                            resolve, reject);
                         }),
                         new Promise((resolve, reject) => {
                             // load filters for this collection

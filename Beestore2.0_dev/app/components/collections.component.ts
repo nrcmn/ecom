@@ -74,12 +74,12 @@ export class CollectionsComponent {
             new Promise ((resolve, reject) => {
                 // load product list
                 this.productsLoader.request(
-                    arg.id.toString(),
-                    '15',
-                    '-weight',
-                    null,
-                    null,
-                    false,
+                    arg.id.toString(), // collection
+                    '15', // count
+                    '-weight', // sorting
+                    null, // choices
+                    '1', // page
+                    false, // use point code or not
                     resolve,
                     reject
                 );

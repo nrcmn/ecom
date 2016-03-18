@@ -8,7 +8,7 @@
     -- App version --
     version: 0.2.0
 */
-System.register(['angular2/core', 'angular2/router', './components/main.component', './components/collections.component', './components/products.list.component', './components/detail.product.component', './components/cart.component', './components/navigation.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/main.component', './components/collections.component', './components/products.list.component', './components/detail.product.component', './components/cart.component', './components/cart.order.component', './components/navigation.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,7 +20,7 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, main_component_1, collections_component_1, products_list_component_1, detail_product_component_1, cart_component_1, navigation_component_1;
+    var core_1, router_1, main_component_1, collections_component_1, products_list_component_1, detail_product_component_1, cart_component_1, cart_order_component_1, navigation_component_1;
     var StaticProperties, GlobalAppComponent, Value;
     return {
         setters:[
@@ -44,6 +44,9 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
             },
             function (cart_component_1_1) {
                 cart_component_1 = cart_component_1_1;
+            },
+            function (cart_order_component_1_1) {
+                cart_order_component_1 = cart_order_component_1_1;
             },
             function (navigation_component_1_1) {
                 navigation_component_1 = navigation_component_1_1;
@@ -75,6 +78,7 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
                     new router_1.Route({ path: '/products', name: 'Products', component: products_list_component_1.ProductsListComponent }),
                     new router_1.Route({ path: '/products/:id', name: 'Detail', component: detail_product_component_1.DetailProductComponent }),
                     new router_1.Route({ path: '/cart', name: 'Cart', component: cart_component_1.CartComponent }),
+                    new router_1.Route({ path: '/cart/form', name: 'Delivery', component: cart_order_component_1.CartOrderComponent }),
                     new router_1.Route({ path: '/navigation', name: 'Navi', component: navigation_component_1.NavigationComponent })
                 ]), 
                 __metadata('design:paramtypes', [])
