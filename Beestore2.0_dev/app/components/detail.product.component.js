@@ -46,6 +46,33 @@ System.register(['angular2/core', 'angular2/router', './products.list.component'
                     this.cartUpdate = cartUpdate;
                     this.product = products_list_component_1.ProductsListComponent.product; // @view_model variable for product detail view data
                     this.swiperInit = 'none';
+                    // search params
+                    let params;
+                    if (products_list_component_1.ProductsListComponent.product) {
+                        this.initDefaultData();
+                        params = 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations';
+                    }
+                    else {
+                        params = 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations,article,id,name,images,price,remain,extended_remains';
+                    }
+                    // Load other data for product description
+                    this.loadDescription.request(this._routeParams.params['id'].toString(), params).subscribe(res => {
+                        var data = res.json();
+                        // if this page open from products list
+                        if (products_list_component_1.ProductsListComponent.product) {
+                            // update global product object
+                            for (let i in products_list_component_1.ProductsListComponent.product) {
+                                data[i] = products_list_component_1.ProductsListComponent.product[i];
+                            }
+                        }
+                        else {
+                            products_list_component_1.ProductsListComponent.product = data;
+                            this.initDefaultData();
+                        }
+                        this.product = data;
+                    });
+                }
+                initDefaultData() {
                     let point = localStorage.getItem('shopId');
                     // if this product have some balance in this point
                     (point in products_list_component_1.ProductsListComponent.product.extended_remains) ? this.showPickupButton = true : this.showPickupButton = false;
@@ -67,14 +94,6 @@ System.register(['angular2/core', 'angular2/router', './products.list.component'
                             });
                         }, 1000);
                     }
-                    // Load other data for product description
-                    this.loadDescription.request(this._routeParams.params['id'].toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
-                        var data = res.json();
-                        for (let i in products_list_component_1.ProductsListComponent.product) {
-                            data[i] = products_list_component_1.ProductsListComponent.product[i];
-                        }
-                        this.product = data;
-                    });
                 }
                 addToCart() {
                     this.cartUpdate.addToCart({

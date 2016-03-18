@@ -21,26 +21,35 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 router_1 = router_1_1;
             }],
         execute: function() {
-            let NavigationComponent = class NavigationComponent {
+            let NavigationComponent_1;
+            let NavigationComponent = NavigationComponent_1 = class NavigationComponent {
                 constructor(router) {
                     this.router = router;
                     this.showNavigation = false; // @view_model init show or hide rule for navigation block
+                    this.backButton = 'none'; // @view_model init display style for back button
+                    this.toMain = 'none'; // @view_model init display style for to main page button
                     this.router.subscribe(val => {
-                        switch (val) {
-                            case '':
-                                this.showNavigation = false;
-                                this.backButton = 'none';
-                                this.toMain = 'none';
-                                break;
-                            case 'collections':
-                                this.showNavigation = true;
-                                this.backButton = 'block';
-                                this.toMain = 'none';
-                                break;
-                            default:
-                                this.showNavigation = true;
-                                this.backButton = 'block';
-                                this.toMain = 'block';
+                        NavigationComponent_1.history.push(val);
+                        if (val == '' || val == 'slidebox') {
+                            NavigationComponent_1.history = new Array();
+                            this.showNavigation = false;
+                            this.backButton = 'none';
+                            this.toMain = 'none';
+                        }
+                        else if (val == 'collections') {
+                            this.showNavigation = true;
+                            this.backButton = 'block';
+                            this.toMain = 'none';
+                        }
+                        else if (NavigationComponent_1.history.length <= 1) {
+                            this.showNavigation = true;
+                            this.backButton = 'none';
+                            this.toMain = 'block';
+                        }
+                        else {
+                            this.showNavigation = true;
+                            this.backButton = 'block';
+                            this.toMain = 'block';
                         }
                     });
                 }
@@ -51,7 +60,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.router.navigate(['Main']);
                 }
             };
-            NavigationComponent = __decorate([
+            NavigationComponent.history = new Array(); // static variable with histories;
+            NavigationComponent = NavigationComponent_1 = __decorate([
                 core_1.Component({
                     selector: 'navigation',
                     templateUrl: '../templates/navigation.html'

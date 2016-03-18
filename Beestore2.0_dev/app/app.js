@@ -8,7 +8,7 @@
     -- App version --
     version: 0.2.0
 */
-System.register(['angular2/core', 'angular2/router', './components/main.component', './components/collections.component', './components/products.list.component', './components/detail.product.component', './components/cart.component', './components/cart.order.component', './components/navigation.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/slidebox.component', './components/main.component', './components/collections.component', './components/products.list.component', './components/detail.product.component', './components/cart.component', './components/cart.order.component', './components/navigation.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,7 +20,7 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, main_component_1, collections_component_1, products_list_component_1, detail_product_component_1, cart_component_1, cart_order_component_1, navigation_component_1;
+    var core_1, router_1, slidebox_component_1, main_component_1, collections_component_1, products_list_component_1, detail_product_component_1, cart_component_1, cart_order_component_1, navigation_component_1;
     var StaticProperties, GlobalAppComponent, Value;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (slidebox_component_1_1) {
+                slidebox_component_1 = slidebox_component_1_1;
             },
             function (main_component_1_1) {
                 main_component_1 = main_component_1_1;
@@ -73,6 +76,7 @@ System.register(['angular2/core', 'angular2/router', './components/main.componen
                     directives: [router_1.ROUTER_DIRECTIVES, navigation_component_1.NavigationComponent]
                 }),
                 router_1.RouteConfig([
+                    new router_1.Route({ path: '/slidebox', name: 'Slidebox', component: slidebox_component_1.SlideboxComponent, useAsDefault: true }),
                     new router_1.Route({ path: '/', name: 'Main', component: main_component_1.MainComponent }),
                     new router_1.Route({ path: '/collections', name: 'Collections', component: collections_component_1.CollectionsComponent }),
                     new router_1.Route({ path: '/products', name: 'Products', component: products_list_component_1.ProductsListComponent }),

@@ -7,26 +7,35 @@ import {Router} from 'angular2/router';
 })
 export class NavigationComponent {
     private showNavigation: boolean = false; // @view_model init show or hide rule for navigation block
-    private backButton: string; // @view_model init display style for back button
-    private toMain: string; // @view_model init display style for to main page button
+    private backButton: string = 'none'; // @view_model init display style for back button
+    private toMain: string = 'none'; // @view_model init display style for to main page button
+
+    static history: Array<string> = new Array(); // static variable with histories;
 
     constructor (private router?: Router) {
         this.router.subscribe(val => {
-            switch (val) {
-                case '':
-                    this.showNavigation = false;
-                    this.backButton = 'none';
-                    this.toMain = 'none';
-                    break;
-                case 'collections':
-                    this.showNavigation = true;
-                    this.backButton = 'block';
-                    this.toMain = 'none';
-                    break;
-                default:
-                    this.showNavigation = true;
-                    this.backButton = 'block';
-                    this.toMain = 'block';
+            NavigationComponent.history.push(val);
+
+            if (val == '' || val == 'slidebox') {
+                NavigationComponent.history = new Array();
+                this.showNavigation = false;
+                this.backButton = 'none';
+                this.toMain = 'none';
+            }
+            else if (val == 'collections') {
+                this.showNavigation = true;
+                this.backButton = 'block';
+                this.toMain = 'none';
+            }
+            else if (NavigationComponent.history.length <= 1) {
+                this.showNavigation = true;
+                this.backButton = 'none';
+                this.toMain = 'block';
+            }
+            else {
+                this.showNavigation = true;
+                this.backButton = 'block';
+                this.toMain = 'block';
             }
         })
     }

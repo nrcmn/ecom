@@ -49,8 +49,36 @@ export class DetailProductComponent {
         and add optional symbol (for ex: 'product?.name') to templates.
     */
     constructor (private _router: Router, private _routeParams: RouteParams, private loadDescription: __LoadProductDescription, private cartUpdate: CartComponent) {
-        let point = localStorage.getItem('shopId');
+        // search params
+        let params: string;
+        if (ProductsListComponent.product) {
+            this.initDefaultData();
+            params = 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations';
+        }
+        else {
+            params = 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations,article,id,name,images,price,remain,extended_remains';
+        }
 
+        // Load other data for product description
+        this.loadDescription.request(this._routeParams.params['id'].toString(), params).subscribe(res => {
+            var data = res.json();
+
+            // if this page open from products list
+            if (ProductsListComponent.product) {
+                // update global product object
+                for(let i in ProductsListComponent.product) {data[i] = ProductsListComponent.product[i]}
+            }
+            else {
+                ProductsListComponent.product = data;
+                this.initDefaultData();
+            }
+
+            this.product = data;
+        })
+    }
+
+    initDefaultData () {
+        let point = localStorage.getItem('shopId');
         // if this product have some balance in this point
         (point in ProductsListComponent.product.extended_remains) ? this.showPickupButton = true : this.showPickupButton = false;
 
@@ -76,13 +104,6 @@ export class DetailProductComponent {
                 })
             }, 1000);
         }
-
-        // Load other data for product description
-        this.loadDescription.request(this._routeParams.params['id'].toString(), 'accessories,description_small,description_yandex,intags_categories,old_price,rr_recommendations').subscribe(res => {
-            var data = res.json();
-            for(let i in ProductsListComponent.product) {data[i] = ProductsListComponent.product[i]}
-            this.product = data;
-        })
     }
 
     addToCart () {

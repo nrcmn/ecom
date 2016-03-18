@@ -15,6 +15,7 @@ import {Component} from 'angular2/core';
 import {Router, Route, RouteData, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 // Import app components
+import {SlideboxComponent} from './components/slidebox.component';
 import {MainComponent} from './components/main.component';
 import {CollectionsComponent} from './components/collections.component';
 import {ProductsListComponent} from './components/products.list.component';
@@ -35,7 +36,8 @@ import {NavigationComponent} from './components/navigation.component';
 })
 // Configurate routing
 @RouteConfig([
-    new Route({path:'/', name: 'Main', component: MainComponent}),
+    new Route({path: '/slidebox', name: 'Slidebox', component: SlideboxComponent, useAsDefault: true}),
+    new Route({path: '/', name: 'Main', component: MainComponent}),
     new Route({path: '/collections', name: 'Collections', component: CollectionsComponent}),
     new Route({path: '/products', name: 'Products', component: ProductsListComponent}),
     new Route({path: '/products/:id', name: 'Detail', component: DetailProductComponent}),
